@@ -51,7 +51,7 @@
 
 <section class="border-t bg-gradient-to-b from-gray-50 to-white py-20 px-6 md:px-12 lg:px-24">
     <div class="max-w-7xl mx-auto text-center">
-        <h2 class="text-4xl font-extrabold mb-4 tech-stack-heading">Tech Stack We Use</h2>
+        <h2 class="text-4xl font-bold mb-4 tech-stack-heading">Tech Stack We Use</h2>
         <p class="text-gray-600 text-lg mb-16 max-w-2xl mx-auto">
             From frontend to cloud, here are the tools we use to build scalable, performant digital products.
         </p>

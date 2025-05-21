@@ -3,7 +3,7 @@
 @section('home', 'active')
 @section('main-section')
 
-   @include('frontend/home/intro')
+   @include('frontend/home/intro') 
     
     </header>
 
