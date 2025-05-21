@@ -14,9 +14,9 @@
     <link href="{{ asset('css/home/intro.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/services.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/technologies.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/portfolio.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/about.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/contact.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/about.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/contact.css') }}" rel="stylesheet"> --}}
 
 
 </head>

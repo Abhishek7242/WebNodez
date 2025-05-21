@@ -1,4 +1,6 @@
-
+nav{
+  z-index: 1111111111111;
+}
 /* Animated underline on hover */
 .nav-link {
   position: relative;

@@ -9,6 +9,7 @@ mix.js('resources/js/app.js', 'public/js')
     .css('resources/css/home/services.css', 'public/css/home/services.css') // Move this inside the same chain
     .css('resources/css/home/technologies.css', 'public/css/home/technologies.css') // Move this inside the same chain
     .css('resources/css/navbar.css', 'public/css') // Move this inside the same chain
+    .css('resources/css/footer.css', 'public/css') // Move this inside the same chain
     .js('resources/js/home.js', 'public/js') // Move this inside the same chain
     .browserSync({
         proxy: 'http://127.0.0.1:8000',

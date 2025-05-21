@@ -19485,6 +19485,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/css/footer.css":
+/*!**********************************!*\
+  !*** ./resources/css/footer.css ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./resources/css/home.css":
 /*!********************************!*\
   !*** ./resources/css/home.css ***!
@@ -19712,6 +19725,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /******/ 			"css/home/intro": 0,
 /******/ 			"css/home": 0,
 /******/ 			"css/app": 0,
+/******/ 			"css/footer": 0,
 /******/ 			"css/navbar": 0
 /******/ 		};
 /******/ 		
@@ -19762,13 +19776,14 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/navbar"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/navbar"], () => (__webpack_require__("./resources/css/app.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/navbar"], () => (__webpack_require__("./resources/css/home.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/navbar"], () => (__webpack_require__("./resources/css/home/intro.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/navbar"], () => (__webpack_require__("./resources/css/home/services.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/navbar"], () => (__webpack_require__("./resources/css/home/technologies.css")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/navbar"], () => (__webpack_require__("./resources/css/navbar.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/footer","css/navbar"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/footer","css/navbar"], () => (__webpack_require__("./resources/css/app.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/footer","css/navbar"], () => (__webpack_require__("./resources/css/home.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/footer","css/navbar"], () => (__webpack_require__("./resources/css/home/intro.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/footer","css/navbar"], () => (__webpack_require__("./resources/css/home/services.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/footer","css/navbar"], () => (__webpack_require__("./resources/css/home/technologies.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/footer","css/navbar"], () => (__webpack_require__("./resources/css/navbar.css")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/footer","css/navbar"], () => (__webpack_require__("./resources/css/footer.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
