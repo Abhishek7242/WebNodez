@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+:root{
+    --color-primary: #22C55E;
+    --color-secondary:  #3fac3b;
+    --color-tertiary: black;
+  
+
+
+}

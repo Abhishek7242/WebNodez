@@ -1,0 +1,31 @@
+
+/* Animated underline on hover */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--color-primary); /* Tailwind's green-500 */
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--color-primary); /* Tailwind's green-400 */
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Optional: Style for active page link */
+.nav-link.active {
+  color: var(--color-primary); /* Tailwind's green-500 */
+}
+

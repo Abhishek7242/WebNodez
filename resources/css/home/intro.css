@@ -1,0 +1,83 @@
+#intro{
+    min-height:93vh;
+  }
+
+  #intro-text{
+    width: 40%;
+  }
+  #intro-text button{
+    background-color: var(--color-primary);
+    color: white;
+  }
+  #intro-text button:hover{
+    background-color: var(--color-secondary);
+    color: white;
+  }
+  
+
+
+  /* orbital planets css starts */
+  .orbit-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+  }
+
+  .center-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 140px;
+    height: 140px;
+    border-radius: 9999px;
+    padding: 8px;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    z-index: 10;
+  }
+
+  .center-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 9999px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    height: 320px;
+    margin-left: -160px;
+    margin-top: -160px;
+    border-radius: 50%;
+    pointer-events: none;
+    /* Removed CSS animation to control rotation via JS */
+  }
+
+  .planet {
+position: absolute;
+width: 80px;
+height: 80px;
+border-radius: 9999px;
+overflow: hidden;
+border: 4px solid white;
+will-change: transform;
+transition: transform 0.03s linear;
+}
+.planet img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+
+  .planet:hover {
+    transform: scale(1.2);
+    z-index: 20;
+  }
+  /* orbital planets css ends */
