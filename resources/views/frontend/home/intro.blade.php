@@ -9,14 +9,18 @@
        
       </div>
       <div>
-        <button class="bg-blue-600 text-white px-6 py-2 rounded-full flex items-center gap-2 hover:bg-blue-700 transition">
-          <a href="#">Contact Us</a>
+        <a 
+          href="/contact-us"
+          class="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-white"
+          role="button"
+        >
+          <span>Contact Us</span>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
           </svg>
-        </button>
-        
+        </a>
       </div>
+      
       
     </div>
     <div class="flex items-center justify-center ">

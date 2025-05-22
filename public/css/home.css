@@ -10,7 +10,7 @@
     left: -10%;
     width: 120%;
     height: 120%;
-    background: url('https://w0.peakpx.com/wallpaper/251/431/HD-wallpaper-black-with-green-background-technology-other-entertainment-people.jpg') no-repeat center center/cover;
+    background: var(--intro-bg) center center/cover;
     filter: blur(8px);
     z-index: -1;
     transform: scale(1.1);

@@ -14,9 +14,11 @@
     <link href="{{ asset('css/home/intro.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/services.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/technologies.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/home/our-process.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/home/pricing.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/contact-us.css') }}" rel="stylesheet">
     <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
-    {{-- <link href="{{ asset('css/about.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/contact.css') }}" rel="stylesheet"> --}}
+
 
 
 </head>
@@ -31,13 +33,13 @@
             </div>
 
             <ul class="hidden md:flex space-x-8">
-                <li><a href="index.html" class="@yield('home', ' ') nav-link font-semibold text-white">Home</a></li>
+                <li><a href="/" class="@yield('home', ' ') nav-link font-semibold text-white">Home</a></li>
                 <li><a href="services.html" class="@yield('services', ' ') nav-link font-semibold text-white">Services</a>
                 </li>
                 <li><a href="portfolio.html" class="@yield('portfolio', ' ') nav-link font-semibold text-white">Portfolio</a>
                 </li>
-                <li><a href="about.html" class="@yield('about', ' ') nav-link font-semibold text-white">About Us</a></li>
-                <li><a href="contact.html" class="@yield('contact', ' ') nav-link font-semibold text-white">Contact</a></li>
+                <li><a href="/about-us" class="@yield('about', ' ') nav-link font-semibold text-white">About Us</a></li>
+                <li><a href="/contact-us" class="@yield('contact', ' ') nav-link font-semibold text-white">Contact</a></li>
             </ul>
 
 

@@ -5,7 +5,7 @@
   
       <!-- Brand -->
       <div>
-        <h3 class="text-2xl font-bold text-white mb-4"><a href="#header">WebNodez</a></h3>
+        <h3 class="text-3xl font-bold text-white mb-4"><a href="#header">WebNodez</a></h3>
         <p class="text-sm leading-relaxed text-gray-400">
           Building smart digital experiences that move your business forward.
         </p>
@@ -77,7 +77,7 @@
 </a>
 
 </div>
-<div class="mt-8">
+<div class="mt-4">
     
     <a href="mailto:your.email@gmail.com" class="footer-mail text-gray-400 hover:text-white transition flex items-center space-x-2" title="Email Us">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -87,20 +87,30 @@
 
     </a>
 </div>
-      </div>
+<div class="mt-6 text-center text-sm text-gray-400 flex flex-col md:flex-row  items-center gap-2 md:gap-4">
+  <a href="/terms" class="footer-legal-link">Terms & Conditions</a>
+  <span class="hidden md:inline">|</span>
+  <a href="/privacy" class="footer-legal-link">Privacy Policy</a>
+</div>
+<div id="footer-year" class="mt-4 text-gray-400"></div>
+</div>
+
     </div>
   
     <div class="mt-12 border-t border-gray-700 pt-6 text-center text-sm text-gray-500">
-        © <span id="year"></span> WebNodez. Crafted with ❤️ using creativity and code.
+      WebNodez : Crafted with ❤️ using creativity and code.
       </div>
       
       <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
+            document.addEventListener('DOMContentLoaded', (event) => {
+        const year = new Date().getFullYear();
+    document.getElementById('footer-year').textContent = `© ${year} WebNodez. All rights Reserved`;
+    });
+
       </script>
       
   </footer>
   
-<script src="{{ asset('js/home.js') }}"></script>
 
 </body>
 

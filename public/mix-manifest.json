@@ -1,11 +1,15 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/home.js": "/js/home.js",
+    "/js/contactUsForm.js": "/js/contactUsForm.js",
     "/css/home/technologies.css": "/css/home/technologies.css",
     "/css/home/services.css": "/css/home/services.css",
     "/css/home/intro.css": "/css/home/intro.css",
     "/css/home.css": "/css/home.css",
     "/css/app.css": "/css/app.css",
     "/css/footer.css": "/css/footer.css",
-    "/css/navbar.css": "/css/navbar.css"
+    "/css/contact-us.css": "/css/contact-us.css",
+    "/css/navbar.css": "/css/navbar.css",
+    "/css/home/pricing.css": "/css/home/pricing.css",
+    "/css/home/our-process.css": "/css/home/our-process.css"
 }

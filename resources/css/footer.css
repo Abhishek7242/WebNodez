@@ -72,4 +72,14 @@
     color: var(--color-primary);
     transform: translateX(5px); /* Slide right by 5px */
   }
+.footer-legal-link{
+    transition: all 0.3s ease;
+ 
+  }
+  
+  .footer-legal-link:hover {
+    color: var(--color-primary);
+    transform: translateX(5px); /* Slide right by 5px */
+  }
+  
   

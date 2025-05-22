@@ -5,11 +5,11 @@
   #intro-text{
     width: 40%;
   }
-  #intro-text button{
+  #intro-text a{
     background-color: var(--color-primary);
     color: white;
   }
-  #intro-text button:hover{
+  #intro-text a:hover{
     background-color: var(--color-secondary);
     color: white;
   }
