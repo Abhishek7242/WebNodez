@@ -18,6 +18,6 @@ class ServiceCard extends Component
 
     public function render()
     {
-        return view('components.service-card');
+        return view('components.services');
     }
 }

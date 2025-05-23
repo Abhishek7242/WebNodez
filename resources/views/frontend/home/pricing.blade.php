@@ -15,7 +15,7 @@
               <p class="pricing-desc">
                 Best suited for projects with clear scope. Get a guaranteed cost estimate upfront without surprises.
               </p>
-              <a href="#fixed-price" class="learn-more-btn">Learn More</a>
+              <a href="/pricing/fixed-price" class="learn-more-btn">Learn More</a>
             </div>
       
             <!-- Hourly Billing -->
@@ -25,7 +25,7 @@
               <p class="pricing-desc">
                 Perfect for agile work and changing requirements. Pay as you go with flexible hourly tracking.
               </p>
-              <a href="#hourly-model" class="learn-more-btn">Learn More</a>
+              <a href="/pricing/hourly-model" class="learn-more-btn">Learn More</a>
             </div>
       
             <!-- Dedicated Monthly Resource -->
@@ -35,7 +35,7 @@
               <p class="pricing-desc">
                 Hire a dedicated team or resource monthly. Ideal for long-term growth and support-focused projects.
               </p>
-              <a href="#dedicated-team" class="learn-more-btn">Learn More</a>
+              <a href="/pricing/dedicated-team" class="learn-more-btn">Learn More</a>
             </div>
       
           </div>

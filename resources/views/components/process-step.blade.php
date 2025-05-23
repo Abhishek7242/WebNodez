@@ -1,4 +1,4 @@
-<div class="flex items-start gap-6">
+<div class="process">
     <div class="step-badge">{{ $number }}</div>
     <div>
       <h4 class="text-xl font-semibold text-gray-900 mb-2">{{ $title }}</h4>

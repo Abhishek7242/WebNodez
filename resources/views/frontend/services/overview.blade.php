@@ -52,27 +52,26 @@ $services = [
 @endphp
 
 <section class="border-tbg-gray-50 py-20 px-6 md:px-12 lg:px-24">
-  <div class="max-w-7xl mx-auto text-center">
-    <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Services - <span class="text-gray-700" >What We Do Best</span></h2>
-    <p class="text-gray-400 text-lg mb-16  mx-auto">
-      From stunning web designs to high-performing apps, we build digital products your users will love.
-    </p>
+<div class="max-w-7xl mx-auto text-center">
+<h2 class="text-4xl font-bold text-gray-900 mb-4">Our Services - <span class="text-gray-700" >What We Do Best</span></h2>
+<p class="text-gray-400 text-lg mb-16  mx-auto">
+From stunning web designs to high-performing apps, we build digital products your users will love.
+</p>
 
-    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+<div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
 
-      <!-- Card Template -->
-      
-      @foreach ($services as $service)
-      <x-services
-        :title="$service['title']"
-        :description="$service['description']"
-        :link="$service['link']"
-        :icon="$service['icon']"
-      />
-  @endforeach
-  
-      
+<!-- Card Template -->
+@foreach ($services as $service)
+    <x-services
+      :title="$service['title']"
+      :description="$service['description']"
+      :link="$service['link']"
+      :icon="$service['icon']"
+    />
+@endforeach
 
-    </div>
-  </div>
+
+
+</div>
+</div>
 </section>

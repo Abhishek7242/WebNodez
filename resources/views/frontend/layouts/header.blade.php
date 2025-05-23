@@ -17,6 +17,7 @@
     <link href="{{ asset('css/home/our-process.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/pricing.css') }}" rel="stylesheet">
     <link href="{{ asset('css/contact-us.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/terms_conditions.css') }}" rel="stylesheet">
     <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
 
 
@@ -34,7 +35,7 @@
 
             <ul class="hidden md:flex space-x-8">
                 <li><a href="/" class="@yield('home', ' ') nav-link font-semibold text-white">Home</a></li>
-                <li><a href="services.html" class="@yield('services', ' ') nav-link font-semibold text-white">Services</a>
+                <li><a href="/services" class="@yield('services', ' ') nav-link font-semibold text-white">Services</a>
                 </li>
                 <li><a href="portfolio.html" class="@yield('portfolio', ' ') nav-link font-semibold text-white">Portfolio</a>
                 </li>

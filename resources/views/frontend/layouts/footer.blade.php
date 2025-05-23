@@ -88,9 +88,9 @@
     </a>
 </div>
 <div class="mt-6 text-center text-sm text-gray-400 flex flex-col md:flex-row  items-center gap-2 md:gap-4">
-  <a href="/terms" class="footer-legal-link">Terms & Conditions</a>
+  <a href="/terms&conditions" class="footer-legal-link">Terms & Conditions</a>
   <span class="hidden md:inline">|</span>
-  <a href="/privacy" class="footer-legal-link">Privacy Policy</a>
+  <a href="/privacy-policy" class="footer-legal-link">Privacy Policy</a>
 </div>
 <div id="footer-year" class="mt-4 text-gray-400"></div>
 </div>

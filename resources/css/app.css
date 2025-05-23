@@ -11,7 +11,7 @@
     --color-primary: #22C55E;
     --color-secondary:  #3fac3b;
     --color-tertiary: black;
---intro-bg:rgba(0, 130, 0, 0.384);
+--intro-bg:rgba(3, 100, 3, 0.683);
 }
 html {
     scroll-behavior: smooth;

@@ -4,7 +4,7 @@
 @section('main-section')
 <script>
     const el = document.querySelector('#header');
-el.style.setProperty('--intro-bg', `url('https://w0.peakpx.com/wallpaper/251/431/HD-wallpaper-black-with-green-background-technology-other-entertainment-people.jpg')`);
+el.style.setProperty('--intro-bg', `url('https://greenridertech.com/assets/header.gif')`);
 
  </script>
     <section class=" to-green-700 text-white py-20 px-6 md:px-12 lg:px-24">
@@ -197,11 +197,11 @@ el.style.setProperty('--intro-bg', `url('https://w0.peakpx.com/wallpaper/251/431
   </section>
   
 
-  <section class="bg-white py-20 px-6 md:px-12">
+  <section class="bg-white py-20 px-6 md:px-12 border-t">
     <div class="max-w-6xl mx-auto">
       <!-- Heading -->
       <div class="text-center mb-16">
-        <h2 class="text-4xl font-extrabold text-gray-900 mb-4">Life at WebNodez</h2>
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">Work. Grow. Belong. – Life at WebNodez</h2>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto">
           We’ve built a culture that empowers people to do the best work of their lives. Here’s what it’s like to be part of our journey.
         </p>

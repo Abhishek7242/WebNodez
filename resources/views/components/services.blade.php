@@ -8,7 +8,7 @@
     <p class="service-desc">{{ $description }}</p>
   </div>
 
-  <button class="btn-green">
-    <a href="{{ $link ?? '#' }}">Learn More</a>
-  </button>
+  <a href="{{ $link ?? '#' }}" class="btn-green">
+    <p>Learn More</p>
+  </a>
 </div>

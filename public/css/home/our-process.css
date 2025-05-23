@@ -1,19 +1,24 @@
+.process {
+  display: flex;
+  align-items: flex-start; /* or center if you want vertical centering */
+  gap: 1.5rem; /* or your preferred spacing */
+}
 
-  .step-badge {
-    background: var(--color-primary);
-    color: white;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 9999px;
-    font-weight: bold;
-    font-size: 1.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 8px 16px rgba(79, 70, 229, 0.25);
-  }
-  
-  
+.step-badge {
+  background: var(--color-primary);
+  color: white;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  font-weight: bold;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 16px rgba(79, 70, 229, 0.25);
+  flex-shrink: 0; /* prevents shrinking */
+}
+
   .process-step {
     background: white;
     padding: 2.25rem 1.75rem;

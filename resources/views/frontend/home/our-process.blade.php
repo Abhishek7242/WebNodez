@@ -3,7 +3,7 @@
     
           [
               'title' => 'Discovery & Research',
-              'description' => 'We begin by understanding your business, users, and goals — building a strong foundation through market research and stakeholder interviews.',
+              'description' => 'We begin by understanding your business, users, and goals — building a strong foundation through market research and  stakeholder interviews.',
           ],
           [
               'title' => 'UI/UX Design',
