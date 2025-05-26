@@ -1,0 +1,91 @@
+@extends('frontend/layouts/main')
+@section('title', 'WebNodez - Blogs')
+@section('blog', 'active')
+@section('main-section')
+    <script>
+        document.documentElement.style.setProperty('--intro-bg', 'black');
+    </script>
+
+    <section class="blog-intro">
+        <div class="container">
+            <div class="blog-intro-content">
+                <span class="journal-label">The WebNodez Journal</span>
+                <h1 class="blog-title">Insights, Updates & Stories</h1>
+                <p class="blog-description">Discover the latest trends, insights, and stories from our team of experts</p>
+            </div>
+        </div>
+        <div class="blog-hero">
+            <div class="blog-hero-image">
+                <img src="https://media.licdn.com/dms/image/v2/D4D12AQHqsDNHkRfi1A/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1690816353140?e=2147483647&v=beta&t=QEzfPwHWu9Rais39Xk3-FzanD-3InZ0voTzlvm48ZWw"
+                    alt="Blog Hero Image">
+                <div class="image-overlay"></div>
+            </div>
+            <div class="blog-hero-content">
+                <div class="container">
+                    <div class="featured-post">
+                        <span class="post-category">Featured</span>
+                        <h2 class="post-title">The Future of Web Development: Trends to Watch in 2024</h2>
+                        <p class="post-excerpt">Explore the emerging technologies and methodologies that are shaping the
+                            future of web development...</p>
+                        <a href="#" class="read-more-btn">
+                            Read More
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="arrow-icon">
+                                <path
+                                    d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </header>
+
+    {{-- All Blogs Section --}}
+    <section class="all-blogs">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Latest Articles</span>
+                <h2 class="section-title">Explore Our Blog</h2>
+                <p class="section-description">Discover insights, tutorials, and industry trends from our expert team</p>
+            </div>
+
+            <div class="blog-filters">
+                <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn" data-category="technology">Technology</button>
+                <button class="filter-btn" data-category="development">Development</button>
+                <button class="filter-btn" data-category="design">Design</button>
+                <button class="filter-btn" data-category="business">Business</button>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-10">
+                <x-blog-card image="https://images.unsplash.com/photo-1498050108023-c5249f4df085" category="Technology"
+                    title="The Future of Web Development in 2024"
+                    excerpt="Explore the latest trends and technologies shaping the future of web development..."
+                    date="March 15, 2024" />
+                <x-blog-card image="https://images.unsplash.com/photo-1461749280684-dccba630e2f6" category="Development"
+                    title="Mastering Modern JavaScript"
+                    excerpt="A comprehensive guide to the latest JavaScript features and best practices..."
+                    date="March 12, 2024" />
+                <x-blog-card image="https://images.unsplash.com/photo-1547658719-da2b51169166" category="Design"
+                    title="UI/UX Design Principles"
+                    excerpt="Learn the fundamental principles of creating engaging user experiences..."
+                    date="March 10, 2024" />
+                <x-blog-card image="https://images.unsplash.com/photo-1552664730-d307ca884978" category="Business"
+                    title="Digital Marketing Strategies"
+                    excerpt="Effective strategies to grow your business in the digital age..." date="March 8, 2024" />
+            </div>
+
+            <div class="load-more-container">
+                <button class="load-more-btn">
+                    <span>Load More</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="arrow-icon">
+                        <path
+                            d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+@endsection

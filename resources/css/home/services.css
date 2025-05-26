@@ -1,3 +1,27 @@
+.service-container {
+  height: 300px;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+  cursor: pointer;
+  /* border: 2px solid var(--color-primary); */
+}
+
+/* Images full width and height */
+.service-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease-in-out;
+}
+
+/* Zoom images when hovering the whole container */
+.service-container:hover > div.overflow-hidden > img {
+  transform: scale(1.5);
+}
+.service-text{
+  background-color: var(--color-primary);
+}
+/* 
 .service-card {
   background: white;
   border-radius: 1rem;
@@ -62,4 +86,4 @@
 .btn-green:hover {
   background: var(--color-secondary);
   box-shadow: 0 8px 20px rgb(22 163 74 / 0.7);
-}
+} */

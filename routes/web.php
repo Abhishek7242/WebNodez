@@ -31,6 +31,9 @@ Route::get('/terms&conditions', function () {
 Route::get('/privacy-policy', function () {
     return view('frontend.privacy_policy');
 });
+Route::get('/blogs', function () {
+    return view('frontend.blogs');
+});
 Route::get('/services/{service}', function ($service) {
     $servicesArray = [
         "web-development" => [

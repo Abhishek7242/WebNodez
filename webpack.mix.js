@@ -4,18 +4,30 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         require('tailwindcss'),
     ])
-    .css('resources/css/home.css', 'public/css') // Move this inside the same chain
-    .css('resources/css/home/intro.css', 'public/css/home/intro.css') // Move this inside the same chain
-    .css('resources/css/home/services.css', 'public/css/home/services.css') // Move this inside the same chain
-    .css('resources/css/home/technologies.css', 'public/css/home/technologies.css') // Move this inside the same 
-    .css('resources/css/home/our-process.css', 'public/css/home/our-process.css') // Move this inside the same chain
-    .css('resources/css/home/pricing.css', 'public/css/home/pricing.css') // Move this inside the same chain
-    .css('resources/css/navbar.css', 'public/css') // Move this inside the same chain
-    .css('resources/css/terms_conditions.css', 'public/css') // Move this inside the same chain
-    .css('resources/css/contact-us.css', 'public/css') // Move this inside the same chain
-    .css('resources/css/footer.css', 'public/css') // Move this inside the same chain
-    .js('resources/js/home.js', 'public/js') // Move this inside the same chain
-    .js('resources/js/contactUsForm.js', 'public/js/contactUsForm.js') // Move this inside the same chain
+    .css('resources/css/home.css', 'public/css')
+    .css('resources/css/home/intro.css', 'public/css/home/intro.css')
+    .css('resources/css/home/services.css', 'public/css/home/services.css')
+    .css('resources/css/home/technologies.css', 'public/css/home/technologies.css')
+    .css('resources/css/home/our-process.css', 'public/css/home/our-process.css')
+    .css('resources/css/home/pricing.css', 'public/css/home/pricing.css')
+    .css('resources/css/home/why-us.css', 'public/css/home/why-us.css')
+    .css('resources/css/about/culture.css', 'public/css/about/culture.css')
+    .css('resources/css/navbar.css', 'public/css')
+    .css('resources/css/terms_conditions.css', 'public/css')
+    .css('resources/css/contact-us.css', 'public/css')
+    .css('resources/css/blogs.css', 'public/css')
+    .css('resources/css/components/blog-card.css', 'public/css/components/blog-card.css')
+    .css('resources/css/chatbot.css', 'public/css')
+    .css('resources/css/footer.css', 'public/css')
+    .css('resources/css/about.css', 'public/css')
+    .css('resources/css/canvas-background.css', 'public/css')
+    .css('resources/css/dark-mode.css', 'public/css')
+    .js('resources/js/home.js', 'public/js')
+    .js('resources/js/chatbot.js', 'public/js')
+    .js('resources/js/about.js', 'public/js') // ✅ only include once
+    .js('resources/js/contactUsForm.js', 'public/js/contactUsForm.js')
+    .js('resources/js/canvas-background.js', 'public/js')
+    .js('resources/js/dark-mode.js', 'public/js')
     .browserSync({
         proxy: 'http://127.0.0.1:8000',
         files: [

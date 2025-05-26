@@ -16,51 +16,71 @@
     <link href="{{ asset('css/home/technologies.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/our-process.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/pricing.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/home/why-us.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/about/culture.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/components/blog-card.css') }}" rel="stylesheet">
     <link href="{{ asset('css/contact-us.css') }}" rel="stylesheet">
     <link href="{{ asset('css/terms_conditions.css') }}" rel="stylesheet">
     <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/blogs.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/chatbot.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/canvas-background.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/about.css') }}">
 
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body class="position-relative">
 
     <header id="header">
         <!-- Tailwind CSS Navbar -->
-        <nav class="text-white px-6 py-4 flex justify-between items-center">
+        <nav class=" px-6 py-4 flex justify-evenly items-center">
             <div class="text-2xl font-bold text-green-500 cursor-default">
                 WebNodez
             </div>
 
-            <ul class="hidden md:flex space-x-8">
-                <li><a href="/" class="@yield('home', ' ') nav-link font-semibold text-white">Home</a></li>
-                <li><a href="/services" class="@yield('services', ' ') nav-link font-semibold text-white">Services</a>
+            <ul class="hidden md:flex space-x-8 items-center">
+                <li><a href="/" class="@yield('home', ' ') nav-links font-semibold ">Home</a></li>
+                <li><a href="/blogs" class="@yield('blog', ' ') nav-links font-semibold ">Blogs</a></li>
+                <li><a href="/services" class="@yield('services', ' ') nav-links font-semibold ">Services</a></li>
+                <li><a href="portfolio.html" class="@yield('portfolio', ' ') nav-links font-semibold ">Portfolio</a>
                 </li>
-                <li><a href="portfolio.html" class="@yield('portfolio', ' ') nav-link font-semibold text-white">Portfolio</a>
-                </li>
-                <li><a href="/about-us" class="@yield('about', ' ') nav-link font-semibold text-white">About Us</a></li>
-                <li><a href="/contact-us" class="@yield('contact', ' ') nav-link font-semibold text-white">Contact</a></li>
+                           <li><a href="/about-us" class="@yield('about', ' ') nav-links font-semibold ">About Us</a></li>
+
+          
+                 
             </ul>
 
 
+<div class="flex items-center space-x-4">
+       <button id="darkModeToggle"
+                        class="p-2 rounded-full hover:bg-gray-700 transition-colors duration-200">
+                        <i class="fas fa-moon text-yellow-500"></i>
+                    </button>
+                <a href="/contact-us" class=" @yield('contact', ' ') animated-button"><span>Contact Us</span></a>
+               
+</div>
             <!-- Mobile menu button -->
-            <button id="menu-btn" class="md:hidden focus:outline-none">
-                <svg class="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                    <path d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
+            <div class="flex items-center space-x-4 md:hidden">
+                <button id="darkModeToggle" class="p-2 rounded-full hover:bg-gray-700 transition-colors duration-200">
+                    <i class="fas fa-moon text-yellow-500"></i>
+                </button>
+                <button id="menu-btn" class="focus:outline-none">
+                    <svg class="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
         </nav>
 
-
         <!-- Mobile menu -->
-        <ul id="menu" class="hidden bg-gray-900 text-white px-6 py-4 space-y-4 md:hidden">
-            <li><a href="index.html" class="block  font-semibold">Home</a></li>
-            <li><a href="services.html" class="block  font-semibold">Services</a></li>
-            <li><a href="portfolio.html" class="block  font-semibold">Portfolio</a></li>
-            <li><a href="about.html" class="block  font-semibold">About Us</a></li>
-            <li><a href="contact.html" class="block  font-semibold">Contact</a></li>
+        <ul id="menu" class="hidden bg-gray-900  px-6 py-4 space-y-4 md:hidden">
+            <li><a href="index.html" class="block font-semibold">Home</a></li>
+            <li><a href="services.html" class="block font-semibold">Services</a></li>
+            <li><a href="portfolio.html" class="block font-semibold">Portfolio</a></li>
+            <li><a href="about.html" class="block font-semibold">About Us</a></li>
+            <li><a href="contact.html" class="block font-semibold">Contact Us</a></li>
         </ul>
 
         <script>

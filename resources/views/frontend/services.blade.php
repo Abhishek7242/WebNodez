@@ -10,7 +10,7 @@ el.style.setProperty('--intro-bg', `url('https://i.pinimg.com/originals/3d/28/37
 @include('frontend/services/intro')
       
     </header>
-@include('frontend/services/overview')
+{{-- @include('frontend/services/overview') --}}
 @include('frontend/services/technology')
 <section class="bg-gray-50 py-20 px-6 md:px-12">
     <div class="max-w-4xl mx-auto text-center">

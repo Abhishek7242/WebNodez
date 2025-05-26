@@ -1,0 +1,155 @@
+
+.blog-container{
+    position: relative;
+    width: 40%;
+cursor: pointer;
+min-height: 400px;
+display: flex;
+    overflow: hidden;
+    justify-content: center;
+    
+}
+.blog-container::before{
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+height: 100%;
+width: 100%;
+border: 2px solid white;
+    border-radius: 20px;
+transition: .4s;
+opacity: 0;
+}
+.blog-container:hover::before{
+scale: .9;
+opacity: 1;
+z-index: 1;
+}
+.blog-container::after{
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+height: 100%;
+width: 100%;
+scale: .9;
+background: rgba(0, 0, 0, 0.477);
+transition: .4s;
+opacity: 0;
+    border-radius: 20px;
+z-index: 0;
+}
+.blog-container:hover::before{
+scale: .9;
+opacity: 1;
+}
+.blog-container:hover::after{
+scale: 1;
+opacity: 1;
+}
+.blog-container img{
+    border-radius: 20px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.blog-container h2{
+    font-size: 3em;
+    color: white;
+    width: 100%;
+    position: absolute;
+    top: 30%;
+    text-align: center;
+    opacity: 0;
+    scale: .9;
+transition: .4s;
+z-index: 1;
+
+}
+.blog-container p{
+    padding: 0 40px;
+    font-size: 1em;
+    color: white;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    opacity: 0;
+transition: .4s;
+z-index: 1;
+transform: translateY(30px);
+
+}
+.blog-card-read-more-btn {
+    top: 70%;
+    opacity: 0;
+    z-index: 1;
+    position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-size: 1em;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(90deg, var(--color-primary), #70ffa7); /* Pink to Orange */
+  box-shadow:
+    4px 4px 12px rgba(0, 0, 0, 0.15),
+    -4px -4px 12px rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  border: none;
+  scale: .7;
+
+}
+
+
+/* Middle ring effect */
+.blog-card-read-more-btn::before {
+  content: '';
+  position: absolute;
+  inset: 5px; /* creates the ring spacing */
+  border-radius: inherit;
+  background: inherit; /* match background for a layered effect */
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.4); /* the ring */
+  z-index: 0;
+}
+
+.blog-card-read-more-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.blog-card-read-more-btn .arrow {
+  margin-left: 10px;
+  font-size: 1.2em;
+  transition: transform 0.3s ease-in-out;
+}
+
+.blog-card-read-more-btn:hover {
+  transform: scale(1.05);
+  box-shadow:
+    inset 2px 2px 8px rgba(0, 0, 0, 0.15),
+    inset -2px -2px 8px rgba(255, 255, 255, 0.3);
+}
+
+.blog-card-read-more-btn:hover .arrow {
+  transform: translateX(5px);
+}
+
+.blog-container:hover h2{
+    scale: 1;
+opacity: 1;
+}
+.blog-container:hover p{
+transform: translateY(0px);
+
+opacity: 1;
+}
+.blog-container:hover a{
+    scale: .9;
+opacity: 1;
+}

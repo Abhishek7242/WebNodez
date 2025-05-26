@@ -9,6 +9,11 @@
         <p class="text-sm leading-relaxed text-gray-400">
           Building smart digital experiences that move your business forward.
         </p>
+        <a href="/contact-us" class="mt-4 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-black" role="button">
+          <span class="font-bold">Contact Us</span>
+
+         
+        </a>
       </div>
   
       <!-- Quick Links -->
@@ -110,8 +115,8 @@
       </script>
       
   </footer>
-  
-
+    <script src="{{ asset('js/about.js') }}"></script>
+  <script src="{{ asset('js/chatbot.js') }}"></script>
 </body>
 
 </html>

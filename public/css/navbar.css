@@ -2,33 +2,93 @@ nav{
   z-index: 1111111111111;
 }
 /* Animated underline on hover */
-.nav-link {
-  position: relative;
-  transition: color 0.3s ease;
+
+.nav-links {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all var(--transition-normal);
+    position: relative;
+    padding: 0.5rem 0;
 }
 
-.nav-link::after {
-  content: "";
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  bottom: -2px;
-  left: 0;
-  background-color: var(--color-primary); /* Tailwind's green-500 */
-  transition: width 0.3s ease;
+.nav-links::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--color-primary);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--transition-normal);
 }
 
-.nav-link:hover {
-  color: var(--color-primary); /* Tailwind's green-400 */
+.nav-links:hover {
+    color: var(--color-primary);
 }
 
-.nav-link:hover::after {
-  width: 100%;
+.nav-links:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
 }
+
 
 /* Optional: Style for active page link */
-.nav-link.active {
+.nav-links.active {
   color: var(--color-primary); /* Tailwind's green-500 */
 }
 
+
+.animated-button {
+    position: relative;
+    padding: 8px 30px;
+    border: 2px solid black;
+    border-radius: 70px;
+    background: white;
+    font-size: 16px;
+    cursor: pointer;
+    overflow: hidden;
+}
+.animated-button span{
+    transition: .8s;
+    position: relative;
+    z-index: 2;
+    font-size: 20px ;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+}
+.animated-button:hover span{
+    color: white;
+}
+.animated-button::before,
+.animated-button::after {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: black;
+    transition:  0.3s ease-in-out;
+    z-index: 0;
+}
+
+.animated-button::before {
+    top: -100px;
+    left: -100px;
+}
+.animated-button::after {
+    bottom: -100px;
+    right: -100px;
+}
+.animated-button:hover::before{
+  top:-30px;
+    left: -6px;
+}
+.animated-button:hover::after {
+    bottom: -30px;
+    right: -6px;
+}
 

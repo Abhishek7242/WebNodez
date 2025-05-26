@@ -19472,6 +19472,32 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./resources/css/about.css":
+/*!*********************************!*\
+  !*** ./resources/css/about.css ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/about/culture.css":
+/*!*****************************************!*\
+  !*** ./resources/css/about/culture.css ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./resources/css/app.css":
 /*!*******************************!*\
   !*** ./resources/css/app.css ***!
@@ -19485,10 +19511,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/css/blogs.css":
+/*!*********************************!*\
+  !*** ./resources/css/blogs.css ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/canvas-background.css":
+/*!*********************************************!*\
+  !*** ./resources/css/canvas-background.css ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/chatbot.css":
+/*!***********************************!*\
+  !*** ./resources/css/chatbot.css ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/components/blog-card.css":
+/*!************************************************!*\
+  !*** ./resources/css/components/blog-card.css ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./resources/css/contact-us.css":
 /*!**************************************!*\
   !*** ./resources/css/contact-us.css ***!
   \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/dark-mode.css":
+/*!*************************************!*\
+  !*** ./resources/css/dark-mode.css ***!
+  \*************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -19580,6 +19671,19 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************************!*\
   !*** ./resources/css/home/technologies.css ***!
   \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/home/why-us.css":
+/*!***************************************!*\
+  !*** ./resources/css/home/why-us.css ***!
+  \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -19777,10 +19881,18 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /******/ 			"css/home/intro": 0,
 /******/ 			"css/home": 0,
 /******/ 			"css/app": 0,
+/******/ 			"css/dark-mode": 0,
+/******/ 			"css/canvas-background": 0,
+/******/ 			"css/about": 0,
 /******/ 			"css/footer": 0,
+/******/ 			"css/chatbot": 0,
+/******/ 			"css/components/blog-card": 0,
+/******/ 			"css/blogs": 0,
 /******/ 			"css/contact-us": 0,
 /******/ 			"css/terms_conditions": 0,
 /******/ 			"css/navbar": 0,
+/******/ 			"css/about/culture": 0,
+/******/ 			"css/home/why-us": 0,
 /******/ 			"css/home/pricing": 0,
 /******/ 			"css/home/our-process": 0
 /******/ 		};
@@ -19832,18 +19944,26 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/footer","css/contact-us","css/terms_conditions","css/navbar","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/footer","css/contact-us","css/terms_conditions","css/navbar","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/app.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/footer","css/contact-us","css/terms_conditions","css/navbar","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/home.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/footer","css/contact-us","css/terms_conditions","css/navbar","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/home/intro.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/footer","css/contact-us","css/terms_conditions","css/navbar","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/home/services.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/footer","css/contact-us","css/terms_conditions","css/navbar","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/home/technologies.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/footer","css/contact-us","css/terms_conditions","css/navbar","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/home/our-process.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/footer","css/contact-us","css/terms_conditions","css/navbar","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/home/pricing.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/footer","css/contact-us","css/terms_conditions","css/navbar","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/navbar.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/footer","css/contact-us","css/terms_conditions","css/navbar","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/terms_conditions.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/footer","css/contact-us","css/terms_conditions","css/navbar","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/contact-us.css")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/footer","css/contact-us","css/terms_conditions","css/navbar","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/footer.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/app.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/home.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/home/intro.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/home/services.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/home/technologies.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/home/our-process.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/home/pricing.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/home/why-us.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/about/culture.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/navbar.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/terms_conditions.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/contact-us.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/blogs.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/components/blog-card.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/chatbot.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/footer.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/about.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/canvas-background.css")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/dark-mode.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

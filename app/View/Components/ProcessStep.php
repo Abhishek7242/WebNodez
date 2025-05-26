@@ -6,20 +6,20 @@ use Illuminate\View\Component;
 
 class ProcessStep extends Component
 {
-    public $number;
+    public $icon;
     public $title;
     public $description;
 
     /**
      * Create a new component instance.
      *
-     * @param  int     $number
+     * @param  int     $icon
      * @param  string  $title
      * @param  string  $description
      */
-    public function __construct($number, $title, $description)
+    public function __construct($icon, $title, $description)
     {
-        $this->number = $number;
+        $this->icon = $icon;
         $this->title = $title;
         $this->description = $description;
     }

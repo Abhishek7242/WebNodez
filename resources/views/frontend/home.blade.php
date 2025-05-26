@@ -2,19 +2,26 @@
 @section('title', 'WebNodez - Home')
 @section('home', 'active')
 @section('main-section')
-<script>
-    const el = document.querySelector('#header');
-el.style.setProperty('--intro-bg', `url('https://w0.peakpx.com/wallpaper/251/431/HD-wallpaper-black-with-green-background-technology-other-entertainment-people.jpg')`);
+    <!-- Three.js and other required scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="{{ asset('js/canvas-background.js') }}"></script>
 
- </script>
-   @include('frontend/home/intro') 
-    
+    <!-- Canvas background container -->
+    <div id="canvas-background" class="canvas-background"></div>
+
+    <script>
+        const el = document.querySelector('#header');
+        el.style.setProperty('--intro-bg', 'none'); // Remove the background image since we're using canvas
+    </script>
+    @include('frontend/home/intro')
+
     </header>
 
     @include('frontend/home/services')
     @include('frontend/home/technologies')
     @include('frontend/home/our-process')
+    @include('frontend/home/why-us')
     @include('frontend/home/pricing')
 
-<script src="{{ asset('js/home.js') }}"></script>
+    <script src="{{ asset('js/home.js') }}"></script>
 @endsection

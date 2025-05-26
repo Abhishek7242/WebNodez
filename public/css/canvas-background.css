@@ -1,0 +1,29 @@
+.canvas-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(to bottom, #000000, #1a1a1a);
+}
+
+/* Ensure the header and intro section content is visible over the canvas */
+#header,
+.intro-section {
+    position: relative;
+    z-index: 1;
+}
+
+/* Add a subtle overlay to improve text readability */
+.intro-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+

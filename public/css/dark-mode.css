@@ -1,0 +1,56 @@
+/* Dark mode styles */
+:root {
+    --bg-primary: #ffffff;
+    --text-primary: #1a1a1a;
+    --bg-secondary: #f3f4f6;
+    --text-secondary: #4b5563;
+}
+
+.dark {
+    --bg-primary: #1a1a1a;
+    --text-primary: #ffffff;
+    --bg-secondary: #2d3748;
+    --text-secondary: #e2e8f0;
+}
+
+/* Apply dark mode styles */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode specific styles */
+.dark .nav-links a {
+    color: var(--text-primary);
+}
+
+.dark .service-card,
+.dark .portfolio-item,
+.dark .process-card {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.dark .intro-section::before {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Dark mode button styles */
+#darkModeToggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+#darkModeToggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark #darkModeToggle:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
