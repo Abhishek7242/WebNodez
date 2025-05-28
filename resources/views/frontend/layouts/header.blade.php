@@ -12,13 +12,23 @@
     <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/intro.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/services/intro.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/services/our-services.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/services/our-process.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/services/contact-page.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/services.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/technologies.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/our-process.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/pricing.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/why-us.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/portfolio/intro.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/portfolio/case-studies.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/portfolio/design-gallery.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/portfolio/work-details.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/portfolio/blogs.css') }}" rel="stylesheet">
     <link href="{{ asset('css/about/culture.css') }}" rel="stylesheet">
     <link href="{{ asset('css/components/blog-card.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/components/faq.css') }}" rel="stylesheet">
     <link href="{{ asset('css/contact-us.css') }}" rel="stylesheet">
     <link href="{{ asset('css/terms_conditions.css') }}" rel="stylesheet">
     <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
@@ -43,7 +53,7 @@
                 <li><a href="/" class="@yield('home', ' ') nav-links font-semibold ">Home</a></li>
                 <li><a href="/blogs" class="@yield('blog', ' ') nav-links font-semibold ">Blogs</a></li>
                 <li><a href="/services" class="@yield('services', ' ') nav-links font-semibold ">Services</a></li>
-                <li><a href="portfolio.html" class="@yield('portfolio', ' ') nav-links font-semibold ">Portfolio</a>
+                <li><a href="/portfolio" class="@yield('portfolio', ' ') nav-links font-semibold ">Portfolio</a>
                 </li>
                            <li><a href="/about-us" class="@yield('about', ' ') nav-links font-semibold ">About Us</a></li>
 

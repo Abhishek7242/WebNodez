@@ -12,8 +12,12 @@
     --color-secondary:  #3fac3b;
     --color-tertiary: black;
 --intro-bg:rgb(255, 255, 255);
+--color-primary-dark: #059669;
+--color-bg: #f9fafb;
 --text-color:white;
     --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --color-text: #1f2937;
+    --color-text-light: #6b7280;
 }
 html {
     scroll-behavior: smooth;

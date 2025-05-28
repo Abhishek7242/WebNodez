@@ -34,10 +34,13 @@ Route::get('/privacy-policy', function () {
 Route::get('/blogs', function () {
     return view('frontend.blogs');
 });
+Route::get('/portfolio', function () {
+    return view('frontend.portfolio');
+});
 Route::get('/services/{service}', function ($service) {
     $servicesArray = [
         "web-development" => [
-            'description' => '  We build fast, responsive, and secure websites tailored to your business goals. Whether it’s a sleek landing page or a full-featured web application, our development team ensures high performance and scalability every step of the way.',
+            'description' => '  We build fast, secure, and responsive websites tailored to your goals.',
             'detailsArray' => [
                 [
                     'title' => 'Requirement Gathering & Analysis',
@@ -80,11 +83,159 @@ Route::get('/services/{service}', function ($service) {
                     'description' => 'After launch, we continuously monitor your website’s performance, uptime, and security. Regular updates, backups, and optimizations keep your site running smoothly while adapting to evolving user needs and technology advancements.'
                 ],
             ],
-        
+            'faqs' => [
+                [
+                    'question' => 'What web development services do you offer?',
+                    'answer' =>
+                    'We provide end-to-end web development services including custom website design, responsive development, CMS integration (like WordPress), e-commerce development, web application development, and performance optimization.',
+                ],
+                [
+                    'question' => 'How long does it take to develop a website?',
+                    'answer' =>
+                    'The timeline depends on the project scope. A standard business website typically takes 3–6 weeks, while more complex sites like e-commerce platforms or custom web apps may take 6–12 weeks. We provide a detailed timeline after the initial consultation.',
+                ],
+                [
+                    'question' => 'How much does a website project cost?',
+                    'answer' =>
+                    'Our pricing is customized based on your requirements. Simple websites are more affordable, while larger or feature-rich projects cost more. We provide a detailed, transparent quote after discussing your goals and needs.',
+                ],
+                [
+                    'question' => 'Do you offer post-launch support for websites?',
+                    'answer' =>
+                    'Yes, we offer ongoing website maintenance and support, including content updates, security monitoring, bug fixes, and performance improvements. We also offer support packages tailored to your needs.',
+                ],
+                [
+                    'question' => 'How do you ensure the quality of your web development work?',
+                    'answer' =>
+                    'We follow modern development standards and perform extensive testing across devices and browsers. Our process includes code reviews, user testing, performance checks, and SEO optimization to ensure quality and reliability.',
+                ],
+                [
+                    'question' => 'Can you work on or improve my existing website?',
+                    'answer' =>
+                    'Absolutely! We can audit your existing site and help with updates, redesigns, performance optimization, SEO improvements, and adding new features. Whether your site needs a minor tweak or a full revamp, we’ve got you covered.',
+                ],
+            ],
+            'introImages' => [
+                'https://cdn.dribbble.com/userupload/24675218/file/original-217fe0b2bffa18d19df2596909528580.gif',
+                'https://img.freepik.com/free-photo/web-design-technology-browsing-programming-concept_53876-163260.jpg?semt=ais_hybrid&w=740',
+                'https://images-platform.99static.com//gERmn6TxrIrnrs01YXG90zL5Rao=/0x0:533x533/fit-in/500x500/projects-files/105/10552/1055228/9e9346fc-88c9-4235-bcb7-82cbaa1f2366.gif',
+                'https://cdn.dribbble.com/userupload/22267243/file/original-c55e0dc36929b801bea0ebf28c3d2be2.gif',
+            ],
+            'overview'=>[
+                'heading'=> 'Why Web Development is Your Digital Solution',
+                'description'=> " In today' s digital - first world,
+                having a strong online presence is no longer optional—it 's essential.
+                    Web development serves as the foundation of your digital strategy, enabling you to reach global
+                    audiences,
+                    showcase your brand, and drive business growth. Our comprehensive web development solutions transform
+                    your
+                    vision into a powerful digital platform that engages users and delivers results.",
+                'image'=> 'https://blog.appseed.us/content/images/2023/02/design-web-agency-intro.gif',
+            ],
+
+            
+            'tech'=>[
+                'names' => [
+                    "Frontend ", 'Backend',
+                    'Cloud / Hosting',
+                    "Design Tools"
+                ],
+                'frontendTechnologies' => [
+            [
+                'name' => 'HTML5',
+                'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
+            ],
+            ['name' => 'CSS3', 'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg'],
+            [
+                'name' => 'JavaScript',
+                'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
+            ],
+            [
+                'name' => 'React',
+                'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+            ],
+            [
+                'name' => 'Vue.js',
+                'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg',
+            ],
+            [
+                'name' => 'Laravel',
+                'icon' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/800px-Laravel.svg.png',
+            ],
+        ],
+
+        'backendTechnologies' => [
+            [
+                'name' => 'Node.js',
+                'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
+            ],
+            [
+                'name' => 'Java',
+                'icon' =>
+                    'https://sc.filehippo.net/images/t_app-icon-l/p/4dd9406e-96d3-11e6-aa77-00163ec9f5fa/3927985343/java-development-kit-64-icon.png',
+            ],
+            [
+                'name' => 'Python',
+                'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
+            ],
+            ['name' => 'MongoDB', 'icon' => 'https://www.cdnlogo.com/logos/m/30/mongodb-icon.svg'],
+
+            ['name' => 'PHP', 'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg'],
+            [
+                'name' => 'MySQL',
+                'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
+            ],
+        ],
+
+        'cloudTechnologies' => [
+            [
+                'name' => 'AWS',
+                'icon' => 'https://sourcebae.com/blog/wp-content/uploads/2023/08/1_b_al7C5p26tbZG4sy-CWqw.png',
+            ],
+
+            [
+                'name' => 'Nginx',
+                'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg',
+            ],
+
+            [
+                'name' => 'Azure',
+                'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg',
+            ],
+            ['name' => 'GO Daddy', 'icon' => 'https://download.logo.wine/logo/GoDaddy/GoDaddy-Logo.wine.png'],
+            [
+                'name' => 'Hostinger',
+                'icon' => 'https://upload.wikimedia.org/wikipedia/commons/e/e5/Hostinger_Logotype.png',
+            ],
+            [
+                'name' => 'Google Cloud',
+                'icon' =>
+                    'https://cdn.prod.website-files.com/6449405754e757db07f25327/6656429d1776bd09704334e8_google.webp',
+            ],
+        ],
+
+        'designTechnologies' => [
+            [
+                'name' => 'Figma',
+                'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg',
+            ],
+
+            ['name' => 'Adobe XD', 'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xd/xd-plain.svg'],
+            [
+                'name' => 'Canva',
+                'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/canva/canva-original.svg',
+            ],
+        ],
+    ],
+            'projects'=>'50',
+            'clientSatisfaction'=>'98',
+
+
+
 
         ],
-        "e_commerce-solutions" => [
-            'description' => 'Innovative, user-focused online stores designed to showcase your brand’s uniqueness, engage customers, and drive sales. We combine beautiful design with seamless functionality to create shopping experiences that build loyalty and grow your business.',
+        "e_commerce" => [
+            'description' => 'Beautiful, user-focused online stores that drive sales and build loyalty.',
             'detailsArray' => [
                 [
                     'title' => 'Business & Market Discovery',
@@ -123,88 +274,489 @@ Route::get('/services/{service}', function ($service) {
                     'description' => 'Once your store is launched, we continue to monitor performance, user engagement, and sales data. We offer A/B testing, CRO (Conversion Rate Optimization), SEO enhancements, and campaign tracking to continuously improve your store’s effectiveness and drive long-term growth.'
                 ],
             ],
+            'faqs' => [
+                [
+                    'question' => 'What e-commerce services do you offer?',
+                    'answer' =>
+                    'We provide end-to-end e-commerce solutions including custom online store development, payment gateway integration, shopping cart setup, product management, and marketing tools to help grow your business.',
+                ],
+                [
+                    'question' => 'How long does it take to launch an e-commerce website?',
+                    'answer' =>
+                    'Typically, e-commerce projects take 6-12 weeks depending on complexity, features, and integrations required. We work closely with you to deliver a fully functional and optimized store within the agreed timeline.',
+                ],
+                [
+                    'question' => 'What pricing models do you follow for e-commerce projects?',
+                    'answer' =>
+                    'Our pricing is based on the project scope and your specific requirements. We offer transparent quotes with no hidden fees, covering design, development, testing, and deployment.',
+                ],
+                [
+                    'question' => 'Do you provide ongoing support and maintenance?',
+                    'answer' =>
+                    'Yes, we offer comprehensive post-launch support including platform updates, security patches, feature enhancements, and technical assistance to ensure your e-commerce site runs smoothly.',
+                ],
+                [
+                    'question' => 'How do you ensure the security of my e-commerce store?',
+                    'answer' =>
+                    'We implement industry-standard security measures including SSL certificates, secure payment gateways, regular vulnerability testing, and compliance with data protection regulations to keep your store and customers safe.',
+                ],
+                [
+                    'question' => 'Can you integrate third-party tools with my store?',
+                    'answer' =>
+                    'Absolutely! We can integrate various third-party services such as payment gateways, CRM, inventory management, shipping providers, and marketing tools to enhance your store’s functionality.',
+                ],
+            ],
+
+            'introImages' => [
+                'https://images.unsplash.com/photo-1506765515384-028b60a970df',
+                'https://cdn.dribbble.com/userupload/24675218/file/original-217fe0b2bffa18d19df2596909528580.gif',
+                'https://img.freepik.com/free-photo/web-design-technology-browsing-programming-concept_53876-163260.jpg',
+                'https://images-platform.99static.com//gERmn6TxrIrnrs01YXG90zL5Rao=/0x0:533x533/fit-in/500x500/projects-files/105/10552/1055228/9e9346fc-88c9-4235-bcb7-82cbaa1f2366.gif',
+            ],
+            'overview' => [
+                'heading' => 'Why E-commerce is Your Key to Digital Success',
+                'description' => " In today’s digital-first world, having a robust online store is essential to reach customers and grow your business. E-commerce development builds the foundation for your digital sales strategy, enabling you to showcase products, engage shoppers, and drive revenue. Our comprehensive e-commerce solutions turn your vision into a seamless, user-friendly shopping experience that boosts conversions and builds customer loyalty.",
+                'image' => 'https://cdn.prod.website-files.com/6009ec8cda7f305645c9d91b/60107f8f3fb5ed50a4de8aeb_6002086f72b727635701e256_mueble-gif.gif',
+            ],
+            'tech' => [
+                'names' => [
+                    "Frontend ",
+                    'Backend',
+                    'Cloud / Hosting',
+                    "Design Tools"
+                ],
+                'frontendTechnologies' => [
+                    [
+                        'name' => 'HTML5',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
+                    ],
+                    ['name' => 'CSS3', 'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg'],
+                    [
+                        'name' => 'JavaScript',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
+                    ],
+                    [
+                        'name' => 'React',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+                    ],
+                    [
+                        'name' => 'Vue.js',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg',
+                    ],
+                    [
+                        'name' => 'Laravel',
+                        'icon' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/800px-Laravel.svg.png',
+                    ],
+                ],
+
+                'backendTechnologies' => [
+                    [
+                        'name' => 'Node.js',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
+                    ],
+                    [
+                        'name' => 'Java',
+                        'icon' =>
+                        'https://sc.filehippo.net/images/t_app-icon-l/p/4dd9406e-96d3-11e6-aa77-00163ec9f5fa/3927985343/java-development-kit-64-icon.png',
+                    ],
+                    [
+                        'name' => 'Python',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
+                    ],
+                    ['name' => 'MongoDB', 'icon' => 'https://www.cdnlogo.com/logos/m/30/mongodb-icon.svg'],
+
+                    ['name' => 'PHP', 'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg'],
+                    [
+                        'name' => 'MySQL',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
+                    ],
+                ],
+
+                'cloudTechnologies' => [
+                    [
+                        'name' => 'AWS',
+                        'icon' => 'https://sourcebae.com/blog/wp-content/uploads/2023/08/1_b_al7C5p26tbZG4sy-CWqw.png',
+                    ],
+
+                    [
+                        'name' => 'Nginx',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg',
+                    ],
+
+                    [
+                        'name' => 'Azure',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg',
+                    ],
+                    ['name' => 'GO Daddy', 'icon' => 'https://download.logo.wine/logo/GoDaddy/GoDaddy-Logo.wine.png'],
+                    [
+                        'name' => 'Hostinger',
+                        'icon' => 'https://upload.wikimedia.org/wikipedia/commons/e/e5/Hostinger_Logotype.png',
+                    ],
+                    [
+                        'name' => 'Google Cloud',
+                        'icon' =>
+                        'https://cdn.prod.website-files.com/6449405754e757db07f25327/6656429d1776bd09704334e8_google.webp',
+                    ],
+                ],
+
+                'designTechnologies' => [
+                    [
+                        'name' => 'Figma',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg',
+                    ],
+
+                    ['name' => 'Adobe XD', 'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xd/xd-plain.svg'],
+                    [
+                        'name' => 'Canva',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/canva/canva-original.svg',
+                    ],
+                ],
+            ],
+            'projects' => '50',
+            'clientSatisfaction' => '98',
         ],
         "ui-ux-design" => [
-            'description' => 'Human-centered design that combines creativity, clarity, and usability — delivering sleek, modern interfaces that not only look stunning but also feel intuitive and effortless to use. Every interaction is thoughtfully crafted to elevate your brand and create lasting user satisfaction.',
+            'description' => 'Intuitive, modern design that elevates your brand and delights users.',
             'detailsArray' => [
                 [
                     'title' => 'User Research & Persona Development',
-                    'description' => 'We begin with in-depth research to understand your users’ needs, goals, frustrations, and behaviors. Through methods such as interviews, surveys, and competitor analysis, we gather insights to build realistic user personas — fictional yet data-driven representations of your ideal users. These personas guide all design decisions to ensure we create experiences that truly resonate with your audience.'
+                    'description' => 'Conduct detailed research using interviews, surveys, and data analysis to create user personas that represent your target audience. These personas guide design decisions to ensure user-centric solutions.'
                 ],
                 [
                     'title' => 'Information Architecture & User Flows',
-                    'description' => 'We organize your content and features into a logical, user-friendly structure. This includes creating sitemaps and user flow diagrams that map how users will navigate the product to complete tasks efficiently. Good information architecture reduces confusion and enhances discoverability, making the experience intuitive and frictionless from the first tap.'
+                    'description' => 'Structure content logically and design user flows that map how users navigate your product to achieve their goals efficiently, creating an intuitive and seamless experience.'
                 ],
                 [
                     'title' => 'Wireframing',
-                    'description' => 'Wireframes are skeletal blueprints of the interface. They help visualize the layout, hierarchy, and functionality of each screen without distraction from colors or images. These grayscale sketches enable fast iteration and feedback, ensuring we lock down the best possible user experience before investing in visual design or development.'
+                    'description' => 'Create low-fidelity wireframes to visualize the layout and hierarchy of each screen, allowing for quick iteration and feedback before moving on to detailed design.'
                 ],
                 [
                     'title' => 'Interaction Design & Microinteractions',
-                    'description' => 'We define how users interact with the interface — buttons, forms, animations, hover effects, transitions, and feedback responses. These microinteractions play a big role in making the app feel intuitive and responsive. Every tap, swipe, and scroll is thoughtfully crafted to provide clear feedback and create a seamless flow.'
+                    'description' => 'Design interactive elements such as buttons, transitions, and feedback animations to enhance usability and provide clear responses to user actions.'
                 ],
                 [
                     'title' => 'Visual Design & Branding',
-                    'description' => 'Once wireframes and interactions are approved, we design pixel-perfect mockups aligned with your brand’s identity. This includes typography, color schemes, iconography, imagery, and spacing. The goal is to create an emotionally engaging experience that’s not only beautiful but also functional and accessible.'
+                    'description' => 'Develop high-fidelity mockups aligned with your brand’s identity, focusing on typography, colors, icons, and overall aesthetics to create an engaging and accessible interface.'
                 ],
                 [
                     'title' => 'Prototyping',
-                    'description' => 'We build interactive prototypes that simulate real user journeys. These prototypes allow stakeholders and test users to click through the app like they would in a live environment. It’s a powerful tool for validating flows and spotting usability issues early, before moving into development.'
+                    'description' => 'Build clickable prototypes to simulate real user interactions, allowing stakeholders to test and validate flows before development.'
                 ],
                 [
                     'title' => 'Usability Testing',
-                    'description' => 'We test the prototype with real users to gather feedback on ease of use, layout, and flow. This step uncovers friction points and identifies areas of confusion. Based on these findings, we iterate the design to improve user satisfaction and ensure the final product aligns with real-world expectations.'
+                    'description' => 'Test prototypes with real users to identify pain points and areas for improvement, refining the design to enhance user satisfaction.'
                 ],
                 [
                     'title' => 'Design Handoff to Development',
-                    'description' => 'Once the design is finalized, we prepare all assets and documentation for the development team. This includes style guides, component libraries, and responsive behavior notes. We use tools like Figma, Zeplin, or Adobe XD to ensure a smooth handoff, with all design specifications clearly communicated.'
+                    'description' => 'Prepare design assets, style guides, and documentation to ensure developers implement the design accurately and efficiently.'
                 ],
                 [
                     'title' => 'Post-Launch UX Optimization',
-                    'description' => 'After the product goes live, we monitor user behavior using analytics tools like Hotjar, Mixpanel, or Google Analytics. We use real usage data and user feedback to identify opportunities for improvement. UX is an ongoing process, and we continuously refine the design to enhance engagement, retention, and overall user satisfaction.'
+                    'description' => 'Analyze user behavior post-launch to continuously improve the interface, increasing engagement and retention based on real-world data.'
                 ],
             ],
+
+            'faqs' => [
+                [
+                    'question' => 'What UI/UX design services do you offer?',
+                    'answer' =>
+                    'We provide comprehensive UI/UX design services including user research, wireframing, prototyping, visual design, usability testing, and interaction design to create intuitive and engaging digital experiences.',
+                ],
+                [
+                    'question' => 'How long does the UI/UX design process take?',
+                    'answer' =>
+                    'The design process duration varies based on project complexity. Typically, initial research and wireframing take 2-3 weeks, followed by prototyping and visual design which can take another 3-4 weeks. Timelines are customized per project.',
+                ],
+                [
+                    'question' => 'What is your pricing structure for UI/UX design?',
+                    'answer' =>
+                    'Our pricing depends on the scope and scale of the design work. We offer transparent, project-based pricing after understanding your requirements, ensuring you receive value without hidden fees.',
+                ],
+                [
+                    'question' => 'Do you provide user testing and feedback?',
+                    'answer' =>
+                    'Yes, user testing is an integral part of our design process. We conduct usability tests and gather user feedback to refine designs and ensure they meet real user needs effectively.',
+                ],
+                [
+                    'question' => 'How do you ensure the designs align with our brand?',
+                    'answer' =>
+                    'We collaborate closely with you to understand your brand identity, values, and goals. Our designs incorporate your brand guidelines and aesthetics to create a consistent and recognizable user experience.',
+                ],
+                [
+                    'question' => 'Can you help redesign existing interfaces?',
+                    'answer' =>
+                    'Absolutely! We can analyze your current UI/UX, identify pain points, and redesign interfaces to improve usability, engagement, and overall user satisfaction.',
+                ],
+            ],
+
+            'introImages' => [
+                'https://images.unsplash.com/photo-1506765515384-028b60a970df',
+                'https://cdn.dribbble.com/userupload/24675218/file/original-217fe0b2bffa18d19df2596909528580.gif',
+                'https://img.freepik.com/free-photo/web-design-technology-browsing-programming-concept_53876-163260.jpg',
+                'https://images-platform.99static.com//gERmn6TxrIrnrs01YXG90zL5Rao=/0x0:533x533/fit-in/500x500/projects-files/105/10552/1055228/9e9346fc-88c9-4235-bcb7-82cbaa1f2366.gif',
+            ],
+            'overview' => [
+                'heading' => 'Why UX/UI Design is Crucial for Your Digital Success',
+                'description' => " In a digital-first world, great design is key to engaging users and building brand loyalty. UX/UI design creates intuitive, visually appealing interfaces that make every interaction effortless and enjoyable. Our design solutions transform your ideas into sleek, user-centered experiences that drive satisfaction and business growth.",
+                'image' => 'https://mir-s3-cdn-cf.behance.net/project_modules/hd/be510767817393.5b472244e895f.gif',
+            ],
+            'tech' => [
+                'names'=>[
+                    "Design Tools", 'Prototyping Tools', 'Collaboration Tools', "Animation Tools"
+                ],
+
+                'frontendTechnologies' => [
+                    [
+                        'name' => 'Figma',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg',
+                    ],
+                    [
+                        'name' => 'Adobe XD',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xd/xd-plain.svg',
+                    ],
+                    [
+                        'name' => 'Sketch',
+                        'icon' => 'https://upload.wikimedia.org/wikipedia/commons/5/59/Sketch_Logo.svg',
+                    ],
+                    [
+                        'name' => 'Canva',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/canva/canva-original.svg',
+                    ],
+                    [
+                        'name' => ' Photoshop',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-plain.svg',
+                    ],
+                    [
+                        'name' => ' Illustrator',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg',
+                    ],
+                ],
+
+                'backendTechnologies' => [
+                    [
+                        'name' => 'InVision',
+                        'icon' => 'https://cdn.worldvectorlogo.com/logos/invision.svg',
+                    ],
+       
+                    [
+                        'name' => 'Framer',
+                        'icon' => 'https://framerusercontent.com/images/TvJ9grdPgk3sRz6T6XwkpBrFr4k.png?scale-down-to=512',
+                    ],
+                ],
+
+                'cloudTechnologies' => [
+                    [
+                        'name' => 'Zeplin',
+                        'icon' => 'https://cdn.worldvectorlogo.com/logos/zeplin.svg',
+                    ],
+                    [
+                        'name' => 'Miro',
+                        'icon' => 'https://store-images.s-microsoft.com/image/apps.47763.13959754522315136.87be3224-9693-4fd4-8cd4-af6362fb8d37.b3c24453-164b-4d03-b561-e77aec7c076a?h=210',
+                    ],
+                    [
+                        'name' => 'Notion',
+                        'icon' => 'https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png',
+                    ],
+                ],
+
+                'designTechnologies' => [
+                    [
+                        'name' => 'Lottie',
+                        'icon' => 'https://lottiefiles.gallerycdn.vsassets.io/extensions/lottiefiles/vscode-lottie/1.0.5/1644929862372/Microsoft.VisualStudio.Services.Icons.Default',
+                    ],
+                   
+                    [
+                        'name' => 'After Effects',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/aftereffects/aftereffects-plain.svg',
+                    ],
+                ],
+
+            ],
+
+            'projects' => '50',
+            'clientSatisfaction' => '98',
         ],
-        "app-design&development" => [
-            'description' => 'Innovative, user-centric mobile app solutions that combine stunning design with flawless functionality — built to elevate your brand and engage your audience across all platforms.',
+        "app-development" => [
+            'description' => 'Stunning, user-focused mobile apps built to elevate your brand.',
             'detailsArray' => [
                 [
                     'title' => 'Discovery & Requirement Analysis',
-                    'description' => 'We begin by understanding your vision and objectives through discovery workshops, stakeholder interviews, and competitor analysis. This helps us gather all technical and business requirements. The outcome is a detailed requirements document, user personas, and a shared understanding of the app’s purpose, goals, and challenges — ensuring we are aligned before any design or development begins.'
+                    'description' => 'We start by understanding your vision through workshops and stakeholder interviews to gather detailed business and technical requirements, user personas, and project goals.'
                 ],
                 [
                     'title' => 'Market & User Research',
-                    'description' => 'To build a product that truly resonates, we conduct user research and market analysis. This includes identifying pain points, studying user behavior, and analyzing competitor apps to find differentiation opportunities. We may conduct surveys, user interviews, and usability testing of similar products to gather actionable insights that influence both design and functionality.'
+                    'description' => 'We analyze user behavior, pain points, and competitors to gather insights via surveys, interviews, and usability testing to inform design and features.'
                 ],
                 [
                     'title' => 'Wireframing & Information Architecture',
-                    'description' => 'Once we understand the users and their goals, we create wireframes that map out each screen’s layout, navigation, and user interactions. We also define the information architecture — how content is organized and accessed — to ensure intuitive user flows. Wireframes serve as the foundation for both UI design and backend logic.'
+                    'description' => 'We create wireframes outlining screen layouts, navigation, and user flows, and define information architecture to ensure intuitive usability.'
                 ],
                 [
                     'title' => 'UI/UX Design',
-                    'description' => 'Our designers turn wireframes into visually polished mockups, incorporating your brand’s identity with modern design standards. This includes typography, color schemes, iconography, and micro-interactions. We prioritize consistency, accessibility, and engagement. Clickable prototypes are shared for stakeholder feedback before development begins.'
+                    'description' => 'Designers craft polished mockups reflecting your brand identity, focusing on typography, color, icons, and micro-interactions. Clickable prototypes enable stakeholder feedback.'
                 ],
                 [
                     'title' => 'Cross-Platform App Development',
-                    'description' => 'We develop the frontend of your app using technologies like Flutter, React Native, or native Swift/Kotlin based on your goals. Features are implemented modularly for better maintainability, and performance is optimized from the start. Our code is version-controlled, thoroughly documented, and aligned with industry best practices for scalability and security.'
+                    'description' => 'We build performant frontends using Flutter, React Native, or native Swift/Kotlin, applying modular, maintainable code practices.'
                 ],
                 [
                     'title' => 'Backend Development & API Integration',
-                    'description' => 'The backend is the engine of your app — we use Laravel, Node.js, or Firebase to build RESTful or GraphQL APIs, handle authentication, data processing, cloud storage, and push notifications. We also integrate third-party services like payment processors, maps, chat, CRMs, and analytics tools to enhance the app’s ecosystem.'
+                    'description' => 'We develop robust backends with Laravel, Node.js, or Firebase, integrating APIs, authentication, cloud storage, and third-party services like payments and analytics.'
                 ],
                 [
                     'title' => 'Quality Assurance & Testing',
-                    'description' => 'We employ a rigorous QA process involving unit testing, functional testing, regression testing, and real-device testing across multiple OS versions and screen sizes. Our goal is zero critical bugs at launch. We also perform user acceptance testing (UAT) with stakeholders to validate that the app meets business requirements.'
+                    'description' => 'Our thorough QA process covers unit, functional, regression, and real-device testing to ensure a bug-free launch and user acceptance.'
                 ],
                 [
                     'title' => 'App Store Submission & Deployment',
-                    'description' => 'We prepare your app for release, including creating app icons, screenshots, marketing text, and metadata for the App Store and Google Play. We handle submission, guide you through Apple/Google approval processes, and ensure compliance with platform guidelines. CI/CD pipelines may be implemented for automated builds and releases.'
+                    'description' => 'We handle app submission with all required assets, metadata, and platform compliance, guiding you through approval for Apple App Store and Google Play.'
                 ],
                 [
                     'title' => 'Post-Launch Support & Iteration',
-                    'description' => 'Launch is just the beginning. We monitor app performance, crash logs, and user behavior using tools like Firebase, Sentry, and Mixpanel. Based on user feedback and analytics, we iterate with bug fixes, feature updates, and performance improvements. We offer maintenance contracts to keep your app up-to-date and growing with your users.'
+                    'description' => 'After launch, we monitor performance and user feedback to continuously improve the app with updates, fixes, and new features.'
                 ],
             ],
+
+            'faqs' => [
+                [
+                    'question' => 'What app development services do you offer?',
+                    'answer' =>
+                    'We develop custom mobile applications for iOS and Android platforms, including native, hybrid, and cross-platform solutions tailored to your business needs.',
+                ],
+                [
+                    'question' => 'How long does it take to develop an app?',
+                    'answer' =>
+                    'App development timelines vary by complexity. Simple apps may take 8-12 weeks, while feature-rich or enterprise apps can take 4-6 months or more. We provide detailed timelines upfront.',
+                ],
+                [
+                    'question' => 'What is your pricing model for app development?',
+                    'answer' =>
+                    'Pricing depends on app complexity, features, and platforms. We offer transparent, project-based pricing with no hidden fees, and provide detailed quotes after requirement analysis.',
+                ],
+                [
+                    'question' => 'Do you offer post-launch support and maintenance?',
+                    'answer' =>
+                    'Yes, we provide ongoing support including app updates, bug fixes, performance monitoring, and help with new feature development to keep your app running smoothly.',
+                ],
+                [
+                    'question' => 'How do you ensure app quality?',
+                    'answer' =>
+                    'We follow best practices and conduct thorough testing, including functional, usability, performance, and security testing to deliver a high-quality app experience.',
+                ],
+                [
+                    'question' => 'Can you assist with existing app projects?',
+                    'answer' =>
+                    'Absolutely! We can improve, update, or rebuild your existing app. Our team assesses your current app and suggests enhancements or necessary upgrades.',
+                ],
+            ],
+
+            'introImages' => [
+                'https://cdn.dribbble.com/userupload/22313184/file/original-e225092ba79998dcb1ab67dda698fa89.gif',
+                'https://cdn.dribbble.com/userupload/24675218/file/original-217fe0b2bffa18d19df2596909528580.gif',
+                'https://i.pinimg.com/originals/ca/bb/fc/cabbfca4b591059500ad35a9c1e7001b.gif',
+                'https://www.appslure.com/wp-content/uploads/2022/07/app-development-1.gif',
+            ],
+            'overview' => [
+                'heading' => 'Why Mobile App Development is Your Digital Solution',
+                'description' => " In today’s mobile-driven world, having a seamless app experience is essential to stay competitive. Mobile app development empowers you to connect directly with users, boost engagement, and expand your reach. Our custom app solutions turn your ideas into intuitive, high-performance applications that drive real business results and enhance customer loyalty.",
+                'image' => 'https://clevertap.com/wp-content/uploads/2018/10/mobile-app-design-forms-broken-up.gif',
+            ],
+            'tech' => [
+                'names' => [
+                    "Frontend ",
+                    'Backend',
+                    'App Store',
+                    "Design Tools"
+                ],
+
+                'frontendTechnologies' => [
+                    [
+                        'name' => 'Flutter',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg',
+                    ],
+                    [
+                        'name' => 'React Native',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+                    ],
+                    [
+                        'name' => 'Swift',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg',
+                    ],
+                    [
+                        'name' => 'Kotlin',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg',
+                    ],
+                    [
+                        'name' => 'Java',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg',
+                    ],
+                ],
+
+                'backendTechnologies' => [
+                    [
+                        'name' => 'Node.js',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
+                    ],
+                    [
+                        'name' => 'Laravel',
+                        'icon' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/800px-Laravel.svg.png',
+                    ],
+                    [
+                        'name' => 'Django',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg',
+                    ],
+                    [
+                        'name' => 'Firebase',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg',
+                    ],
+                    [
+                        'name' => 'MongoDB',
+                        'icon' => 'https://www.cdnlogo.com/logos/m/30/mongodb-icon.svg',
+                    ],
+                    [
+                        'name' => 'MySQL',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
+                    ],
+                ],
+
+                'cloudTechnologies' => [
+                    [
+                        'name' => 'Firebase',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg',
+                    ],
+                    [
+                        'name' => 'AWS Amplify',
+                        'icon' => 'https://images.credly.com/images/1d55a25a-3ba0-492c-8dad-12c3be3f0782/blob.png',
+                    ],
+                    [
+                        'name' => 'Google Cloud',
+                        'icon' => 'https://cdn.prod.website-files.com/6449405754e757db07f25327/6656429d1776bd09704334e8_google.webp',
+                    ],
+                    [
+                        'name' => 'Azure',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg',
+                    ],
+                ],
+
+                'designTechnologies' => [
+                    [
+                        'name' => 'Figma',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg',
+                    ],
+                    [
+                        'name' => 'Adobe XD',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xd/xd-plain.svg',
+                    ],
+                    [
+                        'name' => 'Canva',
+                        'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/canva/canva-original.svg',
+                    ],
+                ],
+
+            ],
+
+            'projects' => '30',
+            'clientSatisfaction' => '97',
         ],
         "maintenance&support" => [
             'description' => 'Creative designs to make your brand stand out.',
@@ -238,6 +790,57 @@ Route::get('/services/{service}', function ($service) {
                     'description' => 'As your business grows, we help plan and implement new features, integrations, and scaling solutions. This ensures your app or site evolves alongside your needs without sacrificing performance.'
                 ],
             ],
+            'faqs' => [
+                [
+                    'question' => 'What services do you offer?',
+                    'answer' =>
+                    'We offer a comprehensive range of digital services including web development, mobile app development, UI/UX design, e-commerce solutions, and digital marketing services. Our team specializes in creating custom solutions tailored to your business needs.',
+                ],
+                [
+                    'question' => 'How long does it take to complete a project?',
+                    'answer' =>
+                    'Project timelines vary depending on the scope and complexity. A typical website project can take 4-8 weeks, while mobile apps may take 8-12 weeks. We provide detailed timelines during the initial consultation and keep you updated throughout the development process.',
+                ],
+                [
+                    'question' => 'What is your pricing structure?',
+                    'answer' =>
+                    'Our pricing is project-based and depends on your specific requirements. We offer transparent pricing with no hidden costs. After understanding your needs, we provide a detailed quote that includes all aspects of the project.',
+                ],
+                [
+                    'question' => 'Do you provide ongoing support?',
+                    'answer' =>
+                    'Yes, we offer comprehensive support and maintenance services. This includes regular updates, security patches, performance optimization, and technical support. We also provide training to help you manage your digital assets effectively.',
+                ],
+                [
+                    'question' => 'How do you ensure quality?',
+                    'answer' =>
+                    'We follow industry best practices and maintain high quality standards through rigorous testing procedures. Our development process includes multiple quality checks, user testing, and performance optimization to ensure the best possible outcome.',
+                ],
+                [
+                    'question' => 'Can you help with existing projects?',
+                    'answer' =>
+                    'Absolutely! We can help improve, maintain, or rebuild existing projects. Our team will analyze your current setup and provide recommendations for enhancements or necessary updates.',
+                ],
+            ],
+            'introImages' => [
+                'https://images.unsplash.com/photo-1506765515384-028b60a970df',
+                'https://cdn.dribbble.com/userupload/24675218/file/original-217fe0b2bffa18d19df2596909528580.gif',
+                'https://img.freepik.com/free-photo/web-design-technology-browsing-programming-concept_53876-163260.jpg',
+                'https://images-platform.99static.com//gERmn6TxrIrnrs01YXG90zL5Rao=/0x0:533x533/fit-in/500x500/projects-files/105/10552/1055228/9e9346fc-88c9-4235-bcb7-82cbaa1f2366.gif',
+            ],
+            'overview' => [
+                'heading' => 'Why Web Development is Your Digital Solution',
+                'description' => " In today' s digital - first world,
+                having a strong online presence is no longer optional—it 's essential.
+                    Web development serves as the foundation of your digital strategy, enabling you to reach global
+                    audiences,
+                    showcase your brand, and drive business growth. Our comprehensive web development solutions transform
+                    your
+                    vision into a powerful digital platform that engages users and delivers results.",
+                'image' => 'https://blog.appseed.us/content/images/2023/02/design-web-agency-intro.gif',
+            ],
+            'projects' => '50',
+            'clientSatisfaction' => '98',
         ],
         "testing" => [
             'description' => 'Comprehensive quality assurance that guarantees your product performs flawlessly, remains secure, and delivers a seamless experience — ensuring your brand stands strong in every interaction.',
@@ -283,6 +886,58 @@ Route::get('/services/{service}', function ($service) {
                     'description' => 'After all fixes, a final round of regression testing ensures that new changes haven’t introduced any new issues. We confirm readiness for deployment, ensuring the product is robust and reliable for end-users.'
                 ],
             ],
+            'faqs' => [
+                [
+                    'question' => 'What services do you offer?',
+                    'answer' =>
+                    'We offer a comprehensive range of digital services including web development, mobile app development, UI/UX design, e-commerce solutions, and digital marketing services. Our team specializes in creating custom solutions tailored to your business needs.',
+                ],
+                [
+                    'question' => 'How long does it take to complete a project?',
+                    'answer' =>
+                    'Project timelines vary depending on the scope and complexity. A typical website project can take 4-8 weeks, while mobile apps may take 8-12 weeks. We provide detailed timelines during the initial consultation and keep you updated throughout the development process.',
+                ],
+                [
+                    'question' => 'What is your pricing structure?',
+                    'answer' =>
+                    'Our pricing is project-based and depends on your specific requirements. We offer transparent pricing with no hidden costs. After understanding your needs, we provide a detailed quote that includes all aspects of the project.',
+                ],
+                [
+                    'question' => 'Do you provide ongoing support?',
+                    'answer' =>
+                    'Yes, we offer comprehensive support and maintenance services. This includes regular updates, security patches, performance optimization, and technical support. We also provide training to help you manage your digital assets effectively.',
+                ],
+                [
+                    'question' => 'How do you ensure quality?',
+                    'answer' =>
+                    'We follow industry best practices and maintain high quality standards through rigorous testing procedures. Our development process includes multiple quality checks, user testing, and performance optimization to ensure the best possible outcome.',
+                ],
+                [
+                    'question' => 'Can you help with existing projects?',
+                    'answer' =>
+                    'Absolutely! We can help improve, maintain, or rebuild existing projects. Our team will analyze your current setup and provide recommendations for enhancements or necessary updates.',
+                ],
+            ],
+            'introImages' => [
+                'https://images.unsplash.com/photo-1506765515384-028b60a970df',
+                'https://cdn.dribbble.com/userupload/24675218/file/original-217fe0b2bffa18d19df2596909528580.gif',
+                'https://img.freepik.com/free-photo/web-design-technology-browsing-programming-concept_53876-163260.jpg',
+                'https://images-platform.99static.com//gERmn6TxrIrnrs01YXG90zL5Rao=/0x0:533x533/fit-in/500x500/projects-files/105/10552/1055228/9e9346fc-88c9-4235-bcb7-82cbaa1f2366.gif',
+            ],
+            'overview' => [
+                'heading' => 'Why Web Development is Your Digital Solution',
+                'description' => " In today' s digital - first world,
+                having a strong online presence is no longer optional—it 's essential.
+                    Web development serves as the foundation of your digital strategy, enabling you to reach global
+                    audiences,
+                    showcase your brand, and drive business growth. Our comprehensive web development solutions transform
+                    your
+                    vision into a powerful digital platform that engages users and delivers results.",
+                'image' => 'https://blog.appseed.us/content/images/2023/02/design-web-agency-intro.gif',
+            ],
+            'projects' => '50',
+            'clientSatisfaction' => '98',
+            
         ],
         // Add more services here
     ];
@@ -305,12 +960,20 @@ Route::get('/services/{service}', function ($service) {
 
     // Get the service details from the array
     $serviceDetails = $servicesArray[$service];
+   
+
 
     // Pass both formatted name and details to the view
     return view('frontend.service', [
         'service' => $formattedService,
         'details' => $serviceDetails,
         'detailsArray'=> $serviceDetails['detailsArray'],
+        'faqsArray' => $serviceDetails['faqs'],
+        'introImages' => $serviceDetails['introImages'],
+        'projectNumber' => $serviceDetails['projects'],
+        'overview' => $serviceDetails['overview'],
+        'clientSatis' => $serviceDetails['clientSatisfaction'],
+        'technology' => $serviceDetails['tech'],
     ]);
 });
 Route::get('/pricing/{service}', function ($service) {
@@ -471,5 +1134,6 @@ Route::get('/pricing/{service}', function ($service) {
         'service' => $formattedService,
         'details' => $serviceDetails,
         'detailsArray'=> $serviceDetails['detailsArray'],
+       
     ]);
 });

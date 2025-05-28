@@ -21,7 +21,7 @@
                         </div>
                         <div>
                             <h3 class="font-semibold">Expert Team</h3>
-                            <p class="text-sm text-gray-400">50+ Professionals</p>
+                            <p class="text-sm text-gray-400">10+ Professionals</p>
                         </div>
                     </div>
                     <div class="flex items-center space-x-3">
@@ -30,7 +30,7 @@
                         </div>
                         <div>
                             <h3 class="font-semibold">Global Reach</h3>
-                            <p class="text-sm text-gray-400">20+ Countries</p>
+                            <p class="text-sm text-gray-400">5+ Countries</p>
                         </div>
                     </div>
                     <div class="flex items-center space-x-3">
@@ -39,7 +39,7 @@
                         </div>
                         <div>
                             <h3 class="font-semibold">Projects</h3>
-                            <p class="text-sm text-gray-400">500+ Completed</p>
+                            <p class="text-sm text-gray-400">100+ Completed</p>
                         </div>
                     </div>
                 </div>

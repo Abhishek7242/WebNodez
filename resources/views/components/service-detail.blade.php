@@ -1,19 +1,280 @@
-<section class="bg-white py-16">
-    <div class="max-w-6xl mx-auto px-4">
-      
+@props(['serviceHeading', 'detailsArray'])
 
-        <div class="relative border-l-4 border-[var(--color-primary)] pl-12 space-y-10">
+<style>
+    .process-section {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        padding: 6rem 0;
+        position: relative;
+        color: #e2e8f0;
+    }
+
+    .process-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg,
+                transparent,
+                rgba(34, 197, 94, 0.3),
+                transparent);
+    }
+
+    .process-container {
+        position: relative;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 2rem 0;
+    }
+
+    .process-container::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom,
+                rgba(34, 197, 94, 0.2) 0%,
+                rgba(34, 197, 94, 0.5) 50%,
+                rgba(34, 197, 94, 0.2) 100%);
+        transform: translateX(-50%);
+    }
+
+    .process-item {
+        position: relative;
+        padding: 3rem;
+        margin-bottom: 4rem;
+        border-radius: 24px;
+        transition: all 0.5s ease;
+        background: rgba(30, 41, 59, 0.5);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(34, 197, 94, 0.1);
+    }
+
+    .process-item:nth-child(odd) {
+        margin-right: 50%;
+        transform: translateX(20px);
+    }
+
+    .process-item:nth-child(even) {
+        margin-left: 50%;
+        transform: translateX(-20px);
+    }
+
+    .process-item:hover {
+        transform: translateX(0) scale(1.02);
+        background: rgba(30, 41, 59, 0.8);
+        border-color: rgba(34, 197, 94, 0.3);
+        box-shadow: 0 0 30px rgba(34, 197, 94, 0.1);
+    }
+
+    .process-item:nth-child(odd):hover {
+        transform: translateX(30px) scale(1.02);
+    }
+
+    .process-item:nth-child(even):hover {
+        transform: translateX(-30px) scale(1.02);
+    }
+
+    .process-number {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.6rem;
+        background: linear-gradient(135deg, #22C55E, var(--color-primary));
+        color: white;
+        box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+        z-index: 2;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .process-item:nth-child(odd) .process-number {
+        right: -35px;
+    }
+
+    .process-item:nth-child(even) .process-number {
+        left: -35px;
+    }
+
+    .process-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .process-title {
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: #f8fafc;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .process-title::before {
+        content: '';
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #22C55E;
+        box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+    }
+
+    .process-description {
+        color: #94a3b8;
+        line-height: 1.8;
+        font-size: 1.1rem;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 6rem;
+        position: relative;
+        padding: 2rem 0;
+    }
+
+    .section-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--color-primary), #22C55E);
+        border-radius: 2px;
+    }
+
+    .section-badge {
+        display: inline-block;
+        padding: 0.5rem 1.5rem;
+        background: rgba(34, 197, 94, 0.1);
+        color: #22C55E;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        letter-spacing: 0.5px;
+        border: 1px solid rgba(34, 197, 94, 0.2);
+    }
+
+    .section-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: #f8fafc;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        background: linear-gradient(135deg, #f8fafc 0%, #22C55E 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        position: relative;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--color-primary), #22C55E);
+        border-radius: 2px;
+    }
+
+    .section-subtitle {
+        color: #94a3b8;
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 2rem auto 0;
+        line-height: 1.7;
+        position: relative;
+        padding: 0 1rem;
+    }
+
+    .section-subtitle::before,
+    .section-subtitle::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        width: 30px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #22C55E);
+    }
+
+    .section-subtitle::before {
+        left: 0;
+    }
+
+    .section-subtitle::after {
+        right: 0;
+        transform: rotate(180deg);
+    }
+
+    @media (max-width: 768px) {
+        .process-container::before {
+            left: 35px;
+        }
+
+        .process-item {
+            margin: 0 0 4rem 70px !important;
+            transform: none !important;
+            padding: 2rem;
+        }
+
+        .process-item:hover {
+            transform: translateX(10px) scale(1.02) !important;
+        }
+
+        .process-number {
+            width: 60px;
+            height: 60px;
+            font-size: 1.4rem;
+            left: -45px !important;
+            right: auto !important;
+        }
+
+        .process-content {
+            padding: 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            padding: 0 2rem;
+        }
+    }
+</style>
+
+<section class="process-section">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="section-header">
+            <span class="section-badge">Our Process</span>
+            <h2 class="section-title">Development Journey</h2>
+            <p class="section-subtitle">A comprehensive approach to transforming your ideas into exceptional digital
+                solutions</p>
+        </div>
+
+        <div class="process-container">
             @foreach ($detailsArray as $index => $step)
-                <div class="relative">
-                    <div
-                        class="absolute top-0 w-10 h-10 rounded-full bg-[var(--color-primary)] text-white flex items-center justify-center font-bold shadow-lg"
-                        style="left: -71px;">
-                        {{ $index + 1 }}
+                <div class="process-item">
+                    <div class="process-number">{{ $index + 1 }}</div>
+                    <div class="process-content">
+                        <h3 class="process-title">{{ $step['title'] }}</h3>
+                        <p class="process-description">{{ $step['description'] }}</p>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-800">{{ $step['title'] }}</h3>
-                    <p class="text-gray-600 mt-2">
-                        {{ $step['description'] }}
-                    </p>
                 </div>
             @endforeach
         </div>

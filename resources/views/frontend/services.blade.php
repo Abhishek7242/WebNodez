@@ -2,17 +2,21 @@
 @section('title', 'WebNodez - Services')
 @section('services', 'active')
 @section('main-section')
-<script>
-    const el = document.querySelector('#header');
-el.style.setProperty('--intro-bg', `url('https://i.pinimg.com/originals/3d/28/37/3d2837a1c5e612fa8ca7dd9c587a7118.gif')`);
-
- </script>
+ <script>
+        document.documentElement.style.setProperty('--text-color', 'black');
+        document.documentElement.style.setProperty('--intro-bg', '#FBFBFC');
+        
+    </script>
 @include('frontend/services/intro')
       
     </header>
-{{-- @include('frontend/services/overview') --}}
+@include('frontend/services/our-services')
+@include('frontend/services/our-process')
+@include('frontend/services/overview')
 @include('frontend/services/technology')
-<section class="bg-gray-50 py-20 px-6 md:px-12">
+@include('frontend/services/contact-page')
+@include('frontend/services/faq')
+{{-- <section class="bg-gray-50 py-20 px-6 md:px-12">
     <div class="max-w-4xl mx-auto text-center">
       <h2 class="text-4xl font-bold text-gray-900 mb-4">Ready to Start Your Project?</h2>
       <p class="text-lg text-gray-600 mb-8">
@@ -22,7 +26,7 @@ el.style.setProperty('--intro-bg', `url('https://i.pinimg.com/originals/3d/28/37
         Contact Us
       </a>
     </div>
-  </section>
+  </section> --}}
   
  
 @endsection

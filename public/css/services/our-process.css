@@ -1,0 +1,418 @@
+/* CSS Variables */
+:root {
+    --color-primary-dark: #059669;
+    --color-text: #1f2937;
+    --color-text-light: #6b7280;
+    --color-bg: #f9fafb;
+    --color-white: #ffffff;
+}
+
+.our-process-section {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Section Header */
+.our-process-header {
+    position: relative;
+    z-index: 2;
+    padding: 2rem 0;
+}
+
+.our-process-badge {
+    position: relative;
+    padding: 0.75rem 1.5rem;
+    background: rgba(16, 185, 129, 0.1);
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.our-process-badge:hover {
+    transform: translateY(-2px);
+}
+
+.our-process-badge-line {
+    background: var(--color-primary);
+    width: 0.25rem;
+    height: 2rem;
+    border-radius: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.our-process-badge-line::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+    );
+    animation: shimmer 2s infinite;
+}
+
+.our-process-badge-text {
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 1.125rem;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+}
+
+.our-process-title {
+    color: var(--color-text);
+    position: relative;
+    display: inline-block;
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(
+        135deg,
+        var(--color-text) 0%,
+        var(--color-primary) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+}
+
+.our-process-title::after {
+    content: "";
+    position: absolute;
+    bottom: -0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6rem;
+    height: 0.375rem;
+    background: linear-gradient(
+        90deg,
+        var(--color-primary) 0%,
+        var(--color-primary-dark) 100%
+    );
+    border-radius: 1rem;
+    transition: width 0.3s ease;
+}
+
+.our-process-header:hover .our-process-title::after {
+    width: 8rem;
+}
+
+.our-process-description-container {
+    position: relative;
+    padding: 2rem 0;
+}
+
+.our-process-description {
+    color: var(--color-text-light);
+    font-size: 1.25rem;
+    line-height: 1.8;
+    position: relative;
+    padding: 0 1rem;
+}
+
+/* Key Points Styles */
+.our-process-key-points {
+    position: relative;
+    z-index: 1;
+}
+
+.our-process-key-point {
+    background: var(--color-white);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.our-process-key-point::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(16, 185, 129, 0.1) 0%,
+        rgba(16, 185, 129, 0) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.our-process-key-point:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.our-process-key-point:hover::before {
+    opacity: 1;
+}
+
+.our-process-key-point-icon {
+    width: 4rem;
+    height: 4rem;
+    background: rgba(16, 185, 129, 0.1);
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.our-process-key-point:hover .our-process-key-point-icon {
+    background: var(--color-primary);
+    color: var(--color-white);
+    transform: scale(1.1);
+}
+
+.our-process-key-point-title {
+    color: var(--color-text);
+    position: relative;
+    display: inline-block;
+}
+
+.our-process-key-point-title::after {
+    content: "";
+    position: absolute;
+    bottom: -0.25rem;
+    left: 0;
+    width: 0;
+    height: 0.125rem;
+    background: var(--color-primary);
+    transition: width 0.3s ease;
+}
+
+.our-process-key-point:hover .our-process-key-point-title::after {
+    width: 100%;
+}
+
+.our-process-key-point-text {
+    color: var(--color-text-light);
+    line-height: 1.6;
+    margin-top: 0.5rem;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+/* Process Steps */
+.our-process-steps {
+    position: relative;
+    z-index: 1;
+}
+
+.our-process-step {
+    position: relative;
+}
+
+.our-process-step-inner {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.our-process-step-inner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(16, 185, 129, 0.1) 0%,
+        rgba(16, 185, 129, 0) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.our-process-step-inner:hover::before {
+    opacity: 1;
+}
+
+.our-process-step-number {
+    position: relative;
+    z-index: 1;
+}
+
+.our-process-step-icon {
+    position: relative;
+    z-index: 1;
+}
+
+.our-process-step-icon i {
+    transition: transform 0.3s ease;
+}
+
+.our-process-step:hover .our-process-step-icon i {
+    transform: scale(1.1);
+}
+
+.our-process-step-title {
+    color: var(--color-text);
+    position: relative;
+    display: inline-block;
+}
+
+.our-process-step-title::after {
+    content: "";
+    position: absolute;
+    bottom: -0.25rem;
+    left: 0;
+    width: 0;
+    height: 0.125rem;
+    background: var(--color-primary);
+    transition: width 0.3s ease;
+}
+
+.our-process-step:hover .our-process-step-title::after {
+    width: 100%;
+}
+
+.our-process-step-description {
+    color: var(--color-text-light);
+    line-height: 1.6;
+}
+
+.our-process-substep {
+    color: var(--color-text);
+    transition: transform 0.3s ease;
+}
+
+.our-process-substep:hover {
+    transform: translateX(0.5rem);
+}
+
+.our-process-substep i {
+    color: var(--color-primary);
+    transition: transform 0.3s ease;
+}
+
+.our-process-substep:hover i {
+    transform: scale(1.2);
+}
+
+/* Process Timeline */
+.our-process-timeline {
+    position: relative;
+    z-index: 1;
+}
+
+.our-process-timeline-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0.25rem;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        var(--color-primary),
+        var(--color-primary-dark)
+    );
+    border-radius: 1rem;
+}
+
+.our-process-timeline-dot {
+    position: relative;
+    z-index: 2;
+}
+
+.our-process-timeline-dot-inner {
+    position: relative;
+    background: var(--color-white);
+    border: 0.25rem solid var(--color-primary);
+    transition: all 0.3s ease;
+}
+
+.our-process-timeline-dot-inner::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1.5rem;
+    height: 1.5rem;
+    background: var(--color-primary);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.our-process-timeline-dot:hover .our-process-timeline-dot-inner::before {
+    opacity: 0.2;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .our-process-step-inner {
+        padding: 1.5rem;
+    }
+
+    .our-process-step-icon {
+        margin-bottom: 1rem;
+    }
+
+    .our-process-timeline-line {
+        left: 1rem;
+    }
+
+    .our-process-timeline-dot {
+        padding-left: 3rem !important;
+    }
+}
+
+/* Animation Classes */
+.animate-fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.animate-slide-up {
+    animation: slideUp 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+

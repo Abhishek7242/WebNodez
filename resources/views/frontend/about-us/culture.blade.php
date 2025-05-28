@@ -84,15 +84,15 @@
                 <p class="stat-label">Employee Satisfaction</p>
             </div>
             <div class="stat-item">
-                <div class="stat-value text-secondary">50+</div>
+                <div class="stat-value text-secondary">10+</div>
                 <p class="stat-label">Team Members</p>
             </div>
             <div class="stat-item">
-                <div class="stat-value text-primary">20+</div>
+                <div class="stat-value text-primary">5+</div>
                 <p class="stat-label">Countries Reached</p>
             </div>
             <div class="stat-item">
-                <div class="stat-value text-secondary">500+</div>
+                <div class="stat-value text-secondary">100+</div>
                 <p class="stat-label">Projects Completed</p>
             </div>
         </div>
@@ -101,7 +101,7 @@
         <div class="final-call">
             <p class="call-description">We're not just building software — we're building a culture of impact, growth, and shared success.</p>
            
-                <a href="/careers" class=" animated-button cta-button">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=youremail@example.com&su=Job Inquiry&body=Hi, I’m interested in joining your team."  target="_blank"  class=" animated-button cta-button">
                     <span>Join Our Team</span>
                 <i class="fas fa-arrow-right icon-transition ml-3"></i>
                 </a>

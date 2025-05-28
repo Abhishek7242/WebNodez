@@ -1,0 +1,205 @@
+.our-services-section {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Section Header */
+.our-services-header {
+    position: relative;
+}
+
+.our-services-badge {
+    background: rgba(83, 235, 37, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+}
+
+.our-services-badge-line {
+    background: var(--color-primary);
+}
+
+.our-services-badge-text {
+    color: var(--color-primary);
+}
+
+.our-services-title {
+    background: linear-gradient(45deg, var(--color-text), var(--color-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.our-services-description {
+    color: var(--color-text-light);
+}
+
+/* Service Buttons */
+.our-services-buttons {
+    position: relative;
+}
+
+.our-services-button {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+    border: 1px solid rgba(83, 235, 37, 0.1);
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.our-services-button:hover {
+    
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+}
+
+.our-services-button.active {
+    background: linear-gradient(
+        45deg,
+        var(--color-primary),
+        var(--color-primary-light)
+    );
+    border-color: transparent;
+}
+
+.our-services-button-icon {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.our-services-button.active .our-services-button-icon {
+    color: var(--color-background);
+}
+
+.our-services-button-title {
+    font-weight: 600;
+    color: var(--color-text);
+    transition: color 0.3s ease;
+}
+
+.our-services-button.active .our-services-button-title {
+    color: var(--color-background);
+}
+
+/* Service Content */
+.our-services-content {
+    position: relative;
+    height: 400px;
+}
+
+.our-services-content-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.our-services-content-item.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.our-services-content-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.our-services-content-title {
+    color: var(--color-text);
+    position: relative;
+    display: inline-block;
+}
+
+.our-services-content-title::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--color-primary);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.our-services-content-item.active .our-services-content-title::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.our-services-content-description {
+    line-height: 1.6;
+    color: var(--color-text-light);
+}
+
+/* Features List */
+.our-services-features {
+    margin: 1.5rem 0;
+}
+
+.our-services-feature {
+    color: var(--color-text);
+    font-size: 1.1rem;
+}
+
+.our-services-feature i {
+    font-size: 1.2rem;
+}
+
+/* Service Image */
+.our-services-image {
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.our-services-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.our-services-image:hover img {
+    transform: scale(1.05);
+}
+
+/* Learn More Button */
+.our-services-learn-more {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-primary);
+    color: var(--color-background);
+    border-radius: 9999px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.our-services-learn-more:hover {
+    background: var(--color-primary-dark);
+    transform: translateX(4px);
+}
+
+.our-services-learn-more i {
+    transition: transform 0.3s ease;
+}
+
+.our-services-learn-more:hover i {
+    transform: translateX(4px);
+}

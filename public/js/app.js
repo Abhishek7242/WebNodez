@@ -19563,6 +19563,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/css/components/faq.css":
+/*!******************************************!*\
+  !*** ./resources/css/components/faq.css ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./resources/css/contact-us.css":
 /*!**************************************!*\
   !*** ./resources/css/contact-us.css ***!
@@ -19697,6 +19710,123 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************!*\
   !*** ./resources/css/navbar.css ***!
   \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/portfolio/blogs.css":
+/*!*******************************************!*\
+  !*** ./resources/css/portfolio/blogs.css ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/portfolio/case-studies.css":
+/*!**************************************************!*\
+  !*** ./resources/css/portfolio/case-studies.css ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/portfolio/design-gallery.css":
+/*!****************************************************!*\
+  !*** ./resources/css/portfolio/design-gallery.css ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/portfolio/intro.css":
+/*!*******************************************!*\
+  !*** ./resources/css/portfolio/intro.css ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/portfolio/work-details.css":
+/*!**************************************************!*\
+  !*** ./resources/css/portfolio/work-details.css ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/services/contact-page.css":
+/*!*************************************************!*\
+  !*** ./resources/css/services/contact-page.css ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/services/intro.css":
+/*!******************************************!*\
+  !*** ./resources/css/services/intro.css ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/services/our-process.css":
+/*!************************************************!*\
+  !*** ./resources/css/services/our-process.css ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/css/services/our-services.css":
+/*!*************************************************!*\
+  !*** ./resources/css/services/our-services.css ***!
+  \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -19876,8 +20006,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
-/******/ 			"css/home/technologies": 0,
-/******/ 			"css/home/services": 0,
+/******/ 			"css/services/our-services": 0,
+/******/ 			"css/services/intro": 0,
 /******/ 			"css/home/intro": 0,
 /******/ 			"css/home": 0,
 /******/ 			"css/app": 0,
@@ -19886,15 +20016,25 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /******/ 			"css/about": 0,
 /******/ 			"css/footer": 0,
 /******/ 			"css/chatbot": 0,
+/******/ 			"css/components/faq": 0,
 /******/ 			"css/components/blog-card": 0,
 /******/ 			"css/blogs": 0,
 /******/ 			"css/contact-us": 0,
 /******/ 			"css/terms_conditions": 0,
 /******/ 			"css/navbar": 0,
+/******/ 			"css/portfolio/blogs": 0,
+/******/ 			"css/portfolio/work-details": 0,
+/******/ 			"css/portfolio/design-gallery": 0,
+/******/ 			"css/portfolio/case-studies": 0,
+/******/ 			"css/portfolio/intro": 0,
 /******/ 			"css/about/culture": 0,
 /******/ 			"css/home/why-us": 0,
 /******/ 			"css/home/pricing": 0,
-/******/ 			"css/home/our-process": 0
+/******/ 			"css/home/our-process": 0,
+/******/ 			"css/home/technologies": 0,
+/******/ 			"css/home/services": 0,
+/******/ 			"css/services/contact-page": 0,
+/******/ 			"css/services/our-process": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -19944,26 +20084,36 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/app.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/home.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/home/intro.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/home/services.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/home/technologies.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/home/our-process.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/home/pricing.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/home/why-us.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/about/culture.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/navbar.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/terms_conditions.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/contact-us.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/blogs.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/components/blog-card.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/chatbot.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/footer.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/about.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/canvas-background.css")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/home/technologies","css/home/services","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process"], () => (__webpack_require__("./resources/css/dark-mode.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/app.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/home.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/home/intro.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/services/intro.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/services/our-services.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/services/our-process.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/services/contact-page.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/home/services.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/home/technologies.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/home/our-process.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/home/pricing.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/home/why-us.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/about/culture.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/portfolio/intro.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/portfolio/case-studies.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/portfolio/design-gallery.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/portfolio/work-details.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/portfolio/blogs.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/navbar.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/terms_conditions.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/contact-us.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/blogs.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/components/blog-card.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/components/faq.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/chatbot.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/footer.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/about.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/canvas-background.css")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/services/our-services","css/services/intro","css/home/intro","css/home","css/app","css/dark-mode","css/canvas-background","css/about","css/footer","css/chatbot","css/components/faq","css/components/blog-card","css/blogs","css/contact-us","css/terms_conditions","css/navbar","css/portfolio/blogs","css/portfolio/work-details","css/portfolio/design-gallery","css/portfolio/case-studies","css/portfolio/intro","css/about/culture","css/home/why-us","css/home/pricing","css/home/our-process","css/home/technologies","css/home/services","css/services/contact-page","css/services/our-process"], () => (__webpack_require__("./resources/css/dark-mode.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

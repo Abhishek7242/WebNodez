@@ -1,0 +1,374 @@
+/* Header Section Styles */
+:root {
+    --color-primary-light: #75ffaa;
+    --color-primary-dark: #2eb82e;
+    --color-text: #1f2937;
+    --color-text-light: #6b7280;
+    --color-background: #ffffff;
+    --color-playground-bg: rgba(83, 235, 37, 0.05);
+    --color-playground-border: rgba(83, 235, 37, 0.1);
+}
+
+.services-section {
+    --section-bg-start: #f9fafb;
+    --section-bg-end: #ffffff;
+}
+
+.services-playground {
+    perspective: 1000px;
+    position: relative;
+    overflow: hidden;
+}
+
+.services-playground-circle {
+    background: var(--color-playground-bg);
+    border: 1px solid var(--color-playground-border);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.services-name {
+    position: absolute;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+    white-space: nowrap;
+    opacity: 0.8;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s ease-out;
+    cursor: pointer;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.services-name:hover {
+    opacity: 1;
+    z-index: 2;
+    color: var(--color-primary);
+}
+
+.services-icon {
+    position: absolute;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s ease-out;
+    cursor: pointer;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.services-icon-box {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: var(--color-background);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    border: 1px solid var(--color-playground-border);
+}
+
+.services-icon:hover .services-icon-box {
+    transform: scale(1.1);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-color: var(--color-primary);
+}
+
+.services-icon-i {
+    color: var(--color-primary);
+    transition: color 0.3s ease;
+}
+
+.services-icon:hover .services-icon-i {
+    color: var(--color-primary-dark);
+}
+
+.services-center-element {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    padding: 60px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--color-playground-border);
+    border-radius: 50%;
+}
+
+.services-center-button {
+    background: linear-gradient(
+        45deg,
+        var(--color-primary),
+        var(--color-primary-light)
+    );
+    border: 1px solid var(--color-primary-light);
+}
+
+.services-center-button:hover {
+    background: linear-gradient(
+        45deg,
+        var(--color-primary-dark),
+        var(--color-primary)
+    );
+}
+
+.services-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    animation: services-float 3s ease-in-out infinite;
+    opacity: 0.6;
+}
+
+.services-particle:nth-child(1) {
+    top: 20%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.services-particle:nth-child(2) {
+    top: 60%;
+    left: 80%;
+    animation-delay: 0.5s;
+}
+
+.services-particle:nth-child(3) {
+    top: 80%;
+    left: 40%;
+    animation-delay: 1s;
+}
+
+.services-particle:nth-child(4) {
+    top: 30%;
+    left: 70%;
+    animation-delay: 1.5s;
+}
+
+.services-particle:nth-child(5) {
+    top: 70%;
+    left: 30%;
+    animation-delay: 2s;
+}
+
+.services-contact-container {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+}
+
+.services-contact-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    color: var(--color-text);
+    text-decoration: none;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.services-contact-btn:hover {
+    color: var(--color-background);
+}
+
+.services-contact-text {
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+.services-contact-bg {
+    background: linear-gradient(
+        to right,
+        var(--color-primary),
+        var(--color-primary-light)
+    );
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.services-contact-btn:hover .services-contact-bg {
+    transform: scaleX(1);
+}
+
+.services-contact-border {
+    border: 2px solid var(--color-primary);
+    border-radius: 9999px;
+}
+
+@keyframes services-float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Service Buttons Styles */
+.services-buttons {
+    margin-top: 2rem;
+}
+
+.services-button {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-background);
+    border: 1px solid rgba(83, 235, 37, 0.1);
+    transition: all 0.3s ease;
+}
+
+.services-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        var(--color-primary),
+        var(--color-primary-light)
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.services-button:hover::before {
+    opacity: 1;
+}
+
+.services-button-icon {
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+    color: var(--color-primary);
+}
+
+.services-button:hover .services-button-icon {
+    color: var(--color-background);
+    transform: scale(1.1) translateY(-2px);
+}
+
+.services-button-title {
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
+    color: var(--color-text);
+}
+
+.services-button:hover .services-button-title {
+    color: var(--color-background);
+}
+
+.services-button::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--color-primary);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.services-button:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.services-badge-line {
+    background: var(--color-primary);
+}
+
+.services-badge-text {
+    color: var(--color-primary);
+}
+
+.services-heading {
+    color: var(--color-text);
+}
+
+.services-description {
+    color: var(--color-text-light);
+}
+
+.services-description-highlight {
+    color: var(--color-primary);
+}
+
+.services-particle {
+    background: var(--color-primary);
+}
+
+.services-contact-btn {
+    color: var(--color-text);
+}
+
+.services-contact-btn:hover {
+    color: var(--color-background);
+}
+
+.services-contact-btn::before {
+    background: var(--color-background);
+}
+
+.services-contact-btn:hover::before {
+    background: transparent;
+}
+
+.services-contact-btn .absolute {
+    border-color: var(--color-primary);
+}
+
+.services-icon-box {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.services-icon:hover .services-icon-box {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.services-center-element {
+    background: rgba(255, 255, 255, 0.587);
+}
+
+@keyframes services-float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}

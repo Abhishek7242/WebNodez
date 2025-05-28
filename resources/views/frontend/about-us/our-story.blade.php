@@ -21,7 +21,7 @@
                     <div class="flex-1 pr-8 text-right">
                         <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
                             <span
-                                class="inline-block px-4 py-1 bg-green-500 text-white text-sm font-semibold rounded-full mb-4">2015</span>
+                                class="inline-block px-4 py-1 bg-green-500 text-white text-sm font-semibold rounded-full mb-4">2023</span>
                             <h3 class="text-2xl font-bold text-gray-900 mb-3">The Beginning</h3>
                             <p class="text-gray-600 leading-relaxed">
                                 WebNodez was established with a vision to revolutionize software development through
@@ -58,7 +58,7 @@
                     <div class="flex-1 pl-8 text-left">
                         <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
                             <span
-                                class="inline-block px-4 py-1 bg-green-500 text-white text-sm font-semibold rounded-full mb-4">2018</span>
+                                class="inline-block px-4 py-1 bg-green-500 text-white text-sm font-semibold rounded-full mb-4">2024</span>
                             <h3 class="text-2xl font-bold text-gray-900 mb-3">Expanding Horizons</h3>
                             <p class="text-gray-600 leading-relaxed">
                                 We expanded our services to include mobile app development, cloud hosting, and UI/UX
@@ -73,7 +73,7 @@
                     <div class="flex-1 pr-8 text-right">
                         <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
                             <span
-                                class="inline-block px-4 py-1 bg-green-500 text-white text-sm font-semibold rounded-full mb-4">2022</span>
+                                class="inline-block px-4 py-1 bg-green-500 text-white text-sm font-semibold rounded-full mb-4">2025</span>
                             <h3 class="text-2xl font-bold text-gray-900 mb-3">Global Impact</h3>
                             <p class="text-gray-600 leading-relaxed">
                                 Our solutions now power businesses across multiple continents, delivering scalable and

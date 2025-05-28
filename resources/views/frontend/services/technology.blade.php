@@ -20,8 +20,8 @@
             'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
         ],
         [
-            'name' => 'Express',
-            'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',
+            'name' => 'Java',
+            'icon' => 'https://sc.filehippo.net/images/t_app-icon-l/p/4dd9406e-96d3-11e6-aa77-00163ec9f5fa/3927985343/java-development-kit-64-icon.png',
         ],
         ['name' => 'Python', 'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg'],
         ['name' => 'MongoDB', 'icon' => 'https://www.cdnlogo.com/logos/m/30/mongodb-icon.svg'],
@@ -39,6 +39,9 @@
         ['name' => 'Nginx', 'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg'],
 
         ['name' => 'Azure', 'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg'],
+        ['name' => 'GO Daddy', 'icon' => 'https://download.logo.wine/logo/GoDaddy/GoDaddy-Logo.wine.png'],
+        ['name' => 'Hostinger', 'icon' => 'https://upload.wikimedia.org/wikipedia/commons/e/e5/Hostinger_Logotype.png'],
+        ['name' => 'Google Cloud', 'icon' => 'https://cdn.prod.website-files.com/6449405754e757db07f25327/6656429d1776bd09704334e8_google.webp'],
     ];
 
     $designTechnologies = [
