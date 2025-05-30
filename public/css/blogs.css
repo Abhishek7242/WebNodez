@@ -1,6 +1,12 @@
 /* Blog Intro Section */
 .blog-intro {
     position: relative;
+    background: #ffffff;
+    color: #1a1a1a;
+    overflow: hidden;
+}
+.dark-mode .blog-intro {
+    position: relative;
     background: #0a0a0a;
     color: #ffffff;
     overflow: hidden;
@@ -37,6 +43,15 @@
 }
 
 .blog-title {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(to right, #191919, #00ff84);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.dark-mode .blog-title {
     font-size: 4rem;
     font-weight: 700;
     line-height: 1.2;
@@ -223,6 +238,11 @@
 /* All Blogs Section */
 .all-blogs {
     padding: 6rem 0;
+    background: #ffffff;
+    color: #393939;
+}
+.dark-mode .all-blogs {
+    padding: 6rem 0;
     background: #0a0a0a;
     color: #ffffff;
 }
@@ -265,12 +285,27 @@
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 1rem;
+    background: linear-gradient(to right, #4d4d4d, #5b606f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.dark-mode .section-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
     background: linear-gradient(to right, #ffffff, #a8b2d1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .section-description {
+    color: #5f6577;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.dark-mode .section-description {
     color: #a8b2d1;
     font-size: 1.1rem;
     line-height: 1.6;
@@ -288,6 +323,17 @@
 }
 
 .filter-btn {
+    padding: 0.75rem 1.5rem;
+    border: 1px solid rgba(81, 81, 81, 0.425);
+    border-radius: 2rem;
+    background: transparent;
+    color: #3a3a3a;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.dark-mode .filter-btn {
     padding: 0.75rem 1.5rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 2rem;

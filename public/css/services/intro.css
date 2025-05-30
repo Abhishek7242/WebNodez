@@ -9,9 +9,33 @@
     --color-playground-border: rgba(83, 235, 37, 0.1);
 }
 
+.dark-mode #header::before{
+        background: var(--dark-bg);
+}
+.dark-mode #header nav .nav-links{
+        color: white;
+}
+.dark-mode #header nav .nav-links.active{
+        color:var(--color-primary);
+}
+
 .services-section {
     --section-bg-start: #f9fafb;
     --section-bg-end: #ffffff;
+
+}
+
+.dark-mode .services-section {
+    background: var(--dark-bg);
+
+}
+.dark-mode .services-decorative-top {
+    background: rgba(0, 255, 102, 0.215);
+
+}
+.dark-mode .services-decorative-bottom {
+    background: rgba(0, 255, 102, 0.215);
+
 }
 
 .services-playground {
@@ -41,6 +65,11 @@
     cursor: pointer;
     z-index: 1;
     pointer-events: none;
+}
+.dark-mode .services-name {
+
+    color: white;
+  
 }
 
 .services-name:hover {
@@ -196,6 +225,12 @@
     z-index: 1;
     transition: color 0.3s ease;
 }
+.dark-mode .services-contact-text {
+ color: var(--color-primary);
+}
+.dark-mode .services-contact-text:hover {
+ color: white;
+}
 
 .services-contact-bg {
     background: linear-gradient(
@@ -240,6 +275,12 @@
     border: 1px solid rgba(83, 235, 37, 0.1);
     transition: all 0.3s ease;
 }
+.dark-mode .services-button {
+    
+    background:none;
+ 
+}
+
 
 .services-button::before {
     content: "";
@@ -280,6 +321,10 @@
     transition: color 0.3s ease;
     color: var(--color-text);
 }
+.dark-mode .services-button-title {
+   
+    color:rgb(183, 183, 183);
+}
 
 .services-button:hover .services-button-title {
     color: var(--color-background);
@@ -313,6 +358,9 @@
 
 .services-heading {
     color: var(--color-text);
+}
+.dark-mode .services-heading {
+    color: rgba(225, 225, 225, 0.671);
 }
 
 .services-description {

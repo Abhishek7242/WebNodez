@@ -9,21 +9,21 @@ var initDarkMode = function initDarkMode() {
 
   // Check for saved theme preference
   var savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'dark') {
-    document.documentElement.classList.add('dark');
+  if (savedTheme === 'dark-mode') {
+    document.body.classList.add('dark-mode');
     icon.classList.remove('fa-moon');
     icon.classList.add('fa-sun');
   }
 
   // Toggle dark mode
   darkModeToggle.addEventListener('click', function () {
-    document.documentElement.classList.toggle('dark');
+    document.body.classList.toggle('dark-mode');
 
     // Update icon
-    if (document.documentElement.classList.contains('dark')) {
+    if (document.body.classList.contains('dark-mode')) {
       icon.classList.remove('fa-moon');
       icon.classList.add('fa-sun');
-      localStorage.setItem('theme', 'dark');
+      localStorage.setItem('theme', 'dark-mode');
     } else {
       icon.classList.remove('fa-sun');
       icon.classList.add('fa-moon');

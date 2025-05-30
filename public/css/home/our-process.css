@@ -148,6 +148,9 @@
     background: linear-gradient(45deg, #f3f4f6 0%, #ffffff 100%);
     z-index: 0;
 }
+.dark-mode .animated-bg {
+    background: var(--dark-bg);
+}
 
 .animated-bg::before {
     content: "";
@@ -250,6 +253,16 @@
 .card-back {
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
+.card-front{
+    background: none;
+    border-color: rgba(133, 133, 133, 0.553);
+}
+.card-front h4{
+    color: white;
+}
+.card-front p{
+    color: rgb(142, 142, 142);
+}
 
 .icon-wrapper:hover {
     transform: translateY(-5px);
@@ -283,6 +296,7 @@
     stroke: currentColor;
 }
 
+
 /* Card Back SVG Colors */
 .card-back svg {
     color: white !important;
@@ -297,6 +311,9 @@
     transition: transform 0.3s ease, color 0.3s ease;
     fill: currentColor;
     stroke: currentColor;
+}
+.dark-mode .icon-wrapper > div{
+    background: none;
 }
 
 .icon-wrapper:hover svg {

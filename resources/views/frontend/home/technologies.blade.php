@@ -20,8 +20,8 @@
             'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
         ],
         [
-            'name' => 'Express',
-            'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',
+            'name' => 'Java',
+            'icon' => 'https://nerdysoft.com/wp-content/uploads/2021/11/java-14-1.svg',
         ],
         ['name' => 'Python', 'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg'],
         ['name' => 'MongoDB', 'icon' => 'https://www.cdnlogo.com/logos/m/30/mongodb-icon.svg'],
@@ -36,6 +36,16 @@
         ],
         ['name' => 'Nginx', 'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg'],
         ['name' => 'Azure', 'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg'],
+             ['name' => 'GO Daddy', 'icon' => 'https://download.logo.wine/logo/GoDaddy/GoDaddy-Logo.wine.png'],
+            [
+                'name' => 'Hostinger',
+                'icon' => 'https://upload.wikimedia.org/wikipedia/commons/e/e5/Hostinger_Logotype.png',
+            ],
+            [
+                'name' => 'Google Cloud',
+                'icon' =>
+                    'https://cdn.prod.website-files.com/6449405754e757db07f25327/6656429d1776bd09704334e8_google.webp',
+            ],
     ];
 
     $designTechnologies = [
@@ -47,26 +57,26 @@
 
 <section class="relative py-32 overflow-hidden">
     <!-- Background Elements -->
-    <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50"></div>
+    <div class="tech-inner-container absolute "></div>
     <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
 
     <!-- Animated Background Shapes -->
     <div
-        class="absolute top-0 left-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob">
+        class="absolute top-0 left-0 w-96 h-96 bg-blue-700 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob">
     </div>
     <div
-        class="absolute top-0 right-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000">
+        class="absolute top-0 right-0 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000">
     </div>
     <div
-        class="absolute bottom-0 left-1/2 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000">
+        class="absolute bottom-0 left-1/2 w-96 h-96 bg-red-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000">
     </div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header Section -->
-        <div class="text-center mb-20">
+        <div class="tech-heading-text text-center mb-20">
             <h2 class="text-5xl font-extrabold text-gray-900 mb-6">
                 Our Technology Stack
-                <span class="block text-4xl font-light text-blue-600 mt-2">Building the Future</span>
+                <span class="tech-heading-text block text-4xl font-light  mt-2">Building the Future</span>
             </h2>
             <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 We leverage cutting-edge technologies to build robust, scalable, and high-performance digital solutions
@@ -79,7 +89,7 @@
             <!-- Frontend Technologies -->
             <div class="group">
                 <div
-                    class="relative bg-white rounded-2xl shadow-xl p-8 transform transition-all duration-500 hover:scale-[1.02]">
+                    class="tech-group-inner-container relative bg-white rounded-2xl shadow-xl p-8 transform transition-all duration-500 hover:scale-[1.02]">
                     <div
                         class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200">
                     </div>
@@ -103,7 +113,7 @@
             <!-- Backend Technologies -->
             <div class="group">
                 <div
-                    class="relative bg-white rounded-2xl shadow-xl p-8 transform transition-all duration-500 hover:scale-[1.02]">
+                    class="tech-group-inner-container relative bg-white rounded-2xl shadow-xl p-8 transform transition-all duration-500 hover:scale-[1.02]">
                     <div
                         class="absolute -inset-0.5 bg-gradient-to-r from-green-600 to-teal-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200">
                     </div>
@@ -127,7 +137,7 @@
             <!-- Cloud Technologies -->
             <div class="group">
                 <div
-                    class="relative bg-white rounded-2xl shadow-xl p-8 transform transition-all duration-500 hover:scale-[1.02]">
+                    class="tech-group-inner-container relative bg-white rounded-2xl shadow-xl p-8 transform transition-all duration-500 hover:scale-[1.02]">
                     <div
                         class="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200">
                     </div>
@@ -151,7 +161,7 @@
             <!-- Design Technologies -->
             <div class="group">
                 <div
-                    class="relative bg-white rounded-2xl shadow-xl p-8 transform transition-all duration-500 hover:scale-[1.02]">
+                    class="tech-group-inner-container relative bg-white rounded-2xl shadow-xl p-8 transform transition-all duration-500 hover:scale-[1.02]">
                     <div
                         class="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-rose-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200">
                     </div>
@@ -176,6 +186,30 @@
 </section>
 
 <style>
+    .dark-mode .tech-inner-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(to bottom right, #00301e, var(--dark-bg), #4a9b5c);
+}
+    .tech-inner-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(to bottom right, #eff6ff, #ffffff, #f5f3ff);
+}
+.dark-mode .tech-heading-text h2 {
+    color: var(--dark-top-heading)
+}
+.dark-mode .tech-group-inner-container{
+background: none;
+}
+
+
     .bg-grid-pattern {
         background-image: linear-gradient(to right, #80808012 1px, transparent 1px),
             linear-gradient(to bottom, #80808012 1px, transparent 1px);
@@ -199,7 +233,9 @@
             transform: translate(0px, 0px) scale(1);
         }
     }
-
+.tech-heading-text{
+    color: var(--color-primary);
+}
     .animate-blob {
         animation: blob 7s infinite;
     }

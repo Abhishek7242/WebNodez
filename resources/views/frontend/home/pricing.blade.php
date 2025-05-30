@@ -1,4 +1,4 @@
-<section class="bg-gray-50 py-20 px-6 md:px-12 lg:px-24">
+<section class="pricing-secgtion-container bg-gray-50 py-20 px-6 md:px-12 lg:px-24">
     <div class="max-w-7xl mx-auto text-center">
         <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Pricing Models</h2>
 
@@ -44,3 +44,15 @@
         </div>
     </div>
 </section>
+
+<style>
+   .dark-mode .pricing-secgtion-container{
+background:var(--dark-bg) ;
+    }
+   .dark-mode .pricing-secgtion-container h2{
+color: var(--dark-top-heading);
+    }
+   .dark-mode .pricing-secgtion-container .pricing-card{
+background:rgba(168, 168, 168, 0.628) ;
+    }
+</style>

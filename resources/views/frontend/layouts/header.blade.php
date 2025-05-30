@@ -19,6 +19,7 @@
     <link href="{{ asset('css/home/services.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/technologies.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/our-process.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/home/portfolio.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/pricing.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/why-us.css') }}" rel="stylesheet">
     <link href="{{ asset('css/portfolio/intro.css') }}" rel="stylesheet">
@@ -35,7 +36,7 @@
     <link href="{{ asset('css/blogs.css') }}" rel="stylesheet">
     <link href="{{ asset('css/chatbot.css') }}" rel="stylesheet">
     <link href="{{ asset('css/canvas-background.css') }}" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('css/about.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/about.css') }}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -49,55 +50,116 @@
                 WebNodez
             </div>
 
-            <ul class="hidden md:flex space-x-8 items-center">
+            <ul class="navbar flex space-x-8 items-center">
                 <li><a href="/" class="@yield('home', ' ') nav-links font-semibold ">Home</a></li>
                 <li><a href="/blogs" class="@yield('blog', ' ') nav-links font-semibold ">Blogs</a></li>
                 <li><a href="/services" class="@yield('services', ' ') nav-links font-semibold ">Services</a></li>
                 <li><a href="/portfolio" class="@yield('portfolio', ' ') nav-links font-semibold ">Portfolio</a>
                 </li>
-                           <li><a href="/about-us" class="@yield('about', ' ') nav-links font-semibold ">About Us</a></li>
+                <li><a href="/about-us" class="@yield('about', ' ') nav-links font-semibold ">About Us</a></li>
 
-          
-                 
+
+
             </ul>
 
 
-<div class="flex items-center space-x-4">
-       <button id="darkModeToggle"
-                        class="p-2 rounded-full hover:bg-gray-700 transition-colors duration-200">
-                        <i class="fas fa-moon text-yellow-500"></i>
-                    </button>
-                <a href="/contact-us" class=" @yield('contact', ' ') animated-button"><span>Contact Us</span></a>
-               
-</div>
-            <!-- Mobile menu button -->
-            <div class="flex items-center space-x-4 md:hidden">
+            <div class="navbar flex items-center space-x-4">
                 <button id="darkModeToggle" class="p-2 rounded-full hover:bg-gray-700 transition-colors duration-200">
                     <i class="fas fa-moon text-yellow-500"></i>
                 </button>
-                <button id="menu-btn" class="focus:outline-none">
-                    <svg class="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                        <path d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
+                <a href="/contact-us" class=" @yield('contact', ' ') animated-button"><span>Contact Us</span></a>
+
             </div>
+            
+            <div id="navigation-menu">
+
+                <!-- Mobile menu button -->
+                <div id="ham-icon" class="toggle">
+                    <span></span>
+                </div>
+                <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+                    crossorigin="anonymous"></script>
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        $('.toggle').click(function() {
+                            $('.toggle').toggleClass('active');
+                            $('body').toggleClass('active');
+
+
+                        })
+                    })
+                </script>
+                <ul id="mobile-nav">
+                    <li class="nav-btns active"><a href="/">Home</a></li>
+                    <li class="nav-btns active"><a href="/">Blogs</a></li>
+                    <li class="nav-btns active"><a href="/">Services</a></li>
+                    <li class="nav-btns active"><a href="/">Portfolio</a></li>
+                    <li class="nav-btns"><a href="/about-us">About Us</a></li>
+                    <li class="nav-btns"><a href="/contact-us">Contact Us</a></li>
+
+                </ul>
+            </div>
+
         </nav>
 
         <!-- Mobile menu -->
-        <ul id="menu" class="hidden bg-gray-900  px-6 py-4 space-y-4 md:hidden">
-            <li><a href="index.html" class="block font-semibold">Home</a></li>
-            <li><a href="services.html" class="block font-semibold">Services</a></li>
-            <li><a href="portfolio.html" class="block font-semibold">Portfolio</a></li>
-            <li><a href="about.html" class="block font-semibold">About Us</a></li>
-            <li><a href="contact.html" class="block font-semibold">Contact Us</a></li>
-        </ul>
 
+
+     
+
+        {{-- Mobile navbar --}}
         <script>
-            const btn = document.getElementById('menu-btn');
-            const menu = document.getElementById('menu');
+            // MOBILE NAVBAR
+            let hamIcon = document.getElementById('ham-icon')
+            let mobileNav = document.getElementById('mobile-nav')
+            const navItems = document.querySelectorAll('#mobile-nav .nav-btns');
+            hamIcon.addEventListener('click', () => {
+                mobileNav.classList.add('show')
 
-            btn.addEventListener('click', () => {
-                menu.classList.toggle('hidden');
+            })
+            let show = false
+            hamIcon.addEventListener('click', function() {
+                if (!show) {
+                    document.body.classList.add('no-scroll')
+                    show = true
+                    mobileNav.style.right = '0px'
+                    navItems.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.classList.add('animate');
+                        }, index * 200); // Adjust the delay as needed
+                    });
+                } else {
+                    
+                    show = false
+                    navItems.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.classList.remove('animate');
+                        }, index * 200); // Adjust the delay as needed
+                        
+                    });
+                    setTimeout(() => {
+                        document.body.classList.remove('no-scroll')
+
+
+                        hamIcon.style.opacity = "1"
+                        mobileNav.classList.remove('show')
+                        setTimeout(() => {
+                            mobileNav.style.right = '-1000px'
+
+                        }, 600);
+                    }, 1100);
+                }
+
+                // Trigger the mobileNav animation after the last li animation
+
             });
+
+
+
+
+
+
+
+
+            // MOBILE NAVBAR
         </script>

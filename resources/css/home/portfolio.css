@@ -1,31 +1,32 @@
-.design-gallery-section {
+.home-design-gallery-section {
     padding: 100px 0;
     background-color: #f8f9fa;
     position: relative;
     overflow: hidden;
 }
-.dark-mode .design-gallery-section {
+.dark-mode .home-design-gallery-section {
     background-color: var(--dark-bg);
-
+  
 }
 
-.design-gallery-container {
+.home-design-gallery-container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
 /* Header Styles */
-.design-gallery-header {
+.home-design-gallery-header {
     text-align: center;
     margin-bottom: 60px;
     position: relative;
 }
 
-.design-gallery-subtitle {
+.home-design-gallery-subtitle {
     display: inline-block;
-    font-size: 1rem;
+    font-size: 1.5rem;
     text-transform: uppercase;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     letter-spacing: 2px;
     color: var(--text-color);
     margin-bottom: 15px;
@@ -33,13 +34,8 @@
     position: relative;
     padding-bottom: 10px;
 }
-.dark-mode .design-gallery-subtitle {
-  
-    color: var(--dark-top-heading);
- 
-}
 
-.design-gallery-subtitle::after {
+.home-design-gallery-subtitle::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -50,7 +46,7 @@
     background: var(--color-primary);
 }
 
-.design-gallery-title {
+.home-design-gallery-title {
     font-size: 3rem;
     color: #2d3436;
     margin-bottom: 20px;
@@ -59,7 +55,7 @@
     display: inline-block;
 }
 
-.design-gallery-title::after {
+.home-design-gallery-title::after {
     content: "";
     position: absolute;
     bottom: -10px;
@@ -75,7 +71,7 @@
     border-radius: 3px;
 }
 
-.design-gallery-description {
+.home-design-gallery-description {
     font-size: 1.2rem;
     color: #636e72;
     max-width: 600px;
@@ -84,7 +80,7 @@
 }
 
 /* Filter Buttons */
-.design-gallery-filter {
+.home-design-gallery-filter {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -92,7 +88,7 @@
     margin-bottom: 40px;
 }
 
-.design-gallery-filter-btn {
+.home-design-gallery-filter-btn {
     padding: 12px 30px;
     border: 2px solid #e9ecef;
     border-radius: 30px;
@@ -105,12 +101,8 @@
     overflow: hidden;
     z-index: 1;
 }
-.design-gallery-filter-btn {
-    border: 2px solid #6b6b6b;
 
-}
-
-.design-gallery-filter-btn::before {
+.home-design-gallery-filter-btn::before {
     content: "";
     position: absolute;
     top: 0;
@@ -122,13 +114,13 @@
     z-index: -1;
 }
 
-.design-gallery-filter-btn:hover::before,
-.design-gallery-filter-btn.active::before {
+.home-design-gallery-filter-btn:hover::before,
+.home-design-gallery-filter-btn.active::before {
     width: 100%;
 }
 
-.design-gallery-filter-btn:hover,
-.design-gallery-filter-btn.active {
+.home-design-gallery-filter-btn:hover,
+.home-design-gallery-filter-btn.active {
     color: white;
     border-color: var(--color-primary);
     transform: translateY(-2px);
@@ -136,14 +128,14 @@
 }
 
 /* Gallery Grid */
-.design-gallery-grid {
+.home-design-gallery-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     margin-bottom: 40px;
 }
 
-.design-gallery-item {
+.home-design-gallery-item {
     position: relative;
     border-radius: 15px;
     overflow: hidden;
@@ -153,7 +145,7 @@
     transform: translateY(0);
 }
 
-.design-gallery-item.design-gallery-hidden {
+.home-design-gallery-item.home-design-gallery-hidden {
     opacity: 0;
     transform: translateY(20px);
     pointer-events: none;
@@ -161,18 +153,18 @@
     visibility: hidden;
 }
 
-.design-gallery-item:hover {
+.home-design-gallery-item:hover {
     transform: translateY(-10px) scale(1.02);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
-.design-gallery-image {
+.home-design-gallery-image {
     position: relative;
     overflow: hidden;
     padding-top: 75%;
 }
 
-.design-gallery-image img {
+.home-design-gallery-image img {
     position: absolute;
     top: 0;
     left: 0;
@@ -182,11 +174,11 @@
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.design-gallery-item:hover .design-gallery-image img {
+.home-design-gallery-item:hover .home-design-gallery-image img {
     transform: scale(1.1);
 }
 
-.design-gallery-overlay {
+.home-design-gallery-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -203,11 +195,11 @@
     text-align: center;
 }
 
-.design-gallery-item:hover .design-gallery-overlay {
+.home-design-gallery-item:hover .home-design-gallery-overlay {
     opacity: 1;
 }
 
-.design-gallery-item-title {
+.home-design-gallery-item-title {
     color: white;
     font-size: 1.5rem;
     margin-bottom: 20px;
@@ -215,7 +207,7 @@
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.design-gallery-view-btn {
+.home-design-gallery-view-btn {
     display: inline-block;
     padding: 12px 30px;
     background: var(--color-primary);
@@ -227,23 +219,23 @@
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.design-gallery-item:hover .design-gallery-item-title,
-.design-gallery-item:hover .design-gallery-view-btn {
+.home-design-gallery-item:hover .home-design-gallery-item-title,
+.home-design-gallery-item:hover .home-design-gallery-view-btn {
     transform: translateY(0);
 }
 
-.design-gallery-view-btn:hover {
+.home-design-gallery-view-btn:hover {
     background: var(--color-primary-dark);
     transform: translateY(-2px);
 }
 
 /* Load More Button */
-.design-gallery-load-more {
+.home-design-gallery-load-more {
     text-align: center;
     margin-top: 40px;
 }
 
-.design-gallery-load-more-btn {
+.home-design-gallery-load-more-btn {
     padding: 15px 40px;
     background: var(--color-primary);
     color: white;
@@ -257,7 +249,7 @@
     z-index: 1;
 }
 
-.design-gallery-load-more-btn::before {
+.home-design-gallery-load-more-btn::before {
     content: "";
     position: absolute;
     top: 0;
@@ -269,25 +261,25 @@
     z-index: -1;
 }
 
-.design-gallery-load-more-btn:hover {
+.home-design-gallery-load-more-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-.design-gallery-load-more-btn:hover::before {
+.home-design-gallery-load-more-btn:hover::before {
     width: 100%;
 }
 
 /* Animation Classes */
-.design-gallery-transitioning {
+.home-design-gallery-transitioning {
     transition: all 0.3s ease-in-out;
 }
 
-.design-gallery-animate-in {
-    animation: design-gallery-fadeIn 0.6s ease-out forwards;
+.home-design-gallery-animate-in {
+    animation: home-design-gallery-fadeIn 0.6s ease-out forwards;
 }
 
-@keyframes design-gallery-fadeIn {
+@keyframes home-design-gallery-fadeIn {
     from {
         opacity: 0;
         transform: translateY(20px);
@@ -300,30 +292,30 @@
 
 /* Responsive Design */
 @media (max-width: 1200px) {
-    .design-gallery-grid {
+    .home-design-gallery-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 768px) {
-    .design-gallery-section {
+    .home-design-gallery-section {
         padding: 60px 0;
     }
 
-    .design-gallery-title {
+    .home-design-gallery-title {
         font-size: 2rem;
     }
 
-    .design-gallery-filter {
+    .home-design-gallery-filter {
         gap: 10px;
     }
 
-    .design-gallery-filter-btn {
+    .home-design-gallery-filter-btn {
         padding: 8px 20px;
         font-size: 0.9rem;
     }
 
-    .design-gallery-grid {
+    .home-design-gallery-grid {
         grid-template-columns: 1fr;
         max-width: 500px;
         margin-left: auto;
@@ -332,11 +324,23 @@
 }
 
 @media (max-width: 480px) {
-    .design-gallery-title {
+    .home-design-gallery-title {
         font-size: 1.8rem;
     }
 
-    .design-gallery-item-title {
+    .home-design-gallery-item-title {
         font-size: 1.3rem;
     }
+    .home-design-gallery-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 0px;
+}
+    .home-design-gallery-grid {
+   padding: 0 20px;
+}
+.home-design-gallery-load-more-btn {
+    padding: 8px 18px;
+   
+}
 }

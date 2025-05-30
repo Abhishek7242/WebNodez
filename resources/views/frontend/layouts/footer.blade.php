@@ -20,11 +20,11 @@
       <div>
         <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
         <ul class="space-y-2 text-sm">
-          <li><a href="#" class="footer-link footer-link transition-all duration-300 text-gray-400 hover:text-white hover:pl-2">Home</a></li>
-          <li><a href="#" class="footer-link footer-link transition-all duration-300 text-gray-400 hover:text-white hover:pl-2">Services</a></li>
-          <li><a href="#" class="footer-link footer-link transition-all duration-300 text-gray-400 hover:text-white hover:pl-2">Portfolio</a></li>
-          <li><a href="#" class="footer-link footer-link transition-all duration-300 text-gray-400 hover:text-white hover:pl-2">About Us</a></li>
-          <li><a href="#" class="footer-link footer-link transition-all duration-300 text-gray-400 hover:text-white hover:pl-2">Contact</a></li>
+          <li><a href="/" class="footer-link footer-link transition-all duration-300 text-gray-400 hover:text-white hover:pl-2">Home</a></li>
+          <li><a href="/blogs" class="footer-link footer-link transition-all duration-300 text-gray-400 hover:text-white hover:pl-2">Blogs</a></li>
+          <li><a href="/services" class="footer-link footer-link transition-all duration-300 text-gray-400 hover:text-white hover:pl-2">Services</a></li>
+          <li><a href="/portfolio" class="footer-link footer-link transition-all duration-300 text-gray-400 hover:text-white hover:pl-2">Portfolio</a></li>
+          <li><a href="/about-us" class="footer-link footer-link transition-all duration-300 text-gray-400 hover:text-white hover:pl-2">About Us</a></li>
         </ul>
       </div>
 
@@ -34,22 +34,22 @@
         <h4 class="text-lg font-semibold text-white mb-4">Our Services</h4>
         <ul class="space-y-2 text-sm">
           <li>
-            <a href="#" class="footer-link transition-all duration-300 text-gray-400 hover:text-white hover:pl-2">
+            <a href="/services/app-development" class="footer-link transition-all duration-300 text-gray-400 hover:text-white hover:pl-2">
               Web Development
             </a>
           </li>
           <li>
-            <a href="#" class="footer-link transition-all duration-300 text-gray-400 hover:text-white hover:pl-2">
+            <a href="/services/ui-ux-design" class="footer-link transition-all duration-300 text-gray-400 hover:text-white hover:pl-2">
               UI/UX Design
             </a>
           </li>
           <li>
-            <a href="#" class="footer-link transition-all duration-300 text-gray-400 hover:text-white hover:pl-2">
-              Cloud Hosting
+            <a href="/e_commerce" class="footer-link transition-all duration-300 text-gray-400 hover:text-white hover:pl-2">
+              E-Commerce
             </a>
           </li>
           <li>
-            <a href="#" class="footer-link transition-all duration-300 text-gray-400 hover:text-white hover:pl-2">
+            <a href="/services/app-development" class="footer-link transition-all duration-300 text-gray-400 hover:text-white hover:pl-2">
               App Development
             </a>
           </li>
@@ -115,8 +115,8 @@
       </script>
       
   </footer>
-    <script src="{{ asset('js/about.js') }}"></script>
   <script src="{{ asset('js/chatbot.js') }}"></script>
+  <script src="{{ asset('js/dark-mode.js') }}"></script>
 </body>
 
 </html>

@@ -2,6 +2,9 @@
     position: relative;
     overflow: hidden;
 }
+.dark-mode .faq-section {
+    background: var(--dark-bg);
+}
 
 /* Section Header */
 .faq-header {
@@ -88,6 +91,15 @@
     transition: all 0.3s ease;
     border: 1px solid rgba(0, 0, 0, 0.05);
     background: linear-gradient(to right, #ffffff, #f8fafc);
+}
+.dark-mode .faq-item {
+ 
+    background: none;
+    border: 1px solid gray;
+}
+.dark-mode .faq-item span{
+ 
+color: var(--dark-top-heading);
 }
 
 .faq-item:hover {

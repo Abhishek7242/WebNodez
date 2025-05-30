@@ -51,8 +51,20 @@
         ['name' => 'Canva', 'icon' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/canva/canva-original.svg'],
     ];
 @endphp
+<style>
+    .dark-mode .tech-stack-section{
+background:var(--dark-bg) ;
+    }
+    .dark-mode .tech-stack-container{
+background:var(--dark-bg) ;
+border: 1px solid gray;
+    }
+    .dark-mode .tech-stack-container h3{
+color:var(--dark-top-heading) ;
+    }
+</style>
 
-<section class="border-t bg-gradient-to-b from-gray-50 to-white py-20 px-6 md:px-12 lg:px-24">
+<section class="tech-stack-section border-t bg-gradient-to-b from-gray-50 to-white py-20 px-6 md:px-12 lg:px-24">
     <div class="max-w-7xl mx-auto text-center">
         <h2 class="text-4xl font-bold mb-4 tech-stack-heading">Tech Stack We Use</h2>
         <p class="text-gray-600 text-lg mb-16 max-w-2xl mx-auto">
@@ -60,15 +72,15 @@
         </p>
 
         <!-- First Row: Frontend and Backend -->
-        <div class="grid gap-16 md:grid-cols-2 mb-16">
+        <div class=" grid gap-16 md:grid-cols-2 mb-16">
             <!-- Frontend -->
-            <div class="bg-white rounded-2xl shadow-lg p-8 transform hover:scale-[1.02] transition-all duration-300">
+            <div class="tech-stack-container bg-white rounded-2xl shadow-lg p-8 transform hover:scale-[1.02] transition-all duration-300">
                 <h3 class="text-2xl font-bold mb-8 border-b pb-4 tech-category-heading">Frontend</h3>
                 <x-technologies :items="$frontendTechnologies" />
             </div>
 
             <!-- Backend -->
-            <div class="bg-white rounded-2xl shadow-lg p-8 transform hover:scale-[1.02] transition-all duration-300">
+            <div class="tech-stack-container bg-white rounded-2xl shadow-lg p-8 transform hover:scale-[1.02] transition-all duration-300">
                 <h3 class="text-2xl font-bold mb-8 border-b pb-4 tech-category-heading">Backend</h3>
                 <x-technologies :items="$backendTechnologies" />
             </div>
@@ -77,13 +89,13 @@
         <!-- Second Row: Cloud/Hosting and Design Tools -->
         <div class="grid gap-16 md:grid-cols-2">
             <!-- Cloud & Hosting -->
-            <div class="bg-white rounded-2xl shadow-lg p-8 transform hover:scale-[1.02] transition-all duration-300">
+            <div class="tech-stack-container bg-white rounded-2xl shadow-lg p-8 transform hover:scale-[1.02] transition-all duration-300">
                 <h3 class="text-2xl font-bold mb-8 border-b pb-4 tech-category-heading">Cloud / Hosting</h3>
                 <x-technologies :items="$cloudTechnologies" />
             </div>
 
             <!-- Design Tools -->
-            <div class="bg-white rounded-2xl shadow-lg p-8 transform hover:scale-[1.02] transition-all duration-300">
+            <div class="tech-stack-container bg-white rounded-2xl shadow-lg p-8 transform hover:scale-[1.02] transition-all duration-300">
                 <h3 class="text-2xl font-bold mb-8 border-b pb-4 tech-category-heading">Design Tools</h3>
                 <x-technologies :items="$designTechnologies" />
             </div>

@@ -1,9 +1,12 @@
 {{-- header Section --}}
-<section class="relative py-20 px-6 md:px-12 lg:px-24 bg-white overflow-hidden">
+<section class="about-us-intro-section relative py-20 px-6 md:px-12 lg:px-24 bg-white overflow-hidden">
     <!-- Decorative Elements -->
     <div class="absolute top-0 left-0 w-full h-full">
-        <div class="absolute top-0 left-0 w-1/3 h-1/3 bg-green-50 rounded-br-[100px]"></div>
-        <div class="absolute bottom-0 right-0 w-1/3 h-1/3 bg-green-50 rounded-tl-[100px]"></div>
+        <div class="about-us-intro-decorative-top absolute top-0 left-0 w-1/3 h-1/3 bg-green-50 rounded-br-[100px]">
+        </div>
+        <div
+            class="about-us-intro-decorative-bottom absolute bottom-0 right-0 w-1/3 h-1/3 bg-green-50 rounded-tl-[100px]">
+        </div>
     </div>
 
     <div class="max-w-7xl mx-auto relative">
@@ -14,7 +17,8 @@
                     <div class="w-2 h-8 bg-green-500 rounded-full"></div>
                     <span class="text-green-600 font-medium text-lg">About Us</span>
                 </div>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                <h1
+                    class="about-us-intro-content-heading text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                     Your Trusted Digital Partner
                 </h1>
                 <p class="text-xl text-gray-600 leading-relaxed">
@@ -22,30 +26,30 @@
                     designers, and digital strategists dedicated to transforming your vision into reality through
                     cutting-edge technology and creative solutions.
                 </p>
-                <div class="grid grid-cols-3 gap-8">
-                    <div class="text-center">
+                <div class="about-us-intro-features-grid grid grid-cols-3 gap-8">
+                    <div class="about-us-intro-feature-item text-center">
                         <div
-                            class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-green-500/10 flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
+                            class="about-us-intro-feature-icon w-16 h-16 mx-auto mb-4 rounded-2xl bg-green-500/10 flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
                             <i class="fas fa-users text-green-600 text-2xl"></i>
                         </div>
-                        <h3 class="font-semibold text-gray-900">Our Team</h3>
-                        <p class="text-sm text-gray-600">Skilled Professionals</p>
+                        <h3 class="about-us-intro-feature-title font-semibold text-gray-900">Our Team</h3>
+                        <p class="about-us-intro-feature-description text-sm text-gray-600">Skilled Professionals</p>
                     </div>
-                    <div class="text-center">
+                    <div class="about-us-intro-feature-item text-center">
                         <div
-                            class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-green-500/10 flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
+                            class="about-us-intro-feature-icon w-16 h-16 mx-auto mb-4 rounded-2xl bg-green-500/10 flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
                             <i class="fas fa-star text-green-600 text-2xl"></i>
                         </div>
-                        <h3 class="font-semibold text-gray-900">Excellence</h3>
-                        <p class="text-sm text-gray-600">Quality First</p>
+                        <h3 class="about-us-intro-feature-title font-semibold text-gray-900">Excellence</h3>
+                        <p class="about-us-intro-feature-description text-sm text-gray-600">Quality First</p>
                     </div>
-                    <div class="text-center">
+                    <div class="about-us-intro-feature-item text-center">
                         <div
-                            class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-green-500/10 flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
+                            class="about-us-intro-feature-icon w-16 h-16 mx-auto mb-4 rounded-2xl bg-green-500/10 flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
                             <i class="fas fa-handshake text-green-600 text-2xl"></i>
                         </div>
-                        <h3 class="font-semibold text-gray-900">Partnership</h3>
-                        <p class="text-sm text-gray-600">Long-term Success</p>
+                        <h3 class="about-us-intro-feature-title font-semibold text-gray-900">Partnership</h3>
+                        <p class="about-us-intro-feature-description text-sm text-gray-600">Long-term Success</p>
                     </div>
                 </div>
             </div>
@@ -79,3 +83,7 @@
         </div>
     </div>
 </section>
+<style>
+
+
+</style>

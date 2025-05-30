@@ -13,4 +13,6 @@
     @include('frontend.about-us.mission-vision')
     @include('frontend.about-us.services')
     @include('frontend.about-us.culture')
+    <script src="{{ asset('js/about.js') }}"></script>
+
 @endsection

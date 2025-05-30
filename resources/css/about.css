@@ -1,3 +1,13 @@
+.dark-mode .about-us-intro-section {
+    background: var(--dark-bg);
+}
+.dark-mode .about-us-intro-content-heading {
+    color: var(--dark-top-heading);
+}
+.dark-mode .about-us-intro-decorative-top,
+.dark-mode .about-us-intro-decorative-bottom {
+    background: rgba(0, 255, 0, 0.155);
+}
 .interactive-playground {
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
     border-radius: 20px;
@@ -9,6 +19,13 @@
     position: absolute;
     width: 100%;
     height: 100%;
+}
+.dark-mode .floating-elements {
+    background: var(--dark-bg);
+    border: 1px solid gray;
+}
+.dark-mode .about-us-intro-feature-title{
+    color: var(--dark-top-heading);
 }
 
 .floating-item {
@@ -23,6 +40,10 @@
     transition: all 0.3s ease;
     user-select: none;
 }
+.dark-mode .floating-item {
+    background: none;
+    border: 1px solid gray;
+}
 
 .floating-item:hover {
     transform: scale(1.1);
@@ -36,9 +57,9 @@
     transform: translate(-50%, -50%);
     width: 200px;
     height: 200px;
-     background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -54,6 +75,7 @@
 .center-content {
     text-align: center;
 }
+
 
 .contact-link {
     display: inline-block;
@@ -85,3 +107,45 @@
     border-radius: 50%;
     pointer-events: none;
 }
+
+
+/* our story */
+.dark-mode #our-story{
+    background: var(--dark-bg);
+}
+.dark-mode .about-us-our-story-heading{
+    color: var(--dark-top-heading);
+}
+.dark-mode .about-us-our-story-journey-container{
+    background: none;
+    border: 1px solid gray;
+}
+.dark-mode .about-us-our-story-journey-container h3{
+   color: var(--dark-top-heading);
+}
+
+
+
+/* our story */
+
+/* mission-vision-values */
+
+.dark-mode #mission-vision-values{
+    background: var(--dark-bg);
+}
+.dark-mode #mission-vision-values .group{
+    background: var(--dark-bg);
+    border: 1px solid gray;
+
+}
+.dark-mode #mission-vision-values .group h3{
+   color: var(--dark-top-heading);
+
+}
+.dark-mode #mission-vision-values  h2{
+   color: var(--dark-top-heading);
+
+}
+
+
+/* mission-vision-values */

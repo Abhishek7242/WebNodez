@@ -5,6 +5,9 @@
     background: linear-gradient(to bottom right, #eef2ff, #fff, #f5f3ff);
     overflow: hidden;
 }
+.dark-mode .section-wrapper{
+    background: var(--dark-bg);
+}
 
 .-color-primary {
     --primary: var(--color-primary);
@@ -65,11 +68,19 @@
     color: var(--text);
     margin-bottom: 1.5rem;
 }
+.dark-mode .heading {
+   color: var(--dark-top-heading);
+}
+
+
 .description {
     font-size: 1.125rem;
     color: var(--text-muted);
     max-width: 40rem;
     margin: 0 auto;
+}
+.dark-mode .description {
+   color: var(--dark-top-desc);
 }
 
 /* Cards */
@@ -105,6 +116,12 @@
     border-radius: 1rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
     transition: all 0.3s;
+}
+.dark-mode .card{
+    background: var(--dark-bg);
+}
+.dark-mode .card h3{
+color: var(--dark-top-heading);
 }
 .card:hover {
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
@@ -200,6 +217,10 @@
     color: var(--text-muted);
     font-size: 1.125rem;
     margin-bottom: 2rem;
+}
+.dark-mode .call-description {
+    color: var(--dark-top-desc);
+   
 }
 .cta-button {
     display: inline-flex;

@@ -160,7 +160,7 @@
                     <i class="fas fa-globe"></i>
                 </div>
                 <div class="work-details-metric-content">
-                    <h3 class="work-details-metric-number">30<span>+</span></h3>
+                    <h3 class="work-details-metric-number">5<span>+</span></h3>
                     <p class="work-details-metric-label">Countries Served</p>
                 </div>
             </div>

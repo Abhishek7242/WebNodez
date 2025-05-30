@@ -15,7 +15,5 @@
     z-index: -1;
     transform: scale(1.1);
   }
-#header ul li:hover{
-color: var(--color-primary);
-}
+
  

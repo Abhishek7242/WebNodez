@@ -3,6 +3,7 @@
 @section('services', 'active')
 @section('main-section')
  <script>
+  
         document.documentElement.style.setProperty('--text-color', 'black');
         document.documentElement.style.setProperty('--intro-bg', '#FBFBFC');
         

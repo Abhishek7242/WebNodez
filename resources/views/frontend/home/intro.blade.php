@@ -8,7 +8,7 @@
         </p>
        
       </div>
-      <div>
+      <div class="get-started-btn-container">
         <a 
           href="/contact-us"
           class="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-white"
@@ -23,10 +23,8 @@
       
       
     </div>
-    <div class="flex items-center justify-center ">
-      <style>
-       
-      </style>
+    <div id="orbit-container" class="flex items-center justify-center ">
+    
     
     <div id="orbit" class="relative w-[320px] h-[320px] mx-auto ">
       <div id="center-planet" class="absolute w-28 h-28 rounded-full overflow-hidden border-4 border-white left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">

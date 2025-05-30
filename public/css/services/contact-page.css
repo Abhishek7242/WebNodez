@@ -3,6 +3,9 @@
     overflow: hidden;
     background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
 }
+.dark-mode .contact-page-section {
+   background: var(--dark-bg);
+}
 
 /* Section Header */
 .contact-page-header {
@@ -108,6 +111,10 @@
     background: #ffffff;
     border: 1px solid rgba(0, 0, 0, 0.05);
 }
+.dark-mode .contact-page-form-container {
+    background: rgba(128, 128, 128, 0.269);
+    border: 1px solid rgba(128, 128, 128, 0.297);
+}
 
 .contact-page-form-container:hover {
     transform: translateY(-5px);
@@ -130,6 +137,12 @@
     transition: all 0.3s ease;
     font-size: 1rem;
     color: #000;
+}
+.dark-mode .contact-page-input {
+    background: none;
+    border: 1px solid gray;
+    border-color: gray;
+
 }
 
 .contact-page-input::-moz-placeholder {
@@ -203,9 +216,9 @@
 }
 
 /* Form Validation Styles */
-.contact-page-input:invalid {
+/* .contact-page-input:invalid {
     border-color: #ef4444;
-}
+} */
 
 .contact-page-input:invalid:focus {
     border-color: #ef4444;

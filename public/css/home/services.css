@@ -1,3 +1,11 @@
+.dark-mode .our-service-container{
+  background-color:var(--dark-bg) ;
+}
+.dark-mode .our-service-heading-text{
+  color: var(--dark-top-heading);
+}
+
+
 .service-container {
   height: 300px;
   overflow: hidden;
@@ -21,6 +29,13 @@
 }
 .service-text{
   background-color: var(--color-primary);
+}
+
+.dark-mode .service-text h2{
+  color: var(--dark-heading);
+}
+.dark-mode .service-text p{
+  color: var(--dark-desc);
 }
 /* 
 .service-card {

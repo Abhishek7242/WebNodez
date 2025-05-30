@@ -4,6 +4,10 @@
     position: relative;
     overflow: hidden;
 }
+.dark-mode .design-gallery-section {
+    background-color: var(--dark-bg);
+
+}
 
 .design-gallery-container {
     max-width: 1400px;
@@ -28,6 +32,11 @@
     font-weight: 600;
     position: relative;
     padding-bottom: 10px;
+}
+.dark-mode .design-gallery-subtitle {
+  
+    color: var(--dark-top-heading);
+ 
 }
 
 .design-gallery-subtitle::after {
@@ -95,6 +104,7 @@
     position: relative;
     overflow: hidden;
     z-index: 1;
+    border: 2px solid #6b6b6b;
 }
 
 .design-gallery-filter-btn::before {
