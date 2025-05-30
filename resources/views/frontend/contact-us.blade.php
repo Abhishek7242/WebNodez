@@ -2,18 +2,26 @@
 @section('title', 'WebNodez - Contact Us')
 @section('contact', 'active')
 @section('main-section')
-<script>
-    const el = document.querySelector('#header');
-el.style.setProperty('--intro-bg', `url('https://i.pinimg.com/originals/88/bd/6b/88bd6b019daa69601bf4f903414ad243.gif')`);
-
- </script>
+ <script>
+  
+        document.documentElement.style.setProperty('--text-color', 'black');
+        document.documentElement.style.setProperty('--intro-bg', '#FBFBFC');
+        
+    </script>
+    <style>
+      .dark-mode .contact-us-section{
+        background: var(--dark-bg);
+        color: white;
+      }
+     
+    </style>
  
- <section class="relative  text-white py-24 px-6 md:px-16 lg:px-32 overflow-hidden">
+ <section class="contact-us-section relative  text-black py-24 px-6 md:px-16 lg:px-32 overflow-hidden">
     <div class="max-w-4xl mx-auto text-center z-10 relative">
-      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight ">
         Get in Touch with <span class="text-[--color-primary]">WebNodez Team</span>
       </h1>
-      <p class="text-lg md:text-xl text-gray-300 mb-10">
+      <p class="text-lg md:text-xl text-gray-500 mb-10">
         Let’s build something amazing together. Whether it’s a question, project idea, or just a hello — we’d love to hear from you.
       </p>
     
@@ -44,7 +52,9 @@ el.style.setProperty('--intro-bg', `url('https://i.pinimg.com/originals/88/bd/6b
             </div>
         </div>
     </section>
-    <section class="bg-gray-50 py-20 px-6 md:px-20 max-w-7xl mx-auto">
+
+    {{-- contact-us-team --}}
+    <section class="contact-us-team-section bg-gray-50 py-20 px-6 md:px-20 max-w-7xl mx-auto">
       <div class="text-center max-w-4xl mx-auto mb-16">
         <h2 class="text-5xl font-bold text-gray-900 mb-4">Connect With Our Team</h2>
         <p class="text-gray-600 text-lg max-w-xl mx-auto leading-relaxed">
@@ -52,7 +62,7 @@ el.style.setProperty('--intro-bg', `url('https://i.pinimg.com/originals/88/bd/6b
         </p>
       </div>
     
-      <div class="grid md:grid-cols-3 gap-10">
+      <div class="contact-us-team-info-container grid md:grid-cols-3 gap-10">
     
         <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
           <h3 class="text-2xl font-bold mb-4 text-green-600 border-l-4 border-green-400 pl-4">Our Team</h3>

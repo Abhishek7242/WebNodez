@@ -25,6 +25,7 @@
             min-height: 100vh;
             background: url('background-pattern.png') no-repeat center/cover;
         }
+       
 
         .our-service-text {
             max-width: 50%;
@@ -36,6 +37,9 @@
             display: block;
             margin-bottom: 1rem;
         }
+        .dark-mode .our-service-text small{
+            color: var(--color-primary);
+        }
 
         .our-service-text h1 {
             color: var(--text-color);
@@ -43,9 +47,13 @@
             font-weight: bold;
             line-height: 1.2;
         }
+         .dark-mode .our-service-text h1{
+            color: var(--dark-top-heading);
+        }
 
         .our-service-desc-text {
             color: var(--color-text-light);
+            font-weight: 100;
         }
 
         .our-service-text button {
@@ -456,6 +464,10 @@
             position: relative;
             overflow: hidden;
         }
+        .dark-mode .service-overview {
+            background: var(--dark-bg);
+          
+        }
 
         .service-overview-container {
             max-width: 1200px;
@@ -478,6 +490,16 @@
             margin-bottom: 1.5rem;
             line-height: 1.2;
             background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+       .dark-mode .service-overview-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #c9ccd3 0%, #334155 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -550,9 +572,23 @@
     <x-service-detail :serviceHeading="$service" :detailsArray='$detailsArray' />
 
     {{-- Tech we use section --}}
+<style>
+    .dark-mode .service-tech-section{
+        background: var(--dark-bg);
+    }
+    .dark-mode .service-tech-section h2{
+      color: var(--dark-top-heading);
+    }
+    .dark-mode .service-tech-containers > div{
+          background: none;
+          border: 1px solid gray;
+    }
+    .dark-mode .service-tech-containers > div h3{
+          color: var(--dark-top-heading);
+    }
+</style>
 
-
-    <section class="border-t bg-gradient-to-b from-gray-50 to-white py-20 px-6 md:px-12 lg:px-24">
+    <section class="service-tech-section border-t bg-gradient-to-b from-gray-50 to-white py-20 px-6 md:px-12 lg:px-24">
         <div class="max-w-7xl mx-auto text-center">
             <h2 class="text-4xl font-bold mb-4 tech-stack-heading">Tech Stack We Use</h2>
             <p class="text-gray-600 text-lg mb-16 max-w-2xl mx-auto">
@@ -560,7 +596,7 @@
             </p>
 
             <!-- First Row: Frontend and Backend -->
-            <div class="grid gap-16 md:grid-cols-2 mb-16">
+            <div class="service-tech-containers grid gap-16 md:grid-cols-2 mb-16">
                 <!-- Frontend -->
                 <div class="bg-white rounded-2xl shadow-lg p-8 transform hover:scale-[1.02] transition-all duration-300">
                     
@@ -576,7 +612,7 @@
             </div>
 
             <!-- Second Row: Cloud/Hosting and Design Tools -->
-            <div class="grid gap-16 md:grid-cols-2">
+            <div class="service-tech-containers grid gap-16 md:grid-cols-2">
                 <!-- Cloud & Hosting -->
                 <div class="bg-white rounded-2xl shadow-lg p-8 transform hover:scale-[1.02] transition-all duration-300">
                     <h3 class="text-2xl font-bold mb-8 border-b pb-4 tech-category-heading">{{$technology['names'][2]}}</h3>

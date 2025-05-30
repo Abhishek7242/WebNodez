@@ -32,4 +32,7 @@ html {
   .no-scroll{
     overflow: hidden;
   }
+  body.dark-mode{
+    background: var(--dark-bg);
+  }
   

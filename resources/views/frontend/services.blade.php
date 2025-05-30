@@ -14,7 +14,7 @@
 @include('frontend/services/our-services')
 @include('frontend/services/our-process')
 @include('frontend/services/overview')
-@include('frontend/services/technology')
+{{-- @include('frontend/services/technology') --}}
 @include('frontend/services/contact-page')
 @include('frontend/services/faq')
 {{-- <section class="bg-gray-50 py-20 px-6 md:px-12">

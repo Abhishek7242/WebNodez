@@ -194,6 +194,12 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.493);
     padding-left: 100px;
     align-items: center;
 }
+.dark-mode #contact-form-section #contact-form-outer-container{
+   
+    background:var(--dark-bg);
+    color: white;
+    
+}
 #contact-form-section #contact-form-container h2{
   font-size: 50px;
   font-weight: 600;
@@ -473,6 +479,9 @@ overflow: hidden;
             color: white;
             cursor: pointer;
             transition: .4s;
+        }
+   .dark-mode  #contact-form-section   button {
+            border: 1px solid gray;
         }
 
      #contact-form-section   button img{
@@ -761,4 +770,19 @@ margin: 0;
 }
 }
 
+/* contact-us-team-section */
+.dark-mode .contact-us-team-section{
+    background: var(--dark-bg);
+}
+.dark-mode .contact-us-team-section h2{
+    color: var(--dark-top-heading);
+}
+.dark-mode .contact-us-team-info-container > div{
+    background:none ;
+    border: 1px solid gray;
+}
+.dark-mode .contact-us-team-info-container > div p,.dark-mode .contact-us-team-info-container > div li{
+    color: var(--dark-top-desc);
+}
+/* contact-us-team-section */
 
