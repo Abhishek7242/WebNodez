@@ -2,8 +2,11 @@
 @section('title', 'WebNodez - Blogs')
 @section('blog', 'active')
 @section('main-section')
-    <script>
-        document.documentElement.style.setProperty('--intro-bg', 'black');
+ <script>
+  
+        document.documentElement.style.setProperty('--text-color', 'black');
+        document.documentElement.style.setProperty('--intro-bg', '#FBFBFC');
+        
     </script>
 
     <section class="blog-intro">

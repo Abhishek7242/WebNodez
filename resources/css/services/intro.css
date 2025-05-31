@@ -1,41 +1,28 @@
 /* Header Section Styles */
-:root {
-    --color-primary-light: #75ffaa;
-    --color-primary-dark: #2eb82e;
-    --color-text: #1f2937;
-    --color-text-light: #6b7280;
-    --color-background: #ffffff;
-    --color-playground-bg: rgba(83, 235, 37, 0.05);
-    --color-playground-border: rgba(83, 235, 37, 0.1);
-}
 
-.dark-mode #header::before{
-        background: var(--dark-bg);
+.dark-mode #header::before {
+    background: var(--dark-bg);
 }
-.dark-mode #header nav .nav-links{
-        color: white;
+.dark-mode #header nav .nav-links {
+    color: white;
 }
-.dark-mode #header nav .nav-links.active{
-        color:var(--color-primary);
+.dark-mode #header nav .nav-links.active {
+    color: var(--color-primary);
 }
 
 .services-section {
     --section-bg-start: #f9fafb;
     --section-bg-end: #ffffff;
-
 }
 
 .dark-mode .services-section {
     background: var(--dark-bg);
-
 }
 .dark-mode .services-decorative-top {
-    background: rgba(0, 255, 102, 0.215);
-
+    background: rgba(var(--color-primary-rgb), 0.1);
 }
 .dark-mode .services-decorative-bottom {
-    background: rgba(0, 255, 102, 0.215);
-
+    background: rgba(var(--color-primary-rgb), 0.1);
 }
 
 .services-playground {
@@ -67,9 +54,7 @@
     pointer-events: none;
 }
 .dark-mode .services-name {
-
-    color: white;
-  
+    color: var(--dark-desc);
 }
 
 .services-name:hover {
@@ -226,10 +211,10 @@
     transition: color 0.3s ease;
 }
 .dark-mode .services-contact-text {
- color: var(--color-primary);
+    color: var(--dark-desc);
 }
 .dark-mode .services-contact-text:hover {
- color: white;
+    color: var(--color-bg-light);
 }
 
 .services-contact-bg {
@@ -276,11 +261,9 @@
     transition: all 0.3s ease;
 }
 .dark-mode .services-button {
-    
-    background:none;
- 
+    background: var(--dark-bg-secondary);
+    border-color: var(--dark-border);
 }
-
 
 .services-button::before {
     content: "";
@@ -322,8 +305,7 @@
     color: var(--color-text);
 }
 .dark-mode .services-button-title {
-   
-    color:rgb(183, 183, 183);
+    color: var(--dark-desc);
 }
 
 .services-button:hover .services-button-title {
@@ -360,7 +342,8 @@
     color: var(--color-text);
 }
 .dark-mode .services-heading {
-    color: rgba(225, 225, 225, 0.671);
+    color: var(--dark-heading);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .services-description {
@@ -419,4 +402,130 @@
     50% {
         transform: translateY(-20px);
     }
+}
+
+/* Dark Mode Styles */
+.dark-mode .services-section {
+    background: var(--dark-bg);
+}
+
+.dark-mode .services-decorative-top {
+    background: rgba(var(--color-primary-rgb), 0.1);
+}
+
+.dark-mode .services-decorative-bottom {
+    background: rgba(var(--color-primary-rgb), 0.1);
+}
+
+.dark-mode .services-badge-text {
+    color: var(--color-primary);
+}
+
+.dark-mode .services-heading {
+    color: var(--dark-heading);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .services-description {
+    color: var(--dark-desc);
+}
+
+.dark-mode .services-button {
+    background: var(--dark-bg-secondary);
+    border-color: var(--dark-border);
+}
+
+.dark-mode .services-button-title {
+    color: var(--dark-desc);
+}
+
+.dark-mode .services-button:hover .services-button-title {
+    color: var(--color-bg-light);
+}
+
+.dark-mode .services-button-icon {
+    color: var(--color-primary);
+}
+
+.dark-mode .services-button:hover .services-button-icon {
+    color: var(--color-bg-light);
+}
+
+.dark-mode .services-playground-circle {
+    background: var(--dark-bg-secondary);
+    border-color: var(--dark-border);
+}
+
+.dark-mode .services-name {
+    color: var(--dark-desc);
+}
+
+.dark-mode .services-name:hover {
+    color: var(--color-primary);
+}
+
+.dark-mode .services-icon-box {
+    background: var(--dark-bg-tertiary);
+    border-color: var(--dark-border);
+    box-shadow: 0 4px 6px var(--dark-shadow);
+}
+
+.dark-mode .services-icon:hover .services-icon-box {
+    border-color: var(--color-primary);
+    box-shadow: 0 10px 15px var(--dark-shadow);
+}
+
+.dark-mode .services-icon-i {
+    color: var(--color-primary);
+}
+
+.dark-mode .services-icon:hover .services-icon-i {
+    color: var(--color-primary-dark);
+}
+
+.dark-mode .services-center-element {
+    background: var(--dark-bg-secondary);
+    border-color: var(--dark-border);
+}
+
+.dark-mode .services-center-button {
+    background: linear-gradient(
+        45deg,
+        var(--color-primary),
+        var(--color-primary-light)
+    );
+    border-color: var(--color-primary);
+}
+
+.dark-mode .services-center-button:hover {
+    background: linear-gradient(
+        45deg,
+        var(--color-primary-dark),
+        var(--color-primary)
+    );
+}
+
+.dark-mode .services-particle {
+    background: var(--color-primary);
+    opacity: 0.4;
+}
+
+.dark-mode .services-contact-text {
+    color: var(--dark-desc);
+}
+
+.dark-mode .services-contact-text:hover {
+    color: var(--color-bg-light);
+}
+
+.dark-mode .services-contact-border {
+    border-color: var(--color-primary);
+}
+
+.dark-mode .services-contact-bg {
+    background: linear-gradient(
+        to right,
+        var(--color-primary),
+        var(--color-primary-light)
+    );
 }

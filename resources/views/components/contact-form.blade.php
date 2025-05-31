@@ -54,6 +54,9 @@
                     <a href="#">terms and conditions</a>
                 </div>
                 <div id="checkbox-container">
+                      @if ($errors->has('g-recaptcha-response'))
+        <span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
+    @endif
                     <div>
                         <input style="transition: 0.4s" type="checkbox" id="contact-checkbox" checked required>
                         <label for="contact-checkbox">I agree to the above terms and conditions</label>

@@ -7,7 +7,88 @@
 /* .tech-category-heading {
     border-bottom-color: var(--color-primary);
 } */
+.dark-mode .tech-inner-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(
+        to bottom right,
+        rgba(30, 41, 59, 0.95),
+        var(--dark-bg),
+        rgba(30, 41, 59, 0.95)
+    );
+}
+.tech-inner-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(
+        to bottom right,
+        #eff6ff,
+        #ffffff,
+        #f5f3ff
+    );
+}
+.dark-mode .tech-heading-text h2 {
+    color: var(--dark-top-heading);
+}
+.dark-mode .tech-heading-text p {
+    color: #94a3b8;
+}
+.dark-mode .tech-group-inner-container {
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
+.dark-mode .tech-group-inner-container:hover {
+    background: rgba(30, 41, 59, 0.9);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+.dark-mode .tech-group-inner-container h3 {
+    color: #e2e8f0;
+}
 
+.bg-grid-pattern {
+    background-image: linear-gradient(to right, #80808012 1px, transparent 1px),
+        linear-gradient(to bottom, #80808012 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+@keyframes blob {
+    0% {
+        transform: translate(0px, 0px) scale(1);
+    }
+
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+
+    100% {
+        transform: translate(0px, 0px) scale(1);
+    }
+}
+.tech-heading-text {
+    color: var(--color-primary);
+}
+.animate-blob {
+    animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+    animation-delay: 4s;
+}
 /* Technology names */
 
 /* Technology card animations */
@@ -57,4 +138,56 @@
 
 .tech-card:hover .tech-name {
     color: var(--color-primary);
+}
+
+/* Dark Mode Styles */
+.dark-mode .tech-card {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.dark-mode .tech-card:hover {
+    background: rgba(30, 41, 59, 0.8);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .tech-card .tech-name {
+    color: #e2e8f0;
+}
+
+.dark-mode .tech-card:hover .tech-name {
+    color: var(--color-primary);
+}
+
+.dark-mode .tech-card img {
+    filter: brightness(0.9);
+}
+
+.dark-mode .tech-card:hover img {
+    filter: brightness(1);
+}
+
+/* Enhanced gradient effects for dark mode */
+.dark-mode .group:hover .tech-group-inner-container::before {
+    opacity: 0.4;
+}
+
+/* Improved blob animations for dark mode */
+.dark-mode .animate-blob {
+    opacity: 0.15;
+    mix-blend-mode: screen;
+}
+
+/* Enhanced grid pattern for dark mode */
+.dark-mode .bg-grid-pattern {
+    background-image: linear-gradient(
+            to right,
+            rgba(148, 163, 184, 0.1) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            to bottom,
+            rgba(148, 163, 184, 0.1) 1px,
+            transparent 1px
+        );
 }

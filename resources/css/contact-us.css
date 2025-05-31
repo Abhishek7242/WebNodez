@@ -412,6 +412,10 @@ input:-webkit-autofill:hover {
   
   color: black;
 }
+.dark-mode #contact-form-section #term-conditions a{
+  
+  color: var(--dark-top-heading);
+}
 
 #contact-form-section #checkbox-container{
  width: 100%!important;

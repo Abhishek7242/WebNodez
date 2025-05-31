@@ -2,6 +2,16 @@
 @section('title', 'WebNodez - Home')
 @section('home', 'active')
 @section('main-section')
+
+        <link href="{{ asset('css/home.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/home/intro.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/home/services.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/home/technologies.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/home/our-process.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/home/portfolio.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/home/pricing.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/home/why-us.css') }}" rel="stylesheet">
+    
     <!-- Three.js and other required scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="{{ asset('js/canvas-background.js') }}"></script>

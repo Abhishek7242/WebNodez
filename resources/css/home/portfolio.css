@@ -6,7 +6,6 @@
 }
 .dark-mode .home-design-gallery-section {
     background-color: var(--dark-bg);
-  
 }
 
 .home-design-gallery-container {
@@ -26,7 +25,7 @@
     display: inline-block;
     font-size: 1.5rem;
     text-transform: uppercase;
-text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     letter-spacing: 2px;
     color: var(--text-color);
     margin-bottom: 15px;
@@ -332,15 +331,14 @@ text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         font-size: 1.3rem;
     }
     .home-design-gallery-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 0px;
-}
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 0px;
+    }
     .home-design-gallery-grid {
-   padding: 0 20px;
-}
-.home-design-gallery-load-more-btn {
-    padding: 8px 18px;
-   
-}
+        padding: 0 20px;
+    }
+    .home-design-gallery-load-more-btn {
+        padding: 8px 18px;
+    }
 }

@@ -10,18 +10,12 @@
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/home.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/home/intro.css') }}" rel="stylesheet">
+
     <link href="{{ asset('css/services/intro.css') }}" rel="stylesheet">
     <link href="{{ asset('css/services/our-services.css') }}" rel="stylesheet">
     <link href="{{ asset('css/services/our-process.css') }}" rel="stylesheet">
     <link href="{{ asset('css/services/contact-page.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/home/services.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/home/technologies.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/home/our-process.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/home/portfolio.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/home/pricing.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/home/why-us.css') }}" rel="stylesheet">
+
     <link href="{{ asset('css/portfolio/intro.css') }}" rel="stylesheet">
     <link href="{{ asset('css/portfolio/case-studies.css') }}" rel="stylesheet">
     <link href="{{ asset('css/portfolio/design-gallery.css') }}" rel="stylesheet">

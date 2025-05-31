@@ -1,42 +1,102 @@
-.dark-mode .our-service-container{
-  background-color:var(--dark-bg) ;
+.dark-mode .our-service-container {
+    background-color: var(--dark-bg);
 }
-.dark-mode .our-service-heading-text{
-  color: var(--dark-top-heading);
+.dark-mode .our-service-heading-text {
+    color: var(--dark-top-heading);
 }
 
+.dark-mode .our-service-container p {
+    color: #94a3b8;
+}
 
 .service-container {
-  height: 300px;
-  overflow: hidden;
-  transition: all 0.4s ease-in-out;
-  cursor: pointer;
-  /* border: 2px solid var(--color-primary); */
+    height: 300px;
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+    /* border: 2px solid var(--color-primary); */
 }
 
 /* Images full width and height */
 .service-container img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  transition: transform 0.4s ease-in-out;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+    transition: transform 0.4s ease-in-out;
 }
 
 /* Zoom images when hovering the whole container */
 .service-container:hover > div.overflow-hidden > img {
-  transform: scale(1.5);
+    transform: scale(1.5);
 }
-.service-text{
-  background-color: var(--color-primary);
+.service-text {
+    background-color: var(--color-primary);
 }
 
-.dark-mode .service-text h2{
-  color: var(--dark-heading);
+.dark-mode .service-text h2 {
+    color: #e2e8f0;
 }
-.dark-mode .service-text p{
-  color: var(--dark-desc);
+.dark-mode .service-text p {
+    color: #cbd5e1;
 }
+
+/* Dark Mode Enhancements */
+.dark-mode .service-container {
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .service-container:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    border-color: var(--color-primary);
+}
+
+.dark-mode .service-text {
+    background: linear-gradient(
+        to right,
+        rgba(var(--color-primary-rgb), 0.95),
+        rgba(var(--color-primary-rgb), 0.85)
+    );
+    -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+}
+
+.dark-mode .service-container img {
+    filter: brightness(0.9);
+}
+
+.dark-mode .service-container:hover img {
+    filter: brightness(1);
+}
+
+/* Enhanced hover effects for dark mode */
+.dark-mode .service-container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 0, 0, 0.2) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.dark-mode .service-container:hover::after {
+    opacity: 1;
+}
+
+/* Improved text contrast in dark mode */
+.dark-mode .service-text h2 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .service-text p {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
 /* 
 .service-card {
   background: white;
@@ -103,3 +163,4 @@
   background: var(--color-secondary);
   box-shadow: 0 8px 20px rgb(22 163 74 / 0.7);
 } */
+

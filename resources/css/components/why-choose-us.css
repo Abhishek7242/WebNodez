@@ -1,0 +1,259 @@
+  .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 4rem 0;
+            padding: 0 1rem;
+        }
+
+        .stat-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(34, 197, 94, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            min-width: 250px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(30, 41, 59, 0.8);
+            border-color: rgba(34, 197, 94, 0.3);
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.1);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #22C55E, var(--color-primary));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f8fafc 0%, #22C55E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: #94a3b8;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(34, 197, 94, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            color: #22C55E;
+            transition: all 0.4s ease;
+        }
+
+        .stat-card:hover .stat-icon {
+            background: linear-gradient(135deg, #22C55E, var(--color-primary));
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        @media (max-width: 768px) {
+            .stats-container {
+                flex-direction: column;
+                gap: 2rem;
+                margin: 3rem 0;
+            }
+
+            .stat-card {
+                min-width: auto;
+                padding: 2rem;
+            }
+
+            .stat-number {
+                font-size: 3rem;
+            }
+        }
+
+            .why-solution-section {
+            padding: 6rem 6%;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-solution-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(34, 197, 94, 0.3),
+                    transparent);
+        }
+
+        .why-solution-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .why-solution-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .why-solution-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(34, 197, 94, 0.1);
+            color: #22C55E;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .why-solution-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #f8fafc;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #f8fafc 0%, #22C55E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .why-solution-subtitle {
+            color: #94a3b8;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .why-solution-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .why-solution-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(34, 197, 94, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-solution-card:hover {
+            transform: translateY(-5px);
+            background: rgba(30, 41, 59, 0.8);
+            border-color: rgba(34, 197, 94, 0.3);
+            box-shadow: 0 0 30px rgba(34, 197, 94, 0.1);
+        }
+
+        .why-solution-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #22C55E, var(--color-primary));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .why-solution-card:hover::before {
+            opacity: 1;
+        }
+
+        .why-solution-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(34, 197, 94, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: all 0.4s ease;
+        }
+
+        .why-solution-card:hover .why-solution-icon {
+            background: linear-gradient(135deg, #22C55E, var(--color-primary));
+            transform: rotateY(180deg);
+        }
+
+        .why-solution-card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #f8fafc;
+            margin-bottom: 1rem;
+        }
+
+        .why-solution-card-text {
+            color: #94a3b8;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 1024px) {
+            .why-solution-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .why-solution-section {
+                padding: 4rem 4%;
+            }
+
+            .why-solution-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-solution-title {
+                font-size: 2.5rem;
+            }
+
+            .why-solution-subtitle {
+                font-size: 1.1rem;
+                padding: 0 1rem;
+            }
+
+            .why-solution-card {
+                padding: 2rem;
+            }
+        }

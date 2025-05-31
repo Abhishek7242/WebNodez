@@ -4,62 +4,108 @@
     border-top: 4px solid var(--color-primary);
     border-radius: 1.5rem;
     transition: all 0.4s ease;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-  }
+}
 
-  .pricing-card:hover {
+.pricing-card:hover {
     transform: translateY(-10px);
     background-color: var(--color-secondary);
     color: white;
-    box-shadow: 0 15px 25px rgba(0,0,0,0.1);
-  }
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+}
 
-  .pricing-icon {
+.pricing-icon {
     width: 60px;
     height: 60px;
     margin-bottom: 1rem;
     transition: transform 0.3s ease;
-  }
+}
 
-  .pricing-card:hover .pricing-icon {
+.pricing-card:hover .pricing-icon {
     transform: scale(1.15);
-  }
+}
 
-  .pricing-title {
+.pricing-title {
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
-  }
+}
 
-  .pricing-desc {
+.pricing-desc {
     font-size: 0.95rem;
     line-height: 1.6;
     color: #555;
     margin-bottom: 1rem;
-  }
+}
 
-  .pricing-card:hover .pricing-desc,
-  .pricing-card:hover .pricing-title {
+.pricing-card:hover .pricing-desc,
+.pricing-card:hover .pricing-title {
     color: white;
-  }
+}
 
-  .learn-more-btn {
+.learn-more-btn {
     background: var(--color-primary);
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 9999px;
     font-weight: 600;
     text-decoration: none;
-    transition: background 0.3s ease;
-  }
+    transition: all 0.3s ease;
+}
 
-  .learn-more-btn:hover {
-    background: #0f172a; /* fallback dark hover */
-  }
-  
-  
+.learn-more-btn:hover {
+    background: #0f172a;
+    transform: translateY(-2px);
+}
+
+/* Dark Mode Styles */
+.dark-mode .pricing-secgtion-container {
+    background: var(--dark-bg);
+}
+
+.dark-mode .pricing-secgtion-container h2 {
+    color: var(--dark-top-heading);
+}
+
+.dark-mode .pricing-secgtion-container p {
+    color: #94a3b8;
+}
+
+.dark-mode .pricing-card {
+    background: rgba(30, 41, 59, 0.8);
+    border-color: var(--color-primary);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .pricing-card:hover {
+    background: var(--color-secondary);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .pricing-title {
+    color: #e2e8f0;
+}
+
+.dark-mode .pricing-desc {
+    color: #94a3b8;
+}
+
+.dark-mode .pricing-card:hover .pricing-desc,
+.dark-mode .pricing-card:hover .pricing-title {
+    color: white;
+}
+
+.dark-mode .learn-more-btn {
+    background: var(--color-primary);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .learn-more-btn:hover {
+    background: #1e293b;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
 

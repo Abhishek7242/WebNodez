@@ -1,38 +1,83 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 }
-:root{
-    --color-primary: #22C55E;
-    --color-secondary:  #3fac3b;
+:root {
+    /* Primary Colors */
+    --color-primary: #22c55e;
+    --color-primary-rgb: 34, 197, 94;
+    --color-primary-dark: #059669;
+    --color-secondary: #3fac3b;
     --color-tertiary: black;
---intro-bg:rgb(255, 255, 255);
---color-primary-dark: #059669;
---color-bg: #f9fafb;
---text-color:white;
-    --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+       --color-primary-light: #75ffaa;
+    --color-primary-dark: #2eb82e;
     --color-text: #1f2937;
     --color-text-light: #6b7280;
-    --dark-bg:#000717;
-    --dark-bg:#0a0a0a;
-    --dark-top-heading:#CCCCCC; 
-    --dark-top-desc:#8d8d8d; 
-    --dark-heading:#000000; 
-    --dark-desc:#535353; 
+    --color-background: #ffffff;
+    --color-playground-bg: rgba(83, 235, 37, 0.05);
+    --color-playground-border: rgba(83, 235, 37, 0.1);
+
+    /* Background Colors */
+    --intro-bg: rgb(255, 255, 255);
+    --color-bg: #f9fafb;
+    --color-bg-light: #ffffff;
+    --color-bg-dark: #f3f4f6;
+
+    /* Text Colors */
+    --text-color: white;
+    --color-text: #1f2937;
+    --color-text-light: #6b7280;
+    --color-text-lighter: #9ca3af;
+    --color-text-dark: #111827;
+
+    /* Dark Mode Colors */
+    --dark-bg: #0a0a0a;
+    --dark-bg-secondary: #111827;
+    --dark-bg-tertiary: #1f2937;
+    --dark-top-heading: #cccccc;
+    --dark-top-desc: #8d8d8d;
+    --dark-heading: #e2e8f0;
+    --dark-desc: #94a3b8;
+    --dark-border: rgba(148, 163, 184, 0.1);
+    --dark-shadow: rgba(0, 0, 0, 0.2);
+
+    /* Accent Colors */
+    --color-accent-blue: #3b82f6;
+    --color-accent-purple: #8b5cf6;
+    --color-accent-pink: #ec4899;
+    --color-accent-orange: #f97316;
+
+    /* Status Colors */
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+    --color-error: #ef4444;
+    --color-info: #3b82f6;
+
+    /* Border Colors */
+    --color-border: #e5e7eb;
+    --color-border-dark: #d1d5db;
+
+    /* Shadow Colors */
+    --color-shadow: rgba(0, 0, 0, 0.1);
+    --color-shadow-dark: rgba(0, 0, 0, 0.2);
+
+    /* Transitions */
+    --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 html {
     scroll-behavior: smooth;
-  }
+}
 
-  .no-scroll{
+.no-scroll {
     overflow: hidden;
-  }
-  body.dark-mode{
+}
+body.dark-mode {
     background: var(--dark-bg);
-  }
-  
+}

@@ -29,5 +29,6 @@
     </div>
   </section> --}}
   
+<script src="{{ asset('js/services/intro.js') }}"></script>
  
 @endsection

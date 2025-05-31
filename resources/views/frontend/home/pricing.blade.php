@@ -45,14 +45,3 @@
     </div>
 </section>
 
-<style>
-   .dark-mode .pricing-secgtion-container{
-background:var(--dark-bg) ;
-    }
-   .dark-mode .pricing-secgtion-container h2{
-color: var(--dark-top-heading);
-    }
-   .dark-mode .pricing-secgtion-container .pricing-card{
-background:rgba(168, 168, 168, 0.628) ;
-    }
-</style>
