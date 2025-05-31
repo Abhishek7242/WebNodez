@@ -27,7 +27,6 @@
     <link href="{{ asset('css/contact-us.css') }}" rel="stylesheet">
     <link href="{{ asset('css/terms_conditions.css') }}" rel="stylesheet">
     <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/blogs.css') }}" rel="stylesheet">
     <link href="{{ asset('css/chatbot.css') }}" rel="stylesheet">
     <link href="{{ asset('css/canvas-background.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/about.css') }}">

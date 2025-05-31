@@ -38,7 +38,6 @@
         </div>
     </div>
 </section>
-
 <script>
     function toggleFaq(index) {
         const answer = document.querySelectorAll('.faq-answer')[index];

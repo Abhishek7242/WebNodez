@@ -1,0 +1,414 @@
+.bg-grid-pattern {
+    background-image: linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.1) 1px,
+            transparent 1px
+        ),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* Pricing Intro Section */
+.pricing-intro {
+    position: relative;
+    padding: 8rem 1.5rem;
+    overflow: hidden;
+    background: linear-gradient(to bottom, var(--intro-bg), white, white);
+    animation: fadeIn 1s ease-out;
+}
+
+.dark-mode .pricing-intro {
+    background: linear-gradient(
+        to bottom,
+        var(--dark-bg),
+        var(--dark-bg-secondary),
+        var(--dark-bg)
+    );
+}
+
+/* Animated Background Elements */
+.animated-background {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.blob-animation-1,
+.blob-animation-2,
+.blob-animation-3,
+.blob-animation-4 {
+    position: absolute;
+    width: 24rem;
+    height: 24rem;
+    border-radius: 9999px;
+    mix-blend-mode: multiply;
+    filter: blur(64px);
+    opacity: 0.1;
+    animation: blob 7s infinite, fadeIn 1s ease-out forwards;
+    transition: all 0.5s ease;
+}
+
+.blob-animation-1 {
+    background: var(--color-primary);
+    top: 0;
+    left: 0;
+}
+
+.blob-animation-2 {
+    background: var(--color-secondary);
+    top: 0;
+    right: 0;
+}
+
+.blob-animation-3 {
+    background: #60a5fa;
+    bottom: -2rem;
+    left: 20%;
+}
+
+.blob-animation-4 {
+    background: #a78bfa;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.dark-mode .blob-animation-1,
+.dark-mode .blob-animation-2,
+.dark-mode .blob-animation-3,
+.dark-mode .blob-animation-4 {
+    opacity: 0.05;
+}
+
+/* Grid Pattern */
+.grid-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.5s forwards;
+}
+
+.dark-mode .grid-pattern {
+    opacity: 0.1;
+}
+
+/* Pricing Content */
+.pricing-content {
+    position: relative;
+    max-width: 80rem;
+    margin: 0 auto;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 1s ease-out 0.3s forwards;
+}
+
+/* Pricing Badge */
+.pricing-badge {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 1s ease-out 0.5s forwards;
+}
+
+.pricing-badge-text {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    background: linear-gradient(
+        to right,
+        var(--color-primary),
+        var(--color-secondary)
+    );
+    background-opacity: 0.1;
+    color: var(--intro-bg);
+    font-size: 0.875rem;
+    font-weight: 600;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transform: scale(1);
+    transition: all 0.3s ease;
+}
+
+.pricing-badge-text:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-badge-text .badge-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.pricing-badge-text:hover .badge-icon {
+    transform: rotate(360deg);
+}
+
+.dark-mode .pricing-badge-text {
+    color: var(--dark-heading);
+}
+
+/* Pricing Header */
+.pricing-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+/* Pricing Decoration */
+.pricing-decoration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 1s ease-out 1.1s forwards;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: fadeIn 1s ease-out 1.3s forwards, bounce 2s infinite 2.3s;
+}
+
+/* Pricing Title */
+.pricing-title {
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    background: linear-gradient(
+        to right,
+        #111827,
+        var(--color-primary),
+        #111827
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 1s ease-out 0.7s forwards;
+}
+
+.dark-mode .pricing-title {
+    background: linear-gradient(
+        to right,
+        var(--dark-heading),
+        var(--color-primary),
+        var(--dark-heading)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* Pricing Description */
+.pricing-description {
+    font-size: 1.25rem;
+    line-height: 1.75;
+    color: #4b5563;
+    max-width: 48rem;
+    margin: 0 auto 3rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 1s ease-out 0.9s forwards;
+}
+
+.dark-mode .pricing-description {
+    color: var(--dark-desc);
+}
+
+/* Decorative Elements */
+.decoration-line-1,
+.decoration-line-2 {
+    width: 6rem;
+    height: 0.25rem;
+    border-radius: 9999px;
+    background: linear-gradient(
+        to right,
+        var(--color-primary),
+        var(--color-secondary)
+    );
+}
+
+.dark-mode .decoration-line-1,
+.dark-mode .decoration-line-2 {
+    opacity: 0.5;
+}
+
+.decoration-dot {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 9999px;
+    background-color: var(--color-primary);
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.dark-mode .decoration-dot {
+    opacity: 0.5;
+}
+
+/* Scroll Indicator */
+.scroll-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #9ca3af;
+}
+
+.dark-mode .scroll-icon {
+    color: var(--dark-desc);
+}
+
+/* CTA Section */
+.cta-section {
+    background-color: #f9fafb;
+    padding: 5rem 1.5rem;
+}
+
+.dark-mode .cta-section {
+    background-color: var(--dark-bg-secondary);
+}
+
+.cta-container {
+    max-width: 64rem;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.cta-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.dark-mode .cta-title {
+    color: var(--dark-heading);
+}
+
+.cta-description {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: #4b5563;
+    margin-bottom: 2rem;
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dark-mode .cta-description {
+    color: var(--dark-desc);
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: white;
+    font-size: 1.125rem;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+.cta-button:hover span {
+    color: white;
+    z-index: 1;
+}
+
+.dark-mode .cta-button:hover {
+    background-color: var(--color-primary-dark);
+    color: white;
+}
+
+/* Animations */
+@keyframes blob {
+    0% {
+        transform: translate(0px, 0px) scale(1);
+    }
+
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+
+    100% {
+        transform: translate(0px, 0px) scale(1);
+    }
+}
+
+.animate-blob {
+    animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+    animation-delay: 4s;
+}
+
+.animation-delay-6000 {
+    animation-delay: 6s;
+}
+
+@keyframes pulse {
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}

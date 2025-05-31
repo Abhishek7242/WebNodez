@@ -2,13 +2,15 @@
 @section('title', 'WebNodez - Blogs')
 @section('blog', 'active')
 @section('main-section')
+    <link href="{{ asset('css/blogs.css') }}" rel="stylesheet">
+
  <script>
   
         document.documentElement.style.setProperty('--text-color', 'black');
         document.documentElement.style.setProperty('--intro-bg', '#FBFBFC');
         
     </script>
-
+{{-- Intro Section --}}
     <section class="blog-intro">
         <div class="container">
             <div class="blog-intro-content">
