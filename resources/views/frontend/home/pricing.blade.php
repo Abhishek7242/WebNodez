@@ -1,5 +1,5 @@
-<section class="pricing-secgtion-container bg-gray-50 py-20 px-6 md:px-12 lg:px-24">
-    <div class="max-w-7xl mx-auto text-center">
+<section class="pricing-section-container bg-gray-50 py-20 px-6 md:px-12 lg:px-24">
+    <div class="heading-text-container max-w-7xl mx-auto text-center">
         <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Pricing Models</h2>
 
         <p class="text-gray-600 text-lg mb-16 max-w-2xl mx-auto">

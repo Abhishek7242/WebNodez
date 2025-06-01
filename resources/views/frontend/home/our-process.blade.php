@@ -85,7 +85,7 @@
 
     <div class="container mx-auto px-4 relative z-10">
         <!-- Section Header -->
-        <div class="text-center mb-16">
+        <div class="heading-text-container text-center mb-16">
             <h2 class="text-4xl font-bold mb-4 gradient-text">Our Process</h2>
             <p class="text-gray-600 max-w-2xl mx-auto">
                 We follow a systematic approach to ensure the best results for your project

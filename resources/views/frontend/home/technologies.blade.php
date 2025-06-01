@@ -55,7 +55,7 @@
     ];
 @endphp
 
-<section class="relative py-32 overflow-hidden">
+<section class="home-tech-section relative py-32 overflow-hidden">
     <!-- Background Elements -->
     <div class="tech-inner-container absolute "></div>
     <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
@@ -94,7 +94,7 @@
                         class="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200">
                     </div>
                     <div class="relative">
-                        <div class="flex items-center mb-8">
+                        <div class="heading-container flex items-center mb-8">
                             <div
                                 class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mr-4 shadow-lg">
                                 <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor"
@@ -103,7 +103,7 @@
                                         d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                 </svg>
                             </div>
-                            <h3 class="text-2xl font-bold text-gray-900">Frontend Development</h3>
+                            <h3 class="text-2xl font-bold text-gray-900">Frontend </h3>
                         </div>
                         <x-technologies :items="$frontendTechnologies" />
                     </div>
@@ -118,7 +118,7 @@
                         class="absolute -inset-0.5 bg-gradient-to-r from-green-600 to-teal-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200">
                     </div>
                     <div class="relative">
-                        <div class="flex items-center mb-8">
+                        <div class="heading-container flex items-center mb-8">
                             <div
                                 class="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mr-4 shadow-lg">
                                 <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor"
@@ -127,7 +127,7 @@
                                         d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
                                 </svg>
                             </div>
-                            <h3 class="text-2xl font-bold text-gray-900">Backend Development</h3>
+                            <h3 class="text-2xl font-bold text-gray-900">Backend </h3>
                         </div>
                         <x-technologies :items="$backendTechnologies" />
                     </div>
@@ -142,7 +142,7 @@
                         class="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200">
                     </div>
                     <div class="relative">
-                        <div class="flex items-center mb-8">
+                        <div class="heading-container flex items-center mb-8">
                             <div
                                 class="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mr-4 shadow-lg">
                                 <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor"
@@ -166,7 +166,7 @@
                         class="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-rose-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200">
                     </div>
                     <div class="relative">
-                        <div class="flex items-center mb-8">
+                        <div class="heading-container flex items-center mb-8">
                             <div
                                 class="w-14 h-14 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mr-4 shadow-lg">
                                 <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor"

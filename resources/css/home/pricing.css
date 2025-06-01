@@ -63,15 +63,15 @@
 }
 
 /* Dark Mode Styles */
-.dark-mode .pricing-secgtion-container {
+.dark-mode .pricing-section-container {
     background: var(--dark-bg);
 }
 
-.dark-mode .pricing-secgtion-container h2 {
+.dark-mode .pricing-section-container h2 {
     color: var(--dark-top-heading);
 }
 
-.dark-mode .pricing-secgtion-container p {
+.dark-mode .pricing-section-container p {
     color: #94a3b8;
 }
 
@@ -108,3 +108,15 @@
     background: #1e293b;
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }
+@media (max-width: 480px) {
+.pricing-section-container h2{
+    font-size: 25px;
+}
+.heading-text-container p{
+    font-size: 12px;
+}
+.learn-more-btn{
+    font-size: 11px;
+}
+
+} 

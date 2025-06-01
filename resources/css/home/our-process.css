@@ -457,3 +457,13 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
+@media (max-width: 500px) {
+.process-container h2{
+    font-size: 27px;
+}
+.process-container .heading-text-container p{
+    font-size: 12px;
+}
+
+
+}

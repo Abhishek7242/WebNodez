@@ -89,7 +89,7 @@
 
 .home-design-gallery-filter-btn {
     padding: 12px 30px;
-    border: 2px solid #e9ecef;
+    border: 1px solid var(--color-text-light);
     border-radius: 30px;
     background: transparent;
     color: #636e72;
@@ -297,6 +297,10 @@
 }
 
 @media (max-width: 768px) {
+    .home-design-gallery-container {
+   
+    padding: 0 10px;
+}
     .home-design-gallery-section {
         padding: 60px 0;
     }
@@ -320,11 +324,17 @@
         margin-left: auto;
         margin-right: auto;
     }
+      .home-design-gallery-filter-btn{
+        font-size: 12px;
+        padding: 5px 13px;
+        
+    }
 }
 
 @media (max-width: 480px) {
     .home-design-gallery-title {
         font-size: 1.8rem;
+        color: var( --color-text-light);
     }
 
     .home-design-gallery-item-title {
@@ -338,7 +348,18 @@
     .home-design-gallery-grid {
         padding: 0 20px;
     }
+    .home-design-gallery-filter-btn{
+          font-size: 13px;
+        padding: 8px 18px;
+        
+    }
     .home-design-gallery-load-more-btn {
         padding: 8px 18px;
+        font-size: 13px;
+    }
+    .home-design-gallery-view-btn{
+               padding: 8px 18px;
+
+        font-size: 12px;
     }
 }

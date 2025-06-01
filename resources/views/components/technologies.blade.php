@@ -1,5 +1,44 @@
 @props(['items'])
 <style>
+    .tech-group-list-item h4{
+    font-size: 14px;
+    white-space: nowrap;
+}
+    @media (max-width: 1200px) {
+
+.home-tech-section .inner-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr))!important;
+}
+
+    }
+  @media (max-width: 750px) {
+
+.home-tech-section .inner-grid{
+    grid-template-columns: repeat(3, minmax(0, 1fr))!important;
+}
+  @media (max-width: 550px) {
+
+.home-tech-section .inner-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr))!important;
+}
+
+    }
+    @media (max-width: 450px) {
+    .tech-group-list-item{
+        padding:5px 10px;
+    }
+    .tech-group-list-item > div{
+        margin-bottom: 0;
+        padding: 0;
+    }
+.tech-group-list-item h4{
+    font-size: 12px;
+}
+.tech-group-list-item img{
+    height: 2rem;
+    width: 2rem;
+}
+}
       .dark-mode .tech-group-list-item{
 background: var(--dark-bg);
     }
@@ -10,7 +49,7 @@ background: var(--dark-bg);
 color: rgb(0, 120, 36);
     }
 </style>
-<div class="grid grid-cols-2 sm:grid-cols-3 gap-8">
+<div class="inner-grid grid grid-cols-2 sm:grid-cols-3 gap-8">
     @foreach ($items as $item)
         <div class=" group relative">
             <div
