@@ -96,6 +96,40 @@
 .dark-mode .service-text p {
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
+@media (max-width: 550px) {
+
+    .service-text {
+    
+    background:var(--dark-bg)!important;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+.service-text h2 {
+    font-size: 14px;
+    margin: 0;
+}
+.service-text p {
+    font-size: 10px;
+    padding: 0 4px;
+}
+.service-text , .service-text >div{
+    padding: 0 ;
+}
+}
+@media (max-width: 450px) {
+
+ .service-text{
+    height: 150px;
+ }
+.service-text h2 {
+    font-size: 12px;
+}
+.service-text p {
+    font-size: 8px;
+    line-height: 14px;
+}
+
+}
 
 /* 
 .service-card {

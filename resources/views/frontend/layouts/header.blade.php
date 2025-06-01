@@ -84,9 +84,9 @@
                 </script>
                 <ul id="mobile-nav">
                     <li class="nav-btns active"><a href="/">Home</a></li>
-                    <li class="nav-btns active"><a href="/">Blogs</a></li>
-                    <li class="nav-btns active"><a href="/">Services</a></li>
-                    <li class="nav-btns active"><a href="/">Portfolio</a></li>
+                    <li class="nav-btns active"><a href="/blogs">Blogs</a></li>
+                    <li class="nav-btns active"><a href="/services">Services</a></li>
+                    <li class="nav-btns active"><a href="/portfolio">Portfolio</a></li>
                     <li class="nav-btns"><a href="/about-us">About Us</a></li>
                     <li class="nav-btns"><a href="/contact-us">Contact Us</a></li>
 

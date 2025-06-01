@@ -99,6 +99,7 @@ height: 100%;
  #orbit-container{
   position: absolute;
   z-index: 0;
+  display: none;
  }
  .get-started-btn-container{
   margin-top: 50px;
