@@ -125,7 +125,15 @@ height: 100%;
  #intro-text p{
      font-size: 13px;
  }
-
+ #intro{
+  padding: 1rem;
+ }
+ .get-started-btn-container{
+ }
+.get-started-btn-container a{
+  padding: 8px 18px;
+  font-size: 13px;
+}
 }
 @media (max-width: 430px) {
 
