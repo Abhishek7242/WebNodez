@@ -11,25 +11,13 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/services/intro.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/services/our-services.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/services/our-process.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/services/contact-page.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/portfolio/intro.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/portfolio/case-studies.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/portfolio/design-gallery.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/portfolio/work-details.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/portfolio/blogs.css') }}" rel="stylesheet">
     <link href="{{ asset('css/about/culture.css') }}" rel="stylesheet">
+
     <link href="{{ asset('css/components/blog-card.css') }}" rel="stylesheet">
     <link href="{{ asset('css/components/faq.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/contact-us.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/terms_conditions.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
     <link href="{{ asset('css/chatbot.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/canvas-background.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/about.css') }}">
+    <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -64,8 +52,10 @@
 
             </div>
             
-            <div id="navigation-menu">
-
+            <div id="navigation-menu" class="flex">
+ <button id="darkModeMobile" class="p-2 rounded-full hover:bg-gray-700 transition-colors duration-200">
+                    <i class="fas fa-moon text-yellow-500"></i>
+                </button>
                 <!-- Mobile menu button -->
                 <div id="ham-icon" class="toggle">
                     <span></span>

@@ -72,26 +72,26 @@
 @endphp
 
 {{-- Our Services Section --}}
-<section class="our-services-section py-20 px-6 md:px-12 lg:px-24 bg-gradient-to-br from-gray-50 pb-32 to-white">
+<section id="services"
+    class="our-services-section py-12 md:py-16 lg:py-20 px-4 md:px-8 lg:px-24 bg-gradient-to-br from-gray-50 pb-24 md:pb-32 to-white">
     <div class="our-services-container max-w-7xl mx-auto">
         <!-- Section Header -->
-        <div class="our-services-header text-center mb-16">
-            <div class="our-services-badge inline-flex items-center space-x-3 mb-4">
-                <div class="our-services-badge-line w-2 h-8 rounded-full"></div>
-                <span class="our-services-badge-text font-medium text-lg">What We Offer</span>
+        <div class="our-services-header text-center mb-12 md:mb-16">
+            <div class="our-services-badge inline-flex items-center space-x-2 md:space-x-3 mb-3 md:mb-4">
+                <div class="our-services-badge-line w-1.5 md:w-2 h-6 md:h-8 rounded-full"></div>
+                <span class="our-services-badge-text font-medium text-base md:text-lg">What We Offer</span>
             </div>
-            <h2 class="our-services-title text-4xl md:text-5xl font-bold mb-6">Our Services</h2>
-            <p class="our-services-description text-xl text-gray-600 max-w-3xl mx-auto">
+            <h2 class="our-services-title text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">Our Services</h2>
+            <p class="our-services-description text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-4">
                 We provide comprehensive digital solutions to help your business grow. Choose from our range of services
                 below to learn more about how we can help you achieve your goals.
             </p>
         </div>
 
         <!-- Service Buttons -->
-        <div class="our-services-buttons grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+        <div class="our-services-buttons grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-8 md:mb-12">
             @foreach ($buttons as $button)
-             <x-service-button :button="$button" />
-
+                <x-service-button :button="$button" />
             @endforeach
         </div>
 

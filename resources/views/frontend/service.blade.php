@@ -3,11 +3,11 @@
 
 @section('services', 'active')
 @section('main-section')
-<link rel="stylesheet" href="{{asset('css/service/intro.css')}}">
-<link rel="stylesheet" href="{{asset('css/service/service-overview.css')}}">
-<link rel="stylesheet" href="{{asset('css/service/technology.css')}}">
-<link rel="stylesheet" href="{{asset('css/components/service-details.css')}}">
-<link rel="stylesheet" href="{{asset('css/components/why-choose-us.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/service/intro.css') }}?v={{ time() }}">
+    <link rel="stylesheet" href="{{ asset('css/service/service-overview.css') }}?v={{ time() }}">
+    <link rel="stylesheet" href="{{ asset('css/service/technology.css') }}?v={{ time() }}">
+    <link rel="stylesheet" href="{{ asset('css/components/service-details.css') }}?v={{ time() }}">
+    <link rel="stylesheet" href="{{ asset('css/components/why-choose-us.css') }}?v={{ time() }}">
     <script>
         document.documentElement.style.setProperty('--text-color', 'black');
         document.documentElement.style.setProperty('--intro-bg', 'linear-gradient(135deg, #f0fff4, #ffffff)');
@@ -23,14 +23,14 @@
 
 
 
-  @include('frontend/service/intro')
+    @include('frontend/service/intro')
     </header>
     {{-- service overview --}}
-  @include('frontend/service/service-overview')
+    @include('frontend/service/service-overview')
     {{-- Why web dev is solution  --}}
     <x-service-detail :serviceHeading="$service" :detailsArray='$detailsArray' />
     {{-- Tech we use section --}}
-  @include('frontend/service/technology')
+    @include('frontend/service/technology')
     {{-- Tech we use section --}}
     <x-why-choose-us :projectNumber='$projectNumber' :clientSatis="$clientSatis" />
 

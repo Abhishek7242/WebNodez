@@ -2,6 +2,11 @@
 @section('title', 'WebNodez - Services')
 @section('services', 'active')
 @section('main-section')
+
+    <link href="{{ asset('css/services/intro.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/services/our-services.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/services/our-process.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/services/contact-page.css') }}" rel="stylesheet">
  <script>
   
         document.documentElement.style.setProperty('--text-color', 'black');

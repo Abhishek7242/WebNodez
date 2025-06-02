@@ -46,7 +46,9 @@
     color: #10b981;
     cursor: pointer;
     transition: all 0.3s ease;
-    user-select: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+            user-select: none;
 }
 
 .dark-mode .floating-item {
@@ -260,3 +262,4 @@
         height: 120px;
     }
 }
+

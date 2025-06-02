@@ -57,7 +57,7 @@
             </div>
         </div>
     </section>
-
+{{-- our process section --}}
     <x-service-detail :serviceHeading="$service" :detailsArray='$detailsArray' />
 
     <section class="cta-section">

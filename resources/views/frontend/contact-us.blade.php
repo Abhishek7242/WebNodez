@@ -2,6 +2,8 @@
 @section('title', 'WebNodez - Contact Us')
 @section('contact', 'active')
 @section('main-section')
+    <link href="{{ asset('css/contact-us.css') }}" rel="stylesheet">
+
     <script>
         document.documentElement.style.setProperty('--text-color', 'black');
         document.documentElement.style.setProperty('--intro-bg', '#FBFBFC');

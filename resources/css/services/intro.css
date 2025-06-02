@@ -529,3 +529,184 @@
         var(--color-primary-light)
     );
 }
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .services-section {
+        padding: 4rem 2rem;
+    }
+
+    .services-heading {
+        font-size: 2.5rem !important;
+    }
+
+    .services-description {
+        font-size: 1.125rem !important;
+    }
+
+    .services-playground {
+        max-width: 500px !important;
+    }
+
+    .services-center-element {
+        padding: 40px;
+    }
+
+    .services-center-button {
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    .services-name {
+        font-size: 1.125rem;
+    }
+
+    .services-icon-box {
+        width: 2.25rem;
+        height: 2.25rem;
+    }
+
+    .services-icon-i {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .services-section {
+        padding: 3rem 1.5rem;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr !important;
+        gap: 3rem !important;
+    }
+
+    .services-heading {
+        font-size: 2.25rem !important;
+    }
+
+    .services-description {
+        font-size: 1rem !important;
+    }
+
+    .services-buttons {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+
+    .services-playground {
+        max-width: 400px !important;
+        margin: 0 auto;
+    }
+
+    .services-center-element {
+        padding: 30px;
+    }
+
+    .services-center-button {
+        width: 18px !important;
+        height: 18px !important;
+    }
+
+    .services-name {
+        font-size: 1rem;
+    }
+
+    .services-icon-box {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .services-icon-i {
+        font-size: 1.125rem;
+    }
+
+    .services-contact-container {
+        bottom: 1rem;
+    }
+
+    .services-contact-btn {
+        padding: 0.5rem 1.5rem;
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-section {
+        padding: 2.5rem 1rem;
+    }
+
+    .services-heading {
+        font-size: 2rem !important;
+    }
+
+    .services-description {
+        font-size: 0.9375rem !important;
+    }
+
+    .services-badge-text {
+        font-size: 1rem !important;
+    }
+
+    .services-playground {
+        max-width: 320px !important;
+    }
+
+    .services-center-element {
+        padding: 25px;
+    }
+.services-playground {
+  
+    overflow:visible ;
+}
+    .services-center-button {
+        width: 16px !important;
+        height: 16px !important;
+    }
+
+    .services-name {
+        font-size: 0.875rem;
+    }
+
+    .services-icon-box {
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+
+    .services-icon-i {
+        font-size: 1rem;
+    }
+
+    .services-contact-container {
+        bottom: -0.75rem;
+    }
+
+    .services-contact-btn {
+        padding: 0.5rem 1.25rem;
+        font-size: 0.8125rem;
+    }
+}
+
+/* Fix for very small screens */
+@media (max-width: 360px) {
+    .services-section {
+        padding: 2rem 0.75rem;
+    }
+
+    .services-heading {
+        font-size: 1.75rem !important;
+    }
+
+    .services-playground {
+        max-width: 280px !important;
+    }
+
+    .services-center-element {
+        padding: 20px;
+    }
+
+    .services-center-button {
+        width: 14px !important;
+        height: 14px !important;
+    }
+}

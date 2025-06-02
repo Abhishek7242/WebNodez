@@ -4,6 +4,8 @@
 @section('main-section')
 
         <link href="{{ asset('css/home.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/canvas-background.css') }}" rel="stylesheet">
+
     <link href="{{ asset('css/home/intro.css') }}" rel="stylesheet">
         <link href="{{ asset('css/home/services.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/technologies.css') }}" rel="stylesheet">
@@ -15,13 +17,14 @@
     <!-- Three.js and other required scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="{{ asset('js/canvas-background.js') }}"></script>
-
+   
     <!-- Canvas background container -->
     <div id="canvas-background" class="canvas-background"></div>
 
     <script>
         const el = document.querySelector('#header');
-        el.style.setProperty('--intro-bg', 'none'); // Remove the background image since we're using canvas
+        el.style.setProperty('--intro-bg', 'white'); // Remove the background image since we're using canvas
+        el.style.setProperty('--dark-bg', 'white'); // Remove the background image since we're using canvas
     </script>
     @include('frontend/home/intro')
 

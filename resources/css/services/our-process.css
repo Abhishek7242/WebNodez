@@ -12,7 +12,7 @@
     overflow: hidden;
 }
 .dark-mode .our-process-section {
-  background: var(--dark-bg);
+    background: var(--dark-bg);
 }
 
 /* Section Header */
@@ -144,7 +144,6 @@
 .dark-mode .our-process-key-point {
     background: none;
     border: 1px solid gray;
-  
 }
 
 .our-process-key-point::before {
@@ -198,7 +197,6 @@
 }
 .dark-mode .our-process-key-point-title {
     color: var(--dark-top-heading);
- 
 }
 
 .our-process-key-point-title::after {
@@ -247,8 +245,8 @@
     transition: all 0.3s ease;
 }
 .dark-mode .our-process-step-inner {
-  border: 1px solid gray;
-  background: none;
+    border: 1px solid gray;
+    background: none;
 }
 
 .our-process-step-inner::before {
@@ -296,7 +294,6 @@
 }
 .dark-mode .our-process-step-title {
     color: var(--dark-top-heading);
-  
 }
 
 .our-process-step-title::after {
@@ -392,21 +389,291 @@
 }
 
 /* Responsive Adjustments */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+    .our-process-section {
+        padding: 3rem 1.5rem;
+    }
+
+    .our-process-title {
+        font-size: 2.5rem !important;
+    }
+
+    .our-process-description {
+        font-size: 1.125rem !important;
+    }
+
+    .our-process-key-points {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
     .our-process-step-inner {
         padding: 1.5rem;
     }
 
-    .our-process-step-icon {
-        margin-bottom: 1rem;
+    .our-process-step-number span {
+        font-size: 5rem;
+    }
+
+    .our-process-step-icon .w-24 {
+        width: 5rem;
+        height: 5rem;
+    }
+
+    .our-process-step-icon i {
+        font-size: 2rem;
+    }
+
+    .our-process-timeline {
+        margin-top: 2rem;
+    }
+
+    .our-process-timeline-line {
+        left: 2rem;
+        width: 0.2rem;
+    }
+
+    .our-process-timeline-dots {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .our-process-timeline-dot {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding-left: 4rem;
+    }
+
+    .our-process-timeline-dot-inner {
+        width: 1.5rem;
+        height: 1.5rem;
+        border-width: 0.2rem;
+    }
+
+    .our-process-timeline-dot-inner::before {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .our-process-timeline-dot::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 2rem;
+        height: 0.125rem;
+        background: var(--color-primary);
+        opacity: 0.5;
+    }
+}
+
+@media (max-width: 768px) {
+    .our-process-section {
+        padding: 2.5rem 1rem;
+    }
+
+    .our-process-header {
+        padding: 1rem 0;
+    }
+
+    .our-process-badge {
+        padding: 0.5rem 1rem;
+    }
+
+    .our-process-badge-text {
+        font-size: 1rem;
+    }
+
+    .our-process-title {
+        font-size: 2rem !important;
+    }
+
+    .our-process-description {
+        font-size: 1rem !important;
+        padding: 0;
+    }
+
+    .our-process-key-points {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .our-process-key-point {
+        padding: 1.5rem;
+    }
+
+    .our-process-key-point-icon {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .our-process-key-point-title {
+        font-size: 1.25rem;
+    }
+
+    .our-process-steps {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .our-process-step-inner {
+        padding: 1.25rem;
+    }
+
+    .our-process-step .flex {
+        gap: 1rem;
+    }
+
+    .our-process-step-number {
+        margin-bottom: 0.5rem;
+    }
+
+    .our-process-step-number span {
+        font-size: 4rem;
+    }
+
+    .our-process-step-icon .w-24 {
+        width: 4rem;
+        height: 4rem;
+    }
+
+    .our-process-step-icon i {
+        font-size: 1.75rem;
+    }
+
+    .our-process-step-title {
+        font-size: 1.5rem;
+    }
+
+    .our-process-timeline {
+        margin-top: 1.5rem;
+    }
+
+    .our-process-timeline-line {
+        left: 1.5rem;
+    }
+
+    .our-process-timeline-dot {
+        padding-left: 3.5rem;
+    }
+
+    .our-process-timeline-dot-inner {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+
+    .our-process-timeline-dot-inner::before {
+        width: 0.875rem;
+        height: 0.875rem;
+    }
+
+    .our-process-timeline-dot::after {
+        width: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .our-process-section {
+        padding: 2rem 0.75rem;
+    }
+
+    .our-process-title {
+        font-size: 1.75rem !important;
+    }
+
+    .our-process-description {
+        font-size: 0.9375rem !important;
+    }
+
+    .our-process-key-point {
+        padding: 1.25rem;
+    }
+
+    .our-process-key-point-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .our-process-key-point-icon i {
+        font-size: 1.25rem;
+    }
+
+    .our-process-key-point-title {
+        font-size: 1.125rem;
+    }
+
+    .our-process-step-inner {
+        padding: 1rem;
+    }
+
+    .our-process-step-number span {
+        font-size: 2.5rem;
+        line-height: 1;
+    }
+
+    .our-process-step-icon .w-24 {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .our-process-step-icon i {
+        font-size: 1.25rem;
+    }
+
+    .our-process-step-title {
+        font-size: 1.125rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .our-process-step-description {
+        font-size: 0.875rem;
+        line-height: 1.5;
+        margin-bottom: 0.75rem;
+    }
+
+    .our-process-substep {
+        font-size: 0.8125rem;
+        line-height: 1.4;
+    }
+
+    .our-process-substep i {
+        font-size: 0.875rem;
+    }
+
+    .our-process-timeline {
+        margin-top: 1rem;
     }
 
     .our-process-timeline-line {
         left: 1rem;
+        width: 0.15rem;
+    }
+
+    .our-process-timeline-dots {
+        gap: 1rem;
     }
 
     .our-process-timeline-dot {
-        padding-left: 3rem !important;
+        padding-left: 2.5rem;
+    }
+
+    .our-process-timeline-dot-inner {
+        width: 1rem;
+        height: 1rem;
+        border-width: 0.15rem;
+    }
+
+    .our-process-timeline-dot-inner::before {
+        width: 0.75rem;
+        height: 0.75rem;
+    }
+
+    .our-process-timeline-dot::after {
+        width: 1.25rem;
+        height: 0.1rem;
     }
 }
 

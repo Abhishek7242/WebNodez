@@ -1,32 +1,35 @@
-// Dark mode functionality
 const initDarkMode = () => {
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const icon = darkModeToggle.querySelector('i');
+    const toggles = [document.getElementById('darkModeToggle'), document.getElementById('darkModeMobile')];
 
-    // Check for saved theme preference
+    // Set icons based on current mode
+    const updateIcons = (isDark) => {
+        toggles.forEach(toggle => {
+            const icon = toggle.querySelector('i');
+            if (isDark) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+    };
+
+    // Check saved theme preference
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark-mode') {
         document.body.classList.add('dark-mode');
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
+        updateIcons(true);
     }
 
-    // Toggle dark mode
-    darkModeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-
-        // Update icon
-        if (document.body.classList.contains('dark-mode')) {
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-            localStorage.setItem('theme', 'dark-mode');
-        } else {
-            icon.classList.remove('fa-sun');
-            icon.classList.add('fa-moon');
-            localStorage.setItem('theme', 'light');
-        }
+    // Toggle dark mode on click
+    toggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+            const isDark = document.body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark-mode' : 'light');
+            updateIcons(isDark);
+        });
     });
 };
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', initDarkMode); 
+document.addEventListener('DOMContentLoaded', initDarkMode);

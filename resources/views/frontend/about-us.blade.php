@@ -2,6 +2,10 @@
 @section('title', 'WebNodez - About Us')
 @section('about', 'active')
 @section('main-section')
+    <link rel="stylesheet" href="{{ asset('css/about.css') }}">
+    <link href="{{ asset('css/about/intro.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/about/our-story.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/about/culture.css') }}" rel="stylesheet">
 
     <script>
         document.documentElement.style.setProperty('--text-color', 'black');

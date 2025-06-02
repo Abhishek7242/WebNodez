@@ -53,6 +53,7 @@
 
 .dark-mode .service-container:hover {
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    border-color: var(--color-primary);
 }
 
 .dark-mode .service-text {
@@ -150,17 +151,31 @@
 
     .service-text {
     
-    background:var(--dark-bg)!important;
+    background:var(--intro-bg)!important;
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
+}
+   .dark-mode .service-text {
+    
+    background:var(--dark-bg)!important;
+ 
 }
 .service-text h2 {
     font-size: 14px;
     margin: 0;
+    color: black;
+}
+.dark-mode .service-text h2 {
+ color: white;
 }
 .service-text p {
     font-size: 10px;
     padding: 0 4px;
+    color: black;
+}
+.dark-mode .service-text p {
+ color: white;
+   
 }
 .service-text , .service-text >div{
     padding: 0 ;
@@ -172,10 +187,10 @@
     height: 150px;
  }
 .service-text h2 {
-    font-size: 12px;
+    font-size: 13px;
 }
 .service-text p {
-    font-size: 8px;
+    font-size:  10px;
     line-height: 14px;
 }
 

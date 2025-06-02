@@ -1,6 +1,8 @@
 @extends('frontend/layouts/main')
 @section('title', 'WebNodez - Terms & Conditions')
 @section('main-section')
+    <link href="{{ asset('css/terms_conditions.css') }}" rel="stylesheet">
+
 <script>
     const el = document.querySelector('#header');
 el.style.setProperty('--intro-bg', `url('https://w0.peakpx.com/wallpaper/251/431/HD-wallpaper-black-with-green-background-technology-other-entertainment-people.jpg')`);
