@@ -212,7 +212,7 @@
         }
 
         function markAsReplied(id) {
-            if (confirm('Are you sure you want to delete this message?')) {
+            if (confirm('Are you sure you replied to this message?')) {
                 fetch(`/admin/contact/${id}/mark-replied`, {
                         method: 'PUT',
                         headers: {
