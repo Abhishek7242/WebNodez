@@ -2,6 +2,34 @@
 /*!***************************************!*\
   !*** ./resources/js/contactUsForm.js ***!
   \***************************************/
+function simulateDelayedResponse() {
+  return new Promise(function (resolve) {
+    setTimeout(function () {
+      resolve({
+        success: true,
+        message: 'Simulated data received after delay'
+      });
+    }, 5000); // Simulate a delay
+  });
+}
+function displayErrors(errors, errorClass) {
+  // Clear previous error messages
+  console.log('Errors received:', errors);
+  document.querySelectorAll(".".concat(errorClass, "-error-message")).forEach(function (errorSpan) {
+    errorSpan.innerText = '';
+  });
+
+  // Loop through each error and display it near the corresponding input field
+  for (var field in errors) {
+    if (errors.hasOwnProperty(field)) {
+      var errorSpan = document.getElementById("".concat(errorClass) + field + 'Error');
+      if (errorSpan) {
+        errorSpan.innerText = errors[field].join(', '); // Join multiple errors with a comma
+        errorSpan.style.color = 'red';
+      }
+    }
+  }
+}
 var inputs = document.querySelectorAll('#contact-form-container form div input');
 document.addEventListener('DOMContentLoaded', function () {
   inputs.forEach(function (input) {

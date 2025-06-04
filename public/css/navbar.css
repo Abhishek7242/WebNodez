@@ -14,7 +14,9 @@ nav{
     position: relative;
     padding: 0.5rem 0;
 }
-
+.dark-mode nav .nav-links {
+    color: white;
+}
 .nav-links::before {
     content: '';
     position: absolute;
@@ -40,7 +42,7 @@ nav{
 
 /* Optional: Style for active page link */
 .nav-links.active {
-  color: var(--color-primary); /* Tailwind's green-500 */
+  color: var(--color-primary)!important; /* Tailwind's green-500 */
 }
 
 
@@ -100,7 +102,9 @@ nav{
   display: none;
 }
 
-
+#navigation-menu{
+  display: none;
+}
 #mobile-nav li{
  display: flex;
     background:var(--color-primary);;
@@ -312,6 +316,9 @@ transition-delay: 1s ;
   }
 
 @media (max-width: 1130px) {
+  #navigation-menu{
+  display: flex;
+}
  nav{
     justify-content: space-between!important;
  }

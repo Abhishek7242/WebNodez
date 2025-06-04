@@ -12,12 +12,7 @@
     <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
 
 
-    <link href="{{ asset('css/about/culture.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/components/blog-card.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/components/faq.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/chatbot.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -26,18 +21,17 @@
 
     <header id="header">
         <!-- Tailwind CSS Navbar -->
-        <nav class=" px-6 py-4 flex justify-evenly items-center">
+        <nav class=" px-6 py-4 flex justify-between items-center">
             <div class="text-2xl font-bold text-green-500 cursor-default">
                 WebNodez
             </div>
 
             <ul class="navbar flex space-x-8 items-center">
-                <li><a href="/" class="@yield('home', ' ') nav-links font-semibold ">Home</a></li>
+                <li><a href="/admin/dashboard" class="@yield('home', ' ') nav-links font-semibold ">Home</a></li>
                 <li><a href="/blogs" class="@yield('blog', ' ') nav-links font-semibold ">Blogs</a></li>
                 <li><a href="/services" class="@yield('services', ' ') nav-links font-semibold ">Services</a></li>
                 <li><a href="/portfolio" class="@yield('portfolio', ' ') nav-links font-semibold ">Portfolio</a>
                 </li>
-                <li><a href="/about-us" class="@yield('about', ' ') nav-links font-semibold ">About Us</a></li>
 
 
 
@@ -48,12 +42,41 @@
                 <button id="darkModeToggle" class="p-2 rounded-full  transition-colors duration-200">
                     <i class="fas fa-moon text-yellow-500"></i>
                 </button>
-                <a href="/contact-us" class=" @yield('contact', ' ') animated-button"><span>Contact Us</span></a>
-
+                <div class="relative group">
+                    <button
+                        class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-semibold hover:bg-green-600 transition-colors duration-200">
+                        {{ substr(auth()->guard('admin')->user()->name ?? 'A', 0, 1) }}
+                    </button>
+                    <div
+                        class="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-lg shadow-lg py-2 hidden group-hover:block z-50">
+                        <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+                            <div class="text-sm font-medium text-gray-900 dark:text-white">
+                                {{ auth()->guard('admin')->user()->name ?? 'Admin User' }}
+                            </div>
+                            <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                                {{ auth()->guard('admin')->user()->email }}
+                            </div>
+                            <div class="mt-2">
+                                <span
+                                    class="px-2 py-1 text-xs font-semibold rounded-full {{ auth()->guard('admin')->user()->role === 'super_admin' ? 'bg-purple-500/20 text-purple-400' : (auth()->guard('admin')->user()->role === 'admin' ? 'bg-blue-500/20 text-blue-400' : 'bg-yellow-500/20 text-yellow-400') }}">
+                                    {{ ucfirst(str_replace('_', ' ', auth()->guard('admin')->user()->role)) }}
+                                </span>
+                            </div>
+                        </div>
+                        <form method="POST" action="{{ route('admin.logout') }}" class="block">
+                            @csrf
+                            <button type="submit"
+                                class="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                <i class="fas fa-sign-out-alt mr-2"></i>
+                                Logout
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
-            
+
             <div id="navigation-menu" class="flex">
- <button id="darkModeMobile" class="p-2 rounded-full  transition-colors duration-200">
+                <button id="darkModeMobile" class="p-2 rounded-full  transition-colors duration-200">
                     <i class="fas fa-moon text-yellow-500"></i>
                 </button>
                 <!-- Mobile menu button -->
@@ -88,7 +111,7 @@
         <!-- Mobile menu -->
 
 
-     
+
 
         {{-- Mobile navbar --}}
         <script>
@@ -112,13 +135,13 @@
                         }, index * 200); // Adjust the delay as needed
                     });
                 } else {
-                    
+
                     show = false
                     navItems.forEach((item, index) => {
                         setTimeout(() => {
                             item.classList.remove('animate');
                         }, index * 200); // Adjust the delay as needed
-                        
+
                     });
                     setTimeout(() => {
                         document.body.classList.remove('no-scroll')
@@ -139,7 +162,18 @@
 
 
 
-
+    setInterval(() => {
+        console.log('heartbeat ')
+            fetch('/admin/heartbeat', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({})
+            });
+        }, 60000); // Every 60 seconds
 
 
 

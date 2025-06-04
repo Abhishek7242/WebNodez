@@ -12,7 +12,7 @@
     overflow: hidden;
 }
 .dark-mode .our-process-section {
-    background: var(--dark-bg);
+  background: var(--dark-bg);
 }
 
 /* Section Header */
@@ -245,8 +245,8 @@
     transition: all 0.3s ease;
 }
 .dark-mode .our-process-step-inner {
-    border: 1px solid gray;
-    background: none;
+  border: 1px solid gray;
+  background: none;
 }
 
 .our-process-step-inner::before {

@@ -28,7 +28,8 @@
 
                     <!-- Left card -->
                     <div class="portfolio-gallery-card portfolio-gallery-left">
-                        <img src="https://www.oakyweb.com/images/dc6df7e28e51cb7dcec3bdda8b502f7e.gif" alt="E-Commerce Image">
+                        <img src="https://www.oakyweb.com/images/dc6df7e28e51cb7dcec3bdda8b502f7e.gif"
+                            alt="E-Commerce Image">
                         <div class="portfolio-gallery-card-content">
                             <h2>E-Commerce</h2>
                         </div>
@@ -86,7 +87,8 @@
                 <img src="https://miro.medium.com/v2/resize:fit:1400/1*lZ16mhuFp84Nu4CJObW3lQ.gif" alt="App">
             </div>
             <div class="image-item design-7">
-                <img src="https://cdn.dribbble.com/userupload/41696512/file/original-4a84e5b6b575110b27839f39bdc973c9.gif" alt="E-commerce">
+                <img src="https://cdn.dribbble.com/userupload/41696512/file/original-4a84e5b6b575110b27839f39bdc973c9.gif"
+                    alt="E-commerce">
             </div>
             <div class="image-item design-8">
                 <img src="https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/advisor/wp-content/uploads/2022/09/Image_-_How_to_design_a_website_.jpeg.jpg"

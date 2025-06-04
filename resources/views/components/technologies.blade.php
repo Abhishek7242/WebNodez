@@ -15,7 +15,7 @@
 
 .home-tech-section .inner-grid{
     grid-template-columns: repeat(3, minmax(0, 1fr))!important;
-}
+}}
   @media (max-width: 550px) {
 
 .home-tech-section .inner-grid{

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/components/why-choose-us.css') }}?v={{ time() }}">
     <script>
         document.documentElement.style.setProperty('--text-color', 'black');
-        document.documentElement.style.setProperty('--intro-bg', 'linear-gradient(135deg, #f0fff4, #ffffff)');
+        document.documentElement.style.setProperty('--intro-bg', 'white');
     </script>
     {{-- <section class="relative py-20 px-6 md:px-16">
     <div class="max-w-4xl mx-auto text-center">

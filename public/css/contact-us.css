@@ -469,8 +469,10 @@ input:-webkit-autofill:hover {
         }
 
      #contact-form-section   button {
-                min-width: 130px;
-
+                min-width: 150px;
+display: flex;
+justify-content: center;
+align-items: center;
             margin-left: 20px;
             padding: 10px 25px;
             background-color: #000000;
@@ -495,17 +497,20 @@ height: 100%;
      }
      #contact-form-section   button.submittingForm{
   transform: translate(0px, 0px);
-        background:var(--color-primary);
-
-}
-
+        background:rgb(206, 206, 100)!important;
+        pointer-events: none;
+        
+    }
     
-             #contact-form-section   button.submitFormSuccessfully{
-    background: rgb(17, 204, 0);
+    
+    #contact-form-section   button.submitFormSuccessfully{
+        background: rgb(17, 204, 0)!important;
+        pointer-events: none;
+
 
 }
              #contact-form-section   button.formNotSubmitted{
-        background: red;
+        background: var(--color-error)!important;
 
 }
      #contact-form-section   button:hover {

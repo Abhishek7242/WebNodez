@@ -7,9 +7,11 @@
     <link href="{{ asset('css/portfolio/design-gallery.css') }}" rel="stylesheet">
     <link href="{{ asset('css/portfolio/work-details.css') }}" rel="stylesheet">
     <link href="{{ asset('css/portfolio/blogs.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/blogs.css') }}" rel="stylesheet">
+
     <script>
         document.documentElement.style.setProperty('--text-color', 'black');
-        document.documentElement.style.setProperty('--intro-bg', 'linear-gradient(135deg, #f0fff4, #ffffff)');
+        document.documentElement.style.setProperty('--intro-bg', 'white');
     </script>
 
 

@@ -53,7 +53,8 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
+    margin-left: 36px;
     flex-direction: column;
 }
 
@@ -69,6 +70,12 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1200px) {
+    .portfolio-intro-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
 @media (max-width: 768px) {
     .portfolio-intro {
         padding: 60px 0;
@@ -87,6 +94,21 @@
     }
 }
 
+@media (max-width: 650px) {
+    .portfolio-intro-container {
+        padding: 0 10px;
+    }
+    .portfolio-gallery {
+        margin-left: 0px;
+    }
+    .portfolio-gallery-card img {
+        border-radius: 0px !important;
+        width: 240px !important;
+    }
+    .portfolio-gallery {
+        align-items: center;
+    }
+}
 @media (max-width: 480px) {
     .portfolio-intro-title {
         font-size: 2rem;
@@ -181,9 +203,7 @@
     transform: translateZ(30px);
 }
 .dark-mode .portfolio-gallery-card-content h2 {
-    
     color: var(--dark-top-heading);
-  
 }
 
 .portfolio-gallery p {
@@ -391,11 +411,25 @@
 @media (max-width: 1600px) {
     .portfolio-image-grid {
         max-width: 1400px;
+        height: 650px;
     }
 
     .image-item {
         width: 250px;
         height: 250px;
+    }
+
+    .image-item:nth-child(2) {
+        right: 30%;
+    }
+    .image-item:nth-child(4) {
+        right: 30%;
+    }
+    .image-item:nth-child(6) {
+        left: 30%;
+    }
+    .image-item:nth-child(8) {
+        left: 30%;
     }
 }
 
@@ -409,11 +443,54 @@
         width: 220px;
         height: 220px;
     }
+
+    .image-item:nth-child(2) {
+        right: 25%;
+    }
+    .image-item:nth-child(4) {
+        right: 25%;
+    }
+    .image-item:nth-child(6) {
+        left: 25%;
+    }
+    .image-item:nth-child(8) {
+        left: 25%;
+    }
+}
+
+@media (max-width: 992px) {
+    .portfolio-image-grid {
+        max-width: 800px;
+        height: 550px;
+    }
+
+    .image-item {
+        width: 200px;
+        height: 200px;
+    }
+
+    .image-item:nth-child(2) {
+        right: 20%;
+    }
+    .image-item:nth-child(4) {
+        right: 20%;
+    }
+    .image-item:nth-child(6) {
+        left: 20%;
+    }
+    .image-item:nth-child(8) {
+        left: 20%;
+    }
 }
 
 @media (max-width: 768px) {
+    .portfolio-images {
+        padding: 40px 0;
+        min-height: 600px;
+    }
+
     .portfolio-image-grid {
-        max-width: 700px;
+        max-width: 600px;
         height: 500px;
     }
 
@@ -421,17 +498,106 @@
         width: 180px;
         height: 180px;
     }
+
+    .image-item:nth-child(2) {
+        right: 15%;
+    }
+    .image-item:nth-child(4) {
+        right: 15%;
+    }
+    .image-item:nth-child(6) {
+        left: 15%;
+    }
+    .image-item:nth-child(8) {
+        left: 15%;
+    }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
+    .portfolio-images {
+        padding: 30px 0;
+        min-height: 500px;
+    }
+
     .portfolio-image-grid {
         max-width: 400px;
-        height: 400px;
+        height: 450px;
     }
 
     .image-item {
         width: 150px;
         height: 150px;
+    }
+
+    .image-item:nth-child(2) {
+        right: 10%;
+    }
+    .image-item:nth-child(4) {
+        right: 10%;
+    }
+    .image-item:nth-child(6) {
+        left: 10%;
+    }
+    .image-item:nth-child(8) {
+        left: 10%;
+    }
+}
+
+@media (max-width: 400px) {
+    .portfolio-images {
+        padding: 20px 0;
+        min-height: 400px;
+    }
+
+    .portfolio-image-grid {
+        max-width: 300px;
+        height: 400px;
+    }
+
+    .image-item {
+        width: 120px;
+        height: 120px;
+    }
+
+    .image-item:nth-child(2) {
+        right: 5%;
+    }
+    .image-item:nth-child(4) {
+        right: 5%;
+    }
+    .image-item:nth-child(6) {
+        left: 5%;
+    }
+    .image-item:nth-child(8) {
+        left: 5%;
+    }
+}
+
+/* Adjust hover effects for smaller screens */
+@media (max-width: 768px) {
+    .image-item:hover {
+        transform: scale(1.05);
+    }
+
+    .image-item:nth-child(1):hover {
+        transform: translateX(-50%) scale(1.05);
+    }
+    .image-item:nth-child(5):hover {
+        transform: translateX(-50%) scale(1.05);
+    }
+    .image-item:nth-child(7):hover {
+        transform: translateY(-50%) scale(1.05);
+    }
+    .image-item:nth-child(3):hover {
+        transform: translateY(-50%) scale(1.05);
+    }
+    .image-item:nth-child(9):hover {
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+
+    .design-4:hover,
+    .design-5:hover {
+        transform: rotate(0) scale(1.05);
     }
 }
 
