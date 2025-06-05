@@ -8,21 +8,17 @@
 
        
             <div class="flex flex-wrap justify-center gap-10">
-                <x-blog-card image="https://images.unsplash.com/photo-1498050108023-c5249f4df085" category="Technology"
-                    title="The Future of Web Development in 2024"
-                    excerpt="Explore the latest trends and technologies shaping the future of web development..."
-                    date="March 15, 2024" />
-                <x-blog-card image="https://images.unsplash.com/photo-1461749280684-dccba630e2f6" category="Development"
-                    title="Mastering Modern JavaScript"
-                    excerpt="A comprehensive guide to the latest JavaScript features and best practices..."
-                    date="March 12, 2024" />
-                <x-blog-card image="https://images.unsplash.com/photo-1547658719-da2b51169166" category="Design"
-                    title="UI/UX Design Principles"
-                    excerpt="Learn the fundamental principles of creating engaging user experiences..."
-                    date="March 10, 2024" />
-                <x-blog-card image="https://images.unsplash.com/photo-1552664730-d307ca884978" category="Business"
-                    title="Digital Marketing Strategies"
-                    excerpt="Effective strategies to grow your business in the digital age..." date="March 8, 2024" />
+                @foreach ($blogs->take(4) as $blog)
+                <x-blog-card 
+                    :image="$blog->featured_image" 
+                    :category="$blog->category" 
+                    :title="$blog->title" 
+                    :excerpt="Str::limit(strip_tags($blog->content), 150)" 
+                    :date="$blog->created_at->format('F d, Y')" 
+                    :link="'/blog/' . $blog->slug" 
+                />
+            @endforeach
+            
             </div>
 
             <div class="load-more-container">

@@ -78,7 +78,8 @@ Route::get('/blog/{slug}', function ($slug) {
 });
 
 Route::get('/portfolio', function () {
-    return view('frontend.portfolio');
+    $blogs = Blog::latest()->get();
+    return view('frontend.portfolio', compact('blogs'));
 });
 
 // Route to list all services
