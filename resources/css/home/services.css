@@ -99,99 +99,222 @@
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 @media (max-width: 950px) {
-.service-text h2 {
-    font-size: 24px;
-    margin: 0;
-}
-.service-text p {
-    font-size: 14px;
-    padding: 0 4px;
-}
-
-
+    .service-text h2 {
+        font-size: 24px;
+        margin: 0;
+    }
+    .service-text p {
+        font-size: 14px;
+        padding: 0 4px;
+    }
 }
 @media (max-width: 750px) {
-    .service-text{
-    width: 50%;
-
+    .service-text {
+        width: 50%;
     }
-      .our-service-container{
+    .our-service-container {
         padding-left: 10px;
         padding-right: 10px;
     }
-    .our-service-heading-text{
-    font-size: 1.9rem;
+    .our-service-heading-text {
+        font-size: 1.9rem;
     }
-    .our-service-desc-text{
-    font-size: .9rem;
+    .our-service-desc-text {
+        font-size: 0.9rem;
     }
 
-.service-text h2 {
-    font-size: 20px;
-    margin: 0;
-}
-.service-text p {
-    font-size: 12px;
-    padding: 0 4px;
-}
-.service-text , .service-text >div{
-    padding: 0 4px;
-}
+    .service-text h2 {
+        font-size: 20px;
+        margin: 0;
+    }
+    .service-text p {
+        font-size: 12px;
+        padding: 0 4px;
+    }
+    .service-text,
+    .service-text > div {
+        padding: 0 4px;
+    }
 }
 @media (max-width: 550px) {
-  
-    .our-service-heading-text{
-    font-size: 1.5rem;
+    .service-outer-container{
+        margin-top: 30px;
     }
-    .our-service-desc-text{
-    font-size: .6rem;
+    .service-container {
+        height: 220px;
+        position: relative;
+        margin: 0;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .service-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1.1);
+        transition: transform 0.5s ease;
+    }
+
+    .service-container:hover img {
+        transform: scale(1.15);
+    }
+    .service-container .rounded-l-full{
+    border-radius: 10px;
+    }
+    .service-container .rounded-r-full{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
     }
 
     .service-text {
-    
-    background:var(--intro-bg)!important;
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-}
-   .dark-mode .service-text {
-    
-    background:var(--dark-bg)!important;
- 
-}
-.service-text h2 {
-    font-size: 14px;
-    margin: 0;
-    color: black;
-}
-.dark-mode .service-text h2 {
- color: white;
-}
-.service-text p {
-    font-size: 10px;
-    padding: 0 4px;
-    color: black;
-}
-.dark-mode .service-text p {
- color: white;
-   
-}
-.service-text , .service-text >div{
-    padding: 0 ;
-}
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.95) 0%,
+            rgba(0, 0, 0, 0.8) 30%,
+            rgba(0, 0, 0, 0.4) 60%,
+            transparent 100%
+        );
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .dark-mode .service-text {
+        background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.98) 0%,
+            rgba(0, 0, 0, 0.85) 30%,
+            rgba(0, 0, 0, 0.5) 60%,
+            transparent 100%
+        );
+    }
+
+    .service-text h2 {
+        font-size: 20px;
+        margin: 0;
+        color: white;
+        font-weight: 700;
+        margin-bottom: 8px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        letter-spacing: 0.5px;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .dark-mode .service-text h2 {
+        color: white;
+        font-size: 14px;
+    }
+
+    .service-text p {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.95);
+        line-height: 1.5;
+        margin: 0;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        font-weight: 400;
+        width: 100%;
+        overflow: hidden;
+        font-size: 10px;
+        text-overflow: ellipsis;
+    }
+
+    .dark-mode .service-text p {
+        color: rgba(255, 255, 255, 0.95);
+    }
+
+    .service-text > div {
+    top: 54px;
+        right: -1px;
+        width: 210px;
+        position: absolute;
+        padding: 0;
+        transform: translateY(0);
+        transition: transform 0.3s ease;
+    }
+
+    .service-container:hover .service-text > div {
+        transform: translateY(-5px);
+    }
+
+    .our-service-heading-text {
+        font-size: 1.75rem;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+    }
+
+    .our-service-desc-text {
+        font-size: 1rem;
+        line-height: 1.6;
+        max-width: 90%;
+        margin: 0 auto;
+    }
 }
 @media (max-width: 450px) {
+    .service-container {
+        height: 200px;
+    }
 
- .service-text{
-    height: 150px;
- }
-.service-text h2 {
-    font-size: 13px;
-}
-.service-text p {
-    font-size:  10px;
-    line-height: 14px;
+    .service-text {
+        padding: 16px;
+    }
+
+    .service-text h2 {
+        font-size: 18px;
+        margin-bottom: 6px;
+    }
+     .service-text > div {
+   
+        width: 190px;
+ 
+    }
+
+
+    .service-text p {
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    .our-service-heading-text {
+        font-size: 1.5rem;
+    }
+
+    .our-service-desc-text {
+        font-size: 0.9rem;
+    }
 }
 
+@media (max-width: 380px) {
+ .service-text > div {
+   
+        width: 155px;
+ 
+    }
+    .service-container {
+        height: 180px;
+    }
+
+    .service-text h2 {
+        font-size: 16px;
+    }
+
+    .service-text p {
+        font-size: 11px;
+    }
 }
 
 /* 

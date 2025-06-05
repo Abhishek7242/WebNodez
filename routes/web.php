@@ -3,8 +3,10 @@
 use App\Http\Controllers\PricingController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminManageBlogController;
 use App\Http\Controllers\FormSubmissionController;
 use App\Http\Controllers\UserChatsController;
+use App\Models\Blog;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +30,12 @@ Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('adm
 
 Route::middleware('auth:admin')->group(function () {
     Route::post('/admin/create', [AdminController::class, 'store'])->name('admin.create');
+    Route::get('/admin/manage-blogs', [AdminManageBlogController::class, 'index'])->name('admin.blog.list');
+    Route::get('/admin/blog/create', [AdminManageBlogController::class, 'newBlog'])->name('admin.blog.create');
+    Route::post('/admin/blog/store', [AdminManageBlogController::class, 'saveBlog'])->name('admin.blog.store');
+    Route::get('/admin/blog/edit/{id}', [AdminManageBlogController::class, 'editBlog'])->name('admin.blog.edit');
+    Route::put('/admin/blog/update/{id}', [AdminManageBlogController::class, 'updateBlog'])->name('admin.blog.update');
+    Route::post('/admin/upload-image', [AdminManageBlogController::class, 'uploadImage'])->name('admin.upload.image');
     Route::get('/admin/user-ai-chats', [UserChatsController::class, 'userAIChats'])->name('admin.user-ai-chats');
     Route::post('/admin/edit/{id}', [AdminController::class, 'update'])->name('admin.edit');
     Route::delete('/admin/delete/{id}', [AdminController::class, 'destroy'])->name('admin.delete');
@@ -38,6 +46,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/contact/{id}', [FormSubmissionController::class, 'getContactDetails']);
     Route::put('/admin/contact/{id}/mark-replied', [FormSubmissionController::class, 'markReplied']);
     Route::delete('/admin/contact/delete/{id}', [FormSubmissionController::class, 'deleteMessage'])->name('contact.message.delete');
+    Route::get('/admin/blog/view/{id}', [AdminManageBlogController::class, 'viewBlog'])->name('admin.blog.view');
 });
 
 
@@ -61,9 +70,13 @@ Route::get('/terms&conditions', function () {
 Route::get('/privacy-policy', function () {
     return view('frontend.privacy_policy');
 });
-Route::get('/blogs', function () {
-    return view('frontend.blogs');
+Route::get('/blogs', [AdminManageBlogController::class, 'blogs'])->name('blogs');
+
+Route::get('/blog/{slug}', function ($slug) {
+    $blog = Blog::where('slug', $slug)->firstOrFail();
+    return view('frontend.blog-page', compact('blog'));
 });
+
 Route::get('/portfolio', function () {
     return view('frontend.portfolio');
 });

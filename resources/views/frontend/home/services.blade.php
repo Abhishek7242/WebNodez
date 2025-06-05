@@ -54,7 +54,7 @@ $services = [
       From stunning web designs to high-performing apps, we build digital products your users will love.
     </p>
 
-    <div class="flex flex-col gap-16">
+    <div class="flex flex-col gap-16 service-outer-container">
     {{-- <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3"> --}}
       
       <!-- Card Template -->

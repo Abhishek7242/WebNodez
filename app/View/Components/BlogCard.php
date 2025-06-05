@@ -6,14 +6,26 @@ use Illuminate\View\Component;
 
 class BlogCard extends Component
 {
+    public $image;
+    public $category;
+    public $title;
+    public $excerpt;
+    public $date;
+    public $link;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($image, $category, $title, $excerpt, $date, $link)
     {
-        //
+        $this->image = $image;
+        $this->category = $category;
+        $this->title = $title;
+        $this->excerpt = $excerpt;
+        $this->date = $date;
+        $this->link = $link;
     }
 
     /**

@@ -4,13 +4,11 @@
 @section('main-section')
     <link href="{{ asset('css/blogs.css') }}" rel="stylesheet">
 
- <script>
-  
+    <script>
         document.documentElement.style.setProperty('--text-color', 'black');
         document.documentElement.style.setProperty('--intro-bg', '#FBFBFC');
-        
     </script>
-{{-- Intro Section --}}
+    {{-- Intro Section --}}
     <section class="blog-intro">
         <div class="container">
             <div class="blog-intro-content">
@@ -32,7 +30,7 @@
                         <h2 class="post-title">The Future of Web Development: Trends to Watch in 2024</h2>
                         <p class="post-excerpt">Explore the emerging technologies and methodologies that are shaping the
                             future of web development...</p>
-                        <a href="#" class="read-more-btn">
+                        <a href="/blog/our-company" class="read-more-btn">
                             Read More
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="arrow-icon">
                                 <path
@@ -64,21 +62,10 @@
             </div>
 
             <div class="flex flex-wrap justify-center gap-10">
-                <x-blog-card image="https://images.unsplash.com/photo-1498050108023-c5249f4df085" category="Technology"
-                    title="The Future of Web Development in 2024"
-                    excerpt="Explore the latest trends and technologies shaping the future of web development..."
-                    date="March 15, 2024" />
-                <x-blog-card image="https://images.unsplash.com/photo-1461749280684-dccba630e2f6" category="Development"
-                    title="Mastering Modern JavaScript"
-                    excerpt="A comprehensive guide to the latest JavaScript features and best practices..."
-                    date="March 12, 2024" />
-                <x-blog-card image="https://images.unsplash.com/photo-1547658719-da2b51169166" category="Design"
-                    title="UI/UX Design Principles"
-                    excerpt="Learn the fundamental principles of creating engaging user experiences..."
-                    date="March 10, 2024" />
-                <x-blog-card image="https://images.unsplash.com/photo-1552664730-d307ca884978" category="Business"
-                    title="Digital Marketing Strategies"
-                    excerpt="Effective strategies to grow your business in the digital age..." date="March 8, 2024" />
+                @foreach ($blogs as $blog)
+                    <x-blog-card :image="$blog->featured_image" :category="$blog->category" :title="$blog->title" :excerpt="Str::limit(strip_tags($blog->content), 150)" :date="$blog->created_at->format('F d, Y')"
+                        :link="'/blog/' . $blog->slug" />
+                @endforeach
             </div>
 
             <div class="load-more-container">
