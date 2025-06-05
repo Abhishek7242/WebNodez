@@ -48,17 +48,17 @@
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <i class="fas fa-search text-gray-400"></i>
                             </div>
-                            <input type="text" placeholder="Search conversations..."
+                            <input type="text" id="searchInput" placeholder="Search conversations..."
                                 class="w-full pl-10 pr-4 py-2 bg-white/5 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
                         </div>
                     </div>
-                    <select
+                    <select id="statusFilter"
                         class="bg-white/5 border border-gray-600 rounded-lg text-white px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 appearance-none cursor-pointer">
                         <option value="" class="bg-gray-800 text-white">All Users</option>
                         <option value="active" class="bg-gray-800 text-white">Active Users</option>
                         <option value="inactive" class="bg-gray-800 text-white">Inactive Users</option>
                     </select>
-                    <select
+                    <select id="timeFilter"
                         class="bg-white/5 border border-gray-600 rounded-lg text-white px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 appearance-none cursor-pointer">
                         <option value="" class="bg-gray-800 text-white">All Time</option>
                         <option value="today" class="bg-gray-800 text-white">Today</option>
@@ -76,34 +76,7 @@
                         <h2 class="text-lg font-semibold text-white">Recent Conversations</h2>
                     </div>
                     <div class="overflow-y-auto max-h-[600px]">
-                        @php
-                            $conversations = [
-                                [
-                                    'user' => 'John Doe',
-                                    'email' => 'john@example.com',
-                                    'last_message' => 'How can I integrate AI into my website?',
-                                    'time' => '2 mins ago',
-                                    'status' => 'active',
-                                    'avatar' => 'JD',
-                                ],
-                                [
-                                    'user' => 'Jane Smith',
-                                    'email' => 'jane@example.com',
-                                    'last_message' => 'What are the best practices for AI implementation?',
-                                    'time' => '15 mins ago',
-                                    'status' => 'active',
-                                    'avatar' => 'JS',
-                                ],
-                                [
-                                    'user' => 'Mike Johnson',
-                                    'email' => 'mike@example.com',
-                                    'last_message' => 'Can you explain machine learning basics?',
-                                    'time' => '1 hour ago',
-                                    'status' => 'inactive',
-                                    'avatar' => 'MJ',
-                                ],
-                            ];
-                        @endphp
+                     
 
                         @foreach ($conversations as $conversation)
                             <div class="p-4 hover:bg-white/5 cursor-pointer transition-colors duration-200 border-b border-gray-700 chat-item"
@@ -138,17 +111,23 @@
                             <div class="flex items-center space-x-3">
                                 <div class="h-10 w-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold"
                                     id="chatAvatar">
-                                    JD
+                                    <i class="fas fa-user"></i>
                                 </div>
                                 <div>
-                                    <h2 class="text-lg font-semibold text-white" id="chatUserName">John Doe</h2>
-                                    <p class="text-sm text-gray-400" id="chatUserEmail">john@example.com</p>
+                                    <h2 class="text-lg font-semibold text-white" id="chatUserName">Select a User</h2>
+                                    <p class="text-sm text-gray-400" id="chatUserEmail">Choose a conversation to view
+                                        messages</p>
                                 </div>
                             </div>
                             <div class="flex items-center space-x-2">
                                 <span class="px-3 py-1 text-xs font-semibold rounded-full" id="chatStatus">
-                                    Active
+                                    Inactive
                                 </span>
+                                <button onclick="showUserDetails()"
+                                    class="text-gray-400 hover:text-white transition-colors duration-200"
+                                    id="userDetailsBtn" style="display: none;">
+                                    <i class="fas fa-user-circle"></i>
+                                </button>
                                 <button class="text-gray-400 hover:text-white transition-colors duration-200">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </button>
@@ -156,9 +135,44 @@
                         </div>
                     </div>
                     <div class="p-4 space-y-4 max-h-[500px] overflow-y-auto" id="chatMessages">
-                        <!-- Messages will be loaded here -->
+                        <!-- Default state when no user is selected -->
+                        <div class="flex items-center justify-center h-[400px]">
+                            <div class="text-center text-gray-400">
+                                <i class="fas fa-comments text-4xl mb-2"></i>
+                                <p>Select a conversation to view messages</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Details Modal -->
+    <div id="userDetailsModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50">
+        <div class="bg-gray-900 rounded-xl p-6 w-full max-w-md transform transition-all">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-white">User Details</h2>
+                <button onclick="closeUserDetailsModal()"
+                    class="text-gray-400 hover:text-white transition-colors duration-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                    <div class="text-white" id="modalUserEmail"></div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Phone</label>
+                    <div class="text-white" id="modalUserPhone"></div>
+                </div>
+            </div>
+            <div class="flex justify-end mt-6">
+                <button onclick="closeUserDetailsModal()"
+                    class="px-4 py-2 bg-white/5 border border-gray-600 rounded-lg text-white hover:bg-white/10 transition-colors duration-200">
+                    Close
+                </button>
             </div>
         </div>
     </div>
@@ -188,133 +202,196 @@
     </style>
 
     <script>
-        // Sample chat messages data
-        const chatMessages = {
-            'John Doe': [{
-                    type: 'ai',
-                    message: "Hello! I'm your AI assistant. How can I help you today?",
-                    time: "2:30 PM"
-                },
-                {
-                    type: 'user',
-                    message: "How can I integrate AI into my website?",
-                    time: "2:31 PM"
-                },
-                {
-                    type: 'ai',
-                    message: "There are several ways to integrate AI into your website. Here are some common approaches:\n\n1. Chatbots for customer support\n2. Recommendation systems\n3. Content personalization\n4. Image and text analysis",
-                    time: "2:32 PM"
-                },
-                {
-                    type: 'user',
-                    message: "How can I integrate AI into my website?",
-                    time: "2:31 PM"
-                },
-                {
-                    type: 'ai',
-                    message: "There are several ways to integrate AI into your website. Here are some common approaches:\n\n1. Chatbots for customer support\n2. Recommendation systems\n3. Content personalization\n4. Image and text analysis",
-                    time: "2:32 PM"
-                },
-                {
-                    type: 'user',
-                    message: "How can I integrate AI into my website?",
-                    time: "2:31 PM"
-                },
-                {
-                    type: 'ai',
-                    message: "There are several ways to integrate AI into your website. Here are some common approaches:\n\n1. Chatbots for customer support\n2. Recommendation systems\n3. Content personalization\n4. Image and text analysis",
-                    time: "2:32 PM"
-                },
-                {
-                    type: 'user',
-                    message: "How can I integrate AI into my website?",
-                    time: "2:31 PM"
-                },
-                {
-                    type: 'ai',
-                    message: "There are several ways to integrate AI into your website. Here are some common approaches:\n\n1. Chatbots for customer support\n2. Recommendation systems\n3. Content personalization\n4. Image and text analysis",
-                    time: "2:32 PM"
-                },
-                {
-                    type: 'user',
-                    message: "How can I integrate AI into my website?",
-                    time: "2:31 PM"
-                },
-                {
-                    type: 'ai',
-                    message: "There are several ways to integrate AI into your website. Here are some common approaches:\n\n1. Chatbots for customer support\n2. Recommendation systems\n3. Content personalization\n4. Image and text analysis",
-                    time: "2:32 PM"
-                },
-                {
-                    type: 'user',
-                    message: "How can I integrate AI into my website?",
-                    time: "2:31 PM"
-                },
-                {
-                    type: 'ai',
-                    message: "There are several ways to integrate AI into your website. Here are some common approaches:\n\n1. Chatbots for customer support\n2. Recommendation systems\n3. Content personalization\n4. Image and text analysis",
-                    time: "2:32 PM"
-                },
-                {
-                    type: 'user',
-                    message: "How can I integrate AI into my website?",
-                    time: "2:31 PM"
-                },
-                {
-                    type: 'ai',
-                    message: "There are several ways to integrate AI into your website. Here are some common approaches:\n\n1. Chatbots for customer support\n2. Recommendation systems\n3. Content personalization\n4. Image and text analysis",
-                    time: "2:32 PM"
-                },
-                {
-                    type: 'user',
-                    message: "How can I integrate AI into my website?",
-                    time: "2:31 PM"
-                },
-                {
-                    type: 'ai',
-                    message: "There are several ways to integrate AI into your website. Here are some common approaches:\n\n1. Chatbots for customer support\n2. Recommendation systems\n3. Content personalization\n4. Image and text analysis",
-                    time: "2:32 PM"
-                },
-            ],
-            'Jane Smith': [{
-                    type: 'ai',
-                    message: "Hello Jane! How can I assist you today?",
-                    time: "2:15 PM"
-                },
-                {
-                    type: 'user',
-                    message: "What are the best practices for AI implementation?",
-                    time: "2:16 PM"
-                },
-                {
-                    type: 'ai',
-                    message: "Here are some key best practices for AI implementation:\n\n1. Start with clear objectives\n2. Choose the right AI model\n3. Ensure data quality\n4. Monitor and maintain regularly",
-                    time: "2:17 PM"
+        // Chat messages from database
+        const chatMessages = @json($messages);
+
+        // Store user details
+        const userDetails = @json($conversations);
+
+        // Filter functions
+        function filterConversations() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+            const timeFilter = document.getElementById('timeFilter').value;
+
+            const chatItems = document.querySelectorAll('.chat-item');
+            const chatMessagesContainer = document.getElementById('chatMessages');
+            const chatDetails = document.getElementById('chatDetails');
+
+            // Get current time in IST
+            const now = new Date();
+            const istOffset = 5.5 * 60 * 60 * 1000; // IST is UTC+5:30
+            const istNow = new Date(now.getTime() + istOffset);
+
+            // Set time to start of day in IST
+            const todayStart = new Date(istNow.getTime() - (24 * 60 * 60 * 1000)); // Last 24 hours
+            const weekStart = new Date(istNow.getTime() - (7 * 24 * 60 * 60 * 1000)); // Last 7 days
+            const monthStart = new Date(istNow.getTime() - (30 * 24 * 60 * 60 * 1000)); // Last 30 days
+
+            let visibleChats = 0;
+
+            chatItems.forEach(item => {
+                const userName = item.querySelector('.text-white').textContent.toLowerCase();
+                const userEmail = item.querySelector('.text-gray-400').textContent.toLowerCase();
+                const lastMessage = item.querySelector('.text-gray-300').textContent.toLowerCase();
+                const status = item.querySelector('.text-gray-400').textContent.includes('Active') ? 'active' :
+                    'inactive';
+
+                // Get messages for this user from the database
+                const userMessages = chatMessages[userName] || [];
+                let messageTime;
+
+                if (userMessages.length > 0) {
+                    // Get the last message time from the database
+                    const lastMessageTime = userMessages[userMessages.length - 1].time;
+
+                    // Parse the time from the database
+                    if (lastMessageTime.includes('minute')) {
+                        const minutes = parseInt(lastMessageTime.match(/\d+/)[0]);
+                        messageTime = new Date(now.getTime() - (minutes * 60 * 1000));
+                    } else if (lastMessageTime.includes('hour')) {
+                        const hours = parseInt(lastMessageTime.match(/\d+/)[0]);
+                        messageTime = new Date(now.getTime() - (hours * 60 * 60 * 1000));
+                    } else if (lastMessageTime.includes('day')) {
+                        const days = parseInt(lastMessageTime.match(/\d+/)[0]);
+                        messageTime = new Date(now.getTime() - (days * 24 * 60 * 60 * 1000));
+                    } else if (lastMessageTime.includes('second')) {
+                        messageTime = new Date(now.getTime());
+                    } else {
+                        // Handle datetime format (e.g., "2025-06-05 11:15:21")
+                        try {
+                            messageTime = new Date(lastMessageTime);
+                            if (isNaN(messageTime.getTime())) {
+                                // If parsing fails, use current time
+                                messageTime = new Date(now.getTime());
+                            }
+                        } catch (e) {
+                            messageTime = new Date(now.getTime());
+                        }
+                    }
+                } else {
+                    // If no messages, use the time from the conversation list
+                    const timeText = item.querySelector('.text-gray-400').textContent;
+                    if (timeText.includes('minute')) {
+                        const minutes = parseInt(timeText.match(/\d+/)[0]);
+                        messageTime = new Date(now.getTime() - (minutes * 60 * 1000));
+                    } else if (timeText.includes('hour')) {
+                        const hours = parseInt(timeText.match(/\d+/)[0]);
+                        messageTime = new Date(now.getTime() - (hours * 60 * 60 * 1000));
+                    } else if (timeText.includes('day')) {
+                        const days = parseInt(timeText.match(/\d+/)[0]);
+                        messageTime = new Date(now.getTime() - (days * 24 * 60 * 60 * 1000));
+                    } else if (timeText.includes('second')) {
+                        messageTime = new Date(now.getTime());
+                    } else {
+                        try {
+                            // Handle datetime format (e.g., "2025-06-05 11:15:21")
+                            messageTime = new Date(timeText);
+                            if (isNaN(messageTime.getTime())) {
+                                // If parsing fails, use current time
+                                messageTime = new Date(now.getTime());
+                            }
+                        } catch (e) {
+                            messageTime = new Date(now.getTime());
+                        }
+                    }
                 }
-            ],
-            'Mike Johnson': [{
-                    type: 'ai',
-                    message: "Hi Mike! What would you like to learn about?",
-                    time: "1:00 PM"
-                },
-                {
-                    type: 'user',
-                    message: "Can you explain machine learning basics?",
-                    time: "1:01 PM"
-                },
-                {
-                    type: 'ai',
-                    message: "Machine learning basics include:\n\n1. Supervised Learning\n2. Unsupervised Learning\n3. Neural Networks\n4. Deep Learning",
-                    time: "1:02 PM"
+
+                // Convert message time to IST
+                messageTime = new Date(messageTime.getTime() + istOffset);
+
+                // Time filter logic
+                let timeMatch = true;
+                if (timeFilter) {
+                    switch (timeFilter) {
+                        case 'today':
+                            // Set today's start time in IST
+                            const todayStartIST = new Date(istNow);
+                            todayStartIST.setHours(0, 0, 0, 0);
+                            timeMatch = messageTime >= todayStartIST;
+                            console.log(messageTime, todayStartIST)
+                            break;
+                        case 'week':
+                            // Set week's start time in IST (last 7 days)
+                            const weekStartIST = new Date(istNow);
+                            weekStartIST.setDate(weekStartIST.getDate() - 7);
+                            timeMatch = messageTime >= weekStartIST;
+                            break;
+                        case 'month':
+                            // Set month's start time in IST (last 30 days)
+                            const monthStartIST = new Date(istNow);
+                            monthStartIST.setDate(monthStartIST.getDate() - 30);
+                            timeMatch = messageTime >= monthStartIST;
+                            break;
+                    }
                 }
-            ]
-        };
+
+                // Status filter logic
+                const statusMatch = !statusFilter || status === statusFilter;
+
+                // Search term logic
+                const searchMatch = !searchTerm ||
+                    userName.includes(searchTerm) ||
+                    userEmail.includes(searchTerm) ||
+                    lastMessage.includes(searchTerm);
+
+                // Show/hide based on all filters
+                if (statusMatch && timeMatch && searchMatch) {
+                    item.style.display = '';
+                    visibleChats++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Hide chat details if no conversations are visible
+            if (visibleChats === 0) {
+                chatDetails.style.display = 'none';
+                chatMessagesContainer.innerHTML = `
+                    <div class="flex items-center justify-center h-full">
+                        <div class="text-center text-gray-400">
+                            <i class="fas fa-search text-4xl mb-2"></i>
+                            <p>No conversations match your filters</p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                chatDetails.style.display = '';
+                // If the currently displayed chat is hidden by filters, show the first visible chat
+                const activeChat = document.querySelector('.chat-item.active');
+                if (activeChat && activeChat.style.display === 'none') {
+                    const firstVisibleChat = document.querySelector('.chat-item[style=""]');
+                    if (firstVisibleChat) {
+                        const userName = firstVisibleChat.querySelector('.text-white').textContent;
+                        const userEmail = firstVisibleChat.querySelector('.text-gray-400').textContent;
+                        const userAvatar = firstVisibleChat.querySelector('.rounded-full').textContent.trim();
+                        const userStatus = firstVisibleChat.querySelector('.text-gray-400').textContent.includes('Active') ?
+                            'active' : 'inactive';
+                        showChat(userName, userEmail, userAvatar, userStatus);
+                    }
+                }
+            }
+        }
+
+        // Add event listeners for filters
+        document.getElementById('searchInput').addEventListener('input', filterConversations);
+        document.getElementById('statusFilter').addEventListener('change', filterConversations);
+        document.getElementById('timeFilter').addEventListener('change', filterConversations);
 
         function showChat(userName, userEmail, userAvatar, userStatus) {
             // Update chat header
             document.getElementById('chatAvatar').textContent = userAvatar;
             document.getElementById('chatUserName').textContent = userName;
             document.getElementById('chatUserEmail').textContent = userEmail;
+
+            // Show/hide user details button based on available information
+            const userDetailsBtn = document.getElementById('userDetailsBtn');
+            const user = userDetails.find(u => u.user === userName);
+            if (user && (user.email !== user.visitor_id + '@visitor.com' || user.phone)) {
+                userDetailsBtn.style.display = 'block';
+            } else {
+                userDetailsBtn.style.display = 'none';
+            }
 
             // Update status badge
             const statusBadge = document.getElementById('chatStatus');
@@ -372,17 +449,43 @@
             chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
         }
 
+        function showUserDetails() {
+            const userName = document.getElementById('chatUserName').textContent;
+            const user = userDetails.find(u => u.user === userName);
+
+            if (user) {
+                document.getElementById('modalUserEmail').textContent = user.email;
+                document.getElementById('modalUserPhone').textContent = user.phone || 'Not provided';
+
+                document.getElementById('userDetailsModal').classList.remove('hidden');
+                document.getElementById('userDetailsModal').classList.add('flex');
+            }
+        }
+
+        function closeUserDetailsModal() {
+            document.getElementById('userDetailsModal').classList.add('hidden');
+            document.getElementById('userDetailsModal').classList.remove('flex');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('userDetailsModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeUserDetailsModal();
+            }
+        });
+
         // Show first chat by default
         document.addEventListener('DOMContentLoaded', () => {
-            const firstChat = document.querySelector('.chat-item');
-            if (firstChat) {
-                const userName = firstChat.querySelector('.text-white').textContent;
-                const userEmail = firstChat.querySelector('.text-gray-400').textContent;
-                const userAvatar = firstChat.querySelector('.rounded-full').textContent.trim();
-                const userStatus = firstChat.querySelector('.text-gray-400').textContent.includes('Active') ?
-                    'active' : 'inactive';
-                showChat(userName, userEmail, userAvatar, userStatus);
-            }
+            // Remove the automatic selection of first chat
+            // const firstChat = document.querySelector('.chat-item');
+            // if (firstChat) {
+            //     const userName = firstChat.querySelector('.text-white').textContent;
+            //     const userEmail = firstChat.querySelector('.text-gray-400').textContent;
+            //     const userAvatar = firstChat.querySelector('.rounded-full').textContent.trim();
+            //     const userStatus = firstChat.querySelector('.text-gray-400').textContent.includes('Active') ?
+            //         'active' : 'inactive';
+            //     showChat(userName, userEmail, userAvatar, userStatus);
+            // }
         });
     </script>
 

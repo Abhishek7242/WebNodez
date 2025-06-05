@@ -1751,18 +1751,43 @@ var Chatbot = /*#__PURE__*/function () {
       var header = container.querySelector('.chatbot-header');
 
       // Toggle chatbot on header click when minimized
-      header.addEventListener('click', function (e) {
-        if (e.target === header || e.target === header.querySelector('.chatbot-title')) {
-          if (container.classList.contains('chatbot-minimized')) {
-            if (_this.isFirstClick) {
-              _this.showMessageLogo();
-              _this.isFirstClick = false;
-            } else {
-              _this.toggleChatbot();
+      header.addEventListener('click', /*#__PURE__*/function () {
+        var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(e) {
+          return _regeneratorRuntime().wrap(function _callee$(_context) {
+            while (1) switch (_context.prev = _context.next) {
+              case 0:
+                console.log('the chatbot clicked');
+                if (!(e.target === header || e.target === header.querySelector('.chatbot-title'))) {
+                  _context.next = 11;
+                  break;
+                }
+                if (!container.classList.contains('chatbot-minimized')) {
+                  _context.next = 11;
+                  break;
+                }
+                if (!_this.isFirstClick) {
+                  _context.next = 8;
+                  break;
+                }
+                _this.showMessageLogo();
+                _this.isFirstClick = false;
+                _context.next = 11;
+                break;
+              case 8:
+                _context.next = 10;
+                return _this.getTheOldChat();
+              case 10:
+                _this.toggleChatbot();
+              case 11:
+              case "end":
+                return _context.stop();
             }
-          }
-        }
-      });
+          }, _callee);
+        }));
+        return function (_x) {
+          return _ref.apply(this, arguments);
+        };
+      }());
       minimizeBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         _this.toggleChatbot();
@@ -1782,6 +1807,114 @@ var Chatbot = /*#__PURE__*/function () {
         return e.stopPropagation();
       });
     }
+  }, {
+    key: "getTheOldChat",
+    value: function () {
+      var _getTheOldChat = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var _this2 = this;
+        var response, chatHistory, messagesContainer, tagElement, newTagElement, conversationContext;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              _context2.next = 3;
+              return fetch("/user-chats/".concat(visitor_id), {
+                method: 'GET',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                }
+              });
+            case 3:
+              response = _context2.sent;
+              if (response.ok) {
+                _context2.next = 6;
+                break;
+              }
+              throw new Error('Failed to fetch chat history');
+            case 6:
+              _context2.next = 8;
+              return response.json();
+            case 8:
+              chatHistory = _context2.sent;
+              // Clear existing messages
+              messagesContainer = document.querySelector('.chatbot-messages');
+              messagesContainer.innerHTML = '';
+
+              // Clear conversation history
+              this.conversationHistory = [];
+              if (chatHistory && chatHistory.length > 0) {
+                // Add "Previous Messages" tag
+                tagElement = document.createElement('div');
+                tagElement.className = 'chatbot-message-tag';
+                tagElement.innerHTML = 'Previous Messages';
+                messagesContainer.appendChild(tagElement);
+
+                // Add each message to the UI and conversation history without storing in database
+                chatHistory.forEach(function (chat) {
+                  // Add to UI
+                  var messageElement = document.createElement('div');
+                  messageElement.className = "chatbot-message ".concat(chat.sender, "-message");
+                  if (chat.sender === 'ai') {
+                    messageElement.innerHTML = "\n                            <div class=\"bot-avatar\">\n                                <img src=\"/images/bot-avatar.svg\" alt=\"Harmony Bot\" />\n                            </div>\n                            <div class=\"message-content\">\n                                <span class=\"typing-text\">".concat(chat.message, "</span>\n                            </div>\n                        ");
+                  } else {
+                    messageElement.innerHTML = chat.message;
+                  }
+                  messagesContainer.appendChild(messageElement);
+                  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+                  // Add to conversation history
+                  _this2.conversationHistory.push({
+                    role: chat.sender === 'user' ? 'user' : 'assistant',
+                    content: chat.message,
+                    timestamp: new Date().toISOString()
+                  });
+                });
+
+                // Add "New Messages" tag after old messages
+                newTagElement = document.createElement('div');
+                newTagElement.className = 'chatbot-message-tag';
+                newTagElement.innerHTML = 'New Messages';
+                messagesContainer.appendChild(newTagElement);
+
+                // Send all old messages to AI for context
+                conversationContext = chatHistory.map(function (msg) {
+                  return "".concat(msg.sender === 'user' ? 'User' : 'Assistant', ": ").concat(msg.message);
+                }).join('\n'); // Add a small delay to ensure UI is updated
+                setTimeout(function () {
+                  // Show continuation message without saving to database
+                  var messageElement = document.createElement('div');
+                  messageElement.className = 'chatbot-message bot-message';
+                  messageElement.innerHTML = "\n                        <div class=\"bot-avatar\">\n                            <img src=\"/images/bot-avatar.svg\" alt=\"Harmony Bot\" />\n                        </div>\n                        <div class=\"message-content\">\n                            <span class=\"typing-text\">I remember our previous conversation. How can I help you continue?</span>\n                        </div>\n                    ";
+                  messagesContainer.appendChild(messageElement);
+                  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }, 500);
+              } else if (!this.hasInitialized) {
+                // Only show greeting if we have no messages and haven't initialized yet
+                this.addBotMessage("Hello! 👋 I'm Harmony, your WebNodez assistant. How can I help you today?");
+                this.hasInitialized = true;
+              }
+              _context2.next = 19;
+              break;
+            case 15:
+              _context2.prev = 15;
+              _context2.t0 = _context2["catch"](0);
+              console.error('Error fetching chat history:', _context2.t0);
+              if (!this.hasInitialized) {
+                this.addBotMessage("Hello! 👋 I'm Harmony, your WebNodez assistant. How can I help you today?");
+                this.hasInitialized = true;
+              }
+            case 19:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2, this, [[0, 15]]);
+      }));
+      function getTheOldChat() {
+        return _getTheOldChat.apply(this, arguments);
+      }
+      return getTheOldChat;
+    }()
   }, {
     key: "toggleChatbot",
     value: function toggleChatbot() {
@@ -1808,7 +1941,7 @@ var Chatbot = /*#__PURE__*/function () {
   }, {
     key: "showMessageLogo",
     value: function showMessageLogo() {
-      var _this2 = this;
+      var _this3 = this;
       var container = document.querySelector('.chatbot-container');
       var avatar = container.querySelector('.chatbot-avatar');
 
@@ -1818,34 +1951,30 @@ var Chatbot = /*#__PURE__*/function () {
       // After animation completes, expand the chatbot
       setTimeout(function () {
         avatar.classList.remove('message-logo-animation');
-        _this2.toggleChatbot();
-        // Add greeting message
-        setTimeout(function () {
-          _this2.addBotMessage("Hello! 👋 I'm Harmony, your WebNodez assistant. How can I help you today?");
-        }, 300);
+        _this3.toggleChatbot();
       }, 1000);
     }
   }, {
     key: "storeMessage",
     value: function () {
-      var _storeMessage = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(sender, message) {
+      var _storeMessage = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(sender, message) {
         var messageData, _document$querySelect, token, response, errorData, data;
-        return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) switch (_context.prev = _context.next) {
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) switch (_context3.prev = _context3.next) {
             case 0:
               messageData = {
                 visitor_id: visitor_id,
                 sender: sender,
                 message: message
               };
-              _context.prev = 1;
+              _context3.prev = 1;
               // Get CSRF token
               token = (_document$querySelect = document.querySelector('meta[name="csrf-token"]')) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.getAttribute('content');
               if (!token) {
                 console.warn('CSRF token not found');
               }
               console.log('Sending message to server:', messageData);
-              _context.next = 7;
+              _context3.next = 7;
               return fetch('/user-chats', {
                 method: 'POST',
                 headers: {
@@ -1856,15 +1985,15 @@ var Chatbot = /*#__PURE__*/function () {
                 body: JSON.stringify(messageData)
               });
             case 7:
-              response = _context.sent;
+              response = _context3.sent;
               if (response.ok) {
-                _context.next = 14;
+                _context3.next = 14;
                 break;
               }
-              _context.next = 11;
+              _context3.next = 11;
               return response.text();
             case 11:
-              errorData = _context.sent;
+              errorData = _context3.sent;
               console.error('Server response:', {
                 status: response.status,
                 statusText: response.statusText,
@@ -1872,26 +2001,26 @@ var Chatbot = /*#__PURE__*/function () {
               });
               throw new Error("Server error: ".concat(response.status, " ").concat(response.statusText));
             case 14:
-              _context.next = 16;
+              _context3.next = 16;
               return response.json();
             case 16:
-              data = _context.sent;
+              data = _context3.sent;
               console.log('Message stored successfully:', data);
-              _context.next = 24;
+              _context3.next = 24;
               break;
             case 20:
-              _context.prev = 20;
-              _context.t0 = _context["catch"](1);
-              console.error('Error storing message:', _context.t0);
+              _context3.prev = 20;
+              _context3.t0 = _context3["catch"](1);
+              console.error('Error storing message:', _context3.t0);
               // Continue with the chat even if storage fails
               console.log('Continuing chat despite storage error');
             case 24:
             case "end":
-              return _context.stop();
+              return _context3.stop();
           }
-        }, _callee, null, [[1, 20]]);
+        }, _callee3, null, [[1, 20]]);
       }));
-      function storeMessage(_x, _x2) {
+      function storeMessage(_x2, _x3) {
         return _storeMessage.apply(this, arguments);
       }
       return storeMessage;
@@ -1963,7 +2092,7 @@ var Chatbot = /*#__PURE__*/function () {
   }, {
     key: "processUserMessage",
     value: function processUserMessage(message) {
-      var _this3 = this;
+      var _this4 = this;
       // Show typing indicator
       var messagesContainer = document.querySelector('.chatbot-messages');
       var typingIndicator = document.createElement('div');
@@ -1977,71 +2106,82 @@ var Chatbot = /*#__PURE__*/function () {
         // Remove typing indicator
         messagesContainer.removeChild(typingIndicator);
         // Add the actual response
-        _this3.addBotMessage(response);
+        _this4.addBotMessage(response);
       })["catch"](function (error) {
         // Remove typing indicator
         messagesContainer.removeChild(typingIndicator);
         // Show error message
-        _this3.addBotMessage("I'm having trouble right now. Please try again or contact support.");
+        _this4.addBotMessage("I'm having trouble right now. Please try again or contact support.");
       });
     }
   }, {
     key: "generateResponse",
     value: function () {
-      var _generateResponse = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(message) {
+      var _generateResponse = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee4(message) {
         var lowerMessage, profanityResponses, conversationContext, prompt, _yield$generateText, _yield$generateText2, response, title;
-        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-          while (1) switch (_context2.prev = _context2.next) {
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) switch (_context4.prev = _context4.next) {
             case 0:
               lowerMessage = message.toLowerCase(); // Check for profanity
               if (!this.profanityWords.some(function (word) {
                 return lowerMessage.includes(word);
               })) {
-                _context2.next = 4;
+                _context4.next = 4;
                 break;
               }
               profanityResponses = ["I'd be happy to help you, but could you please rephrase your question without using inappropriate language? Let's keep our conversation professional and respectful.", "I'm here to assist you, and I'd appreciate if we could communicate in a professional manner. Could you please rephrase your question?", "I'm ready to help you with your inquiry. To ensure a productive conversation, could you please rephrase your question without using inappropriate language?"];
-              return _context2.abrupt("return", profanityResponses[Math.floor(Math.random() * profanityResponses.length)]);
+              return _context4.abrupt("return", profanityResponses[Math.floor(Math.random() * profanityResponses.length)]);
             case 4:
-              _context2.prev = 4;
-              // Format conversation history for the prompt
-              conversationContext = this.conversationHistory.slice(-5) // Get last 5 messages for context
-              .map(function (msg) {
+              _context4.prev = 4;
+              // Format entire conversation history for the prompt
+              conversationContext = this.conversationHistory.map(function (msg) {
                 return "".concat(msg.role === 'user' ? 'User' : 'Assistant', ": ").concat(msg.content);
               }).join('\n');
-              prompt = "\n            You are Harmony, a friendly and professional AI assistant for WebNodez, a technology company.\n            WebNodez provides web-development, app-development, UI/UX design, and e-commerce solutions.\n            WebNodez has 3 years of experience, 100+ clients, and a 98% success rate. WebNodez has blogs and portfolio on website. We have many projects on website.\n            After successful communication you can ask for email or number for contact. If user wants to contact, ask for email or number.\n            WebNodez is a software development company.\n\n            Recent conversation history:\n            ".concat(conversationContext, "\n\n            Response Guidelines:\n            1. Answer ONLY what the user specifically asks for\n            2. Keep responses short and to the point\n            3. Don't add extra information unless asked\n            4. For greetings (hello, hi, hey):\n               - Only say hello once at the start of conversation\n               - Don't repeat greetings in follow-up responses\n               - Just answer the question directly\n            5. For thank you: Just say you're welcome\n            6. For questions you can't answer: Simply say you can't help with that\n            7. Use natural, friendly language\n            8. Add an emoji only when appropriate (greetings, thank you)\n            9. Maximum 2-3 sentences per response\n            10. If the question is not about WebNodez, politely redirect to WebNodez services\n            11. If user shows interest in contact, ask for their email or number\n            12. Consider the conversation history for context-aware responses\n            13. Don't repeat information already mentioned in the conversation\n            14. If asked about your name, just say \"I'm Harmony\" without adding extra questions\n            15. If discussing a project, focus on the project details before asking for contact info\n\n            User's question: ").concat(message, "\n            ");
-              _context2.next = 9;
+              prompt = "\n            You are Harmony, a friendly and professional AI assistant for WebNodez, a technology company.\n            WebNodez provides web-development, app-development, UI/UX design, and e-commerce solutions.\n            WebNodez has 3 years of experience, 100+ clients, and a 98% success rate. WebNodez has blogs and portfolio on website. We have many projects on website.\n            After successful communication you can ask for email or number for contact. If user wants to contact, ask for email or number.\n            WebNodez is a software development company.\n\n            Complete conversation history:\n            ".concat(conversationContext, "\n\n            Response Guidelines:\n            1. Answer ONLY what the user specifically asks for\n            2. Keep responses short and to the point\n            3. Don't add extra information unless asked\n            4. For greetings (hello, hi, hey):\n               - Only say hello once at the start of conversation\n               - Don't repeat greetings in follow-up responses\n               - Just answer the question directly\n            5. For thank you: Just say you're welcome\n            6. For questions you can't answer: Simply say you can't help with that\n            7. Use natural, friendly language\n            8. Add an emoji only when appropriate (greetings, thank you)\n            9. Maximum 2-3 sentences per response\n            10. If the question is not about WebNodez, politely redirect to WebNodez services\n            11. If user shows interest in contact, ask for their email or number\n            12. Consider the conversation history for context-aware responses\n            13. Don't repeat information already mentioned in the conversation\n            14. If asked about your name, just say \"I'm Harmony\" without adding extra questions\n            15. If discussing a project, focus on the project details before asking for contact info\n\n            User's question: ").concat(message, "\n            ");
+              _context4.next = 9;
               return (0,_gemini_js__WEBPACK_IMPORTED_MODULE_0__.generateText)(prompt);
             case 9:
-              _yield$generateText = _context2.sent;
+              _yield$generateText = _context4.sent;
               _yield$generateText2 = _slicedToArray(_yield$generateText, 2);
               response = _yield$generateText2[0];
               title = _yield$generateText2[1];
-              return _context2.abrupt("return", response);
+              return _context4.abrupt("return", response);
             case 16:
-              _context2.prev = 16;
-              _context2.t0 = _context2["catch"](4);
-              console.error('Error generating AI response:', _context2.t0);
-              return _context2.abrupt("return", "I'm having trouble right now. Please try again or contact support.");
+              _context4.prev = 16;
+              _context4.t0 = _context4["catch"](4);
+              console.error('Error generating AI response:', _context4.t0);
+              return _context4.abrupt("return", "I'm having trouble right now. Please try again or contact support.");
             case 20:
             case "end":
-              return _context2.stop();
+              return _context4.stop();
           }
-        }, _callee2, this, [[4, 16]]);
+        }, _callee4, this, [[4, 16]]);
       }));
-      function generateResponse(_x3) {
+      function generateResponse(_x4) {
         return _generateResponse.apply(this, arguments);
       }
       return generateResponse;
     }()
   }]);
 }(); // Initialize chatbot when the page loads
-document.addEventListener('DOMContentLoaded', function () {
-  // Prevent multiple instances
-  if (!window.chatbotInstance) {
-    window.chatbotInstance = new Chatbot();
-  }
-});
+document.addEventListener('DOMContentLoaded', /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
+  return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+    while (1) switch (_context5.prev = _context5.next) {
+      case 0:
+        if (window.chatbotInstance) {
+          _context5.next = 4;
+          break;
+        }
+        window.chatbotInstance = new Chatbot();
+        // Get old chat when user first visits
+        _context5.next = 4;
+        return window.chatbotInstance.getTheOldChat();
+      case 4:
+      case "end":
+        return _context5.stop();
+    }
+  }, _callee5);
+})));
 })();
 
 /******/ })()

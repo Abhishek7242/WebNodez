@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/user-chats', [UserChatsController::class, 'storeMessage'])->name('user.chats.store');
+Route::get('/user-chats/{visitor_id}', [UserChatsController::class, 'oldMessage'])->name('user.chats.old');
 
 Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('login');
 Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.submit');
@@ -27,12 +28,12 @@ Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('adm
 
 Route::middleware('auth:admin')->group(function () {
     Route::post('/admin/create', [AdminController::class, 'store'])->name('admin.create');
+    Route::get('/admin/user-ai-chats', [UserChatsController::class, 'userAIChats'])->name('admin.user-ai-chats');
     Route::post('/admin/edit/{id}', [AdminController::class, 'update'])->name('admin.edit');
     Route::delete('/admin/delete/{id}', [AdminController::class, 'destroy'])->name('admin.delete');
     Route::post('/admin/heartbeat', [AdminController::class, 'heartbeat'])->name('admin.heartbeat');
 
     Route::get('/admin/manage-admins', [AdminController::class, 'manageAdmins'])->name('admin.manage-admins');
-    Route::get('/admin/user-ai-chats', [AdminController::class, 'userAIChats'])->name('admin.user-ai-chats');
     Route::get('/admin/contact-details', [FormSubmissionController::class, 'contactDetails'])->name('admin.contact-details');
     Route::get('/admin/contact/{id}', [FormSubmissionController::class, 'getContactDetails']);
     Route::put('/admin/contact/{id}/mark-replied', [FormSubmissionController::class, 'markReplied']);
@@ -44,7 +45,7 @@ Route::middleware('auth:admin')->group(function () {
 
 
 
-Route::get('/user-ai-chat', function () {});
+
 Route::get('/', function () {
     return view('frontend.home');
 });

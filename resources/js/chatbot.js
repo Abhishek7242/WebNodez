@@ -73,13 +73,16 @@ class Chatbot {
         const header = container.querySelector('.chatbot-header');
 
         // Toggle chatbot on header click when minimized
-        header.addEventListener('click', (e) => {
+        header.addEventListener('click', async (e) => {
+            console.log('the chatbot clicked')
+
             if (e.target === header || e.target === header.querySelector('.chatbot-title')) {
                 if (container.classList.contains('chatbot-minimized')) {
                     if (this.isFirstClick) {
                         this.showMessageLogo();
                         this.isFirstClick = false;
                     } else {
+                        await this.getTheOldChat();
                         this.toggleChatbot();
                     }
                 }
@@ -99,6 +102,107 @@ class Chatbot {
         // Prevent event bubbling for input and buttons
         input.addEventListener('click', (e) => e.stopPropagation());
         sendBtn.addEventListener('click', (e) => e.stopPropagation());
+    }
+
+    async getTheOldChat() {
+        try {
+            const response = await fetch(`/user-chats/${visitor_id}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch chat history');
+            }
+
+            const chatHistory = await response.json();
+
+            // Clear existing messages
+            const messagesContainer = document.querySelector('.chatbot-messages');
+            messagesContainer.innerHTML = '';
+
+            // Clear conversation history
+            this.conversationHistory = [];
+
+            if (chatHistory && chatHistory.length > 0) {
+                // Add "Previous Messages" tag
+                const tagElement = document.createElement('div');
+                tagElement.className = 'chatbot-message-tag';
+                tagElement.innerHTML = 'Previous Messages';
+                messagesContainer.appendChild(tagElement);
+
+                // Add each message to the UI and conversation history without storing in database
+                chatHistory.forEach(chat => {
+                    // Add to UI
+                    const messageElement = document.createElement('div');
+                    messageElement.className = `chatbot-message ${chat.sender}-message`;
+
+                    if (chat.sender === 'ai') {
+                        messageElement.innerHTML = `
+                            <div class="bot-avatar">
+                                <img src="/images/bot-avatar.svg" alt="Harmony Bot" />
+                            </div>
+                            <div class="message-content">
+                                <span class="typing-text">${chat.message}</span>
+                            </div>
+                        `;
+                    } else {
+                        messageElement.innerHTML = chat.message;
+                    }
+
+                    messagesContainer.appendChild(messageElement);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+                    // Add to conversation history
+                    this.conversationHistory.push({
+                        role: chat.sender === 'user' ? 'user' : 'assistant',
+                        content: chat.message,
+                        timestamp: new Date().toISOString()
+                    });
+                });
+
+                // Add "New Messages" tag after old messages
+                const newTagElement = document.createElement('div');
+                newTagElement.className = 'chatbot-message-tag';
+                newTagElement.innerHTML = 'New Messages';
+                messagesContainer.appendChild(newTagElement);
+
+                // Send all old messages to AI for context
+                const conversationContext = chatHistory
+                    .map(msg => `${msg.sender === 'user' ? 'User' : 'Assistant'}: ${msg.message}`)
+                    .join('\n');
+
+                // Add a small delay to ensure UI is updated
+                setTimeout(() => {
+                    // Show continuation message without saving to database
+                    const messageElement = document.createElement('div');
+                    messageElement.className = 'chatbot-message bot-message';
+                    messageElement.innerHTML = `
+                        <div class="bot-avatar">
+                            <img src="/images/bot-avatar.svg" alt="Harmony Bot" />
+                        </div>
+                        <div class="message-content">
+                            <span class="typing-text">I remember our previous conversation. How can I help you continue?</span>
+                        </div>
+                    `;
+                    messagesContainer.appendChild(messageElement);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }, 500);
+            } else if (!this.hasInitialized) {
+                // Only show greeting if we have no messages and haven't initialized yet
+                this.addBotMessage("Hello! 👋 I'm Harmony, your WebNodez assistant. How can I help you today?");
+                this.hasInitialized = true;
+            }
+        } catch (error) {
+            console.error('Error fetching chat history:', error);
+            if (!this.hasInitialized) {
+                this.addBotMessage("Hello! 👋 I'm Harmony, your WebNodez assistant. How can I help you today?");
+                this.hasInitialized = true;
+            }
+        }
     }
 
     toggleChatbot() {
@@ -132,10 +236,6 @@ class Chatbot {
         setTimeout(() => {
             avatar.classList.remove('message-logo-animation');
             this.toggleChatbot();
-            // Add greeting message
-            setTimeout(() => {
-                this.addBotMessage("Hello! 👋 I'm Harmony, your WebNodez assistant. How can I help you today?");
-            }, 300);
         }, 1000);
     }
 
@@ -301,9 +401,8 @@ class Chatbot {
         }
 
         try {
-            // Format conversation history for the prompt
+            // Format entire conversation history for the prompt
             const conversationContext = this.conversationHistory
-                .slice(-5) // Get last 5 messages for context
                 .map(msg => `${msg.role === 'user' ? 'User' : 'Assistant'}: ${msg.content}`)
                 .join('\n');
 
@@ -314,7 +413,7 @@ class Chatbot {
             After successful communication you can ask for email or number for contact. If user wants to contact, ask for email or number.
             WebNodez is a software development company.
 
-            Recent conversation history:
+            Complete conversation history:
             ${conversationContext}
 
             Response Guidelines:
@@ -347,12 +446,16 @@ class Chatbot {
             return "I'm having trouble right now. Please try again or contact support.";
         }
     }
+
+
 }
 
 // Initialize chatbot when the page loads
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     // Prevent multiple instances
     if (!window.chatbotInstance) {
         window.chatbotInstance = new Chatbot();
+        // Get old chat when user first visits
+        await window.chatbotInstance.getTheOldChat();
     }
 }); 

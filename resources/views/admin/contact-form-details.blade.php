@@ -191,6 +191,21 @@
                     document.getElementById('modalDate').textContent = new Date(data.created_at).toLocaleString();
                     document.getElementById('replyEmailLink').href = `mailto:${data.email}`;
 
+                    // Hide reply button if status is replied
+                    const replyButton = document.getElementById('replyEmailLink');
+                    console.log('Message Status:', data.status); // Debug log
+
+                    // Get the status from the table row
+                    const statusCell = document.querySelector(`tr[data-message-id="${id}"] .status-badge`);
+                    const currentStatus = statusCell ? statusCell.textContent.trim().toLowerCase() : '';
+                    console.log('Current Status:', currentStatus); // Debug log
+
+                    if (currentStatus === 'replied') {
+                        replyButton.style.display = 'none';
+                    } else {
+                        replyButton.style.display = 'inline-block';
+                    }
+
                     document.getElementById('messageModal').classList.remove('hidden');
                     document.getElementById('messageModal').classList.add('flex');
                 });

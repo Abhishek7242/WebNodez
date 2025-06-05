@@ -70,6 +70,9 @@ class AdminController extends Controller
         }
 
         Auth::guard('admin')->loginUsingId($admin->id, $remember);
+        if ($admin) {
+            Admin::where('id', $admin->id)->update(['last_seen' => now()]);
+        }
         return redirect()->intended('/admin/dashboard');
     }
 
@@ -84,6 +87,10 @@ class AdminController extends Controller
 
     public function logout()
     {
+        $user = auth()->guard('admin')->user();
+        if ($user) {
+            Admin::where('id', $user->id)->update(['status' => 'Inactive']);
+        }
         Auth::guard('admin')->logout();
         session()->forget('super_admin_logged_in');
         return redirect()->route('login');
@@ -183,16 +190,6 @@ class AdminController extends Controller
         return response()->json(['success' => true, 'message' => 'Admin updated successfully']);
     }
 
-    public function userAIChats()
-    {
-        $user = auth()->guard('admin')->user();
-
-        if (!in_array($user->role, ['super_admin', 'admin'])) {
-            abort(403, 'Unauthorized');
-        }
-
-        return view('admin.user-chat-whit-AI');
-    }
 
     public function destroy($id)
     {
