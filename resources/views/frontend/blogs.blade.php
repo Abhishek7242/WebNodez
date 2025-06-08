@@ -53,30 +53,90 @@
                 <p class="section-description">Discover insights, tutorials, and industry trends from our expert team</p>
             </div>
 
-            <div class="blog-filters">
+            {{-- <div class="blog-filters">
                 <button class="filter-btn active" data-category="all">All</button>
                 <button class="filter-btn" data-category="technology">Technology</button>
                 <button class="filter-btn" data-category="development">Development</button>
                 <button class="filter-btn" data-category="design">Design</button>
                 <button class="filter-btn" data-category="business">Business</button>
-            </div>
+            </div> --}}
 
-            <div class="flex flex-wrap justify-center gap-10">
-                @foreach ($blogs as $blog)
+            <div class="flex flex-wrap justify-center gap-10" id="blogs-container">
+                @foreach ($blogs->take(4) as $blog)
                     <x-blog-card :image="$blog->featured_image" :category="$blog->category" :title="$blog->title" :excerpt="Str::limit(strip_tags($blog->content), 150)" :date="$blog->created_at->format('F d, Y')"
                         :link="'/blog/' . $blog->slug" />
                 @endforeach
             </div>
 
-            <div class="load-more-container">
-                <button class="load-more-btn">
-                    <span>Load More</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="arrow-icon">
-                        <path
-                            d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
-                    </svg>
-                </button>
-            </div>
+            @if (count($blogs) > 4)
+                <div class="load-more-container">
+                    <button class="load-more-btn" id="load-more-btn">
+                        <span>Load More</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="arrow-icon">
+                            <path
+                                d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
+                        </svg>
+                    </button>
+                </div>
+            @endif
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const blogsContainer = document.getElementById('blogs-container');
+                    const loadMoreBtn = document.getElementById('load-more-btn');
+                    const allBlogs = @json($blogs);
+                    let currentIndex = 4;
+                    const blogsPerLoad = 4;
+
+                    if (loadMoreBtn) {
+                        loadMoreBtn.addEventListener('click', function() {
+                            const endIndex = Math.min(currentIndex + blogsPerLoad, allBlogs.length);
+
+                            for (let i = currentIndex; i < endIndex; i++) {
+                                const blog = allBlogs[i];
+                                const blogCard = document.createElement('div');
+                                blogCard.className = 'blog-container';
+
+                                // Create the blog card HTML structure matching the blog-card component
+                                blogCard.innerHTML = `
+                                  <div class="blog-category-tag">${ blog.category }</div>
+                                    <div class="blog-image-wrapper">
+
+                                        <img src="${blog.featured_image}" alt="${blog.title}" />
+                                        <div class="blog-overlay"></div>
+                                    </div>
+                                    <div class="blog-content">
+                                        <h2>${blog.title}</h2>
+                                        <a href="/blog/${blog.slug}" class="blog-card-read-more-btn">
+                                            <span>Read More</span>
+                                            <span class="arrow">→</span>
+                                        </a>
+                                    </div>
+                                `;
+
+                                // Add fade-in animation
+                                blogCard.style.opacity = '0';
+                                blogCard.style.transform = 'translateY(20px)';
+                                blogsContainer.appendChild(blogCard);
+
+                                // Trigger animation
+                                requestAnimationFrame(() => {
+                                    blogCard.style.transition =
+                                        'opacity 0.5s ease-out, transform 0.5s ease-out';
+                                    blogCard.style.opacity = '1';
+                                    blogCard.style.transform = 'translateY(0)';
+                                });
+                            }
+
+                            currentIndex = endIndex;
+
+                            if (currentIndex >= allBlogs.length) {
+                                loadMoreBtn.style.display = 'none';
+                            }
+                        });
+                    }
+                });
+            </script>
         </div>
     </section>
 

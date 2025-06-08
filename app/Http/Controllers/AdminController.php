@@ -81,6 +81,9 @@ class AdminController extends Controller
         if (!Auth::guard('admin')->check() && !session('super_admin_logged_in')) {
             return redirect()->route('login');
         }
+        if(Auth::guard('admin')->user()->role == 'editor'){
+            return redirect()->route('admin.blog.list');
+        }
 
         return view('admin.home');
     }

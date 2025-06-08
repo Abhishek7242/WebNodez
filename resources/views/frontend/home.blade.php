@@ -32,7 +32,7 @@
 
     @include('frontend/home/services')
     @include('frontend/home/technologies')
-    @include('frontend/home/our-process')
+    {{-- @include('frontend/home/our-process') --}}
     @include('frontend/home/portfolio')
     @include('frontend/home/why-us')
     @include('frontend/home/pricing')

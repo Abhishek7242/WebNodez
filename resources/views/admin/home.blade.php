@@ -22,10 +22,10 @@
         el.style.setProperty('--dark-bg', 'white');
     </script>
 
-    <div class="h-screen flex items-center justify-center">
+    <div class=" flex items-center justify-center">
         <div class="text-center p-8 relative">
             <!-- Animated background elements -->
-            <div class="absolute inset-0 -z-10">
+            {{-- <div class="absolute inset-0 -z-10">
                 <div
                     class="absolute top-0 left-0 w-32 h-32 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob">
                 </div>
@@ -35,7 +35,7 @@
                 <div
                     class="absolute -bottom-8 left-20 w-32 h-32 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000">
                 </div>
-            </div>
+            </div> --}}
 
             <!-- Welcome content -->
             <div class="space-y-6">
@@ -48,7 +48,7 @@
                 </p>
 
                 <!-- Quick stats -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-6 mt-12">
 
                     <a href="/admin/user-ai-chats"
                         class="bg-white/10 backdrop-blur-lg rounded-xl p-6 transform hover:scale-105 transition-all duration-300 group cursor-pointer">
@@ -114,6 +114,22 @@
                         <div class="text-gray-300">Portfolio</div>
                         <div class="text-sm text-gray-400 mt-1">Project Showcase</div>
                     </a>
+                    <a href="/admin/manage-terms"
+                        class="bg-white/10 backdrop-blur-lg rounded-xl p-6 transform hover:scale-105 transition-all duration-300 group cursor-pointer">
+                        <div class="flex items-center justify-center mb-2">
+                            <i class="fas fa-file-contract text-4xl text-indigo-400 group-hover:animate-pulse"></i>
+                        </div>
+                        <div class="text-gray-300">Terms & Conditions</div>
+                        <div class="text-sm text-gray-400 mt-1">Legal Documents</div>
+                    </a>
+                    <a href="/admin/manage-privacy"
+                        class="bg-white/10 backdrop-blur-lg rounded-xl p-6 transform hover:scale-105 transition-all duration-300 group cursor-pointer">
+                        <div class="flex items-center justify-center mb-2">
+                            <i class="fas fa-shield-alt text-4xl text-teal-400 group-hover:animate-pulse"></i>
+                        </div>
+                        <div class="text-gray-300">Privacy Policy</div>
+                        <div class="text-sm text-gray-400 mt-1">Data Protection</div>
+                    </a>
                 </div>
 
                 <!-- Quick actions -->
@@ -126,6 +142,7 @@
             </div>
         </div>
     </div>
+    </header>
 
     <style>
         @keyframes blob {

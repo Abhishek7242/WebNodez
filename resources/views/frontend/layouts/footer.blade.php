@@ -93,11 +93,48 @@
         document.addEventListener('DOMContentLoaded', (event) => {
             const year = new Date().getFullYear();
             document.getElementById('footer-year').textContent = `© ${year} WebNodez. All rights Reserved`;
+
+            // Add interval to update user active status
+            setInterval(() => {
+                const visitorId = localStorage.getItem('visitor_id');
+                if (visitorId) {
+                    fetch('/user-chats/update-active', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
+                                    ?.getAttribute('content') || ''
+                            },
+                            body: JSON.stringify({
+                                visitor_id: visitorId
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === 'success') {
+                                console.log('User active status updated:', data.updated_at);
+                            } else {
+                                console.error('Failed to update user active status:', data.message);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error updating user active status:', error);
+                        });
+                }
+            }, 60000); // Check every minute
         });
     </script>
 </footer>
 <script src="{{ asset('js/chatbot.js') }}"></script>
 <script src="{{ asset('js/dark-mode.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (!window.chatbotInstance) {
+            window.chatbotInstance = new Chatbot();
+        }
+    });
+</script>
 </body>
 
 </html>

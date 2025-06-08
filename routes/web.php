@@ -20,15 +20,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/user-chats/broadcast', [UserChatsController::class, 'broadcast'])->name('user.chats.broadcast');
 Route::post('/user-chats', [UserChatsController::class, 'storeMessage'])->name('user.chats.store');
 Route::get('/user-chats/{visitor_id}', [UserChatsController::class, 'oldMessage'])->name('user.chats.old');
+Route::post('/user-chats/update-active', [UserChatsController::class, 'updateUserActive'])->name('user.chats.update-active');
 
 Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('login');
 Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.submit');
 Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
-Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
+Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::middleware('auth:admin')->group(function () {
+    Route::post('/user-chats/take-control', [UserChatsController::class, 'takeControl'])->name('user.chats.take-control');
+    Route::post('/user-chats/admin-message', [UserChatsController::class, 'sendAdminMessage'])->name('user.chats.admin-message');
     Route::post('/admin/create', [AdminController::class, 'store'])->name('admin.create');
     Route::get('/admin/manage-blogs', [AdminManageBlogController::class, 'index'])->name('admin.blog.list');
     Route::get('/admin/blog/create', [AdminManageBlogController::class, 'newBlog'])->name('admin.blog.create');
@@ -49,12 +53,6 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/blog/view/{id}', [AdminManageBlogController::class, 'viewBlog'])->name('admin.blog.view');
 });
 
-
-
-
-
-
-
 Route::get('/', function () {
     return view('frontend.home');
 });
@@ -64,7 +62,7 @@ Route::get('/contact-us', function () {
 Route::get('/about-us', function () {
     return view('frontend.about-us');
 });
-Route::get('/terms&conditions', function () {
+Route::get('/terms-conditions', function () {
     return view('frontend.terms_conditions');
 });
 Route::get('/privacy-policy', function () {

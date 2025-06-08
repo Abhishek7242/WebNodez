@@ -20,6 +20,7 @@
     <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 </head>
 
 <body class="position-relative">
@@ -51,9 +52,9 @@
                 <a href="/contact-us" class=" @yield('contact', ' ') animated-button"><span>Contact Us</span></a>
 
             </div>
-            
+
             <div id="navigation-menu" class="flex">
- <button id="darkModeMobile" class="p-2 rounded-full  transition-colors duration-200">
+                <button id="darkModeMobile" class="p-2 rounded-full  transition-colors duration-200">
                     <i class="fas fa-moon text-yellow-500"></i>
                 </button>
                 <!-- Mobile menu button -->
@@ -88,7 +89,7 @@
         <!-- Mobile menu -->
 
 
-     
+
 
         {{-- Mobile navbar --}}
         <script>
@@ -112,13 +113,13 @@
                         }, index * 200); // Adjust the delay as needed
                     });
                 } else {
-                    
+
                     show = false
                     navItems.forEach((item, index) => {
                         setTimeout(() => {
                             item.classList.remove('animate');
                         }, index * 200); // Adjust the delay as needed
-                        
+
                     });
                     setTimeout(() => {
                         document.body.classList.remove('no-scroll')

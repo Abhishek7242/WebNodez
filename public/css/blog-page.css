@@ -5,7 +5,9 @@
     position: relative;
     overflow: hidden;
 }
-
+.dark-mode .blog-intro-section h1{
+    color: white;
+}
 .dark-mode .blog-intro-section p{
    color: white;
 }
@@ -23,6 +25,7 @@ height: 100%;
 }
 /* Blog Content Section */
 .blog-content-section {
+    padding: 0 200px;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -31,6 +34,7 @@ height: 100%;
 
 .dark-mode .blog-content-section {
     background-color: #1a1a1a;
+    color: white;
 }
 
 /* Blog Card Styles */

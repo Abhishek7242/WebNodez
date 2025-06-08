@@ -17,7 +17,8 @@ class AdminManageBlogController extends Controller
     }
     public function blogs()
     {
-        $blogs = Blog::latest()->get();
+        $blogs = Blog::where('is_featured', 1)->latest()->get();
+
         return view('frontend.blogs', compact('blogs'));
     }
 
@@ -116,8 +117,7 @@ class AdminManageBlogController extends Controller
             'slug' => 'required|string|max:255|unique:blogs,slug',
             'category' => 'required|string|max:100',
             'content' => 'required|string',
-            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'is_featured' => 'boolean'
+            'featured_image' => 'nullable|image|max:2048',
         ]);
 
         if ($validator->fails()) {

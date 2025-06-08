@@ -1702,9 +1702,60 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 if (!localStorage.getItem('visitor_id')) {
   localStorage.setItem('visitor_id', crypto.randomUUID());
 }
+localStorage.setItem('admin_control', 'false');
 var visitor_id = localStorage.getItem('visitor_id');
+var pusher = new Pusher('57d1bf302023911c127a', {
+  cluster: 'ap2'
+});
+var channel = pusher.subscribe('chatbot');
+var channel2 = pusher.subscribe('chat.' + visitor_id);
+var chatbotController = localStorage.getItem('admin_control') === 'true';
+console.log('chatbotController', chatbotController);
+channel2.bind('take.control', function (data) {
+  console.log('take control', data);
+  chatbotController = data.admin_control;
+  localStorage.setItem('admin_control', data.admin_control.toString());
+
+  // Update chatbot name and logo when admin takes control
+  var container = document.querySelector('.chatbot-container');
+  var titleElement = container.querySelector('.chatbot-title');
+  var avatar = container.querySelector('.chatbot-avatar');
+  var bubbleIcon = avatar.querySelector('.chat-bubble-icon');
+  var botImg = avatar.querySelector('.bot-avatar-img');
+  if (data.admin_control) {
+    // Change title to show admin name if available
+    var adminName = data.admin_name || 'Support Team';
+    titleElement.innerHTML = "\n            <div class=\"chatbot-avatar\">\n                <span class=\"chat-bubble-icon\">\n                    <svg width=\"38\" height=\"38\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n                        <path d=\"M12 2C6.477 2 2 6.477 2 12c0 1.511.38 2.955 1.037 4.207L2 22l5.793-1.037C9.045 21.62 10.489 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z\" fill=\"#fff\" stroke=\"#4F46E5\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n                    </svg>\n                </span>\n                <img src=\"https://cdn-icons-gif.flaticon.com/17576/17576964.gif\" alt=\"Support Team\" class=\"bot-avatar-img\" style=\"display:none;\" />\n            </div>\n            <span class=\"chatbot-status\"></span>\n            ".concat(adminName, "\n        ");
+
+    // Add notification message when admin takes control
+    var _messagesContainer = document.querySelector('.chatbot-messages');
+    var messageElement = document.createElement('div');
+    messageElement.className = 'chatbot-message bot-message';
+    messageElement.innerHTML = "\n            <div class=\"bot-avatar\">\n                <img src=\"https://cdn-icons-gif.flaticon.com/17576/17576964.gif\" alt=\"Support Team\" />\n            </div>\n            <div class=\"message-content\">\n                <span class=\"typing-text\">You are now connected with our contact team support. How can we assist you?</span>\n            </div>\n        ";
+    _messagesContainer.appendChild(messageElement);
+    _messagesContainer.scrollTop = _messagesContainer.scrollHeight;
+  } else {
+    // Remove existing typing indicator if any
+    var existingTypingIndicator = document.querySelector('.typing-indicator');
+    if (existingTypingIndicator) {
+      existingTypingIndicator.remove();
+    }
+    // Reset to default Harmony bot
+    titleElement.innerHTML = "\n            <div class=\"chatbot-avatar\">\n                <span class=\"chat-bubble-icon\">\n                    <svg width=\"38\" height=\"38\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n                        <path d=\"M12 2C6.477 2 2 6.477 2 12c0 1.511.38 2.955 1.037 4.207L2 22l5.793-1.037C9.045 21.62 10.489 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2z\" fill=\"#fff\" stroke=\"#4F46E5\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n                    </svg>\n                </span>\n                <img src=\"/images/bot-avatar.svg\" alt=\"Harmony Bot\" class=\"bot-avatar-img\" style=\"display:none;\" />\n            </div>\n            <span class=\"chatbot-status\"></span>\n            Harmony\n        ";
+
+    // Add notification message when control is released back to AI
+    var _messagesContainer2 = document.querySelector('.chatbot-messages');
+    var _messageElement = document.createElement('div');
+    _messageElement.className = 'chatbot-message bot-message';
+    _messageElement.innerHTML = "\n            <div class=\"bot-avatar\">\n                <img src=\"/images/bot-avatar.svg\" alt=\"Harmony Bot\" />\n            </div>\n            <div class=\"message-content\">\n                <span class=\"typing-text\">I'm back! How can I help you continue our conversation? \uD83E\uDD16</span>\n            </div>\n        ";
+    _messagesContainer2.appendChild(_messageElement);
+    _messagesContainer2.scrollTop = _messagesContainer2.scrollHeight;
+  }
+});
+var adminMessageChannel = pusher.subscribe('admin-chat.' + visitor_id);
 var Chatbot = /*#__PURE__*/function () {
   function Chatbot() {
+    var _this = this;
     _classCallCheck(this, Chatbot);
     this.isOpen = false;
     this.messages = [];
@@ -1713,6 +1764,62 @@ var Chatbot = /*#__PURE__*/function () {
     this.conversationHistory = []; // Array to store conversation history
     this.profanityWords = ['fuck', 'shit', 'ass', 'bitch', 'damn', 'crap', 'piss', 'dick', 'cock', 'pussy', 'bastard', 'fucking', 'shitty', 'asshole', 'bitchy', 'damned'];
     this.initializeChatbot();
+
+    // Bind to Pusher channel for real-time messages
+    channel.bind('chatbot-message', function (data) {
+      console.log('user message is broadcasted', data.message);
+      console.log(data);
+      // Only show AI messages from admin panel
+      if (data.sender === 'ai' || data.sender === 'admin') {
+        _this.addBotMessage(data.message);
+      }
+    });
+    adminMessageChannel.bind('admin.message', function (data) {
+      console.log('admin message', data);
+      // Remove existing typing indicator if any
+      var existingTypingIndicator = document.querySelector('.typing-indicator');
+      if (existingTypingIndicator) {
+        existingTypingIndicator.remove();
+      }
+
+      // Show typing indicator for admin message
+      var messagesContainer = document.querySelector('.chatbot-messages');
+      var typingIndicator = document.createElement('div');
+      typingIndicator.className = 'chatbot-message bot-message typing-indicator';
+      typingIndicator.innerHTML = "\n                <div class=\"bot-avatar\">\n                    <img src=\"https://cdn-icons-gif.flaticon.com/17576/17576964.gif\" alt=\"Support Team\" />\n                </div>\n                <div class=\"message-content\">\n                    <div class=\"typing-dots\">\n                        <span class=\"dot\"></span>\n                        <span class=\"dot\"></span>\n                        <span class=\"dot\"></span>\n                    </div>\n                </div>\n            ";
+      messagesContainer.appendChild(typingIndicator);
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+      // Transform typing indicator into response
+      typingIndicator.className = 'chatbot-message bot-message';
+      var messageContent = typingIndicator.querySelector('.message-content');
+      messageContent.innerHTML = "<span class=\"typing-text\"></span>";
+      var typingText = messageContent.querySelector('.typing-text');
+
+      // Type out the message
+      var index = 0;
+      var typeInterval = setInterval(function () {
+        if (index < data.message.length) {
+          typingText.textContent += data.message[index];
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+          index++;
+        } else {
+          clearInterval(typeInterval);
+          // Store admin message in database
+          _this.storeMessage('ai', data.message)["catch"](function (error) {
+            console.error('Error storing admin message:', error);
+            typingIndicator.classList.add('error-message');
+          });
+        }
+      }, 30);
+
+      // Store message in conversation history
+      _this.conversationHistory.push({
+        role: 'assistant',
+        content: data.message,
+        timestamp: new Date().toISOString()
+      });
+    });
   }
   return _createClass(Chatbot, [{
     key: "initializeChatbot",
@@ -1743,7 +1850,7 @@ var Chatbot = /*#__PURE__*/function () {
   }, {
     key: "addEventListeners",
     value: function addEventListeners() {
-      var _this = this;
+      var _this2 = this;
       var container = document.querySelector('.chatbot-container');
       var minimizeBtn = container.querySelector('.chatbot-minimize');
       var sendBtn = container.querySelector('.chatbot-send');
@@ -1765,19 +1872,19 @@ var Chatbot = /*#__PURE__*/function () {
                   _context.next = 11;
                   break;
                 }
-                if (!_this.isFirstClick) {
+                if (!_this2.isFirstClick) {
                   _context.next = 8;
                   break;
                 }
-                _this.showMessageLogo();
-                _this.isFirstClick = false;
+                _this2.showMessageLogo();
+                _this2.isFirstClick = false;
                 _context.next = 11;
                 break;
               case 8:
                 _context.next = 10;
-                return _this.getTheOldChat();
+                return _this2.getTheOldChat();
               case 10:
-                _this.toggleChatbot();
+                _this2.toggleChatbot();
               case 11:
               case "end":
                 return _context.stop();
@@ -1790,13 +1897,13 @@ var Chatbot = /*#__PURE__*/function () {
       }());
       minimizeBtn.addEventListener('click', function (e) {
         e.stopPropagation();
-        _this.toggleChatbot();
+        _this2.toggleChatbot();
       });
       sendBtn.addEventListener('click', function () {
-        return _this.handleUserInput();
+        return _this2.handleUserInput();
       });
       input.addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') _this.handleUserInput();
+        if (e.key === 'Enter') _this2.handleUserInput();
       });
 
       // Prevent event bubbling for input and buttons
@@ -1811,8 +1918,8 @@ var Chatbot = /*#__PURE__*/function () {
     key: "getTheOldChat",
     value: function () {
       var _getTheOldChat = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-        var _this2 = this;
-        var response, chatHistory, messagesContainer, tagElement, newTagElement, conversationContext;
+        var _this3 = this;
+        var response, chatHistory, _messagesContainer3, tagElement, newTagElement;
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
@@ -1837,9 +1944,8 @@ var Chatbot = /*#__PURE__*/function () {
               return response.json();
             case 8:
               chatHistory = _context2.sent;
-              // Clear existing messages
-              messagesContainer = document.querySelector('.chatbot-messages');
-              messagesContainer.innerHTML = '';
+              _messagesContainer3 = document.querySelector('.chatbot-messages');
+              _messagesContainer3.innerHTML = '';
 
               // Clear conversation history
               this.conversationHistory = [];
@@ -1848,11 +1954,10 @@ var Chatbot = /*#__PURE__*/function () {
                 tagElement = document.createElement('div');
                 tagElement.className = 'chatbot-message-tag';
                 tagElement.innerHTML = 'Previous Messages';
-                messagesContainer.appendChild(tagElement);
+                _messagesContainer3.appendChild(tagElement);
 
-                // Add each message to the UI and conversation history without storing in database
+                // Add each message to the UI and conversation history
                 chatHistory.forEach(function (chat) {
-                  // Add to UI
                   var messageElement = document.createElement('div');
                   messageElement.className = "chatbot-message ".concat(chat.sender, "-message");
                   if (chat.sender === 'ai') {
@@ -1860,51 +1965,64 @@ var Chatbot = /*#__PURE__*/function () {
                   } else {
                     messageElement.innerHTML = chat.message;
                   }
-                  messagesContainer.appendChild(messageElement);
-                  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                  _messagesContainer3.appendChild(messageElement);
+                  _messagesContainer3.scrollTop = _messagesContainer3.scrollHeight;
 
                   // Add to conversation history
-                  _this2.conversationHistory.push({
+                  _this3.conversationHistory.push({
                     role: chat.sender === 'user' ? 'user' : 'assistant',
                     content: chat.message,
                     timestamp: new Date().toISOString()
                   });
                 });
 
-                // Add "New Messages" tag after old messages
+                // Add "New Messages" tag
                 newTagElement = document.createElement('div');
                 newTagElement.className = 'chatbot-message-tag';
                 newTagElement.innerHTML = 'New Messages';
-                messagesContainer.appendChild(newTagElement);
+                _messagesContainer3.appendChild(newTagElement);
 
-                // Send all old messages to AI for context
-                conversationContext = chatHistory.map(function (msg) {
-                  return "".concat(msg.sender === 'user' ? 'User' : 'Assistant', ": ").concat(msg.message);
-                }).join('\n'); // Add a small delay to ensure UI is updated
+                // Show continuation message
                 setTimeout(function () {
-                  // Show continuation message without saving to database
                   var messageElement = document.createElement('div');
                   messageElement.className = 'chatbot-message bot-message';
                   messageElement.innerHTML = "\n                        <div class=\"bot-avatar\">\n                            <img src=\"/images/bot-avatar.svg\" alt=\"Harmony Bot\" />\n                        </div>\n                        <div class=\"message-content\">\n                            <span class=\"typing-text\">I remember our previous conversation. How can I help you continue?</span>\n                        </div>\n                    ";
-                  messagesContainer.appendChild(messageElement);
-                  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                  _messagesContainer3.appendChild(messageElement);
+                  _messagesContainer3.scrollTop = _messagesContainer3.scrollHeight;
                 }, 500);
-              } else if (!this.hasInitialized) {
-                // Only show greeting if we have no messages and haven't initialized yet
-                this.addBotMessage("Hello! 👋 I'm Harmony, your WebNodez assistant. How can I help you today?");
-                this.hasInitialized = true;
+              } else {
+                // Show terms notice for new users
+                this.showTermsNotice();
+
+                // Show welcome message after terms notice with a delay
+                setTimeout(function () {
+                  var messageElement = document.createElement('div');
+                  messageElement.className = 'chatbot-message bot-message';
+                  messageElement.innerHTML = "\n                        <div class=\"bot-avatar\">\n                            <img src=\"/images/bot-avatar.svg\" alt=\"Harmony Bot\" />\n                        </div>\n                        <div class=\"message-content\">\n                            <span class=\"typing-text\">Hello! \uD83D\uDC4B I'm Harmony, your WebNodez assistant. How can I help you today?</span>\n                        </div>\n                    ";
+                  _messagesContainer3.appendChild(messageElement);
+                  _messagesContainer3.scrollTop = _messagesContainer3.scrollHeight;
+                  _this3.hasInitialized = true;
+                }, 1000);
               }
-              _context2.next = 19;
+              _context2.next = 20;
               break;
             case 15:
               _context2.prev = 15;
               _context2.t0 = _context2["catch"](0);
               console.error('Error fetching chat history:', _context2.t0);
-              if (!this.hasInitialized) {
-                this.addBotMessage("Hello! 👋 I'm Harmony, your WebNodez assistant. How can I help you today?");
-                this.hasInitialized = true;
-              }
-            case 19:
+              // Show terms notice and welcome message even if there's an error
+              this.showTermsNotice();
+
+              // Show welcome message after terms notice with a delay
+              setTimeout(function () {
+                var messageElement = document.createElement('div');
+                messageElement.className = 'chatbot-message bot-message';
+                messageElement.innerHTML = "\n                    <div class=\"bot-avatar\">\n                        <img src=\"/images/bot-avatar.svg\" alt=\"Harmony Bot\" />\n                    </div>\n                    <div class=\"message-content\">\n                        <span class=\"typing-text\">Hello! \uD83D\uDC4B I'm Harmony, your WebNodez assistant. How can I help you today?</span>\n                    </div>\n                ";
+                messagesContainer.appendChild(messageElement);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                _this3.hasInitialized = true;
+              }, 1000);
+            case 20:
             case "end":
               return _context2.stop();
           }
@@ -1936,12 +2054,17 @@ var Chatbot = /*#__PURE__*/function () {
         setTimeout(function () {
           return input.focus();
         }, 300);
+        // Auto scroll to bottom when opening chatbox
+        setTimeout(function () {
+          var messagesContainer = document.querySelector('.chatbot-messages');
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }, 100);
       }
     }
   }, {
     key: "showMessageLogo",
     value: function showMessageLogo() {
-      var _this3 = this;
+      var _this4 = this;
       var container = document.querySelector('.chatbot-container');
       var avatar = container.querySelector('.chatbot-avatar');
 
@@ -1951,14 +2074,14 @@ var Chatbot = /*#__PURE__*/function () {
       // After animation completes, expand the chatbot
       setTimeout(function () {
         avatar.classList.remove('message-logo-animation');
-        _this3.toggleChatbot();
+        _this4.toggleChatbot();
       }, 1000);
     }
   }, {
     key: "storeMessage",
     value: function () {
       var _storeMessage = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee3(sender, message) {
-        var messageData, _document$querySelect, token, response, errorData, data;
+        var messageData, _document$querySelect, token, response;
         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
           while (1) switch (_context3.prev = _context3.next) {
             case 0:
@@ -1970,55 +2093,44 @@ var Chatbot = /*#__PURE__*/function () {
               _context3.prev = 1;
               // Get CSRF token
               token = (_document$querySelect = document.querySelector('meta[name="csrf-token"]')) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.getAttribute('content');
-              if (!token) {
-                console.warn('CSRF token not found');
+              if (token) {
+                _context3.next = 5;
+                break;
               }
-              console.log('Sending message to server:', messageData);
+              throw new Error('CSRF token not found');
+            case 5:
               _context3.next = 7;
               return fetch('/user-chats', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',
                   'Accept': 'application/json',
-                  'X-CSRF-TOKEN': token || ''
+                  'X-CSRF-TOKEN': token
                 },
                 body: JSON.stringify(messageData)
               });
             case 7:
               response = _context3.sent;
               if (response.ok) {
-                _context3.next = 14;
+                _context3.next = 10;
                 break;
               }
-              _context3.next = 11;
-              return response.text();
-            case 11:
-              errorData = _context3.sent;
-              console.error('Server response:', {
-                status: response.status,
-                statusText: response.statusText,
-                body: errorData
-              });
               throw new Error("Server error: ".concat(response.status, " ").concat(response.statusText));
-            case 14:
-              _context3.next = 16;
+            case 10:
+              _context3.next = 12;
               return response.json();
-            case 16:
-              data = _context3.sent;
-              console.log('Message stored successfully:', data);
-              _context3.next = 24;
-              break;
-            case 20:
-              _context3.prev = 20;
+            case 12:
+              return _context3.abrupt("return", _context3.sent);
+            case 15:
+              _context3.prev = 15;
               _context3.t0 = _context3["catch"](1);
               console.error('Error storing message:', _context3.t0);
-              // Continue with the chat even if storage fails
-              console.log('Continuing chat despite storage error');
-            case 24:
+              throw _context3.t0;
+            case 19:
             case "end":
               return _context3.stop();
           }
-        }, _callee3, null, [[1, 20]]);
+        }, _callee3, null, [[1, 15]]);
       }));
       function storeMessage(_x2, _x3) {
         return _storeMessage.apply(this, arguments);
@@ -2028,11 +2140,12 @@ var Chatbot = /*#__PURE__*/function () {
   }, {
     key: "addUserMessage",
     value: function addUserMessage(message) {
+      var _this5 = this;
       var messagesContainer = document.querySelector('.chatbot-messages');
-      var messageElement = document.createElement('div');
-      messageElement.className = 'chatbot-message user-message';
-      messageElement.innerHTML = message;
-      messagesContainer.appendChild(messageElement);
+      // const messageElement = document.createElement('div');
+      // messageElement.className = 'chatbot-message user-message';
+      // messageElement.innerHTML = message;
+      // messagesContainer.appendChild(messageElement);
       messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
       // Store user message in conversation history
@@ -2043,16 +2156,30 @@ var Chatbot = /*#__PURE__*/function () {
       });
 
       // Store message in database
-      this.storeMessage('user', message);
+      return this.storeMessage('user', message).then(function () {
+        // Only process response if message was stored successfully
+        _this5.processUserMessage(message, 'user');
+      })["catch"](function (error) {
+        console.error('Error storing message:', error);
+        // Find the last user message and add error state
+        var userMessages = messagesContainer.querySelectorAll('.user-message');
+        var lastUserMessage = userMessages[userMessages.length - 1];
+        if (lastUserMessage) {
+          lastUserMessage.classList.add('error-message');
+          // Add error message after the failed message
+          var errorElement = document.createElement('div');
+          errorElement.className = 'chatbot-message bot-message';
+          errorElement.innerHTML = "\n                        <div class=\"bot-avatar\">\n                            <img src=\"/images/bot-avatar.svg\" alt=\"Harmony Bot\" />\n                        </div>\n                        <div class=\"message-content\">\n                            <span class=\"typing-text\">Sorry, there was an error saving your message. Please try again.</span>\n                        </div>\n                    ";
+          messagesContainer.appendChild(errorElement);
+          messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+      });
     }
   }, {
     key: "addBotMessage",
     value: function addBotMessage(message) {
       var messagesContainer = document.querySelector('.chatbot-messages');
-      var messageElement = document.createElement('div');
-      messageElement.className = 'chatbot-message bot-message';
-      messageElement.innerHTML = "\n            <div class=\"bot-avatar\">\n                <img src=\"/images/bot-avatar.svg\" alt=\"Harmony Bot\" />\n            </div>\n            <div class=\"message-content\">\n                <span class=\"typing-text\"></span>\n            </div>\n        ";
-      messagesContainer.appendChild(messageElement);
+      // c
       messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
       // Store bot message in conversation history
@@ -2064,35 +2191,72 @@ var Chatbot = /*#__PURE__*/function () {
 
       // Store message in database
       this.storeMessage('ai', message);
-
-      // Type out the message
-      var typingText = messageElement.querySelector('.typing-text');
-      var index = 0;
-      var typeInterval = setInterval(function () {
-        if (index < message.length) {
-          typingText.textContent += message[index];
-          messagesContainer.scrollTop = messagesContainer.scrollHeight;
-          index++;
-        } else {
-          clearInterval(typeInterval);
-        }
-      }, 30); // Adjust speed here (lower = faster)
     }
   }, {
     key: "handleUserInput",
     value: function handleUserInput() {
+      var _this6 = this;
       var input = document.querySelector('.chatbot-input');
       var message = input.value.trim();
       if (message) {
-        this.addUserMessage(message);
+        var _document$querySelect2;
+        // Add user message instantly with sending animation
+        var _messagesContainer4 = document.querySelector('.chatbot-messages');
+        var messageElement = document.createElement('div');
+        messageElement.className = 'chatbot-message user-message sending-animation';
+        messageElement.innerHTML = message;
+        _messagesContainer4.appendChild(messageElement);
+        _messagesContainer4.scrollTop = _messagesContainer4.scrollHeight;
+
+        // Clear input immediately
         input.value = '';
-        this.processUserMessage(message);
+
+        // First broadcast the message
+        var token = (_document$querySelect2 = document.querySelector('meta[name="csrf-token"]')) === null || _document$querySelect2 === void 0 ? void 0 : _document$querySelect2.getAttribute('content');
+        if (!token) {
+          console.warn('CSRF token not found');
+        }
+        fetch("/user-chats/broadcast", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-CSRF-TOKEN': token || ''
+          },
+          body: JSON.stringify({
+            message: message,
+            sender: 'user',
+            visitor_id: visitor_id
+          })
+        }).then(function (response) {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        }).then(function (data) {
+          console.log('data is broadcasted', data);
+          // Remove sending animation after successful broadcast
+          messageElement.classList.remove('sending-animation');
+          // Add user message after successful broadcast
+          _this6.addUserMessage(message);
+        })["catch"](function (error) {
+          console.error('Error:', error);
+          // Remove sending animation and add error state
+          messageElement.classList.remove('sending-animation');
+          messageElement.classList.add('error-message');
+          // Add error message after the failed message
+          var errorElement = document.createElement('div');
+          errorElement.className = 'chatbot-message bot-message';
+          errorElement.innerHTML = "\n                        <div class=\"bot-avatar\">\n                            <img src=\"/images/bot-avatar.svg\" alt=\"Harmony Bot\" />\n                        </div>\n                        <div class=\"message-content\">\n                            <span class=\"typing-text\">Sorry, there was an error sending your message. Please try again.</span>\n                        </div>\n                    ";
+          _messagesContainer4.appendChild(errorElement);
+          _messagesContainer4.scrollTop = _messagesContainer4.scrollHeight;
+        });
       }
     }
   }, {
     key: "processUserMessage",
-    value: function processUserMessage(message) {
-      var _this4 = this;
+    value: function processUserMessage(message, user) {
+      var _this7 = this;
       // Show typing indicator
       var messagesContainer = document.querySelector('.chatbot-messages');
       var typingIndicator = document.createElement('div');
@@ -2100,19 +2264,126 @@ var Chatbot = /*#__PURE__*/function () {
       typingIndicator.innerHTML = "\n            <div class=\"bot-avatar\">\n                <img src=\"/images/bot-avatar.svg\" alt=\"Harmony Bot\" />\n            </div>\n            <div class=\"message-content\">\n                <div class=\"typing-dots\">\n                    <span class=\"dot\"></span>\n                    <span class=\"dot\"></span>\n                    <span class=\"dot\"></span>\n                </div>\n            </div>\n        ";
       messagesContainer.appendChild(typingIndicator);
       messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      if (chatbotController) {
+        if (user != 'ai') {
+          return;
+        }
+        if (message) {
+          // Transform typing indicator into response
+          typingIndicator.className = 'chatbot-message bot-message';
+          var messageContent = typingIndicator.querySelector('.message-content');
+          messageContent.innerHTML = "<span class=\"typing-text\"></span>";
+          var typingText = messageContent.querySelector('.typing-text');
 
-      // Process the message and generate response
-      this.generateResponse(message).then(function (response) {
-        // Remove typing indicator
-        messagesContainer.removeChild(typingIndicator);
-        // Add the actual response
-        _this4.addBotMessage(response);
-      })["catch"](function (error) {
-        // Remove typing indicator
-        messagesContainer.removeChild(typingIndicator);
-        // Show error message
-        _this4.addBotMessage("I'm having trouble right now. Please try again or contact support.");
-      });
+          // Type out the message
+          var index = 0;
+          var typeInterval = setInterval(function () {
+            if (index < message.length) {
+              typingText.textContent += message[index];
+              messagesContainer.scrollTop = messagesContainer.scrollHeight;
+              index++;
+            } else {
+              var _document$querySelect3;
+              clearInterval(typeInterval);
+              // Broadcast the AI response after typing is complete
+              var token = (_document$querySelect3 = document.querySelector('meta[name="csrf-token"]')) === null || _document$querySelect3 === void 0 ? void 0 : _document$querySelect3.getAttribute('content');
+              if (!token) {
+                console.warn('CSRF token not found');
+              }
+              fetch("/user-chats/broadcast", {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json',
+                  'X-CSRF-TOKEN': token || ''
+                },
+                body: JSON.stringify({
+                  message: message,
+                  sender: 'ai',
+                  visitor_id: visitor_id
+                })
+              }).then(function (response) {
+                return response.json();
+              }).then(function (data) {
+                console.log('data is broadcasted', data);
+              })["catch"](function (error) {
+                console.error('Error:', error);
+                typingIndicator.classList.add('error-message');
+              });
+            }
+          }, 30);
+
+          // Store bot message in conversation history
+          this.conversationHistory.push({
+            role: 'assistant',
+            content: message,
+            timestamp: new Date().toISOString()
+          });
+        }
+      } else {
+        // Process the message and generate response
+        this.generateResponse(message).then(function (response) {
+          if (response) {
+            // Transform typing indicator into response
+            typingIndicator.className = 'chatbot-message bot-message';
+            var _messageContent = typingIndicator.querySelector('.message-content');
+            _messageContent.innerHTML = "<span class=\"typing-text\"></span>";
+            var _typingText = _messageContent.querySelector('.typing-text');
+
+            // Type out the message
+            var _index = 0;
+            var _typeInterval = setInterval(function () {
+              if (_index < response.length) {
+                _typingText.textContent += response[_index];
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                _index++;
+              } else {
+                var _document$querySelect4;
+                clearInterval(_typeInterval);
+                // Broadcast the AI response after typing is complete
+                var token = (_document$querySelect4 = document.querySelector('meta[name="csrf-token"]')) === null || _document$querySelect4 === void 0 ? void 0 : _document$querySelect4.getAttribute('content');
+                if (!token) {
+                  console.warn('CSRF token not found');
+                }
+                fetch("/user-chats/broadcast", {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': token || ''
+                  },
+                  body: JSON.stringify({
+                    message: response,
+                    sender: 'ai',
+                    visitor_id: visitor_id
+                  })
+                }).then(function (response) {
+                  return response.json();
+                }).then(function (data) {
+                  console.log('data is broadcasted', data);
+                })["catch"](function (error) {
+                  console.error('Error:', error);
+                  typingIndicator.classList.add('error-message');
+                });
+              }
+            }, 30);
+
+            // Store bot message in conversation history
+            _this7.conversationHistory.push({
+              role: 'assistant',
+              content: response,
+              timestamp: new Date().toISOString()
+            });
+          }
+        })["catch"](function (error) {
+          console.error('Error generating response:', error);
+          // Transform typing indicator into error message
+          typingIndicator.className = 'chatbot-message bot-message';
+          var messageContent = typingIndicator.querySelector('.message-content');
+          messageContent.innerHTML = "<span class=\"typing-text\">I'm having trouble right now. Please try again or contact support.</span>";
+          typingIndicator.classList.add('error-message');
+        });
+      }
     }
   }, {
     key: "generateResponse",
@@ -2161,7 +2432,31 @@ var Chatbot = /*#__PURE__*/function () {
         return _generateResponse.apply(this, arguments);
       }
       return generateResponse;
-    }()
+    }() // Add new method for showing welcome message
+  }, {
+    key: "showWelcomeMessage",
+    value: function showWelcomeMessage() {
+      if (!this.hasInitialized) {
+        var _messagesContainer5 = document.querySelector('.chatbot-messages');
+        var messageElement = document.createElement('div');
+        messageElement.className = 'chatbot-message bot-message';
+        messageElement.innerHTML = "\n                <div class=\"bot-avatar\">\n                    <img src=\"/images/bot-avatar.svg\" alt=\"Harmony Bot\" />\n                </div>\n                <div class=\"message-content\">\n                    <span class=\"typing-text\">Hello! \uD83D\uDC4B I'm Harmony, your WebNodez assistant. How can I help you today?</span>\n                </div>\n            ";
+        _messagesContainer5.appendChild(messageElement);
+        _messagesContainer5.scrollTop = _messagesContainer5.scrollHeight;
+        this.hasInitialized = true;
+      }
+    }
+
+    // Add this method to the Chatbot class
+  }, {
+    key: "showTermsNotice",
+    value: function showTermsNotice() {
+      var messagesContainer = document.querySelector('.chatbot-messages');
+      var termsNotice = document.createElement('div');
+      termsNotice.className = 'chatbot-terms-notice';
+      termsNotice.innerHTML = "\n            <div class=\"terms-content\">\n                <p class=\"terms-text\">\n                    By continuing this chat, you agree that your conversation may be recorded and monitored for quality assurance purposes. \n                    <a href=\"/terms-conditions#chatbot\" class=\"terms-link\" target=\"_blank\">Read our Terms & Conditions</a>\n                </p>\n            </div>\n        ";
+      messagesContainer.appendChild(termsNotice);
+    }
   }]);
 }(); // Initialize chatbot when the page loads
 document.addEventListener('DOMContentLoaded', /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
