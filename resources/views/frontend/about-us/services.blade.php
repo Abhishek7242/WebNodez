@@ -40,11 +40,11 @@
                     <h3 class="text-xl font-semibold text-white mb-4">Web Development</h3>
                     <p class="text-gray-400 leading-relaxed">Fast, scalable, and secure websites and web applications
                         tailored to your business needs.</p>
-                    <div
+                    {{-- <div
                         class="mt-6 flex items-center text-green-400 group-hover:translate-x-2 transition-transform duration-300">
                         <span class="text-sm font-medium">Learn More</span>
                         <i class="fas fa-arrow-right ml-2"></i>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
@@ -62,11 +62,11 @@
                     <h3 class="text-xl font-semibold text-white mb-4">UI/UX Design</h3>
                     <p class="text-gray-400 leading-relaxed">Human-centered design that enhances usability,
                         accessibility, and visual appeal.</p>
-                    <div
+                    {{-- <div
                         class="mt-6 flex items-center text-green-400 group-hover:translate-x-2 transition-transform duration-300">
                         <span class="text-sm font-medium">Learn More</span>
                         <i class="fas fa-arrow-right ml-2"></i>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
@@ -84,11 +84,11 @@
                     <h3 class="text-xl font-semibold text-white mb-4">Mobile App Development</h3>
                     <p class="text-gray-400 leading-relaxed">Custom iOS and Android apps designed for performance and
                         user delight.</p>
-                    <div
+                    {{-- <div
                         class="mt-6 flex items-center text-green-400 group-hover:translate-x-2 transition-transform duration-300">
                         <span class="text-sm font-medium">Learn More</span>
                         <i class="fas fa-arrow-right ml-2"></i>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
@@ -106,11 +106,11 @@
                     <h3 class="text-xl font-semibold text-white mb-4">Cloud & Hosting</h3>
                     <p class="text-gray-400 leading-relaxed">Robust cloud architecture with reliable uptime and secure
                         deployment.</p>
-                    <div
+                    {{-- <div
                         class="mt-6 flex items-center text-green-400 group-hover:translate-x-2 transition-transform duration-300">
                         <span class="text-sm font-medium">Learn More</span>
                         <i class="fas fa-arrow-right ml-2"></i>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
@@ -128,11 +128,11 @@
                     <h3 class="text-xl font-semibold text-white mb-4">Branding & Identity</h3>
                     <p class="text-gray-400 leading-relaxed">We craft your brand story through logo, design, and
                         messaging consistency.</p>
-                    <div
+                    {{-- <div
                         class="mt-6 flex items-center text-green-400 group-hover:translate-x-2 transition-transform duration-300">
                         <span class="text-sm font-medium">Learn More</span>
                         <i class="fas fa-arrow-right ml-2"></i>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
@@ -150,11 +150,11 @@
                     <h3 class="text-xl font-semibold text-white mb-4">QA & Testing</h3>
                     <p class="text-gray-400 leading-relaxed">Comprehensive quality assurance to ensure bug-free and
                         robust solutions.</p>
-                    <div
+                    {{-- <div
                         class="mt-6 flex items-center text-green-400 group-hover:translate-x-2 transition-transform duration-300">
                         <span class="text-sm font-medium">Learn More</span>
                         <i class="fas fa-arrow-right ml-2"></i>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

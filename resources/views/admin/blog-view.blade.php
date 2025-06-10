@@ -3,47 +3,53 @@
 @section('home', 'active')
 @section('main-section')
 
-    <link href="{{ asset('css/home.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/canvas-background.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/home/intro.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="{{ asset('js/canvas-background.js') }}"></script>
-
-    <div id="canvas-background" class="canvas-background"></div>
-
-    <script>
-        const el = document.querySelector('#header');
-        el.style.setProperty('--intro-bg', 'white');
-        el.style.setProperty('--dark-bg', 'white');
-    </script>
-
     <style>
-        .blog-view-container {
-            padding: 2rem;
+        /* Blog Intro Section */
+        .blog-intro-section {
+            padding: 0 200px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .blog-header {
-            text-align: center;
-            margin-bottom: 3rem;
+        .blog-heading-image {
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 3rem;
         }
 
-        .blog-title {
-            font-size: 3rem;
-            font-weight: 800;
-            color: #1f2937;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
+        .blog-heading-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
 
-        .blog-meta {
+        /* Blog Content Section */
+        .blog-content-section {
+            padding: 0 200px;
+            min-height: 100vh;
             display: flex;
             align-items: center;
+            flex-direction: column;
+        }
+
+        /* Blog Meta */
+        .blog-meta {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            font-size: 0.875rem;
             justify-content: center;
-            gap: 1.5rem;
             flex-wrap: wrap;
-            margin-bottom: 2rem;
+        }
+
+        .blog-date {
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .blog-category {
@@ -58,14 +64,6 @@
 
         .blog-category:hover {
             background-color: #e5e7eb;
-        }
-
-        .blog-date {
-            color: #6b7280;
-            font-size: 0.875rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
         .blog-author {
@@ -88,26 +86,14 @@
             font-weight: 600;
         }
 
-        .blog-content {
-            background: white;
-            padding: 0;
-            margin-bottom: 3rem;
-        }
-
-        .blog-image {
-            width: 100%;
-            max-height: 600px;
-            object-fit: cover;
-            border-radius: 1rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        }
-
-        /* Preserve TinyMCE Content Styles */
+        /* Blog Content */
         .blog-text {
             font-size: 1.125rem;
             line-height: 1.8;
             color: #374151;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .blog-text p {
@@ -210,11 +196,6 @@
             list-style-type: disc;
         }
 
-        /* Override list-style-type: none */
-        .blog-text li[style*="list-style-type: none"] {
-            list-style-type: none !important;
-        }
-
         .blog-text a {
             color: #3b82f6;
             text-decoration: underline;
@@ -257,12 +238,14 @@
             border-radius: 0.25rem;
         }
 
+        /* Blog Actions */
         .blog-actions {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: 2rem;
+            padding: 2rem 200px;
             border-top: 1px solid #e5e7eb;
+            margin-top: 3rem;
         }
 
         .btn-back {
@@ -301,6 +284,7 @@
             transform: translateY(-1px);
         }
 
+        /* Status and Featured Badges */
         .status-badge {
             padding: 0.5rem 1.25rem;
             border-radius: 9999px;
@@ -337,73 +321,364 @@
             align-items: center;
             gap: 0.5rem;
         }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+
+            .blog-intro-section,
+            .blog-content-section,
+            .blog-actions {
+                padding: 0 100px;
+            }
+
+            .blog-text {
+                font-size: 1.1rem;
+            }
+
+            .blog-text h1 {
+                font-size: 2.25rem;
+            }
+
+            .blog-text h2 {
+                font-size: 1.875rem;
+            }
+
+            .blog-text h3 {
+                font-size: 1.625rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .blog-intro-section,
+            .blog-content-section,
+            .blog-actions {
+                padding: 0 50px;
+            }
+
+            .blog-text {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+
+            .blog-text h1 {
+                font-size: 2rem;
+            }
+
+            .blog-text h2 {
+                font-size: 1.75rem;
+            }
+
+            .blog-text h3 {
+                font-size: 1.5rem;
+            }
+
+            .blog-text h4 {
+                font-size: 1.35rem;
+            }
+
+            .blog-text h5 {
+                font-size: 1.2rem;
+            }
+
+            .blog-text h6 {
+                font-size: 1.1rem;
+            }
+
+            .blog-meta {
+                font-size: 0.8125rem;
+                gap: 0.75rem;
+            }
+
+            .blog-category {
+                padding: 0.4rem 1rem;
+            }
+
+            .author-avatar {
+                width: 2.25rem;
+                height: 2.25rem;
+            }
+
+            .featured-badge {
+                padding: 0.4rem 1rem;
+                font-size: 0.8125rem;
+            }
+
+            .blog-text blockquote {
+                padding: 0.875rem 1.25rem;
+                margin: 1.5rem 0;
+            }
+
+            .blog-text ul,
+            .blog-text ol {
+                padding-left: 2rem;
+            }
+
+            .btn-back,
+            .btn-edit {
+                padding: 0.6rem 1.25rem;
+                font-size: 0.875rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+
+            .blog-intro-section,
+            .blog-content-section,
+            .blog-actions {
+                padding: 0 20px;
+            }
+
+            .blog-text {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+
+            .blog-text h1 {
+                font-size: 1.75rem;
+            }
+
+            .blog-text h2 {
+                font-size: 1.5rem;
+            }
+
+            .blog-text h3 {
+                font-size: 1.35rem;
+            }
+
+            .blog-text h4 {
+                font-size: 1.25rem;
+            }
+
+            .blog-text h5 {
+                font-size: 1.15rem;
+            }
+
+            .blog-text h6 {
+                font-size: 1rem;
+            }
+
+            .blog-meta {
+                font-size: 0.75rem;
+                gap: 0.5rem;
+            }
+
+            .blog-category {
+                padding: 0.35rem 0.875rem;
+            }
+
+            .author-avatar {
+                width: 2rem;
+                height: 2rem;
+            }
+
+            .featured-badge {
+                padding: 0.35rem 0.875rem;
+                font-size: 0.75rem;
+            }
+
+            .blog-text blockquote {
+                padding: 0.75rem 1rem;
+                margin: 1.25rem 0;
+            }
+
+            .blog-text ul,
+            .blog-text ol {
+                padding-left: 1.75rem;
+            }
+
+            .blog-text table th,
+            .blog-text table td {
+                padding: 0.5rem;
+                font-size: 0.875rem;
+            }
+
+            .blog-text pre {
+                padding: 0.75rem;
+                font-size: 0.875rem;
+            }
+
+            .blog-text code {
+                font-size: 0.875rem;
+            }
+
+            .btn-back,
+            .btn-edit {
+                padding: 0.5rem 1rem;
+                font-size: 0.8125rem;
+            }
+
+            .blog-actions {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+        }
+
+        /* Blog Editor Content Styles */
+        .blog-text [style*="text-align: center"] {
+            text-align: center !important;
+        }
+
+        .blog-text [style*="font-family"] {
+            font-family: inherit;
+        }
+
+        .blog-text [style*="font-size"] {
+            font-size: inherit !important;
+        }
+
+        .blog-text h2[style*="text-align: center"] {
+            text-align: center !important;
+            margin: 2rem auto;
+        }
+
+        .blog-text h2[style*="text-align: center"] span {
+            font-family: 'Arial Black', sans-serif;
+            font-size: 2.5rem !important;
+            line-height: 1.2;
+            display: inline-block;
+        }
+
+        .blog-text p[style*="text-align: center"] {
+            text-align: center !important;
+            margin: 1rem auto;
+        }
+
+        .blog-text p[style*="text-align: center"] span {
+            font-size: 1.5rem !important;
+            line-height: 1.4;
+            display: inline-block;
+        }
+
+        /* Responsive Styles for Editor Content */
+        @media (max-width: 1200px) {
+            .blog-text h2[style*="text-align: center"] span {
+                font-size: 2.25rem !important;
+            }
+
+            .blog-text p[style*="text-align: center"] span {
+                font-size: 1.35rem !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-text h2[style*="text-align: center"] span {
+                font-size: 2rem !important;
+            }
+
+            .blog-text p[style*="text-align: center"] span {
+                font-size: 1.25rem !important;
+            }
+
+            /* Override inline styles for mobile */
+            .blog-text [style*="font-size: 36pt"],
+            .blog-text [style*="font-size:36pt"] {
+                font-size: 2rem !important;
+            }
+
+            .blog-text [style*="font-size: 18pt"],
+            .blog-text [style*="font-size:18pt"] {
+                font-size: 1.25rem !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .blog-text h2[style*="text-align: center"] span {
+                font-size: 1.75rem !important;
+            }
+
+            .blog-text p[style*="text-align: center"] span {
+                font-size: 1.125rem !important;
+            }
+
+            /* Override inline styles for mobile */
+            .blog-text [style*="font-size: 36pt"],
+            .blog-text [style*="font-size:36pt"] {
+                font-size: 1.75rem !important;
+            }
+
+            .blog-text [style*="font-size: 18pt"],
+            .blog-text [style*="font-size:18pt"] {
+                font-size: 1.125rem !important;
+            }
+        }
     </style>
-
-    <div class="blog-view-container">
-        <div class="blog-header">
-            <h1 class="blog-title">{{ $blog->title }}</h1>
-            <div class="blog-meta">
-                <span class="blog-category">{{ $blog->category }}</span>
-                <span class="blog-date">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    {{ $blog->created_at->format('F d, Y') }}
-                </span>
-                <div class="blog-author">
-                    <div class="author-avatar">
-                        {{ substr($blog->author->name ?? 'A', 0, 1) }}
-                    </div>
-                    <span>{{ $blog->author->name ?? 'Admin' }}</span>
-                </div>
-                @if ($blog->is_featured)
-                    <span class="featured-badge">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                            <path
-                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                        </svg>
-                        Featured
-                    </span>
-                @endif
-                <span class="status-badge status-{{ $blog->status }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    {{ ucfirst($blog->status) }}
-                </span>
-            </div>
+    <script>
+        document.documentElement.style.setProperty('--text-color', 'black');
+        document.documentElement.style.setProperty('--intro-bg', '#FBFBFC');
+    </script>
+    <section class="blog-intro-section">
+        <div class="container mx-auto px-4 py-16">
+            <p class="text-2xl md:text-2xl font-bold text-center text-black mb-4">Blog Post</p>
+            <p class="text-gray-600 text-center max-w-2xl mx-auto">Discover the latest insights, trends, and updates from
+                our
+                team of experts.</p>
         </div>
-
-        <div class="blog-content">
-            @if ($blog->featured_image)
-                <img src="{{ $blog->featured_image }}" alt="{{ $blog->title }}" class="blog-image">
-            @endif
-            <div class="blog-text" id="blogContent">
-                {!! $blog->content !!}
-            </div>
-        </div>
-
-        <div class="blog-actions">
-            <a href="/admin/manage-blogs" class="btn-back">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <h1 class="text-4xl md:text-4xl text-center font-bold">{{ $blog->title }}</h1>
+        <div class="blog-meta">
+            <span class="blog-category">{{ $blog->category }}</span>
+            <span class="blog-date">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd"
-                        d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                        d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
                         clip-rule="evenodd" />
                 </svg>
-                Back to Blogs
-            </a>
-            <a href="/admin/blog/edit/{{ $blog->id }}" class="btn-edit">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path
-                        d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                {{ $blog->created_at->format('F d, Y') }}
+            </span>
+            <div class="blog-author">
+                <div class="author-avatar">
+                    {{ substr($blog->author->name ?? 'A', 0, 1) }}
+                </div>
+                <span>{{ $blog->author->name ?? 'Admin' }}</span>
+            </div>
+            @if ($blog->is_featured)
+                <span class="featured-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path
+                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    Featured
+                </span>
+            @endif
+            <span class="status-badge status-{{ $blog->status }}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd" />
                 </svg>
-                Edit Blog
-            </a>
+                {{ ucfirst($blog->status) }}
+            </span>
         </div>
+        @if ($blog->featured_image)
+            <div class="blog-heading-image">
+                <img src="{{ $blog->featured_image }}" alt="{{ $blog->title }}">
+            </div>
+        @endif
+    </section>
+
+    <section class="blog-content-section">
+        <div class="blog-text" id="blogContent">
+            {!! $blog->content !!}
+        </div>
+    </section>
+
+    <div class="blog-actions">
+        <a href="/admin/manage-blogs" class="btn-back">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                    d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                    clip-rule="evenodd" />
+            </svg>
+            Back to Blogs
+        </a>
+        <a href="/admin/blog/edit/{{ $blog->id }}" class="btn-edit">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path
+                    d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+            </svg>
+            Edit Blog
+        </a>
     </div>
 
     <script>
@@ -417,10 +692,13 @@
                 Array.from(images).forEach(img => {
                     let src = img.getAttribute('src');
                     if (src) {
-                        // Remove any ../../storage prefix
-                        src = src.replace(/^\.\.\/\.\.\/storage\//, '');
-                        // Add the correct storage URL
-                        img.setAttribute('src', '/storage/' + src);
+                        // Check if the URL is not already a full URL (http/https)
+                        if (!src.startsWith('http://') && !src.startsWith('https://')) {
+                            // Remove any ../../storage prefix
+                            src = src.replace(/^\.\.\/\.\.\/storage\//, '');
+                            // Add the correct storage URL
+                            img.setAttribute('src', '/storage/' + src);
+                        }
                     }
                 });
             }

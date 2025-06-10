@@ -55,6 +55,7 @@
                         <option value="super_admin" class="bg-gray-800 text-white">Super Admin</option>
                         <option value="admin" class="bg-gray-800 text-white">Admin</option>
                         <option value="moderator" class="bg-gray-800 text-white">Moderator</option>
+                        <option value="contact_support" class="bg-gray-800 text-white">Contact Support</option>
                         <option value="editor" class="bg-gray-800 text-white">Editor</option>
                     </select>
                     <select

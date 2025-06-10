@@ -1,5 +1,13 @@
 @extends('frontend/layouts/main')
 @section('title', 'WebNodez - Contact Us')
+@section('meta_description',
+    'Contact WebNodez for professional web development and digital solutions. Get in touch with
+    our expert team for project inquiries, support, or consultations. Available Mon-Fri, 9am-6pm with multilingual
+    support.')
+@section('meta_keywords',
+    'contact webnodez, web development contact, IT support contact, project consultation, customer
+    support, technical support, business inquiry, digital solutions contact')
+@section('og_image', asset('images/contact-us-og.jpg'))
 @section('contact', 'active')
 @section('main-section')
     <link href="{{ asset('css/contact-us.css') }}" rel="stylesheet">

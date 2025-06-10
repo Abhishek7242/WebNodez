@@ -1,4 +1,10 @@
 #contact-us-section{
+    color: white;
+}
+.contact-us-section div h1{
+}
+.dark-mode .contact-us-section div h1{
+    color: white;
 }
 #contact-us-section #contact-us-inner-container{
 min-height: 100vh;

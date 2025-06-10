@@ -28,7 +28,7 @@ $services = [
         'description' => 'Online stores designed to grow your brand.',
            'img1'=>'https://www.intellectoutsource.com/blog/images/how-attractive-templates-are-helpful-for-ecommerce-business.jpg',
         'img2'=>'https://5.imimg.com/data5/SELLER/Default/2023/5/312281422/DM/CL/ZE/190312336/ecommerce-website.png',
-        'link' => '/services/e_commerce-solutions',
+        'link' => '/services/e_commerce',
     ],
     // [
     //     'title' => 'Testing',

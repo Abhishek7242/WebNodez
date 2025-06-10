@@ -5,7 +5,7 @@
         <div class="grid md:grid-cols-2 gap-12 items-center">
             <div class="space-y-8">
                 <div class="inline-block px-4 py-2 bg-green-500/10 rounded-full border border-green-500/20">
-                    <span class="text-green-400 font-medium">Est. 2024</span>
+                    <span class="text-green-400 font-medium">Est. 2023</span>
                 </div>
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                     Crafting Digital Excellence Through Innovation
@@ -21,7 +21,7 @@
                         </div>
                         <div>
                             <h3 class="font-semibold">Expert Team</h3>
-                            <p class="text-sm text-gray-400">10+ Professionals</p>
+                            <p class="text-sm text-gray-400">{{ $achievements[4]['number'] }}+ Professionals</p>
                         </div>
                     </div>
                     <div class="flex items-center space-x-3">
@@ -39,7 +39,7 @@
                         </div>
                         <div>
                             <h3 class="font-semibold">Projects</h3>
-                            <p class="text-sm text-gray-400">100+ Completed</p>
+                            <p class="text-sm text-gray-400">{{ $achievements[1]['number'] }}+ Completed</p>
                         </div>
                     </div>
                 </div>

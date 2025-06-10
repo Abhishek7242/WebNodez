@@ -1,5 +1,12 @@
 @extends('frontend/layouts/main')
 @section('title', 'WebNodez - Terms & Conditions')
+@section('meta_description',
+    'Read WebNodez Terms and Conditions. Understand our service agreements, user
+    responsibilities, intellectual property rights, and legal terms for using our web development and digital services.')
+@section('meta_keywords',
+    'terms and conditions, service agreement, legal terms, user agreement, website terms, service
+    terms, legal policy, terms of use')
+@section('og_image', asset('images/terms-og.jpg'))
 @section('', 'active')
 @section('main-section')
     <link href="{{ asset('css/terms_conditions.css') }}" rel="stylesheet">
@@ -36,7 +43,7 @@
             rights, responsibilities, and obligations when accessing or using our platform.
         </p>
     </section>
-</header>
+    </header>
 
     @php
         $termsSections = [
@@ -109,7 +116,8 @@
                     <li>99.9% uptime for our services</li>
                     <li>24/7 technical support availability</li>
                     <li>Response time within 24 hours for support requests</li>
-                    <li>Regular security updates and maintenance</li>
+                  <li>Regular security updates and maintenance (additional charges may apply for extra services)</li>
+
                 </ul>',
             ],
             [
@@ -155,13 +163,13 @@
                 'id' => 'changes-terms',
                 'title' => 'Changes to Terms',
                 'description' =>
-                    'We may modify these terms at any time. We will notify users of significant changes via email or website notice. Continued use of our services after changes means you accept the updated terms. If you disagree with the changes, you must stop using our services.',
+                    'We may modify these terms at any time. Continued use of our services after changes means you accept the updated terms. If you disagree with the changes, you must stop using our services.',
             ],
             [
                 'id' => 'governing-law',
                 'title' => 'Governing Law',
                 'description' =>
-                    'These Terms and Conditions are governed by the laws of the United States. Any disputes will be resolved in the courts of competent jurisdiction in the state of [Your State].',
+                    'These Terms and Conditions are governed by the laws of the India. Any disputes will be resolved in the courts of competent jurisdiction in the state of Delhi, India.',
             ],
             [
                 'id' => 'force-majeure',
@@ -169,12 +177,15 @@
                 'description' =>
                     'We shall not be liable for any failure or delay in performance due to circumstances beyond our reasonable control, including but not limited to acts of God, war, terrorism, natural disasters, or governmental actions.',
             ],
-            [
-                'id' => 'contact-us',
-                'title' => 'Contact Us',
-                'description' =>
-                    'For any questions or concerns about these Terms, please contact us at <a href="mailto:support@webnodez.com" class="text-blue-600 underline hover:text-blue-800">support@webnodez.com</a>. We aim to respond to all inquiries within 24 hours.',
-            ],
+        [
+    'id' => 'contact-us',
+    'title' => 'Contact Us',
+    'description' =>
+        'For any questions or concerns regarding these Terms and Conditions, please contact us at <a href="mailto:support@webnodez.com" class="text-blue-600 underline hover:text-blue-800">support@webnodez.com</a>. We aim to respond to all inquiries within 24 hours.<br><br>
+        By contacting us, you agree that we may store and process the personal data you provide, such as your name, email address, phone number  and the contents of your message, solely for the purpose of addressing your inquiry and improving our services. We are committed to protecting your privacy and will not share your contact details with third parties without your explicit consent, except as required by law.<br><br>
+        For more information on how we handle your data, please refer to our <a href="/privacy-policy" class="text-blue-600 underline hover:text-blue-800">Privacy Policy</a>.',
+],
+
         ];
     @endphp
 

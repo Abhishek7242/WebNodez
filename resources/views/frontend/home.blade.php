@@ -1,23 +1,30 @@
 @extends('frontend/layouts/main')
 @section('title', 'WebNodez - Home')
+@section('meta_description',
+    'WebNodez is a leading web development and digital solutions company. We offer professional
+    web design, development, and IT services to help businesses grow online.')
+@section('meta_keywords',
+    'web development, web design, digital solutions, IT services, software development, mobile
+    apps, custom websites, e-commerce solutions')
+@section('og_image', asset('images/home-og-image.jpg'))
 @section('home', 'active')
 @section('main-section')
 
-        <link href="{{ asset('css/home.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('css/canvas-background.css') }}" rel="stylesheet">
 
     <link href="{{ asset('css/home/intro.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/home/services.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/home/services.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/technologies.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/our-process.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/portfolio.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/pricing.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/why-us.css') }}" rel="stylesheet">
-    
+
     <!-- Three.js and other required scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="{{ asset('js/canvas-background.js') }}"></script>
-   
+
     <!-- Canvas background container -->
     <div id="canvas-background" class="canvas-background"></div>
 

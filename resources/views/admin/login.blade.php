@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>WebNodez - Admin_login</title>
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
-    
- <link href="{{ asset('css/home.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('css/home.css') }}" rel="stylesheet">
     <link href="{{ asset('css/canvas-background.css') }}" rel="stylesheet">
     <!-- Add Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -69,8 +69,12 @@
                                 <i class="fas fa-lock text-gray-400"></i>
                             </div>
                             <input type="password" id="password" name="password" required
-                                class="w-full pl-10 pr-4 py-3 bg-white/5 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all duration-300"
+                                class="w-full pl-10 pr-12 py-3 bg-white/5 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all duration-300"
                                 placeholder="Enter your password">
+                            <button type="button" id="togglePassword"
+                                class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-300 transition-colors duration-300">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         </div>
                     </div>
 
@@ -81,7 +85,8 @@
                                 class="h-4 w-4 text-blue-500 focus:ring-blue-500 border-gray-600 rounded bg-white/5">
                             <label for="remember" class="ml-2 block text-sm text-gray-300">Remember me</label>
                         </div>
-                        <a href="#" class="text-sm text-blue-400 hover:text-blue-300 transition-colors duration-300">
+                        <a href="#"
+                            class="text-sm text-blue-400 hover:text-blue-300 transition-colors duration-300">
                             Forgot password?
                         </a>
                     </div>
@@ -146,5 +151,24 @@
         }
     </style>
 
+    <script>
+        // Password visibility toggle
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordInput = document.getElementById('password');
+            const icon = this.querySelector('i');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+    </script>
+
 </body>
+
 </html>

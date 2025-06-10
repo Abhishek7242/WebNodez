@@ -1,5 +1,15 @@
 @extends('frontend/layouts/main')
 @section('title', 'Pricing - ' . $service)
+@section('meta_description',
+    'Explore WebNodez transparent pricing plans for ' .
+    $service .
+    '. Get detailed information
+    about our service packages, features, and competitive rates. Start your project with our flexible pricing options.')
+@section('meta_keywords',
+    $service .
+    ' pricing, service packages, pricing plans, web development costs, IT service
+    pricing, digital solutions pricing, project rates, service costs')
+@section('og_image', asset('images/pricing-og.jpg'))
 @section('', 'active')
 @section('main-section')
     <link rel="stylesheet" href="{{ asset('css/pricing.css') }}">
@@ -57,7 +67,7 @@
             </div>
         </div>
     </section>
-{{-- our process section --}}
+    {{-- our process section --}}
     <x-service-detail :serviceHeading="$service" :detailsArray='$detailsArray' />
 
     <section class="cta-section">

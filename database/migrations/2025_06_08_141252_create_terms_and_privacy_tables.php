@@ -13,12 +13,13 @@ class CreateTermsAndPrivacyTables extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('terms_and_privacy_tables')) {    
         Schema::create('terms_and_privacy_tables', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
     }
-
+    }
     /**
      * Reverse the migrations.
      *

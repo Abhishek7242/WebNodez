@@ -1,5 +1,12 @@
 @extends('frontend/layouts/main')
 @section('title', 'WebNodez - About Us')
+@section('meta_description',
+    'Learn about WebNodez - our story, mission, vision, and company culture. Discover how we
+    deliver innovative web development and digital solutions with a team of expert professionals.')
+@section('meta_keywords',
+    'about webnodez, company story, mission vision, company culture, web development team, digital
+    solutions company, IT services company, professional team')
+@section('og_image', asset('images/about-us-og.jpg'))
 @section('about', 'active')
 @section('main-section')
     <link rel="stylesheet" href="{{ asset('css/about.css') }}">
@@ -12,6 +19,7 @@
     </script>
 
     @include('frontend.about-us.intro')
+    </header>
     @include('frontend.about-us.clients')
     @include('frontend.about-us.our-story')
     @include('frontend.about-us.mission-vision')

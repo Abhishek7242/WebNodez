@@ -4,10 +4,14 @@ use App\Http\Controllers\PricingController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminManageBlogController;
+use App\Http\Controllers\AdminManagePortfolio;
 use App\Http\Controllers\FormSubmissionController;
 use App\Http\Controllers\UserChatsController;
+use App\Models\Achievement;
 use App\Models\Blog;
+use App\Models\CaseStudy;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Cache;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,12 +36,23 @@ Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.lo
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::middleware('auth:admin')->group(function () {
     Route::post('/user-chats/take-control', [UserChatsController::class, 'takeControl'])->name('user.chats.take-control');
-    Route::post('/user-chats/admin-message', [UserChatsController::class, 'sendAdminMessage'])->name('user.chats.admin-message');
+    Route::get('/admin/manage-portfolio', [AdminManagePortfolio::class, 'managePortfolio'])->name('admin.manage-portfolio');
+    Route::get('/admin/manage-portfolio/gallery', [AdminManagePortfolio::class, 'managePortfolioGallery'])->name('admin.manage-portfolio.gallery');
+    Route::post('/admin/manage-portfolio/gallery/store', [AdminManagePortfolio::class, 'storeGallery'])->name('admin.manage-portfolio.gallery.store');
+    Route::put('/admin/manage-portfolio/gallery/update/{id}', [AdminManagePortfolio::class, 'updateGallery'])->name('admin.manage-portfolio.gallery.update');
+    Route::delete('/admin/manage-portfolio/gallery/delete/{id}', [AdminManagePortfolio::class, 'deleteGallery'])->name('admin.manage-portfolio.gallery.delete');
+    Route::get('/admin/manage-portfolio/case-studies', [AdminManagePortfolio::class, 'manageCaseStudies'])->name('admin.manage-portfolio.case-studies');
+    Route::post('/admin/manage-portfolio/case-studies/store', [AdminManagePortfolio::class, 'storeCaseStudy'])->name('admin.manage-portfolio.case-studies.store');
+    Route::put('/admin/manage-portfolio/case-studies/update/{id}', [AdminManagePortfolio::class, 'updateCaseStudy'])->name('admin.manage-portfolio.case-studies.update');
+    Route::delete('/admin/manage-portfolio/case-studies/delete/{id}', [AdminManagePortfolio::class, 'deleteCaseStudy'])->name('admin.manage-portfolio.case-studies.delete');
+    Route::get('/admin/manage-portfolio/achievements', [AdminManagePortfolio::class, 'manageAchievements'])->name('admin.manage-portfolio.achievements');
+    Route::put('/admin/manage-portfolio/achievements/update/{id}', [AdminManagePortfolio::class, 'updateAchievement'])->name('admin.manage-portfolio.achievements.update');
     Route::post('/admin/create', [AdminController::class, 'store'])->name('admin.create');
     Route::get('/admin/manage-blogs', [AdminManageBlogController::class, 'index'])->name('admin.blog.list');
     Route::get('/admin/blog/create', [AdminManageBlogController::class, 'newBlog'])->name('admin.blog.create');
     Route::post('/admin/blog/store', [AdminManageBlogController::class, 'saveBlog'])->name('admin.blog.store');
     Route::get('/admin/blog/edit/{id}', [AdminManageBlogController::class, 'editBlog'])->name('admin.blog.edit');
+    Route::delete('/admin/blog/delete/{id}', [AdminManageBlogController::class, 'deleteBlog'])->name('admin.blog.delete');
     Route::put('/admin/blog/update/{id}', [AdminManageBlogController::class, 'updateBlog'])->name('admin.blog.update');
     Route::post('/admin/upload-image', [AdminManageBlogController::class, 'uploadImage'])->name('admin.upload.image');
     Route::get('/admin/user-ai-chats', [UserChatsController::class, 'userAIChats'])->name('admin.user-ai-chats');
@@ -54,13 +69,19 @@ Route::middleware('auth:admin')->group(function () {
 });
 
 Route::get('/', function () {
-    return view('frontend.home');
+    $achievements = Cache::remember('achievements', 60 * 60 * 24 * 30, function () {
+        return Achievement::all();
+    });
+    return view('frontend.home', compact('achievements'));
 });
 Route::get('/contact-us', function () {
     return view('frontend.contact-us');
 });
 Route::get('/about-us', function () {
-    return view('frontend.about-us');
+    $achievements = Cache::remember('achievements', 60 * 60 * 24 * 30, function () {
+        return Achievement::all();
+    });
+    return view('frontend.about-us', compact('achievements'));
 });
 Route::get('/terms-conditions', function () {
     return view('frontend.terms_conditions');
@@ -69,15 +90,19 @@ Route::get('/privacy-policy', function () {
     return view('frontend.privacy_policy');
 });
 Route::get('/blogs', [AdminManageBlogController::class, 'blogs'])->name('blogs');
-
-Route::get('/blog/{slug}', function ($slug) {
-    $blog = Blog::where('slug', $slug)->firstOrFail();
-    return view('frontend.blog-page', compact('blog'));
-});
+Route::get('/blog/{slug}', [AdminManageBlogController::class, 'userBlogView'])->name('blog.view');
 
 Route::get('/portfolio', function () {
-    $blogs = Blog::latest()->get();
-    return view('frontend.portfolio', compact('blogs'));
+    $blogs = Cache::remember('frontend.featured.blogs', 3600, function () {
+        return Blog::where('is_featured', 1)->latest()->get();
+    });
+    $caseStudies = Cache::remember('case_studies_featured', 60 * 60 * 24 * 30, function () {
+        return CaseStudy::where('is_featured', true)->orderBy('order', 'asc')->get();
+    });
+    $achievements = Cache::remember('achievements', 60 * 60 * 24 * 30, function () {
+        return Achievement::all();
+    });
+    return view('frontend.portfolio', compact('blogs', 'caseStudies','achievements'));
 });
 
 // Route to list all services

@@ -32,10 +32,10 @@
                     <div class="card-content">
                         <h3 class="card-title">Transparent Communication</h3>
                         <p class="card-description">We foster a culture where openness and trust build stronger teams. Every voice counts, always.</p>
-                        <div class="card-footer">
+                        {{-- <div class="card-footer">
                             <span class="link-text">Learn More</span>
                             <i class="fas fa-arrow-right icon-transition"></i>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -50,10 +50,10 @@
                     <div class="card-content">
                         <h3 class="card-title">People-First Culture</h3>
                         <p class="card-description">We value flexibility, creativity, and well-being, supporting our people both personally and professionally.</p>
-                        <div class="card-footer">
+                        {{-- <div class="card-footer">
                             <span class="link-text">Learn More</span>
                             <i class="fas fa-arrow-right icon-transition"></i>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -68,10 +68,10 @@
                     <div class="card-content">
                         <h3 class="card-title">Shared Success</h3>
                         <p class="card-description">We win together. Collaboration is in our DNA — with clients and teammates alike.</p>
-                        <div class="card-footer">
+                        {{-- <div class="card-footer">
                             <span class="link-text">Learn More</span>
                             <i class="fas fa-arrow-right icon-transition"></i>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -84,7 +84,7 @@
                 <p class="stat-label">Employee Satisfaction</p>
             </div>
             <div class="stat-item">
-                <div class="stat-value text-secondary">10+</div>
+                <div class="stat-value text-secondary">{{ $achievements[4]['number'] }}+</div>
                 <p class="stat-label">Team Members</p>
             </div>
             <div class="stat-item">
@@ -92,7 +92,7 @@
                 <p class="stat-label">Countries Reached</p>
             </div>
             <div class="stat-item">
-                <div class="stat-value text-secondary">100+</div>
+                <div class="stat-value text-secondary">{{ $achievements[1]['number'] }}+</div>
                 <p class="stat-label">Projects Completed</p>
             </div>
         </div>

@@ -13,6 +13,7 @@ class CreateContactFormsTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('contact_forms')) {
         Schema::create('contact_forms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -23,7 +24,7 @@ class CreateContactFormsTable extends Migration
             $table->timestamps();
         });
     }
-
+    }
     /**
      * Reverse the migrations.
      *

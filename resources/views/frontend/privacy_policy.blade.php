@@ -1,5 +1,12 @@
 @extends('frontend/layouts/main')
 @section('title', 'WebNodez - Privacy Policy')
+@section('meta_description',
+    'Read WebNodez comprehensive privacy policy. Learn how we collect, use, and protect your
+    data, including information about our chatbot and AI services, data retention, and your privacy rights.')
+@section('meta_keywords',
+    'privacy policy, data protection, user privacy, data security, GDPR compliance, privacy
+    rights, data collection, cookie policy, chatbot privacy, AI services privacy')
+@section('og_image', asset('images/privacy-policy-og.jpg'))
 @section('main-section')
     <link href="{{ asset('css/privacy_policy.css') }}" rel="stylesheet">
 
@@ -35,7 +42,7 @@
             information when you visit our website or use our services. Please take a moment to review it carefully.
         </p>
     </section>
-</header>
+    </header>
     @php
         $privacySections = [
             [
@@ -208,7 +215,7 @@
                 'id' => 'changes-policy',
                 'title' => 'Changes to This Policy',
                 'description' =>
-                    'We may update this Privacy Policy periodically. We will notify you of any material changes via email or website notice. Continued use of our services after changes means you accept the updated policy.',
+                    'We may update this Privacy Policy periodically.  Continued use of our services after changes means you accept the updated policy.',
             ],
             [
                 'id' => 'contact-us',

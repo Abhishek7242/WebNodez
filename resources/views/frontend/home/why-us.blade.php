@@ -92,7 +92,7 @@
             <div class="stats-grid">
                 <div class="stat-item">
                     <div class="stat-circle">
-                        <span class="stat-number">100+</span>
+                        <span class="stat-number">{{ $achievements[1]['number'] }}+</span>
                     </div>
                     <span class="stat-label">Projects Completed</span>
                     <p class="stat-detail">Successfully delivered projects across various industries with proven results
@@ -107,7 +107,7 @@
                 </div>
                 <div class="stat-item">
                     <div class="stat-circle">
-                        <span class="stat-number">3+</span>
+                        <span class="stat-number">{{ $achievements[3]['number'] }}+</span>
                     </div>
                     <span class="stat-label">Years Experience</span>
                     <p class="stat-detail">Decades of expertise in delivering cutting-edge solutions</p>

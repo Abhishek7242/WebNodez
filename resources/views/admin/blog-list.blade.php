@@ -62,6 +62,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
             border: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
         }
 
         .blog-card:hover {
@@ -151,15 +152,132 @@
         }
 
         .featured-badge {
-            background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
             color: white;
-            padding: 0.35rem 0.85rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            display: inline-flex;
+            padding: 0.35rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: flex;
             align-items: center;
             gap: 0.35rem;
+            box-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.1),
+                inset 0 1px 2px rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            z-index: 10;
+            transform: translateY(0);
+            transition: all 0.3s ease;
+        }
+
+        .featured-badge i {
+            font-size: 0.7rem;
+            color: #fff;
+            filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+        }
+
+        .blog-card:hover .featured-badge {
+            transform: translateY(-2px);
+            box-shadow:
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                inset 0 1px 2px rgba(255, 255, 255, 0.4);
+        }
+
+        .blog-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(243, 244, 246, 0.9) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow:
+                0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+        }
+
+        .blog-author:hover {
+            transform: translateY(-1px);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(243, 244, 246, 0.95) 100%);
+            box-shadow:
+                0 8px 12px -1px rgba(0, 0, 0, 0.1),
+                0 4px 6px -1px rgba(0, 0, 0, 0.06),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+        }
+
+        .author-avatar {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: white;
+            box-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.1),
+                inset 0 1px 2px rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .blog-author:hover .author-avatar {
+            transform: scale(1.05);
+            box-shadow:
+                0 4px 8px rgba(0, 0, 0, 0.15),
+                inset 0 1px 2px rgba(255, 255, 255, 0.4);
+            border-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .author-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 0.95rem;
+            letter-spacing: 0.01em;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+        }
+
+        @media (max-width: 640px) {
+            .blog-author {
+                padding: 0.35rem 0.75rem;
+                gap: 0.5rem;
+            }
+
+            .author-avatar {
+                width: 2rem;
+                height: 2rem;
+                font-size: 0.9rem;
+            }
+
+            .author-name {
+                font-size: 0.85rem;
+            }
+
+            .featured-badge {
+                top: 0.75rem;
+                left: 0.75rem;
+                padding: 0.25rem 0.5rem;
+                font-size: 0.7rem;
+            }
+
+            .featured-badge i {
+                font-size: 0.65rem;
+            }
         }
 
         .blog-date {
@@ -440,6 +558,12 @@
             <div class="blog-grid">
                 @foreach ($blogs as $blog)
                     <div class="blog-card">
+                        @if ($blog->is_featured)
+                            <div class="featured-badge">
+                                <i class="fas fa-star"></i>
+                                Featured
+                            </div>
+                        @endif
                         <div class="blog-image-container">
                             @if ($blog->featured_image)
                                 <img src="{{ $blog->featured_image }}" alt="{{ $blog->title }}" class="blog-image">
@@ -466,16 +590,14 @@
                                     </svg>
                                     {{ ucfirst($blog->status) }}
                                 </span>
-                                @if ($blog->is_featured)
-                                    <span class="featured-badge">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20"
-                                            fill="currentColor">
-                                            <path
-                                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                        </svg>
-                                        Featured
-                                    </span>
-                                @endif
+                                <div class="blog-author group">
+                                    <div class="author-avatar">
+                                        <span>{{ strtoupper(substr($blog->author->name ?? 'A', 0, 1)) }}</span>
+                                    </div>
+                                    <div class="author-details">
+                                        <div class="author-name">{{ $blog->author->name ?? 'Admin' }}</div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="blog-date">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20"
@@ -494,7 +616,7 @@
                                             <path
                                                 d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                                         </svg>
-                                        Edit 
+                                        Edit
                                     </a>
                                     <a href="/admin/blog/view/{{ $blog->id }}" class="btn-view">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20"
@@ -504,7 +626,7 @@
                                                 d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
                                                 clip-rule="evenodd" />
                                         </svg>
-                                        View 
+                                        View
                                     </a>
                                     <button onclick="confirmDelete({{ $blog->id }}, '{{ $blog->title }}')"
                                         class="btn-delete">
@@ -514,7 +636,7 @@
                                                 d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
                                                 clip-rule="evenodd" />
                                         </svg>
-                                    
+
                                     </button>
                                 </div>
                             </div>

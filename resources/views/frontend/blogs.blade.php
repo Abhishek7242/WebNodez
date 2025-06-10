@@ -1,5 +1,12 @@
 @extends('frontend/layouts/main')
 @section('title', 'WebNodez - Blogs')
+@section('meta_description',
+    'Explore WebNodez blog for the latest insights on web development, technology trends, and
+    digital solutions. Read expert articles, tutorials, and industry updates from our team.')
+@section('meta_keywords',
+    'web development blog, technology insights, digital solutions blog, web design articles, IT
+    trends, software development blog, tech tutorials, industry updates')
+@section('og_image', asset('images/blogs-og.jpg'))
 @section('blog', 'active')
 @section('main-section')
     <link href="{{ asset('css/blogs.css') }}" rel="stylesheet">
@@ -60,24 +67,27 @@
                 <button class="filter-btn" data-category="design">Design</button>
                 <button class="filter-btn" data-category="business">Business</button>
             </div> --}}
-
-            <div class="flex flex-wrap justify-center gap-10" id="blogs-container">
-                @foreach ($blogs->take(4) as $blog)
-                    <x-blog-card :image="$blog->featured_image" :category="$blog->category" :title="$blog->title" :excerpt="Str::limit(strip_tags($blog->content), 150)" :date="$blog->created_at->format('F d, Y')"
-                        :link="'/blog/' . $blog->slug" />
-                @endforeach
-            </div>
-
-            @if (count($blogs) > 4)
-                <div class="load-more-container">
-                    <button class="load-more-btn" id="load-more-btn">
-                        <span>Load More</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="arrow-icon">
-                            <path
-                                d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
-                        </svg>
-                    </button>
+            @if ($blogs->count() > 0)
+                <div class="flex flex-wrap justify-center gap-10" id="blogs-container">
+                    @foreach ($blogs->take(5) as $blog)
+                    @if($blog->slug != 'our-company')
+                        <x-blog-card :image="$blog->featured_image" :category="$blog->category" :title="$blog->title" :excerpt="Str::limit(strip_tags($blog->content), 150)"
+                            :date="$blog->created_at->format('F d, Y')" :link="'/blog/' . $blog->slug" />
+                    @endif
+                    @endforeach
                 </div>
+
+                @if (count($blogs) > 4)
+                    <div class="load-more-container">
+                        <button class="load-more-btn" id="load-more-btn">
+                            <span>Load More</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="arrow-icon">
+                                <path
+                                    d="M201.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 306.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z" />
+                            </svg>
+                        </button>
+                    </div>
+                @endif
             @endif
 
             <script>
@@ -85,7 +95,7 @@
                     const blogsContainer = document.getElementById('blogs-container');
                     const loadMoreBtn = document.getElementById('load-more-btn');
                     const allBlogs = @json($blogs);
-                    let currentIndex = 4;
+                    let currentIndex = 5;
                     const blogsPerLoad = 4;
 
                     if (loadMoreBtn) {

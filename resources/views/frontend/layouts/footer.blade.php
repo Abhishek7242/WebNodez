@@ -33,7 +33,7 @@
                 <ul>
                     <li><a href="/services/app-development" class="footer-link">Web Development</a></li>
                     <li><a href="/services/ui-ux-design" class="footer-link">UI/UX Design</a></li>
-                    <li><a href="/e_commerce" class="footer-link">E-Commerce</a></li>
+                    <li><a href="/services/e_commerce" class="footer-link">E-Commerce</a></li>
                     <li><a href="/services/app-development" class="footer-link">App Development</a></li>
                 </ul>
             </div>
@@ -80,7 +80,7 @@
 
     <div class="footer-legal">
         <div class="footer-legal-links">
-            <a href="/terms&conditions" class="footer-legal-link">Terms & Conditions</a>
+            <a href="/terms-conditions" class="footer-legal-link">Terms & Conditions</a>
             <a href="/privacy-policy" class="footer-legal-link">Privacy Policy</a>
         </div>
         <div class="footer-copyright">
@@ -127,7 +127,6 @@
     </script>
 </footer>
 <script src="{{ asset('js/chatbot.js') }}"></script>
-<script src="{{ asset('js/dark-mode.js') }}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         if (!window.chatbotInstance) {

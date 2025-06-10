@@ -28,9 +28,9 @@
 
             <ul class="navbar flex space-x-8 items-center">
                 <li><a href="/admin/dashboard" class="@yield('home', ' ') nav-links font-semibold ">Home</a></li>
-                <li><a href="/blogs" class="@yield('blog', ' ') nav-links font-semibold ">Blogs</a></li>
+                <li><a href="/admin/manage-blogs" class="@yield('blog', ' ') nav-links font-semibold ">Blogs</a></li>
                 <li><a href="/services" class="@yield('services', ' ') nav-links font-semibold ">Services</a></li>
-                <li><a href="/portfolio" class="@yield('portfolio', ' ') nav-links font-semibold ">Portfolio</a>
+                <li><a href="/admin/manage-portfolio" class="@yield('portfolio', ' ') nav-links font-semibold ">Portfolio</a>
                 </li>
 
 
@@ -39,9 +39,9 @@
 
 
             <div class="navbar flex items-center space-x-4">
-                <button id="darkModeToggle" class="p-2 rounded-full  transition-colors duration-200">
+                {{-- <button id="darkModeToggle" class="p-2 rounded-full  transition-colors duration-200">
                     <i class="fas fa-moon text-yellow-500"></i>
-                </button>
+                </button> --}}
                 <div class="relative group">
                     <button
                         class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white font-semibold hover:bg-green-600 transition-colors duration-200">
@@ -76,9 +76,9 @@
             </div>
 
             <div id="navigation-menu" class="flex">
-                <button id="darkModeMobile" class="p-2 rounded-full  transition-colors duration-200">
+                {{-- <button id="darkModeMobile" class="p-2 rounded-full  transition-colors duration-200">
                     <i class="fas fa-moon text-yellow-500"></i>
-                </button>
+                </button> --}}
                 <!-- Mobile menu button -->
                 <div id="ham-icon" class="toggle">
                     <span></span>

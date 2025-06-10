@@ -2,16 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Achievement;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 
 class ServicesController extends Controller
 {
     public function index()
     {
-        return view('frontend.services');
+        $achievements = Cache::remember('achievements', 60 * 60 * 24 * 30, function () {
+            return Achievement::all();
+        });
+        return view('frontend.services', compact('achievements'));
     }
     
     public  function show($service) {
+        $achievements = Cache::remember('achievements', 60 * 60 * 24 * 30, function () {
+            return Achievement::all();
+        });
     $servicesArray = [
         "web-development" => [
             'description' => '  We build fast, secure, and responsive websites tailored to your goals.',
@@ -201,8 +209,8 @@ class ServicesController extends Controller
             ],
         ],
     ],
-            'projects'=>'50',
-            'clientSatisfaction'=>'98',
+            'projects'=>$achievements[1]['number'],
+            'clientSatisfaction'=>$achievements[2]['number'],
 
 
 
@@ -386,9 +394,10 @@ class ServicesController extends Controller
                     ],
                 ],
             ],
-            'projects' => '50',
-            'clientSatisfaction' => '98',
-        ],
+                'projects' => $achievements[1]['number'],
+                'clientSatisfaction' => $achievements[2]['number'],
+
+            ],
         "ui-ux-design" => [
             'description' => 'Intuitive, modern design that elevates your brand and delights users.',
             'detailsArray' => [
@@ -547,9 +556,10 @@ class ServicesController extends Controller
 
             ],
 
-            'projects' => '50',
-            'clientSatisfaction' => '98',
-        ],
+                'projects' => $achievements[1]['number'],
+                'clientSatisfaction' => $achievements[2]['number'],
+
+            ],
         "app-development" => [
             'description' => 'Stunning, user-focused mobile apps built to elevate your brand.',
             'detailsArray' => [
@@ -729,190 +739,12 @@ class ServicesController extends Controller
 
             ],
 
-            'projects' => '30',
-            'clientSatisfaction' => '97',
-        ],
-        "maintenance&support" => [
-            'description' => 'Creative designs to make your brand stand out.',
-            'detailsArray' => [
-                [
-                    'title' => 'Regular Updates & Patch Management',
-                    'description' => 'We continuously update your software, frameworks, and plugins to the latest versions to improve performance, add features, and fix vulnerabilities. This proactive approach minimizes risks and keeps your system secure and up-to-date.'
-                ],
-                [
-                    'title' => 'Performance Monitoring & Optimization',
-                    'description' => 'We monitor your site or app’s performance metrics such as load times, server response, and resource usage in real-time. Using this data, we optimize infrastructure and code to ensure fast, reliable experiences for all users.'
-                ],
-                [
-                    'title' => 'Security Audits & Vulnerability Management',
-                    'description' => 'Regular security scans and audits help us identify potential threats or weaknesses. We apply patches, configure firewalls, and implement best security practices to protect your data and maintain user trust.'
-                ],
-                [
-                    'title' => 'Bug Fixes & Issue Resolution',
-                    'description' => 'Our support team quickly addresses any bugs or errors that arise, no matter how small, to prevent disruptions. We track issues through a ticketing system to ensure timely and transparent resolution.'
-                ],
-                [
-                    'title' => 'Backup & Disaster Recovery',
-                    'description' => 'Automated backups are performed regularly to secure your data. In case of system failures or data loss, we have recovery plans in place to restore your site or app swiftly and minimize downtime.'
-                ],
-                [
-                    'title' => 'User Support & Training',
-                    'description' => 'We provide ongoing user support, including answering questions, troubleshooting problems, and offering training materials or sessions to empower your team in using the system effectively.'
-                ],
-                [
-                    'title' => 'Feature Enhancements & Scalability Planning',
-                    'description' => 'As your business grows, we help plan and implement new features, integrations, and scaling solutions. This ensures your app or site evolves alongside your needs without sacrificing performance.'
-                ],
+                'projects' => $achievements[1]['number'],
+                'clientSatisfaction' => $achievements[2]['number'],
+
             ],
-            'faqs' => [
-                [
-                    'question' => 'What services do you offer?',
-                    'answer' =>
-                    'We offer a comprehensive range of digital services including web development, mobile app development, UI/UX design, e-commerce solutions, and digital marketing services. Our team specializes in creating custom solutions tailored to your business needs.',
-                ],
-                [
-                    'question' => 'How long does it take to complete a project?',
-                    'answer' =>
-                    'Project timelines vary depending on the scope and complexity. A typical website project can take 4-8 weeks, while mobile apps may take 8-12 weeks. We provide detailed timelines during the initial consultation and keep you updated throughout the development process.',
-                ],
-                [
-                    'question' => 'What is your pricing structure?',
-                    'answer' =>
-                    'Our pricing is project-based and depends on your specific requirements. We offer transparent pricing with no hidden costs. After understanding your needs, we provide a detailed quote that includes all aspects of the project.',
-                ],
-                [
-                    'question' => 'Do you provide ongoing support?',
-                    'answer' =>
-                    'Yes, we offer comprehensive support and maintenance services. This includes regular updates, security patches, performance optimization, and technical support. We also provide training to help you manage your digital assets effectively.',
-                ],
-                [
-                    'question' => 'How do you ensure quality?',
-                    'answer' =>
-                    'We follow industry best practices and maintain high quality standards through rigorous testing procedures. Our development process includes multiple quality checks, user testing, and performance optimization to ensure the best possible outcome.',
-                ],
-                [
-                    'question' => 'Can you help with existing projects?',
-                    'answer' =>
-                    'Absolutely! We can help improve, maintain, or rebuild existing projects. Our team will analyze your current setup and provide recommendations for enhancements or necessary updates.',
-                ],
-            ],
-            'introImages' => [
-                'https://images.unsplash.com/photo-1506765515384-028b60a970df',
-                'https://cdn.dribbble.com/userupload/24675218/file/original-217fe0b2bffa18d19df2596909528580.gif',
-                'https://img.freepik.com/free-photo/web-design-technology-browsing-programming-concept_53876-163260.jpg',
-                'https://images-platform.99static.com//gERmn6TxrIrnrs01YXG90zL5Rao=/0x0:533x533/fit-in/500x500/projects-files/105/10552/1055228/9e9346fc-88c9-4235-bcb7-82cbaa1f2366.gif',
-            ],
-            'overview' => [
-                'heading' => 'Why Web Development is Your Digital Solution',
-                'description' => " In today' s digital - first world,
-                having a strong online presence is no longer optional—it 's essential.
-                    Web development serves as the foundation of your digital strategy, enabling you to reach global
-                    audiences,
-                    showcase your brand, and drive business growth. Our comprehensive web development solutions transform
-                    your
-                    vision into a powerful digital platform that engages users and delivers results.",
-                'image' => 'https://blog.appseed.us/content/images/2023/02/design-web-agency-intro.gif',
-            ],
-            'projects' => '50',
-            'clientSatisfaction' => '98',
-        ],
-        "testing" => [
-            'description' => 'Comprehensive quality assurance that guarantees your product performs flawlessly, remains secure, and delivers a seamless experience — ensuring your brand stands strong in every interaction.',
-            'detailsArray' => [
-                [
-                    'title' => 'Requirement Analysis & Test Planning',
-                    'description' => 'We begin by reviewing project requirements, specifications, and acceptance criteria to develop a comprehensive test plan. This includes defining testing scope, types of testing needed (functional, performance, security), resource allocation, timelines, and risk assessment.'
-                ],
-                [
-                    'title' => 'Test Case Design & Preparation',
-                    'description' => 'Detailed test cases and scenarios are created to cover all functionalities, user flows, and edge cases. These test cases serve as the foundation for manual and automated testing, ensuring that every feature behaves as expected under different conditions.'
-                ],
-                [
-                    'title' => 'Functional Testing',
-                    'description' => 'We verify that all features work correctly according to requirements. This includes UI/UX elements, input validations, business logic, and integration points. Both positive and negative test cases are executed to catch errors and unexpected behaviors.'
-                ],
-                [
-                    'title' => 'Performance & Load Testing',
-                    'description' => 'The system is tested under varying loads to assess speed, responsiveness, and stability. We simulate multiple concurrent users and transactions to identify bottlenecks, memory leaks, and scalability issues, ensuring the app performs well even at peak demand.'
-                ],
-                [
-                    'title' => 'Security Testing',
-                    'description' => 'We conduct vulnerability assessments and penetration testing to identify and fix security risks. This includes testing for SQL injection, cross-site scripting (XSS), authentication flaws, data encryption, and compliance with security best practices to protect user data.'
-                ],
-                [
-                    'title' => 'Cross-Browser & Device Testing',
-                    'description' => 'Testing is performed across a wide range of browsers, operating systems, and devices to ensure consistent behavior and appearance. This guarantees that all users, regardless of their environment, experience a smooth and visually coherent product.'
-                ],
-                [
-                    'title' => 'Automated Testing & Continuous Integration',
-                    'description' => 'Where possible, we implement automated tests for regression, unit, and integration testing. These tests are integrated into CI/CD pipelines to provide rapid feedback on code changes, reduce human error, and accelerate delivery without sacrificing quality.'
-                ],
-                [
-                    'title' => 'User Acceptance Testing (UAT)',
-                    'description' => 'We facilitate UAT sessions with stakeholders and end-users to validate that the product meets business needs and user expectations. Feedback from this phase is critical for final adjustments before launch.'
-                ],
-                [
-                    'title' => 'Bug Reporting & Resolution',
-                    'description' => 'All issues found during testing are logged with detailed reports including steps to reproduce, screenshots, and severity levels. Our team prioritizes and addresses bugs promptly to maintain a stable, high-quality product.'
-                ],
-                [
-                    'title' => 'Final Regression Testing & Release Preparation',
-                    'description' => 'After all fixes, a final round of regression testing ensures that new changes haven’t introduced any new issues. We confirm readiness for deployment, ensuring the product is robust and reliable for end-users.'
-                ],
-            ],
-            'faqs' => [
-                [
-                    'question' => 'What services do you offer?',
-                    'answer' =>
-                    'We offer a comprehensive range of digital services including web development, mobile app development, UI/UX design, e-commerce solutions, and digital marketing services. Our team specializes in creating custom solutions tailored to your business needs.',
-                ],
-                [
-                    'question' => 'How long does it take to complete a project?',
-                    'answer' =>
-                    'Project timelines vary depending on the scope and complexity. A typical website project can take 4-8 weeks, while mobile apps may take 8-12 weeks. We provide detailed timelines during the initial consultation and keep you updated throughout the development process.',
-                ],
-                [
-                    'question' => 'What is your pricing structure?',
-                    'answer' =>
-                    'Our pricing is project-based and depends on your specific requirements. We offer transparent pricing with no hidden costs. After understanding your needs, we provide a detailed quote that includes all aspects of the project.',
-                ],
-                [
-                    'question' => 'Do you provide ongoing support?',
-                    'answer' =>
-                    'Yes, we offer comprehensive support and maintenance services. This includes regular updates, security patches, performance optimization, and technical support. We also provide training to help you manage your digital assets effectively.',
-                ],
-                [
-                    'question' => 'How do you ensure quality?',
-                    'answer' =>
-                    'We follow industry best practices and maintain high quality standards through rigorous testing procedures. Our development process includes multiple quality checks, user testing, and performance optimization to ensure the best possible outcome.',
-                ],
-                [
-                    'question' => 'Can you help with existing projects?',
-                    'answer' =>
-                    'Absolutely! We can help improve, maintain, or rebuild existing projects. Our team will analyze your current setup and provide recommendations for enhancements or necessary updates.',
-                ],
-            ],
-            'introImages' => [
-                'https://images.unsplash.com/photo-1506765515384-028b60a970df',
-                'https://cdn.dribbble.com/userupload/24675218/file/original-217fe0b2bffa18d19df2596909528580.gif',
-                'https://img.freepik.com/free-photo/web-design-technology-browsing-programming-concept_53876-163260.jpg',
-                'https://images-platform.99static.com//gERmn6TxrIrnrs01YXG90zL5Rao=/0x0:533x533/fit-in/500x500/projects-files/105/10552/1055228/9e9346fc-88c9-4235-bcb7-82cbaa1f2366.gif',
-            ],
-            'overview' => [
-                'heading' => 'Why Web Development is Your Digital Solution',
-                'description' => " In today' s digital - first world,
-                having a strong online presence is no longer optional—it 's essential.
-                    Web development serves as the foundation of your digital strategy, enabling you to reach global
-                    audiences,
-                    showcase your brand, and drive business growth. Our comprehensive web development solutions transform
-                    your
-                    vision into a powerful digital platform that engages users and delivers results.",
-                'image' => 'https://blog.appseed.us/content/images/2023/02/design-web-agency-intro.gif',
-            ],
-            'projects' => '50',
-            'clientSatisfaction' => '98',
-            
-        ],
+
+       
         // Add more services here
     ];
 
@@ -934,9 +766,9 @@ class ServicesController extends Controller
 
     // Get the service details from the array
     $serviceDetails = $servicesArray[$service];
+
+
    
-
-
     // Pass both formatted name and details to the view
     return view('frontend.service', [
         'service' => $formattedService,

@@ -13,6 +13,7 @@ class CreateChatMessagesTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('chat_messages')) {
         Schema::create('chat_messages', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_chat_id')->constrained()->onDelete('cascade');
@@ -21,7 +22,7 @@ class CreateChatMessagesTable extends Migration
             $table->timestamps();
         });
     }
-
+    }
     /**
      * Reverse the migrations.
      *

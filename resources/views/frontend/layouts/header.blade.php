@@ -6,21 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'Default Site Title')</title>
+    <!-- Primary Meta Tags -->
+    <title>@yield('title', 'WebNodez - Web Development & Digital Solutions')</title>
+    <meta name="title" content="@yield('title', 'WebNodez - Web Development & Digital Solutions')">
+    <meta name="description" content="@yield('meta_description', 'WebNodez provides professional web development, digital solutions, and IT services. Expert team delivering innovative solutions for your business needs.')">
+    <meta name="keywords" content="@yield('meta_keywords', 'web development, digital solutions, IT services, software development, web design, mobile apps')">
+    <meta name="author" content="WebNodez">
+    <meta name="robots" content="index, follow">
 
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('title', 'WebNodez - Web Development & Digital Solutions')">
+    <meta property="og:description" content="@yield('meta_description', 'WebNodez provides professional web development, digital solutions, and IT services. Expert team delivering innovative solutions for your business needs.')">
+    <meta property="og:image" content="@yield('og_image', asset('images/og-image.jpg'))">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="@yield('title', 'WebNodez - Web Development & Digital Solutions')">
+    <meta property="twitter:description" content="@yield('meta_description', 'WebNodez provides professional web development, digital solutions, and IT services. Expert team delivering innovative solutions for your business needs.')">
+    <meta property="twitter:image" content="@yield('og_image', asset('images/og-image.jpg'))">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ url()->current() }}">
+<script src="{{ asset('js/dark-mode.js') }}"></script>
+
+    <!-- Stylesheets -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
-
-
     <link href="{{ asset('css/about/culture.css') }}" rel="stylesheet">
-
     <link href="{{ asset('css/components/blog-card.css') }}" rel="stylesheet">
     <link href="{{ asset('css/components/faq.css') }}" rel="stylesheet">
     <link href="{{ asset('css/chatbot.css') }}" rel="stylesheet">
     <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
 
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Pusher -->
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+
+    <!-- reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body class="position-relative">

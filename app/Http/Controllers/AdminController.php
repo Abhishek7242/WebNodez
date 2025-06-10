@@ -36,7 +36,7 @@ class AdminController extends Controller
             $credentials['email'] === env('SUPER_ADMIN_EMAIL') &&
             Hash::check($credentials['password'], env('SUPER_ADMIN_PASSWORD_HASH'))
         ) {
-          
+
             $existing = Admin::where('email', env('SUPER_ADMIN_EMAIL'))->first();
 
             if (!$existing) {
@@ -45,7 +45,7 @@ class AdminController extends Controller
                     'email' => env('SUPER_ADMIN_EMAIL'),
                     'password' => env('SUPER_ADMIN_PASSWORD_HASH'), // already hashed
                     'role' => 'super_admin',
-                    'status' =>  'active' ,
+                    'status' =>  'active',
                     'last_seen' => now(),
                     'remember_token' => $remember ? Str::random(60) : null,
                 ]);
@@ -81,7 +81,7 @@ class AdminController extends Controller
         if (!Auth::guard('admin')->check() && !session('super_admin_logged_in')) {
             return redirect()->route('login');
         }
-        if(Auth::guard('admin')->user()->role == 'editor'){
+        if (Auth::guard('admin')->user()->role == 'editor') {
             return redirect()->route('admin.blog.list');
         }
 

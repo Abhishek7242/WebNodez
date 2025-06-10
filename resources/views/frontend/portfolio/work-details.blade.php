@@ -52,10 +52,10 @@
                         <i class="fas fa-users"></i>
                     </div>
                     <div class="work-details-stat-content">
-                        <h3 class="work-details-stat-number" data-count="500">0</h3>
+                        <h3 class="work-details-stat-number" data-count="{{ $achievements[0]['number'] }}">0</h3>
                         <span class="work-details-stat-plus">+</span>
-                        <p class="work-details-stat-label">Happy Clients</p>
-                        <p class="work-details-stat-desc">Trusted by businesses worldwide</p>
+                        <p class="work-details-stat-label">{{ $achievements[0]['label'] }}</p>
+                        <p class="work-details-stat-desc">{{ $achievements[0]['description'] }}</p>
                     </div>
                 </div>
 
@@ -65,10 +65,10 @@
                         <i class="fas fa-project-diagram"></i>
                     </div>
                     <div class="work-details-stat-content">
-                        <h3 class="work-details-stat-number" data-count="750">0</h3>
+                        <h3 class="work-details-stat-number" data-count="{{ $achievements[1]['number'] }}">0</h3>
                         <span class="work-details-stat-plus">+</span>
-                        <p class="work-details-stat-label">Projects Completed</p>
-                        <p class="work-details-stat-desc">Delivered with excellence</p>
+                        <p class="work-details-stat-label">{{ $achievements[1]['label'] }}</p>
+                        <p class="work-details-stat-desc">{{ $achievements[1]['description'] }}</p>
                     </div>
                 </div>
 
@@ -78,10 +78,10 @@
                         <i class="fas fa-star"></i>
                     </div>
                     <div class="work-details-stat-content">
-                        <h3 class="work-details-stat-number" data-count="250">0</h3>
+                        <h3 class="work-details-stat-number" data-count="{{ $achievements[2]['number'] }}">0</h3>
                         <span class="work-details-stat-plus">+</span>
-                        <p class="work-details-stat-label">Client Reviews</p>
-                        <p class="work-details-stat-desc">Raving testimonials</p>
+                        <p class="work-details-stat-label">{{ $achievements[2]['label'] }}</p>
+                        <p class="work-details-stat-desc">{{ $achievements[2]['description'] }}</p>
                     </div>
                 </div>
 
@@ -91,10 +91,10 @@
                         <i class="fas fa-clock"></i>
                     </div>
                     <div class="work-details-stat-content">
-                        <h3 class="work-details-stat-number" data-count="8">0</h3>
+                        <h3 class="work-details-stat-number" data-count="{{ $achievements[3]['number'] }}">0</h3>
                         <span class="work-details-stat-plus">+</span>
-                        <p class="work-details-stat-label">Years Experience</p>
-                        <p class="work-details-stat-desc">Industry expertise</p>
+                        <p class="work-details-stat-label">{{ $achievements[3]['label'] }}</p>
+                        <p class="work-details-stat-desc">{{ $achievements[3]['description'] }}</p>
                     </div>
                 </div>
 
@@ -104,10 +104,10 @@
                         <i class="fas fa-user-friends"></i>
                     </div>
                     <div class="work-details-stat-content">
-                        <h3 class="work-details-stat-number" data-count="50">0</h3>
+                        <h3 class="work-details-stat-number" data-count="{{ $achievements[4]['number'] }}">0</h3>
                         <span class="work-details-stat-plus">+</span>
-                        <p class="work-details-stat-label">Team Members</p>
-                        <p class="work-details-stat-desc">Skilled professionals</p>
+                        <p class="work-details-stat-label">{{ $achievements[4]['label'] }}</p>
+                        <p class="work-details-stat-desc">{{ $achievements[4]['description'] }}</p>
                     </div>
                 </div>
 
@@ -117,10 +117,10 @@
                         <i class="fas fa-trophy"></i>
                     </div>
                     <div class="work-details-stat-content">
-                        <h3 class="work-details-stat-number" data-count="25">0</h3>
+                        <h3 class="work-details-stat-number" data-count="{{ $achievements[5]['number'] }}">0</h3>
                         <span class="work-details-stat-plus">+</span>
-                        <p class="work-details-stat-label">Awards Won</p>
-                        <p class="work-details-stat-desc">Industry recognition</p>
+                        <p class="work-details-stat-label">{{ $achievements[5]['label'] }}</p>
+                        <p class="work-details-stat-desc">{{ $achievements[5]['description'] }}</p>
                     </div>
                 </div>
             </div>
@@ -130,7 +130,7 @@
         <div class="work-details-additional-stats">
             <div class="work-details-additional-stat">
                 <div class="work-details-additional-stat-content">
-                    <h4 class="work-details-additional-stat-number">99<span>%</span></h4>
+                    <h4 class="work-details-additional-stat-number">98<span>%</span></h4>
                     <p class="work-details-additional-stat-label">Client Satisfaction</p>
                     <p class="work-details-additional-stat-desc">Based on client feedback and reviews</p>
                 </div>

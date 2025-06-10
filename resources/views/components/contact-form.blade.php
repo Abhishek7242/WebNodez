@@ -6,7 +6,8 @@
 
             <form>
                 <div>
-                    <input required autocomplete="name" type="text" id="contactName" name="name" data-error-target="name">
+                    <input required autocomplete="name" type="text" id="contactName" name="name"
+                        data-error-target="name">
                     <i class="i"></i>
                     <span id="name">Name</span>
                     <i class="svg-box"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -16,7 +17,8 @@
                     <div id="contactnameError" class="contact-error-message error-message"></div>
                 </div>
                 <div>
-                    <input required autocomplete="email" id="contactEmail" type="email" name="email" data-error-target="email">
+                    <input required autocomplete="email" id="contactEmail" type="email" name="email"
+                        data-error-target="email">
                     <i class="i"></i>
                     <span id="email">Email</span>
                     <i class="svg-box"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -34,7 +36,8 @@
                         <option value="81">+81</option>
                         <!-- Add more country codes as needed -->
                     </select>
-                    <input required autocomplete="phone" id="contactNumber" type="phone" name="phone" data-error-target="phone">
+                    <input required autocomplete="phone" id="contactNumber" type="phone" name="phone"
+                        data-error-target="phone">
                     <i class="i"></i>
                     <span id="phone">Contact No.</span>
                     <i class="svg-box"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -48,15 +51,18 @@
                     <textarea class="border-2" required data-error-target="message" id="contactMessage" placeholder="Message"></textarea>
                     {{-- <i class="i textarea-border"></i> --}}
                     {{-- <span id="message">Message</span> --}}
-                    <i class="svg-box"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M64 0C28.7 0 0 28.7 0 64L0 352c0 35.3 28.7 64 64 64l96 0 0 80c0 6.1 3.4 11.6 8.8 14.3s11.9 2.1 16.8-1.5L309.3 416 448 416c35.3 0 64-28.7 64-64l0-288c0-35.3-28.7-64-64-64L64 0z"/></svg></i>
+                    <i class="svg-box"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path
+                                d="M64 0C28.7 0 0 28.7 0 64L0 352c0 35.3 28.7 64 64 64l96 0 0 80c0 6.1 3.4 11.6 8.8 14.3s11.9 2.1 16.8-1.5L309.3 416 448 416c35.3 0 64-28.7 64-64l0-288c0-35.3-28.7-64-64-64L64 0z" />
+                        </svg></i>
                 </div>
                 <div id="term-conditions">
-                    <a href="#">terms and conditions</a>
+                    <a href="/terms-conditions#contact-us">terms and conditions</a>
+                    @if ($errors->has('g-recaptcha-response'))
+                        <span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
+                    @endif
                 </div>
                 <div id="checkbox-container">
-                      @if ($errors->has('g-recaptcha-response'))
-        <span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
-    @endif
                     <div>
                         <input style="transition: 0.4s" type="checkbox" id="contact-checkbox" checked required>
                         <label for="contact-checkbox">I agree to the above terms and conditions</label>
@@ -71,11 +77,12 @@
                     <h2>Contact Us</h2>
                 </div>
 
-                <img class="filter-green " src="https://static.wixstatic.com/media/fa1267_8d5e4df280eb42f496d1c6544a8eee8b~mv2.gif" alt="">
+                <img class="filter-green "
+                    src="https://static.wixstatic.com/media/fa1267_8d5e4df280eb42f496d1c6544a8eee8b~mv2.gif"
+                    alt="">
             </div>
         </div>
     </div>
 </div>
 
 <script src="{{ asset('js/contactUsForm.js') }}"></script>
-

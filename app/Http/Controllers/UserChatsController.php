@@ -239,6 +239,11 @@ class UserChatsController extends Controller
     }
     public function takeControl(Request $request)
     {
+        $user = auth()->guard('admin')->user();
+
+        if (!in_array($user->role, ['super_admin', 'admin','contact_support'])) {
+            abort(403, 'Unauthorized');
+        }
         try {
             $request->validate([
                 'admin_control' => 'required|boolean',
@@ -283,6 +288,9 @@ class UserChatsController extends Controller
 
     public function sendAdminMessage(Request $request)
     {
+        if (!in_array($user->role, ['super_admin', 'admin', 'contact_support'])) {
+            abort(403, 'Unauthorized');
+        }
         try {
             $request->validate([
                 'message' => 'required|string',

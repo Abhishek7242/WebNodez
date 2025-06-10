@@ -31,7 +31,7 @@
     height: 70px;
     border-radius: 50%;
     cursor: pointer;
-    background: url("https://cdn.dribbble.com/userupload/23934109/file/original-6abc5ca0baf8cb785d4098a1e71901f8.gif")
+    background: url("/assets/chatbot.gif")
         no-repeat center center/cover;
     box-shadow: 0 4px 20px rgba(79, 70, 229, 0.3);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

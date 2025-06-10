@@ -1,5 +1,12 @@
 @extends('frontend/layouts/main')
 @section('title', 'WebNodez - Portfolio')
+@section('meta_description',
+    'Explore WebNodez portfolio showcasing our web development projects, case studies, and
+    design gallery. View our successful client projects, innovative solutions, and creative designs.')
+@section('meta_keywords',
+    'web development portfolio, case studies, design gallery, client projects, web design
+    showcase, digital solutions portfolio, IT projects, software development portfolio')
+@section('og_image', asset('images/portfolio-og.jpg'))
 @section('portfolio', 'active')
 @section('main-section')
     <link href="{{ asset('css/portfolio/intro.css') }}" rel="stylesheet">
@@ -16,11 +23,14 @@
 
 
     @include('frontend/portfolio/intro')
-    
-</header>
-@include('frontend/portfolio/case-studies')
-@include('frontend/portfolio/design-gallery')
-@include('frontend/portfolio/work-details')
-@include('frontend/portfolio/blogs')
+
+    </header>
+    @include('frontend/portfolio/case-studies')
+    @include('frontend/portfolio/design-gallery')
+    @include('frontend/portfolio/work-details')
+    @if ($blogs->count() > 0)
+        @include('frontend.portfolio.blogs')
+    @endif
+
 
 @endsection

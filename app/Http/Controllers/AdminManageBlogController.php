@@ -7,34 +7,61 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Models\Blog;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Cache;
 
 class AdminManageBlogController extends Controller
 {
     public function index()
     {
-        $blogs = Blog::latest()->get();
+        $user = auth()->guard('admin')->user();
+        if (!in_array($user->role, ['super_admin', 'admin','editor'])) {
+            abort(403, 'Unauthorized');
+        }
+        $blogs = Cache::remember('admin.blogs.all', 3600, function () {
+            return Blog::latest()->get();
+        });
         return view('admin.blog-list', compact('blogs'));
     }
+
     public function blogs()
     {
-        $blogs = Blog::where('is_featured', 1)->latest()->get();
+        $blogs = Cache::remember('frontend.featured.blogs', 3600, function () {
+            return Blog::where('is_featured', 1)->latest()->get();
+        });
 
         return view('frontend.blogs', compact('blogs'));
     }
 
     public function newBlog()
     {
+        $user = auth()->guard('admin')->user();
+        if (!in_array($user->role, ['super_admin', 'admin', 'editor'])) {
+            abort(403, 'Unauthorized');
+        }
+        Cache::forget('admin.blogs.all');
         return view('admin.new-blog');
     }
 
     public function editBlog($id)
     {
-        $blog = Blog::findOrFail($id);
+        $user = auth()->guard('admin')->user();
+        if (!in_array($user->role, ['super_admin', 'admin','editor'])) {
+            abort(403, 'Unauthorized');
+        }
+        $blog = Cache::remember('blog.' . $id, 3600, function () use ($id) {
+            return Blog::findOrFail($id);
+        });
+        Cache::forget('admin.blogs.all');
+        Cache::forget('blog.' . $id);
         return view('admin.blog-page-edit', compact('blog'));
     }
 
     public function updateBlog(Request $request, $id)
     {
+        $user = auth()->guard('admin')->user();
+        if (!in_array($user->role, ['super_admin', 'admin','editor'])) {
+            abort(403, 'Unauthorized');
+        }
         $blog = Blog::findOrFail($id);
 
         // Validate the request
@@ -43,8 +70,7 @@ class AdminManageBlogController extends Controller
             'slug' => 'required|string|max:255|unique:blogs,slug,' . $id,
             'category' => 'required|string|max:100',
             'content' => 'required|string',
-            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'is_featured' => 'boolean'
+            'featured_image' => 'nullable|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -78,6 +104,13 @@ class AdminManageBlogController extends Controller
                 'status' => 'published'
             ]);
 
+            // Clear related caches
+            Cache::forget('blog.' . $id);
+            Cache::forget('blog.slug.' . $request->slug);
+            
+            Cache::forget('admin.blogs.all');
+            Cache::forget('frontend.featured.blogs');
+
             return redirect()->route('admin.blog.list')->with('success', 'Blog updated successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Error updating blog: ' . $e->getMessage());
@@ -86,6 +119,10 @@ class AdminManageBlogController extends Controller
 
     public function uploadImage(Request $request)
     {
+        $user = auth()->guard('admin')->user();
+        if (!in_array($user->role, ['super_admin', 'admin','editor'])) {
+            abort(403, 'Unauthorized');
+        }
         if (!$request->hasFile('file')) {
             return response()->json(['error' => 'No file uploaded'], 400);
         }
@@ -94,7 +131,7 @@ class AdminManageBlogController extends Controller
 
         // Validate file
         $request->validate([
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'file' => 'required|image|max:2048'
         ]);
 
         // Generate unique filename
@@ -111,13 +148,17 @@ class AdminManageBlogController extends Controller
 
     public function saveBlog(Request $request)
     {
-        // Validate the request
+        $user = auth()->guard('admin')->user();
+        if (!in_array($user->role, ['super_admin', 'admin','editor'])) {
+            abort(403, 'Unauthorized');
+        }
+            // Validate the request
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:blogs,slug',
             'category' => 'required|string|max:100',
             'content' => 'required|string',
-            'featured_image' => 'nullable|image|max:2048',
+            'featured_image' => 'nullable|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -147,20 +188,54 @@ class AdminManageBlogController extends Controller
                 'author_id' => auth()->guard('admin')->id()
             ]);
 
+            // Clear related caches
+            Cache::forget('admin.blogs.all');
+            Cache::forget('frontend.featured.blogs');
+
             return redirect()->back()->with('success', 'Blog saved!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'ERROR! Blog not Saved!');
         }
     }
 
+    public function deleteBlog($id)
+    {
+        $user = auth()->guard('admin')->user();
+        if (!in_array($user->role, ['super_admin', 'admin','editor'])) {
+            abort(403, 'Unauthorized');
+        }
+        $blog = Blog::findOrFail($id);
+        $blog->delete();
+
+        // Clear related caches
+        Cache::forget('blog.' . $id);
+        Cache::forget('admin.blogs.all');
+        Cache::forget('frontend.featured.blogs');
+
+        return redirect()->back()->with('success', 'Blog deleted successfully!');
+    }
+
     public function viewBlog($id)
     {
-        $blog = Blog::findOrFail($id);
+        $user = auth()->guard('admin')->user();
+        if (!in_array($user->role, ['super_admin', 'admin','editor'])) {
+            abort(403, 'Unauthorized');
+        }
+        $blog = Cache::remember('blog.' . $id, 3600, function () use ($id) {
+            return Blog::findOrFail($id);
+        });
+        Cache::forget('blog.' . $id);
         return view('admin.blog-view', compact('blog'));
     }
-    public function userBlogView($id)
+
+    public function userBlogView($slug)
     {
-        $blog = Blog::findOrFail($id);
-        return view('frontend.blog-page', compact('blog'));
+        $blog = Cache::remember('blog.slug.' . $slug, 3600, function () use ($slug) {
+            return Blog::where('slug', $slug)->firstOrFail();
+        });
+        $blogs = Cache::remember('frontend.featured.blogs', 3600, function () {
+            return Blog::where('is_featured', 1)->latest()->get();
+        });
+        return view('frontend.blog-page', compact('blog', 'blogs'));
     }
 }

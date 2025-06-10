@@ -1,6 +1,11 @@
 @extends('frontend/layouts/main')
 @section('title', 'Services - ' . $service)
-
+@section('meta_description', 'Discover our professional ' . $service . ' services. ' . $details['description'])
+@section('meta_keywords',
+    $service .
+    ', web development, digital solutions, IT services, software development, custom
+    solutions, professional services, technology solutions, business solutions, enterprise solutions')
+@section('og_image', asset('images/services/' . strtolower(str_replace(' ', '-', $service)) . '-og.jpg'))
 @section('services', 'active')
 @section('main-section')
     <link rel="stylesheet" href="{{ asset('css/service/intro.css') }}?v={{ time() }}">
@@ -32,7 +37,7 @@
     {{-- Tech we use section --}}
     @include('frontend/service/technology')
     {{-- Tech we use section --}}
-    <x-why-choose-us :projectNumber='$projectNumber' :clientSatis="$clientSatis" />
+    <x-why-choose-us :projectNumber='$projectNumber' :clientSatis="98" />
 
     @include('frontend/services/contact-page')
 

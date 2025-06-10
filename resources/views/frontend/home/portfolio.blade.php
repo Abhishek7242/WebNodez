@@ -1,3 +1,14 @@
+@php
+    use App\Models\DesignGallery;
+    use Illuminate\Support\Facades\Cache;
+
+    $designs = Cache::remember('design_gallery_featured', 60 * 60 * 24, function () {
+        return DesignGallery::where('is_featured', true)->orderBy('order', 'asc')->get();
+    });
+
+    $totalDesigns = $designs->count();
+@endphp
+
 <section class="home-design-gallery-section">
     <div class="home-design-gallery-container">
         <div class="home-design-gallery-header ">
@@ -6,86 +17,31 @@
             <p class="home-design-gallery-description">Explore our latest design projects and creative solutions</p>
         </div>
 
-        <div class="home-design-gallery-filter">
+        {{-- <div class="home-design-gallery-filter">
             <button class="home-design-gallery-filter-btn active" data-filter="all">All</button>
-            <button class="home-design-gallery-filter-btn" data-filter="web">Web Development</button>
-            <button class="home-design-gallery-filter-btn" data-filter="app">App Development</button>
-            <button class="home-design-gallery-filter-btn" data-filter="ui">UI/UX Design</button>
-        </div>
+            <button class="home-design-gallery-filter-btn" data-filter="web_dev">Web Development</button>
+            <button class="home-design-gallery-filter-btn" data-filter="app_dev">App Development</button>
+            <button class="home-design-gallery-filter-btn" data-filter="ui_ux">UI/UX Design</button>
+        </div> --}}
 
         <div class="home-design-gallery-grid">
-            <!-- Web Development Projects -->
-            <div class="home-design-gallery-item" data-category="web">
-                <div class="home-design-gallery-image">
-                    <img src="https://s3u.tmimgcdn.com/u1635272/ba94c8b2675b46c7702e36961744b0c6.jpg"
-                        alt="E-commerce Website">
-                    <div class="home-design-gallery-overlay">
-                        <h3 class="home-design-gallery-item-title">E-commerce Website</h3>
-                        <a href="#" class="home-design-gallery-view-btn">View Project</a>
+            @foreach ($designs as $design)
+                <div class="home-design-gallery-item" data-category="{{ $design->category }}">
+                    <div class="home-design-gallery-image">
+                        <img src="{{ $design->image }}" alt="{{ $design->title }}">
+                        <div class="home-design-gallery-overlay">
+                            <h3 class="home-design-gallery-item-title">{{ $design->title }}</h3>
+                            @if ($design->link)
+                                <a href="{{ $design->link }}" class="home-design-gallery-view-btn">View Project</a>
+                            @endif
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="home-design-gallery-item" data-category="web">
-                <div class="home-design-gallery-image">
-                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/1d5e3b174890851.64aa8bf1d92be.jpg"
-                        alt="Corporate Website">
-                    <div class="home-design-gallery-overlay">
-                        <h3 class="home-design-gallery-item-title">Fitness Website</h3>
-                        <a href="#" class="home-design-gallery-view-btn">View Project</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- App Development Projects -->
-            <div class="home-design-gallery-item" data-category="app">
-                <div class="home-design-gallery-image">
-                    <img src="https://www.appindia.co.in/blog/wp-content/uploads/2021/10/fitness-app.jpg"
-                        alt="Fitness App">
-                    <div class="home-design-gallery-overlay">
-                        <h3 class="home-design-gallery-item-title">Fitness Tracking App</h3>
-                        <a href="#" class="home-design-gallery-view-btn">View Project</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="home-design-gallery-item" data-category="app">
-                <div class="home-design-gallery-image">
-                    <img src="https://cdn.dribbble.com/userupload/33242602/file/original-39adc0e253d8de6e2f26392eb259a38d.png?resize=752x&vertical=center"
-                        alt="Food Delivery App">
-                    <div class="home-design-gallery-overlay">
-                        <h3 class="home-design-gallery-item-title">Food Delivery App</h3>
-                        <a href="#" class="home-design-gallery-view-btn">View Project</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- UI/UX Design Projects -->
-            <div class="home-design-gallery-item" data-category="web">
-                <div class="home-design-gallery-image">
-                    <img src="https://i.ytimg.com/vi/XAHGoh1W10Q/maxresdefault.jpg"
-                        alt="Food Recipe Website Image">
-                    <div class="home-design-gallery-overlay">
-                        <h3 class="home-design-gallery-item-title">Food Recipe Website</h3>
-                        <a href="#" class="home-design-gallery-view-btn">View Project</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="home-design-gallery-item" data-category="ui">
-                <div class="home-design-gallery-image">
-                    <img src="https://mastercaweb.u-strasbg.fr/wp-content/uploads/2022/08/5726865-edited-scaled.jpg"
-                        alt="UX Research">
-                    <div class="home-design-gallery-overlay">
-                        <h3 class="home-design-gallery-item-title">UI/UX Design</h3>
-                        <a href="#" class="home-design-gallery-view-btn">View Project</a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
 
         <div class="home-design-gallery-load-more">
-            <a href="/portfolio">
+            <a href="/portfolio#design-gallery">
                 <button class="home-design-gallery-load-more-btn">Show More</button>
             </a>
         </div>

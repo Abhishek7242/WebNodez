@@ -1,4 +1,15 @@
-<section class="design-gallery-section">
+@php
+    use App\Models\DesignGallery;
+    use Illuminate\Support\Facades\Cache;
+
+    $designs = Cache::remember('design_gallery_featured', 60 * 60 * 24, function () {
+        return DesignGallery::where('is_featured', true)->orderBy('order', 'asc')->get();
+    });
+
+    $totalDesigns = $designs->count();
+@endphp
+
+<section id="design-gallery" class="design-gallery-section">
     <div class="design-gallery-container">
         <div class="design-gallery-header">
             <span class="design-gallery-subtitle">Our Portfolio</span>
@@ -8,85 +19,35 @@
 
         <div class="design-gallery-filter">
             <button class="design-gallery-filter-btn active" data-filter="all">All</button>
-            <button class="design-gallery-filter-btn" data-filter="web">Web Development</button>
-            <button class="design-gallery-filter-btn" data-filter="app">App Development</button>
-            <button class="design-gallery-filter-btn" data-filter="ui">UI/UX Design</button>
+            <button class="design-gallery-filter-btn" data-filter="web_dev">Web Development</button>
+            <button class="design-gallery-filter-btn" data-filter="app_dev">App Development</button>
+            <button class="design-gallery-filter-btn" data-filter="ui_ux">UI/UX Design</button>
         </div>
 
         <div class="design-gallery-grid">
-            <!-- Web Development Projects -->
-            <div class="design-gallery-item" data-category="web">
-                <div class="design-gallery-image">
-                    <img src="https://s3u.tmimgcdn.com/u1635272/ba94c8b2675b46c7702e36961744b0c6.jpg"
-                        alt="E-commerce Website">
-                    <div class="design-gallery-overlay">
-                        <h3 class="design-gallery-item-title">E-commerce Website</h3>
-                        <a href="#" class="design-gallery-view-btn">View Project</a>
+            @foreach ($designs as $index => $design)
+                <div class="design-gallery-item {{ $index >= 6 ? 'design-gallery-hidden' : '' }}"
+                    data-category="{{ $design->category }}">
+                    <div class="design-gallery-image">
+                        <img src="{{ $design->image }}" alt="{{ $design->title }}">
+                        <div class="design-gallery-overlay">
+                            <h3 class="design-gallery-item-title">{{ $design->title }}</h3>
+                            @if ($design->link)
+                                
+                            <a href="{{ $design->link }}" class="design-gallery-view-btn">View Project</a>
+                            @endif
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="design-gallery-item" data-category="web">
-                <div class="design-gallery-image">
-                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/1d5e3b174890851.64aa8bf1d92be.jpg"
-                        alt="Corporate Website">
-                    <div class="design-gallery-overlay">
-                        <h3 class="design-gallery-item-title">Fitness Website</h3>
-                        <a href="#" class="design-gallery-view-btn">View Project</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- App Development Projects -->
-            <div class="design-gallery-item" data-category="app">
-                <div class="design-gallery-image">
-                    <img src="https://www.appindia.co.in/blog/wp-content/uploads/2021/10/fitness-app.jpg"
-                        alt="Fitness App">
-                    <div class="design-gallery-overlay">
-                        <h3 class="design-gallery-item-title">Fitness Tracking App</h3>
-                        <a href="#" class="design-gallery-view-btn">View Project</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="design-gallery-item" data-category="app">
-                <div class="design-gallery-image">
-                    <img src="https://cdn.dribbble.com/userupload/33242602/file/original-39adc0e253d8de6e2f26392eb259a38d.png?resize=752x&vertical=center"
-                        alt="Food Delivery App">
-                    <div class="design-gallery-overlay">
-                        <h3 class="design-gallery-item-title">Food Delivery App</h3>
-                        <a href="#" class="design-gallery-view-btn">View Project</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- UI/UX Design Projects -->
-            <div class="design-gallery-item" data-category="web">
-                <div class="design-gallery-image">
-                    <img src="https://www.figma.com/community/resource/a68f5ea1-6e0e-4ac6-b22c-1066c463ada7/thumbnail"
-                        alt="Food Recipe Website Image">
-                    <div class="design-gallery-overlay">
-                        <h3 class="design-gallery-item-title">Food Recipe Website</h3>
-                        <a href="#" class="design-gallery-view-btn">View Project</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="design-gallery-item" data-category="ui">
-                <div class="design-gallery-image">
-                    <img src="https://mastercaweb.u-strasbg.fr/wp-content/uploads/2022/08/5726865-edited-scaled.jpg"
-                        alt="UX Research">
-                    <div class="design-gallery-overlay">
-                        <h3 class="design-gallery-item-title">UI/UX Design</h3>
-                        <a href="#" class="design-gallery-view-btn">View Project</a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
 
-        <div class="design-gallery-load-more">
-            <button class="design-gallery-load-more-btn">Load More</button>
-        </div>
+        @if ($totalDesigns > 6)
+            <div class="design-gallery-load-more">
+                <button class="design-gallery-load-more-btn" data-shown="6" data-total="{{ $totalDesigns }}">Load
+                    More</button>
+            </div>
+        @endif
     </div>
 </section>
 
@@ -95,7 +56,7 @@
         const filterButtons = document.querySelectorAll('.design-gallery-filter-btn');
         const galleryItems = document.querySelectorAll('.design-gallery-item');
         const loadMoreBtn = document.querySelector('.design-gallery-load-more-btn');
-        let visibleItems = 6;
+        const ITEMS_PER_LOAD = 6;
 
         // Function to filter gallery items
         function filterGallery(category) {
@@ -127,19 +88,28 @@
         });
 
         // Load More functionality
-        loadMoreBtn.addEventListener('click', () => {
-            const hiddenItems = document.querySelectorAll('.design-gallery-item.design-gallery-hidden');
-            const itemsToShow = Math.min(4, hiddenItems.length);
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', () => {
+                const currentlyShown = parseInt(loadMoreBtn.getAttribute('data-shown'));
+                const totalItems = parseInt(loadMoreBtn.getAttribute('data-total'));
+                const itemsToShow = Math.min(currentlyShown + ITEMS_PER_LOAD, totalItems);
 
-            for (let i = 0; i < itemsToShow; i++) {
-                hiddenItems[i].classList.remove('design-gallery-hidden');
-            }
+                // Show next batch of items
+                galleryItems.forEach((item, index) => {
+                    if (index >= currentlyShown && index < itemsToShow) {
+                        item.classList.remove('design-gallery-hidden');
+                    }
+                });
 
-            // Hide load more button if no more items
-            if (itemsToShow < 4) {
-                loadMoreBtn.style.display = 'none';
-            }
-        });
+                // Update shown count
+                loadMoreBtn.setAttribute('data-shown', itemsToShow);
+
+                // Hide button if all items are shown
+                if (itemsToShow >= totalItems) {
+                    loadMoreBtn.style.display = 'none';
+                }
+            });
+        }
 
         // Add animation on scroll
         const observerOptions = {
