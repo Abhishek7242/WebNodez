@@ -35,7 +35,9 @@ Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.lo
 
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::middleware('auth:admin')->group(function () {
+    Route::get('/user-chats/last-active-time/{visitor_id}', [UserChatsController::class, 'getLastActiveTime'])->name('user.chats.last-active-time');
     Route::post('/user-chats/take-control', [UserChatsController::class, 'takeControl'])->name('user.chats.take-control');
+    Route::post('/user-chats/admin-message', [UserChatsController::class, 'sendAdminMessage'])->name('user.chats.admin-message');
     Route::get('/admin/manage-portfolio', [AdminManagePortfolio::class, 'managePortfolio'])->name('admin.manage-portfolio');
     Route::get('/admin/manage-portfolio/gallery', [AdminManagePortfolio::class, 'managePortfolioGallery'])->name('admin.manage-portfolio.gallery');
     Route::post('/admin/manage-portfolio/gallery/store', [AdminManagePortfolio::class, 'storeGallery'])->name('admin.manage-portfolio.gallery.store');

@@ -35,9 +35,9 @@ class NewChatMessage implements ShouldBroadcast
      *
      * @return \Illuminate\Broadcasting\Channel|array
      */
-    public function broadcastOn()
+    public function broadcastOn():array
     {
-        return new Channel('chatbot');
+        return [new Channel('chatbot.' . $this->visitor_id)];
     }
 
     /**
@@ -45,7 +45,7 @@ class NewChatMessage implements ShouldBroadcast
      *
      * @return string
      */
-    public function broadcastAs()
+    public function broadcastAs():string
     {
         return 'chatbot-message';
     }
@@ -55,7 +55,7 @@ class NewChatMessage implements ShouldBroadcast
      *
      * @return array
      */
-    public function broadcastWith()
+    public function broadcastWith():array
     {
         return [
             'message' => $this->message,

@@ -477,3 +477,38 @@ font-size: 13px;
 font-size: 10px;
 }
 }
+@media (max-width: 350px) {
+
+   .footer-animated{
+     padding: 0;
+     padding-bottom: 5rem;
+     padding-top: 3rem;
+   }
+   .footer-grid{
+    padding: 0;
+   }
+   .footer-links h4{
+    font-size: 12px;
+   }
+   .footer-links ul{
+   gap: 3px;
+   }
+   .footer-links a{
+    font-size: 10px;
+   }
+  .footer-contact-btn{
+    padding: 6px 14px;
+    gap: 8px;
+  }
+  .footer-contact-btn span{
+font-size: 13px;
+  }
+  .footer-contact-btn svg {
+    width: 1rem;
+    height: 1rem;
+
+}
+.footer-copyright p {
+font-size: 10px;
+}
+}

@@ -4,7 +4,17 @@
 ])
 
 <style>
+    @media (max-width: 280px) {
+        .stat-icon svg {
+            width: 20px;
+            height: 20px;
+        }
 
+        .why-solution-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
 </style>
 <section class="why-solution-section">
     <div class="why-solution-container">

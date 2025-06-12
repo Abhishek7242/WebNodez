@@ -319,6 +319,16 @@
         font-size: 0.8125rem;
     }
 }
+@media (max-width: 350px) {
+            .faq-question-text {
+        font-size: 11px;
+        padding-right: 5px;
+    }
+    .faq-answer-content{
+        padding:10px 5px;
+        font-size: 10px;
+    }
+}
 
 /* Animation for FAQ items */
 @keyframes fadeIn {

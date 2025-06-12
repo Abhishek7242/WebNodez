@@ -216,3 +216,33 @@ width: 27px;
     }
 
 }
+@media (max-width: 350px) {
+    .home-tech-container{
+        padding: 0;
+    }
+    .tech-group-inner-container{
+        padding: 20px;
+    }
+    .tech-heading-text h2{
+font-size: 25px;
+    }
+    .tech-heading-text h2 span{
+        font-size: 20px;
+
+    }
+    .tech-heading-text p{
+        font-size: 12px;
+    }
+    .home-tech-section .group h3{
+font-size: 19px;
+    }
+   .home-tech-section  .heading-container > div{
+height: 40px;
+width: 40px;
+    }
+   .home-tech-section  .heading-container svg{
+height: 27px;
+width: 27px;
+    }
+
+}

@@ -689,6 +689,13 @@
 
 /* Fix for very small screens */
 @media (max-width: 360px) {
+    .services-contact-container {
+        bottom: 4.25rem;
+        width: 100%;
+        display: flex
+;
+        justify-content: center;
+    }
     .services-section {
         padding: 2rem 0.75rem;
     }

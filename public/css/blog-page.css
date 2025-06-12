@@ -1259,7 +1259,7 @@
 
 @media (max-width: 992px) {
     .chat-content {
-        flex-direction: column;
+        flex-direction: column-reverse;
         text-align: center;
     }
 

@@ -228,10 +228,11 @@
 
     .process-container::before {
         left: 35px;
+        display: none;
     }
 
     .process-item {
-        margin: 0 0 4rem 70px !important;
+        margin: 0 0 4rem 0px !important;
         transform: none !important;
         padding: 2rem;
         background: rgba(30, 41, 59, 0.7);
@@ -243,13 +244,16 @@
     }
 
     .process-number {
+        display: none;
         width: 60px;
         height: 60px;
         font-size: 1.4rem;
         left: -45px !important;
         right: auto !important;
     }
-
+.process-item{
+    margin: 0;
+}
     .process-content {
         padding: 0;
     }
@@ -295,7 +299,7 @@
     }
 
     .process-item {
-        margin: 0 0 3rem 60px !important;
+        margin: 0 0 3rem 0px !important;
         padding: 1.5rem;
         border-radius: 16px;
     }
@@ -369,8 +373,10 @@
     }
 
     .process-item {
-        margin: 0 0 2.5rem 50px !important;
         padding: 1.25rem;
+    }
+    .process-section > div{
+        padding: 5px;
     }
 
     .process-number {
@@ -405,6 +411,9 @@
         font-size: 0.9rem;
         padding: 0 1rem;
     }
+    .process-item{
+    padding: 8px;
+}
 }
 
 /* Add smooth transitions for all interactive elements */
@@ -414,6 +423,7 @@
 .section-badge {
     transition: all 0.3s ease-in-out;
 }
+
 
 /* Add hover effect for process items */
 .process-item:hover .process-number {

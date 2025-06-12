@@ -300,10 +300,14 @@
     }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 400px) {
+        .service-text {
+
+            left: 50%;
+            border-radius: 0;
+        }
  .service-text > div {
-   
-        width: 155px;
+   width: 100%;
  
     }
     .service-container {

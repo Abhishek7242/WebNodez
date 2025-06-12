@@ -1,13 +1,27 @@
- .dark-mode .service-tech-section{
-        background: var(--dark-bg);
+.dark-mode .service-tech-section {
+    background: var(--dark-bg);
+}
+.dark-mode .service-tech-section h2 {
+    color: var(--dark-top-heading);
+}
+.dark-mode .service-tech-containers > div {
+    background: none;
+    border: 1px solid gray;
+}
+.dark-mode .service-tech-containers > div h3 {
+    color: var(--dark-top-heading);
+}
+
+@media (max-width: 280px) {
+    .dark-mode .service-tech-containers > div {
+        padding: 0.75rem;
     }
-    .dark-mode .service-tech-section h2{
-      color: var(--dark-top-heading);
+    .dark-mode .service-tech-section h2 {
+        font-size: 1.5rem;
     }
-    .dark-mode .service-tech-containers > div{
-          background: none;
-          border: 1px solid gray;
+    .dark-mode .service-tech-containers > div h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.5rem;
     }
-    .dark-mode .service-tech-containers > div h3{
-          color: var(--dark-top-heading);
-    }
+}

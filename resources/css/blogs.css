@@ -684,6 +684,18 @@
         font-size: 2rem;
     }
 }
+@media (max-width: 350px) {
+    .container{
+        padding: 0;
+    }
+        .blog-description {
+        font-size: 0.8rem;
+     
+    }
+    .section-title {
+        font-size: 2rem;
+    }
+}
 
 /* Blog Card Styles */
 .blog-card {

@@ -13,7 +13,9 @@
     <link href="{{ asset('css/about/intro.css') }}" rel="stylesheet">
     <link href="{{ asset('css/about/our-story.css') }}" rel="stylesheet">
     <link href="{{ asset('css/about/culture.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/about/clients.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/about/mission-vision.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/about/services.css') }}" rel="stylesheet">
     <script>
         document.documentElement.style.setProperty('--text-color', 'black');
     </script>

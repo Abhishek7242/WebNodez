@@ -7,15 +7,18 @@ localStorage.setItem('admin_control', 'false');
 
 const visitor_id = localStorage.getItem('visitor_id');
 
-var pusher = new Pusher('57d1bf302023911c127a', {
-    cluster: 'ap2'
+var pusher = new Pusher(process.env.MIX_PUSHER_APP_KEY, {
+    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+    encrypted: true
 });
 
-var channel = pusher.subscribe('chatbot');
+var channel = pusher.subscribe('chatbot.' + visitor_id);
+console.log('channel', channel);
 var channel2 = pusher.subscribe('chat.' + visitor_id);
 
 let chatbotController = localStorage.getItem('admin_control') === 'true';
 console.log('chatbotController', chatbotController);
+
 
 channel2.bind('take.control', (data) => {
     console.log('take control', data);
@@ -55,6 +58,9 @@ channel2.bind('take.control', (data) => {
             </div>
             <div class="message-content">
                 <span class="typing-text">You are now connected with our contact team support. How can we assist you?</span>
+                <div class="warning-message" style="color: #ff4444; font-size: 0.7em; margin-top: 8px;">
+                    ⚠️ Please do not reload the page while talking to our team to maintain the connection.
+                </div>
             </div>
         `;
         messagesContainer.appendChild(messageElement);
@@ -336,17 +342,31 @@ class Chatbot {
                 setTimeout(() => {
                     const messageElement = document.createElement('div');
                     messageElement.className = 'chatbot-message bot-message';
-                    messageElement.innerHTML = `
-                        <div class="bot-avatar">
-                            <img src="/images/bot-avatar.svg" alt="Harmony Bot" />
-                        </div>
-                        <div class="message-content">
-                            <span class="typing-text">I remember our previous conversation. How can I help you continue?</span>
-                        </div>
-                    `;
+                    if (chatbotController) {
+                        messageElement.innerHTML = `
+                            <div class="bot-avatar">
+                                <img src="https://cdn-icons-gif.flaticon.com/17576/17576964.gif" alt="Support Team" />
+                            </div>
+                            <div class="message-content">
+                                <span class="typing-text">You are now connected with our contact team support. How can we assist you?</span>
+                                <div class="warning-message" style="color: #ff4444; font-size: 0.7em; margin-top: 8px;">
+                                    ⚠️ Please do not reload the page while talking to our team to maintain the connection.
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        messageElement.innerHTML = `
+                            <div class="bot-avatar">
+                                <img src="/images/bot-avatar.svg" alt="Harmony Bot" />
+                            </div>
+                            <div class="message-content">
+                                <span class="typing-text">I remember our previous conversation. How can I help you continue?</span>
+                            </div>
+                        `;
+                    }
                     messagesContainer.appendChild(messageElement);
                     messagesContainer.scrollTop = messagesContainer.scrollHeight;
-                }, 500);
+                }, 0);
             } else {
                 // Show terms notice for new users
                 this.showTermsNotice();
@@ -549,6 +569,7 @@ class Chatbot {
             if (!token) {
                 console.warn('CSRF token not found');
             }
+            console.log('message is broadcasted', message);
             fetch(`/user-chats/broadcast`, {
                 method: 'POST',
                 headers: {

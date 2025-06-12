@@ -43,7 +43,7 @@
             </div>
 
             <!-- Search and Filter Section -->
-            <div class="bg-white/10 backdrop-blur-lg rounded-xl p-4 mb-6">
+            <div class="bg-white/10 backdrop-blur-lg rounded-xl p-4 mb-6 shadow-xl border border-gray-700/50">
                 <div class="flex flex-wrap gap-4">
                     <div class="flex-1 min-w-[200px]">
                         <div class="relative">
@@ -77,33 +77,39 @@
             <!-- Chat Conversations -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <!-- Chat List -->
-                <div class="lg:col-span-1 bg-white/10 backdrop-blur-lg rounded-xl overflow-hidden">
-                    <div class="p-4 border-b border-gray-700">
-                        <h2 class="text-lg font-semibold text-white">Recent Conversations</h2>
+                <div
+                    class="lg:col-span-1 bg-white/10 backdrop-blur-lg rounded-xl overflow-hidden shadow-xl border border-gray-700/50">
+                    <div class="p-4 border-b border-gray-700 bg-gradient-to-r from-gray-800/50 to-gray-900/50">
+                        <h2 class="text-lg font-semibold text-white flex items-center">
+                            <i class="fas fa-inbox mr-2 text-blue-400"></i>
+                            Recent Conversations
+                        </h2>
                     </div>
-                    <div class="overflow-y-auto max-h-[600px]">
-
-
+                    <div id="visitorList" class="overflow-y-auto max-h-[600px] custom-scrollbar">
                         @foreach ($conversations as $conversation)
-                            <div class="chat-item p-3 hover:bg-white/5 cursor-pointer transition-colors duration-200 border-b border-gray-700"
+                            <div class="visitor chat-item p-4 hover:bg-white/5 cursor-pointer transition-all duration-200 border-b border-gray-700/50 group"
                                 data-user="{{ $conversation['user'] }}" data-visitor-id="{{ $conversation['visitor_id'] }}"
                                 onclick="showChat('{{ $conversation['user'] }}', '{{ $conversation['visitor_id'] }}', '{{ $conversation['email'] }}', '{{ $conversation['status'] }}', '{{ $conversation['avatar'] }}')">
-                                <div class="chat-item-content flex items-start space-x-2">
+                                <div class="chat-item-content flex items-start space-x-3">
                                     <div
-                                        class="chat-avatar h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm flex-shrink-0">
+                                        class="chat-avatar h-10 w-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform duration-200">
                                         {{ $conversation['avatar'] }}
                                     </div>
                                     <div class="chat-details flex-1 min-w-0">
                                         <div class="chat-header flex justify-between items-start">
                                             <div class="chat-user-info min-w-0">
-                                                <p class="chat-username text-sm font-medium text-white truncate">
-                                                    {{ $conversation['user'] }}</p>
+                                                <p
+                                                    class="chat-username text-sm font-medium text-white truncate group-hover:text-blue-400 transition-colors duration-200">
+                                                    {{ $conversation['user'] }}
+                                                </p>
                                                 <p class="chat-email text-xs text-gray-400 truncate">
-                                                    {{ $conversation['email'] }}</p>
+                                                    {{ $conversation['email'] }}
+                                                </p>
                                             </div>
                                             <div class="chat-status-container flex flex-col items-end ml-2 flex-shrink-0">
                                                 @if ($conversation['status'] === 'active')
-                                                    <div class="chat-status-indicator flex items-center space-x-1">
+                                                    <div
+                                                        class="chat-status-indicator flex items-center space-x-1 bg-green-500/10 px-2 py-1 rounded-full">
                                                         <span
                                                             class="status-dot h-2 w-2 bg-green-500 rounded-full animate-pulse"></span>
                                                         <span class="status-text text-xs text-green-400">Active</span>
@@ -113,8 +119,10 @@
                                                     class="chat-time text-xs text-gray-400 mt-1">{{ $conversation['time'] }}</span>
                                             </div>
                                         </div>
-                                        <p class="chat-last-message text-sm text-gray-300 mt-1 truncate">
-                                            {{ $conversation['last_message'] }}</p>
+                                        <p
+                                            class="chat-last-message text-sm text-gray-300 mt-1 truncate group-hover:text-gray-200 transition-colors duration-200">
+                                            {{ $conversation['last_message'] }}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -123,11 +131,12 @@
                 </div>
 
                 <!-- Chat Details -->
-                <div class="lg:col-span-2 bg-white/10 backdrop-blur-lg rounded-xl overflow-hidden" id="chatDetails">
-                    <div class="p-4 border-b border-gray-700">
+                <div class="lg:col-span-2 bg-white/10 backdrop-blur-lg rounded-xl overflow-hidden shadow-xl border border-gray-700/50"
+                    id="chatDetails">
+                    <div class="p-4 border-b border-gray-700 bg-gradient-to-r from-gray-800/50 to-gray-900/50">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center space-x-3">
-                                <div class="h-10 w-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold"
+                                <div class="h-12 w-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold shadow-lg"
                                     id="chatAvatar">
                                     <i class="fas fa-user"></i>
                                 </div>
@@ -137,30 +146,33 @@
                                         messages</p>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-2" id="chatDetailsButtons">
-                                <span class="px-3 py-1 text-xs font-semibold rounded-full" id="chatStatus">
+                            <div class="flex items-center space-x-3" id="chatDetailsButtons">
+                                <span class="px-3 py-1 text-xs font-semibold rounded-full bg-gray-700/50 text-gray-300"
+                                    id="chatStatus">
                                     Inactive
                                 </span>
                                 <button onclick="takeChatControl()"
-                                    class="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-1.5 rounded-lg text-sm font-semibold hover:shadow-lg hover:shadow-green-500/50 transition-all duration-300 transform hover:-translate-y-0.5">
+                                    class="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:shadow-lg hover:shadow-green-500/50 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center">
                                     <i class="fas fa-user-shield mr-2"></i>Take Control
                                 </button>
                                 <button onclick="showUserInfo()"
                                     class="text-gray-400 hover:text-white transition-colors duration-200 p-2 rounded-lg hover:bg-white/5">
                                     <i class="fas fa-info-circle text-lg"></i>
                                 </button>
-                                <button class="text-gray-400 hover:text-white transition-colors duration-200">
+                                <button
+                                    class="text-gray-400 hover:text-white transition-colors duration-200 p-2 rounded-lg hover:bg-white/5">
                                     <i class="fas fa-ellipsis-v"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <div class="p-4 space-y-4 max-h-[500px] overflow-y-auto" id="chatMessages">
+                    <div class="p-4 space-y-4 max-h-[500px] overflow-y-auto custom-scrollbar" id="chatMessages">
                         <!-- Default state when no user is selected -->
                         <div class="flex items-center justify-center h-[400px]">
                             <div class="text-center text-gray-400">
-                                <i class="fas fa-comments text-4xl mb-2"></i>
-                                <p>Select a conversation to view messages</p>
+                                <i class="fas fa-comments text-4xl mb-3 text-blue-400"></i>
+                                <p class="text-lg font-medium">Select a conversation to view messages</p>
+                                <p class="text-sm mt-1">Choose from the list on the left to start chatting</p>
                             </div>
                         </div>
                     </div>
@@ -233,25 +245,87 @@
 
     <style>
         /* Custom scrollbar */
-        .overflow-y-auto::-webkit-scrollbar {
+        .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
         }
 
-        .overflow-y-auto::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .overflow-y-auto::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 3px;
         }
 
-        .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: rgba(255, 255, 255, 0.3);
         }
 
         .chat-item.active {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 3px solid #3b82f6;
+        }
+
+        .chat-item.active .chat-username {
+            color: #60a5fa;
+        }
+
+        /* Message bubbles */
+        .message-bubble {
+            position: relative;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            max-width: 80%;
+            margin-bottom: 0.5rem;
+        }
+
+        .message-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            width: 12px;
+            height: 12px;
+        }
+
+        .message-bubble.user::before {
+            left: -6px;
+            border-bottom-right-radius: 16px;
+            background: linear-gradient(to bottom right, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.2) 50%, transparent 50%, transparent);
+        }
+
+        .message-bubble.ai::before {
+            right: -6px;
+            border-bottom-left-radius: 16px;
+            background: linear-gradient(to bottom left, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.05) 50%, transparent 50%, transparent);
+        }
+
+        /* Date separator */
+        .date-separator {
+            position: relative;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .date-separator::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 1px;
             background: rgba(255, 255, 255, 0.1);
+        }
+
+        .date-separator span {
+            position: relative;
+            background: rgba(31, 41, 55, 0.8);
+            padding: 0.25rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            color: rgba(156, 163, 175, 1);
         }
     </style>
 
@@ -265,20 +339,18 @@
         // Initialize Pusher
         const pusher = new Pusher('57d1bf302023911c127a', {
             cluster: 'ap2',
-            encrypted: true,
-            enabledTransports: ['ws', 'wss']
+            encrypted: true
         });
-
-        // Listen for new messages
-        const channel = pusher.subscribe('chatbot');
-
         // Initialize active visitor ID variable
-        let activeVisitorId = '';
-        // Store live messages for each user
+        let takeControlVisitorId = '';
         const userLiveMessages = {};
+        let activeVisitorId = '';
 
         // Store live messages as objects for sorting
         let liveMessagesArray = [];
+
+        // Store active channel
+        let activeChannel = null;
 
         // Helper to render live messages in order
         function renderLiveMessages() {
@@ -301,6 +373,136 @@
 
         // Modify the showChat function to handle live messages
         function showChat(userName, visitorId, userEmail, status, userAvatar) {
+            // Unsubscribe from previous channel if exists
+            if (activeChannel) {
+                activeChannel.unbind('chatbot-message');
+                pusher.unsubscribe(activeChannel.name);
+                console.log('Unsubscribed from previous channel:', activeChannel.name);
+            }
+
+            // Subscribe to new channel
+            const channel = pusher.subscribe('chatbot.' + visitorId);
+            activeChannel = channel;
+            console.log('Subscribed to new channel:', channel.name);
+
+            channel.bind('chatbot-message', function(data) {
+                console.log('=== New Message Event ===');
+                console.log('Full message data:', data);
+                console.log('Message content:', data.message);
+                console.log('Sender:', data.sender);
+                console.log('Visitor ID:', data.visitor_id);
+                console.log('Active Visitor ID:', activeVisitorId);
+                console.log('IDs match?', data.visitor_id === activeVisitorId);
+
+                // Only show messages if the visitor ID matches the active visitor ID
+                if (data.visitor_id === activeVisitorId) {
+                    console.log('=== Displaying Message ===');
+                    const chatMessagesContainer = document.getElementById('chatMessages');
+                    if (!chatMessagesContainer) {
+                        console.error('Chat messages container not found');
+                        return;
+                    }
+
+                    // Get or create live messages container
+                    let liveMessagesContainer = chatMessagesContainer.querySelector('.live-messages');
+                    if (!liveMessagesContainer) {
+                        console.log('Creating new live messages container');
+                        liveMessagesContainer = document.createElement('div');
+                        liveMessagesContainer.className = 'live-messages mt-4 border-t border-gray-700 pt-4';
+
+                        // Add today's date separator
+                        const now = new Date();
+                        const istNow = new Date(now.toLocaleString('en-US', {
+                            timeZone: 'Asia/Kolkata'
+                        }));
+                        const dateSeparator = document.createElement('div');
+                        dateSeparator.className = 'flex justify-center my-4';
+                        dateSeparator.innerHTML = `
+                            <span class="px-4 py-1 text-xs font-medium text-gray-400 bg-gray-800/50 rounded-full">
+                                Today
+                            </span>
+                        `;
+                        liveMessagesContainer.appendChild(dateSeparator);
+
+                        liveMessagesContainer.innerHTML += `
+                            <div class="text-xs text-gray-400 mb-2 px-2">
+                                <i class="fas fa-bolt mr-1"></i>Live Messages
+                            </div>
+                        `;
+                        chatMessagesContainer.appendChild(liveMessagesContainer);
+                    }
+
+                    // Create message element
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'flex items-start gap-3 mb-4';
+
+                    const activeChat = document.querySelector('.chat-item.active');
+                    const userAvatar = activeChat?.querySelector('.rounded-full')?.textContent.trim() || 'U';
+
+                    // Convert timestamp to IST
+                    const messageTime = new Date(data.timestamp || new Date());
+                    const istTime = new Date(messageTime.toLocaleString('en-US', {
+                        timeZone: 'Asia/Kolkata'
+                    }));
+                    const formattedTime = istTime.toLocaleTimeString('en-US', {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: true,
+                        timeZone: 'Asia/Kolkata'
+                    });
+
+                    const messageContent = `
+                        ${data.sender === 'user' ? `
+                                    <div class="h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm">
+                                        ${userAvatar}
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="bg-blue-500/20 rounded-lg p-3">
+                                            <p class="text-sm text-blue-400">${data.message}</p>
+                                        </div>
+                                        <span class="text-xs text-gray-400 mt-1">${formattedTime}</span>
+                                    </div>
+                                ` : `
+                                    <div class="flex-1 text-right">
+                                        <div class="bg-white/5 rounded-lg p-3 inline-block">
+                                            <p class="text-sm text-gray-300">${data.message}</p>
+                                        </div>
+                                        <span class="text-xs text-gray-400 mt-1 block">${formattedTime}</span>
+                                    </div>
+                                    <div class="h-8 w-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm">
+                                        <i class="fas fa-robot"></i>
+                                    </div>
+                                `}
+                    `;
+
+                    messageDiv.innerHTML = messageContent;
+                    liveMessagesContainer.appendChild(messageDiv);
+
+                    // Store the updated live messages
+                    userLiveMessages[data.visitor_id] = liveMessagesContainer.innerHTML;
+
+                    // Scroll to bottom
+                    chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+
+                    // Update the last message in the chat list
+                    const chatItem = document.querySelector(`.chat-item[data-visitor-id="${data.visitor_id}"]`);
+                    if (chatItem) {
+                        const lastMessageElement = chatItem.querySelector('.text-gray-300');
+                        if (lastMessageElement) {
+                            lastMessageElement.textContent = data.message;
+                        }
+                    }
+
+                    // Store message with timestamp
+                    liveMessagesArray.push({
+                        timestamp: data.timestamp || new Date().toISOString(),
+                        div: messageDiv
+                    });
+                    renderLiveMessages();
+                }
+            });
+
+            // Rest of your existing showChat function code...
             console.log('=== Showing Chat ===');
             console.log('User name:', userName);
             console.log('Visitor ID:', visitorId);
@@ -310,6 +512,56 @@
             document.getElementById('chatStatus').textContent = status;
             document.getElementById('chatAvatar').textContent = userAvatar;
             document.getElementById('chatMessages').innerHTML = '';
+
+            // Update Take Control button based on control status
+            const controlButton = document.querySelector('button[onclick="takeChatControl()"]');
+            if (takeControlVisitorId === visitorId) {
+                // If this chat is under control, show Remove Control button
+                controlButton.innerHTML = '<i class="fas fa-user-shield mr-2"></i>Remove Control';
+                controlButton.classList.remove('from-green-500', 'to-emerald-500', 'hover:shadow-green-500/50');
+                controlButton.classList.add('from-red-500', 'to-pink-500', 'hover:shadow-red-500/50');
+
+                // Enable input field and send button
+                const messageInput = document.getElementById('messageInput');
+                const sendButton = document.querySelector('button[onclick="sendMessage()"]');
+                if (messageInput && sendButton) {
+                    messageInput.disabled = false;
+                    messageInput.placeholder = "You are now in control. Type your message...";
+                    sendButton.disabled = false;
+                    sendButton.classList.remove('opacity-50', 'cursor-not-allowed');
+                    sendButton.classList.add('hover:shadow-lg', 'hover:shadow-blue-500/50', 'hover:-translate-y-0.5');
+                }
+
+                // Add permanent control notification
+                const chatMessagesContainer = document.getElementById('chatMessages');
+                const controlNotification = document.createElement('div');
+                controlNotification.className = 'flex items-center justify-center my-4';
+                controlNotification.innerHTML = `
+                    <div class="bg-yellow-500/20 rounded-lg px-4 py-2">
+                        <p class="text-sm text-yellow-400">
+                            <i class="fas fa-user-shield mr-2"></i>
+                            You have taken control of this conversation
+                        </p>
+                    </div>
+                `;
+                chatMessagesContainer.appendChild(controlNotification);
+            } else {
+                // If this chat is not under control, show Take Control button
+                controlButton.innerHTML = '<i class="fas fa-user-shield mr-2"></i>Take Control';
+                controlButton.classList.remove('from-red-500', 'to-pink-500', 'hover:shadow-red-500/50');
+                controlButton.classList.add('from-green-500', 'to-emerald-500', 'hover:shadow-green-500/50');
+
+                // Disable input field and send button
+                const messageInput = document.getElementById('messageInput');
+                const sendButton = document.querySelector('button[onclick="sendMessage()"]');
+                if (messageInput && sendButton) {
+                    messageInput.disabled = true;
+                    messageInput.placeholder = "Take control to send messages...";
+                    sendButton.disabled = true;
+                    sendButton.classList.add('opacity-50', 'cursor-not-allowed');
+                    sendButton.classList.remove('hover:shadow-lg', 'hover:shadow-blue-500/50', 'hover:-translate-y-0.5');
+                }
+            }
 
             // Store current live messages before switching
             if (activeVisitorId) {
@@ -433,7 +685,7 @@
 
                             const messageDiv = document.createElement('div');
                             messageDiv.className =
-                                `flex items-start space-x-3 ${msg.sender === 'user' ? 'justify-end' : ''}`;
+                                `flex items-start space-x-3 ${msg.sender === 'user' ? 'justify-end mr-96' : 'ml-96'}`;
 
                             // Always show 12-hour format with AM/PM
                             const formattedTime = istTime.toLocaleTimeString('en-US', {
@@ -445,26 +697,26 @@
 
                             const messageContent = `
                                 ${msg.sender === 'user' ? `
-                                                                                                                                                                                <div class="h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm">
-                                                                                                                                                                                    ${userName.charAt(0).toUpperCase()}
-                                                                                                                                                                                </div>
-                                                                                                                                                                                <div class="flex-1">
-                                                                                                                                                                                    <div class="bg-blue-500/20 rounded-lg p-3">
-                                                                                                                                                                                        <p class="text-sm text-blue-400">${msg.message}</p>
-                                                                                                                                                                                    </div>
-                                                                                                                                                                                    <span class="text-xs text-gray-400 mt-1">${formattedTime}</span>
-                                                                                                                                                                                </div>
-                                                                                                                                                                            ` : `
-                                                                                                                                                                                <div class="flex-1 text-right">
-                                                                                                                                                                                    <div class="bg-white/5 rounded-lg p-3 inline-block">
-                                                                                                                                                                                        <p class="text-sm text-gray-300">${msg.message}</p>
-                                                                                                                                                                                    </div>
-                                                                                                                                                                                    <span class="text-xs text-gray-400 mt-1 block">${formattedTime}</span>
-                                                                                                                                                                                </div>
-                                                                                                                                                                                <div class="h-8 w-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm">
-                                                                                                                                                                                    <i class="fas fa-robot"></i>
-                                                                                                                                                                                </div>
-                                                                                                                                                                            `}
+                                                                <div class="h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm">
+                                                                    ${userName.charAt(0).toUpperCase()}
+                                                                </div>
+                                                                <div class="flex-1">
+                                                                    <div class="bg-blue-500/20 rounded-lg p-3">
+                                                                        <p class="text-sm text-blue-400">${msg.message}</p>
+                                                                    </div>
+                                                                    <span class="text-xs text-gray-400 mt-1">${formattedTime}</span>
+                                                                </div>
+                                                            ` : `
+                                                                <div class="flex-1 text-right">
+                                                                    <div class="bg-white/5 rounded-lg p-3 inline-block">
+                                                                        <p class="text-sm text-gray-300">${msg.message}</p>
+                                                                    </div>
+                                                                    <span class="text-xs text-gray-400 mt-1 block">${formattedTime}</span>
+                                                                </div>
+                                                                <div class="h-8 w-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm">
+                                                                    <i class="fas fa-robot"></i>
+                                                                </div>
+                                                            `}
                             `;
 
                             messageDiv.innerHTML = messageContent;
@@ -475,6 +727,21 @@
                     // Add containers to main chat container
                     chatMessagesContainer.appendChild(historicalMessagesContainer);
                     chatMessagesContainer.appendChild(liveMessagesContainer);
+
+                    // Add control notification if this chat is under control
+                    if (takeControlVisitorId === visitorId) {
+                        const controlNotification = document.createElement('div');
+                        controlNotification.className = 'flex items-center justify-center my-4';
+                        controlNotification.innerHTML = `
+                            <div class="bg-yellow-500/20 rounded-lg px-4 py-2">
+                                <p class="text-sm text-yellow-400">
+                                    <i class="fas fa-user-shield mr-2"></i>
+                                    You have taken control of this conversation
+                                </p>
+                            </div>
+                        `;
+                        chatMessagesContainer.insertBefore(controlNotification, liveMessagesContainer);
+                    }
 
                     // Store current user
                     chatMessagesContainer.setAttribute('data-current-user', userName);
@@ -520,188 +787,6 @@
                 });
         }
 
-        // Patch: When a new live message arrives, store it as an object and re-render
-        channel.bind('chatbot-message', function(data) {
-            console.log('=== New Message Event ===');
-            console.log('Full message data:', data);
-            console.log('Message content:', data.message);
-            console.log('Sender:', data.sender);
-            console.log('Visitor ID:', data.visitor_id);
-            console.log('Active Visitor ID:', activeVisitorId);
-            console.log('IDs match?', data.visitor_id === activeVisitorId);
-
-            // Only show messages if the visitor ID matches the active visitor ID
-            if (data.visitor_id === activeVisitorId) {
-                console.log('=== Displaying Message ===');
-                const chatMessagesContainer = document.getElementById('chatMessages');
-                if (!chatMessagesContainer) {
-                    console.error('Chat messages container not found');
-                    return;
-                }
-                console.log('Chat messages container:', chatMessagesContainer);
-
-                // Get or create live messages container
-                let liveMessagesContainer = chatMessagesContainer.querySelector('.live-messages');
-                if (!liveMessagesContainer) {
-                    console.log('Creating new live messages container');
-                    liveMessagesContainer = document.createElement('div');
-                    liveMessagesContainer.className = 'live-messages mt-4 border-t border-gray-700 pt-4';
-
-                    // Add today's date separator with correct IST time
-                    const now = new Date();
-                    const istNow = new Date(now.toLocaleString('en-US', {
-                        timeZone: 'Asia/Kolkata'
-                    }));
-                    const dateSeparator = document.createElement('div');
-                    dateSeparator.className = 'flex justify-center my-4';
-                    dateSeparator.innerHTML = `
-                        <span class="px-4 py-1 text-xs font-medium text-gray-400 bg-gray-800/50 rounded-full">
-                            Today
-                        </span>
-                    `;
-                    liveMessagesContainer.appendChild(dateSeparator);
-
-                    liveMessagesContainer.innerHTML += `
-                        <div class="text-xs text-gray-400 mb-2 px-2">
-                            <i class="fas fa-bolt mr-1"></i>Live Messages
-                        </div>
-                    `;
-                    chatMessagesContainer.appendChild(liveMessagesContainer);
-                }
-
-                // Create message element
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'flex items-start gap-3 mb-4';
-                console.log('Message div created with class:', messageDiv.className);
-
-                const activeChat = document.querySelector('.chat-item.active');
-                const userAvatar = activeChat?.querySelector('.rounded-full')?.textContent.trim() || 'U';
-                console.log('User avatar:', userAvatar);
-
-                // Convert timestamp to IST
-                const messageTime = new Date(data.timestamp || new Date());
-                const istTime = new Date(messageTime.toLocaleString('en-US', {
-                    timeZone: 'Asia/Kolkata'
-                }));
-                // Always show 12-hour format with AM/PM
-                const formattedTime = istTime.toLocaleTimeString('en-US', {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: true,
-                    timeZone: 'Asia/Kolkata'
-                });
-
-                const messageContent = `
-                    ${data.sender === 'user' ? `
-                                                                                                                                                                    <div class="h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm">
-                                                                                                                                                                        ${userAvatar}
-                                                                                                                                                                    </div>
-                                                                                                                                                                    <div class="flex-1">
-                                                                                                                                                                        <div class="bg-blue-500/20 rounded-lg p-3">
-                                                                                                                                                                            <p class="text-sm text-blue-400">${data.message}</p>
-                                                                                                                                                                        </div>
-                                                                                                                                                                        <span class="text-xs text-gray-400 mt-1">${formattedTime}</span>
-                                                                                                                                                                    </div>
-                                                                                                                                                                ` : `
-                                                                                                                                                                    <div class="flex-1 text-right">
-                                                                                                                                                                        <div class="bg-white/5 rounded-lg p-3 inline-block">
-                                                                                                                                                                            <p class="text-sm text-gray-300">${data.message}</p>
-                                                                                                                                                                        </div>
-                                                                                                                                                                        <span class="text-xs text-gray-400 mt-1 block">${formattedTime}</span>
-                                                                                                                                                                    </div>
-                                                                                                                                                                    <div class="h-8 w-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm">
-                                                                                                                                                                        <i class="fas fa-robot"></i>
-                                                                                                                                                                    </div>
-                                                                                                                                                                `}
-                `;
-
-                messageDiv.innerHTML = messageContent;
-                liveMessagesContainer.appendChild(messageDiv);
-
-                // Store the updated live messages
-                userLiveMessages[data.visitor_id] = liveMessagesContainer.innerHTML;
-                console.log('Stored live messages for:', data.visitor_id);
-
-                // Scroll to bottom
-                chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
-                console.log('Scrolled to bottom');
-
-                // Update the last message in the chat list
-                const chatItem = document.querySelector(`.chat-item[data-visitor-id="${data.visitor_id}"]`);
-                console.log('Found chat item for update:', chatItem);
-
-                if (chatItem) {
-                    const lastMessageElement = chatItem.querySelector('.text-gray-300');
-                    if (lastMessageElement) {
-                        lastMessageElement.textContent = data.message;
-                        console.log('Updated last message in chat list');
-                    } else {
-                        console.log('Last message element not found in chat item');
-                    }
-                } else {
-                    console.log('Chat item not found for update');
-                }
-
-                // Store message with timestamp
-                liveMessagesArray.push({
-                    timestamp: data.timestamp || new Date().toISOString(),
-                    div: messageDiv
-                });
-                renderLiveMessages();
-            } else {
-                console.log('=== Message Ignored ===');
-                console.log('Message visitor ID does not match active visitor ID');
-            }
-        });
-        // const channel2 = pusher.subscribe('admin-chat.' + activeVisitorId);
-
-        // // Patch: When an admin message arrives, do the same
-        // channel2.bind('admin.message', function(data) {
-
-        //     console.log('Full message data:', data);
-        //     console.log('Message content:', data.message);
-        //     console.log('Sender:', data.sender);
-        //     console.log('Visitor ID:', data.visitor_id);
-        //     console.log('Active Visitor ID:', activeVisitorId);
-        //     console.log('IDs match?', data.visitor_id === activeVisitorId);
-        //     if (data.visitor_id === activeVisitorId) {
-        //         const chatMessagesContainer = document.getElementById('chatMessages');
-        //         const messageDiv = document.createElement('div');
-        //         messageDiv.className = 'flex items-start gap-3 mb-4';
-        //         // Convert timestamp to IST
-        //         const messageTime = new Date(data.timestamp);
-        //         const istTime = new Date(messageTime.getTime() + (5.5 * 60 * 60 * 1000));
-        //         const formattedTime = istTime.toLocaleTimeString('en-US', {
-        //             hour: 'numeric',
-        //             minute: '2-digit',
-        //             hour12: true,
-        //             timeZone: 'Asia/Kolkata'
-        //         });
-        //         messageDiv.innerHTML = `
-    //             <div class="flex-1 text-right">
-    //                 <div class="bg-white/5 rounded-lg p-3 inline-block">
-    //                     <p class="text-sm text-gray-300">${data.message}</p>
-    //                 </div>
-    //                 <span class="text-xs text-gray-400 mt-1 block">${formattedTime}</span>
-    //             </div>
-    //             <div class="h-8 w-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm">
-    //                 ${data.admin_name.charAt(0).toUpperCase()}
-    //             </div>
-    //         `;
-        //         // Always append to .live-messages div
-        //         let liveMessagesContainer = chatMessagesContainer.querySelector('.live-messages');
-        //         if (!liveMessagesContainer) {
-        //             console.log('Creating new live messages container');
-        //             liveMessagesContainer = document.createElement('div');
-        //             liveMessagesContainer.className = 'live-messages mt-4 border-t border-gray-700 pt-4';
-        //             chatMessagesContainer.appendChild(liveMessagesContainer);
-        //         }
-        //         console.log('Appending message to live messages container');
-        //         liveMessagesContainer.appendChild(messageDiv);
-        //         chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
-        //     }
-        // });
-
         // Add connection status logging
         pusher.connection.bind('state_change', function(states) {
             console.log('Pusher connection state changed:', states);
@@ -713,14 +798,6 @@
 
         pusher.connection.bind('error', function(err) {
             console.error('Pusher connection error:', err);
-        });
-
-        channel.bind('pusher:subscription_succeeded', function() {
-            console.log('Successfully subscribed to channel:', channel.name);
-        });
-
-        channel.bind('pusher:subscription_error', function(error) {
-            console.error('Error subscribing to channel:', error);
         });
 
         // Debug Pusher connection
@@ -746,23 +823,12 @@
         });
 
         // Debug channel subscription
-        channel.bind('pusher:subscription_succeeded', () => {
-            console.log('=== Channel Subscription Succeeded ===');
-            console.log('Channel name:', channel.name);
-            console.log('Channel state:', channel.subscribed);
-        });
-
-        channel.bind('pusher:subscription_error', (error) => {
-            console.error('=== Channel Subscription Error ===');
-            console.error('Error details:', error);
-        });
 
         // Test Pusher connection
         function testPusherConnection() {
             console.log('=== Testing Pusher Connection ===');
             console.log('Connection state:', pusher.connection.state);
-            console.log('Channel subscribed:', channel.subscribed);
-            console.log('Channel name:', channel.name);
+
             console.log('Pusher instance:', pusher);
         }
 
@@ -915,9 +981,9 @@
             // Only update the user list, do not hide or change chat details or chatMessages
             // Remove or comment out the following block:
             /*
-                                                                    if (visibleChats === 0) {
-                                                                        chatDetails.style.display = 'none';
-                                                                        chatMessagesContainer.innerHTML = `
+                                if (visibleChats === 0) {
+                                    chatDetails.style.display = 'none';
+                                    chatMessagesContainer.innerHTML = `
             <div class="flex items-center justify-center h-full">
                 <div class="text-center text-gray-400">
                     <i class="fas fa-search text-4xl mb-2"></i>
@@ -925,23 +991,23 @@
                 </div>
             </div>
         `;
-                                                                    } else {
-                                                                        chatDetails.style.display = '';
-                                                                        // If the currently displayed chat is hidden by filters, show the first visible chat
-                                                                        const activeChat = document.querySelector('.chat-item.active');
-                                                                        if (activeChat && activeChat.style.display === 'none') {
-                                                                            const firstVisibleChat = document.querySelector('.chat-item[style=""]');
-                                                                            if (firstVisibleChat) {
-                                                                                const userName = firstVisibleChat.querySelector('.chat-username').textContent;
-                                                                                const userEmail = firstVisibleChat.querySelector('.chat-email').textContent;
-                                                                                const userAvatar = firstVisibleChat.querySelector('.chat-avatar').textContent.trim();
-                                                                                const userStatus = firstVisibleChat.querySelector('.chat-status-text')?.textContent.includes('Active') ?
-                                                                                    'active' : 'inactive';
-                                                                                showChat(userName, userEmail, userAvatar, userStatus);
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                    */
+                                } else {
+                                    chatDetails.style.display = '';
+                                    // If the currently displayed chat is hidden by filters, show the first visible chat
+                                    const activeChat = document.querySelector('.chat-item.active');
+                                    if (activeChat && activeChat.style.display === 'none') {
+                                        const firstVisibleChat = document.querySelector('.chat-item[style=""]');
+                                        if (firstVisibleChat) {
+                                            const userName = firstVisibleChat.querySelector('.chat-username').textContent;
+                                            const userEmail = firstVisibleChat.querySelector('.chat-email').textContent;
+                                            const userAvatar = firstVisibleChat.querySelector('.chat-avatar').textContent.trim();
+                                            const userStatus = firstVisibleChat.querySelector('.chat-status-text')?.textContent.includes('Active') ?
+                                                'active' : 'inactive';
+                                            showChat(userName, userEmail, userAvatar, userStatus);
+                                        }
+                                    }
+                                }
+                                */
         }
 
         // Add event listeners for filters
@@ -1162,143 +1228,181 @@
             const chatMessagesContainer = document.getElementById('chatMessages');
             const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
 
-            // Disable button and show loading state
-            controlButton.disabled = true;
-            controlButton.classList.add('opacity-50', 'cursor-not-allowed');
-            const originalButtonContent = controlButton.innerHTML;
-            controlButton.innerHTML = `
-                <div class="flex items-center">
-                    <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    ${isCurrentlyControlling ? 'Releasing Control...' : 'Taking Control...'}
-                </div>
-            `;
-
-            // Add a temporary background effect
-            const buttonBackground = document.createElement('div');
-            buttonBackground.className =
-                'absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 transition-opacity duration-300';
-            controlButton.style.position = 'relative';
-            controlButton.appendChild(buttonBackground);
-
-            // Animate the background
-            setTimeout(() => {
-                buttonBackground.classList.add('opacity-20');
-            }, 100);
-
-            fetch(`/user-chats/take-control`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        'X-CSRF-TOKEN': token || ''
-                    },
-                    body: JSON.stringify({
-                        admin_control: !isCurrentlyControlling,
-                        visitor_id: activeVisitorId
+            // If trying to take control of a new chat while already controlling another
+            if (!isCurrentlyControlling && takeControlVisitorId && takeControlVisitorId !== activeVisitorId) {
+                // First release control of the previous chat
+                fetch(`/user-chats/take-control`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'X-CSRF-TOKEN': token || ''
+                        },
+                        body: JSON.stringify({
+                            admin_control: false,
+                            visitor_id: takeControlVisitorId
+                        })
                     })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('control status:', data);
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Released control of previous chat:', data);
+                        // Now proceed with taking control of the new chat
+                        takeControlVisitorId = '';
+                        // Continue with taking control of new chat
+                        proceedWithTakeControl();
+                    })
+                    .catch(error => {
+                        console.error('Error releasing previous control:', error);
+                        showNotification('Failed to release previous control: ' + error.message, 'error');
+                    });
+            } else {
+                // If not controlling any chat or releasing current control, proceed normally
+                proceedWithTakeControl();
+            }
 
-                    // Remove loading state and background effect
-                    buttonBackground.remove();
-                    controlButton.disabled = false;
-                    controlButton.classList.remove('opacity-50', 'cursor-not-allowed');
+            function proceedWithTakeControl() {
+                // Disable button and show loading state
+                controlButton.disabled = true;
+                controlButton.classList.add('opacity-50', 'cursor-not-allowed');
+                const originalButtonContent = controlButton.innerHTML;
+                controlButton.innerHTML = `
+                    <div class="flex items-center">
+                        <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        ${isCurrentlyControlling ? 'Releasing Control...' : 'Taking Control...'}
+                    </div>
+                `;
 
-                    // Toggle button text and state
-                    if (!isCurrentlyControlling) {
-                        // Taking control
-                        controlButton.innerHTML = '<i class="fas fa-user-shield mr-2"></i>Remove Control';
-                        controlButton.classList.remove('from-green-500', 'to-emerald-500', 'hover:shadow-green-500/50');
-                        controlButton.classList.add('from-red-500', 'to-pink-500', 'hover:shadow-red-500/50');
+                // Add a temporary background effect
+                const buttonBackground = document.createElement('div');
+                buttonBackground.className =
+                    'absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 transition-opacity duration-300';
+                controlButton.style.position = 'relative';
+                controlButton.appendChild(buttonBackground);
 
-                        // Enable input field and send button
-                        if (messageInput && sendButton) {
-                            messageInput.disabled = false;
-                            messageInput.placeholder = "You are now in control. Type your message...";
-                            sendButton.disabled = false;
-                            sendButton.classList.remove('opacity-50', 'cursor-not-allowed');
-                            sendButton.classList.add('hover:shadow-lg', 'hover:shadow-blue-500/50',
-                                'hover:-translate-y-0.5');
+                // Animate the background
+                setTimeout(() => {
+                    buttonBackground.classList.add('opacity-20');
+                }, 100);
+
+                fetch(`/user-chats/take-control`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'X-CSRF-TOKEN': token || ''
+                        },
+                        body: JSON.stringify({
+                            admin_control: !isCurrentlyControlling,
+                            visitor_id: activeVisitorId
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('control status:', data);
+                        takeControlVisitorId = isCurrentlyControlling ? '' : activeVisitorId;
+                        console.log('takeControlVisitorId', takeControlVisitorId);
+
+                        // Remove loading state and background effect
+                        buttonBackground.remove();
+                        controlButton.disabled = false;
+                        controlButton.classList.remove('opacity-50', 'cursor-not-allowed');
+
+                        // Toggle button text and state
+                        if (!isCurrentlyControlling) {
+                            // Taking control
+                            controlButton.innerHTML = '<i class="fas fa-user-shield mr-2"></i>Remove Control';
+                            controlButton.classList.remove('from-green-500', 'to-emerald-500',
+                                'hover:shadow-green-500/50');
+                            controlButton.classList.add('from-red-500', 'to-pink-500', 'hover:shadow-red-500/50');
+
+                            // Enable input field and send button
+                            if (messageInput && sendButton) {
+                                messageInput.disabled = false;
+                                messageInput.placeholder = "You are now in control. Type your message...";
+                                sendButton.disabled = false;
+                                sendButton.classList.remove('opacity-50', 'cursor-not-allowed');
+                                sendButton.classList.add('hover:shadow-lg', 'hover:shadow-blue-500/50',
+                                    'hover:-translate-y-0.5');
+                            }
+
+                            // Add system message with animation
+                            const systemMessageDiv = document.createElement('div');
+                            systemMessageDiv.className =
+                                'flex items-center justify-center my-4 transform transition-all duration-300 opacity-0 translate-y-4';
+                            systemMessageDiv.innerHTML = `
+                            <div class="bg-yellow-500/20 rounded-lg px-4 py-2">
+                                <p class="text-sm text-yellow-400">
+                                    <i class="fas fa-user-shield mr-2"></i>
+                                    You have taken control of this conversation
+                                </p>
+                            </div>
+                        `;
+                            chatMessagesContainer.appendChild(systemMessageDiv);
+
+                            // Trigger animation
+                            setTimeout(() => {
+                                systemMessageDiv.classList.remove('opacity-0', 'translate-y-4');
+                            }, 50);
+
+                            // Show notification
+                            showNotification('You are now in control of the chat with ' + userName, 'success');
+                        } else {
+                            // Removing control
+                            controlButton.innerHTML = '<i class="fas fa-user-shield mr-2"></i>Take Control';
+                            controlButton.classList.remove('from-red-500', 'to-pink-500', 'hover:shadow-red-500/50');
+                            controlButton.classList.add('from-green-500', 'to-emerald-500',
+                                'hover:shadow-green-500/50');
+
+                            // Disable input field and send button
+                            if (messageInput && sendButton) {
+                                messageInput.disabled = true;
+                                messageInput.placeholder = "Take control to send messages...";
+                                sendButton.disabled = true;
+                                sendButton.classList.add('opacity-50', 'cursor-not-allowed');
+                                sendButton.classList.remove('hover:shadow-lg', 'hover:shadow-blue-500/50',
+                                    'hover:-translate-y-0.5');
+                            }
+
+                            // Add system message with animation
+                            const systemMessageDiv = document.createElement('div');
+                            systemMessageDiv.className =
+                                'flex items-center justify-center my-4 transform transition-all duration-300 opacity-0 translate-y-4';
+                            systemMessageDiv.innerHTML = `
+                            <div class="bg-gray-500/20 rounded-lg px-4 py-2">
+                                <p class="text-sm text-gray-400">
+                                    <i class="fas fa-robot mr-2"></i>
+                                    Control has been released back to AI
+                                </p>
+                            </div>
+                        `;
+                            chatMessagesContainer.appendChild(systemMessageDiv);
+
+                            // Trigger animation
+                            setTimeout(() => {
+                                systemMessageDiv.classList.remove('opacity-0', 'translate-y-4');
+                            }, 50);
+
+                            // Show notification
+                            showNotification('You have released control of the chat with ' + userName, 'info');
                         }
 
-                        // Add system message with animation
-                        const systemMessageDiv = document.createElement('div');
-                        systemMessageDiv.className =
-                            'flex items-center justify-center my-4 transform transition-all duration-300 opacity-0 translate-y-4';
-                        systemMessageDiv.innerHTML = `
-                        <div class="bg-yellow-500/20 rounded-lg px-4 py-2">
-                            <p class="text-sm text-yellow-400">
-                                <i class="fas fa-user-shield mr-2"></i>
-                                You have taken control of this conversation
-                            </p>
-                        </div>
-                    `;
-                        chatMessagesContainer.appendChild(systemMessageDiv);
+                        // Scroll to bottom
+                        chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        // Restore button state
+                        controlButton.disabled = false;
+                        controlButton.classList.remove('opacity-50', 'cursor-not-allowed');
+                        controlButton.innerHTML = originalButtonContent;
+                        buttonBackground.remove();
 
-                        // Trigger animation
-                        setTimeout(() => {
-                            systemMessageDiv.classList.remove('opacity-0', 'translate-y-4');
-                        }, 50);
-
-                        // Show notification
-                        showNotification('You are now in control of the chat with ' + userName, 'success');
-                    } else {
-                        // Removing control
-                        controlButton.innerHTML = '<i class="fas fa-user-shield mr-2"></i>Take Control';
-                        controlButton.classList.remove('from-red-500', 'to-pink-500', 'hover:shadow-red-500/50');
-                        controlButton.classList.add('from-green-500', 'to-emerald-500', 'hover:shadow-green-500/50');
-
-                        // Disable input field and send button
-                        if (messageInput && sendButton) {
-                            messageInput.disabled = true;
-                            messageInput.placeholder = "Take control to send messages...";
-                            sendButton.disabled = true;
-                            sendButton.classList.add('opacity-50', 'cursor-not-allowed');
-                            sendButton.classList.remove('hover:shadow-lg', 'hover:shadow-blue-500/50',
-                                'hover:-translate-y-0.5');
-                        }
-
-                        // Add system message with animation
-                        const systemMessageDiv = document.createElement('div');
-                        systemMessageDiv.className =
-                            'flex items-center justify-center my-4 transform transition-all duration-300 opacity-0 translate-y-4';
-                        systemMessageDiv.innerHTML = `
-                        <div class="bg-gray-500/20 rounded-lg px-4 py-2">
-                            <p class="text-sm text-gray-400">
-                                <i class="fas fa-robot mr-2"></i>
-                                Control has been released back to AI
-                            </p>
-                        </div>
-                    `;
-                        chatMessagesContainer.appendChild(systemMessageDiv);
-
-                        // Trigger animation
-                        setTimeout(() => {
-                            systemMessageDiv.classList.remove('opacity-0', 'translate-y-4');
-                        }, 50);
-
-                        // Show notification
-                        showNotification('You have released control of the chat with ' + userName, 'info');
-                    }
-
-                    // Scroll to bottom
-                    chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    // Restore button state
-                    controlButton.disabled = false;
-                    controlButton.classList.remove('opacity-50', 'cursor-not-allowed');
-                    controlButton.innerHTML = originalButtonContent;
-                    buttonBackground.remove();
-
-                    showNotification('Failed to update control status: ' + error.message, 'error');
-                });
+                        showNotification('Failed to update control status: ' + error.message, 'error');
+                    });
+            }
         }
 
         // Helper function to show notifications
@@ -1418,6 +1522,51 @@
                 .catch(error => console.error('Error refreshing conversations:', error));
         }
 
+        // Add function to release control before reload
+        function releaseControlAndReload() {
+            if (takeControlVisitorId) {
+                const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+
+                fetch('/user-chats/take-control', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'X-CSRF-TOKEN': token || ''
+                        },
+                        body: JSON.stringify({
+                            admin_control: false,
+                            visitor_id: takeControlVisitorId
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Control released before reload:', data);
+                        takeControlVisitorId = '';
+                        // Reload the page after control is released
+                        window.location.reload();
+                    })
+                    .catch(error => {
+                        console.error('Error releasing control:', error);
+                        // Still reload even if there's an error
+                        window.location.reload();
+                    });
+            } else {
+                // If no control, just reload
+                window.location.reload();
+            }
+        }
+
+        // Handle page reload/close
+        window.onbeforeunload = function(e) {
+            if (takeControlVisitorId) {
+                e.preventDefault();
+                releaseControlAndReload();
+                return;
+            }
+            updateVisitorListTimes();
+        };
+
         // Start the refresh interval when the page loads
         document.addEventListener('DOMContentLoaded', () => {
             // Initial refresh
@@ -1425,6 +1574,99 @@
 
             // Set up interval to refresh every minute
             setInterval(refreshConversations, 60000);
+        });
+
+        // Function to format chat date
+        function formatChatDate(timestamp) {
+            const date = new Date(timestamp);
+            const now = new Date();
+            const yesterday = new Date(now);
+            yesterday.setDate(yesterday.getDate() - 1);
+
+            // Convert to IST
+            const istDate = new Date(date.getTime() + (5.5 * 60 * 60 * 1000));
+            const istNow = new Date(now.getTime() + (5.5 * 60 * 60 * 1000));
+            const istYesterday = new Date(yesterday.getTime() + (5.5 * 60 * 60 * 1000));
+
+            // Format time
+            const timeStr = istDate.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            });
+
+            // Check if it's today
+            if (istDate.toDateString() === istNow.toDateString()) {
+                return timeStr;
+            }
+            // Check if it's yesterday
+            else if (istDate.toDateString() === istYesterday.toDateString()) {
+                return `Yesterday`;
+            }
+            // For older dates
+            else {
+                const diffTime = Math.abs(istNow - istDate);
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                const diffYears = Math.floor(diffDays / 365);
+
+                if (diffYears > 0) {
+                    return `${diffYears} ${diffYears === 1 ? 'year' : 'years'} ago`;
+                } else if (diffDays > 0) {
+                    return `${diffDays} ${diffDays === 1 ? 'day' : 'days'} ago`;
+                } else {
+                    return istDate.toLocaleDateString('en-US', {
+                        day: 'numeric',
+                        month: 'short',
+                        year: 'numeric'
+                    }) + ' ' + timeStr;
+                }
+            }
+        }
+
+        let isUpdatingTimes = false;
+
+        // Function to update visitor list times
+        async function updateVisitorListTimes() {
+            if (isUpdatingTimes) return;
+            isUpdatingTimes = true;
+
+            try {
+                const visitorItems = document.querySelectorAll('.visitor');
+
+                for (const visitorItem of visitorItems) {
+                    const visitorId = visitorItem.getAttribute('data-visitor-id');
+
+                    try {
+                        const response = await fetch(`/user-chats/last-active-time/${visitorId}`);
+                        const data = await response.json();
+
+                        if (data.status === 'success') {
+                            const lastActiveTime = new Date(data.updated_at);
+                            const chatTime = formatChatDate(lastActiveTime);
+                            const timeElement = visitorItem.querySelector('.chat-time');
+
+                            if (timeElement) {
+                                // Create a new span element
+                                timeElement.innerText = chatTime;
+                            }
+                        }
+                    } catch (error) {
+                        console.error('Error fetching last active time for visitor', visitorId, ':', error);
+                    }
+                }
+            } catch (error) {
+                console.error('Error updating visitor list times:', error);
+            } finally {
+                isUpdatingTimes = false;
+            }
+        }
+
+        // Call updateVisitorListTimes when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initial update
+            updateVisitorListTimes();
+
+            // Set up periodic updates
         });
     </script>
 

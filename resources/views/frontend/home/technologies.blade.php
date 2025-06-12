@@ -71,7 +71,7 @@
         class="absolute bottom-0 left-1/2 w-96 h-96 bg-red-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000">
     </div>
 
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="home-tech-container relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header Section -->
         <div class="tech-heading-text text-center mb-20">
             <h2 class="text-5xl font-extrabold text-gray-900 mb-6">

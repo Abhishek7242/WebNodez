@@ -460,5 +460,29 @@
         padding: 0.5rem 1rem;
         font-size: 0.8125rem;
     }
+        .our-services-content-wrapper {
+        padding: 2rem 0;
+    }
 }
+@media (max-width: 350px) {
+       .our-services-button {
+        padding: 0.75rem;
+        width: 3rem;
+        height: 3rem;
+       }
+           .our-process-title {
+        font-size: 27px !important;
+    }
+        .our-process-step-inner {
+        padding: 10px;
+    }
+        .our-process-step-number span {
+        font-size: 1.7rem;
+        display: none;
+    }
+    .our-process-step-icon > div{
+        height: 40px;
+        width: 40px;
+    }
 
+}

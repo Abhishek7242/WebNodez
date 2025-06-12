@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="{{ asset('css/service/intro.css') }}?v={{ time() }}">
     <link rel="stylesheet" href="{{ asset('css/service/service-overview.css') }}?v={{ time() }}">
     <link rel="stylesheet" href="{{ asset('css/service/technology.css') }}?v={{ time() }}">
+    <link href="{{ asset('css/home/technologies.css') }}" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ asset('css/components/service-details.css') }}?v={{ time() }}">
     <link rel="stylesheet" href="{{ asset('css/components/why-choose-us.css') }}?v={{ time() }}">
     <script>

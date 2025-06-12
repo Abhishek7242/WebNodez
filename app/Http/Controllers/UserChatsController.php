@@ -48,6 +48,35 @@ class UserChatsController extends Controller
             ], 500);
         }
     }
+    public function getLastActiveTime(Request $request, $visitor_id)
+    {
+        try {
+
+            $chat = UserChat::where('visitor_id', $visitor_id)->first();
+
+            if (!$chat) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Chat not found'
+                ], 404);
+            }
+
+            // Update the created_at timestamp to current time
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Chat timestamp updated successfully',
+                'updated_at' => $chat->created_at->setTimezone('Asia/Kolkata')->format('Y-m-d H:i:s')
+            ]);
+        } catch (\Exception $e) {
+            \Log::error('Update user active error: ' . $e->getMessage());
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Failed to update chat timestamp',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
     public function storeMessage(Request $request)
     {
         $request->validate([
@@ -64,6 +93,7 @@ class UserChatsController extends Controller
             'sender' => $request->sender,
             'message' => $request->message,
         ]);
+
 
         return response()->json(['status' => 'Message stored']);
     }
@@ -128,14 +158,33 @@ class UserChatsController extends Controller
             $chatUpdatedTime = $chat->updated_at->setTimezone('Asia/Kolkata');
             $currentTime = now()->setTimezone('Asia/Kolkata');
             $timeDifference = $currentTime->diffInMinutes($chatUpdatedTime);
-            $status = $timeDifference <= 1 ? 'active' : 'inactive';
+            $status = $timeDifference <= 2 ? 'active' : 'inactive';
+
+            // Format the time based on how old it is
+            $timeStr = $chatUpdatedTime->format('h:i A');
+            $formattedTime = '';
+
+            if ($chatUpdatedTime->isToday()) {
+                $formattedTime = $timeStr;
+            } elseif ($chatUpdatedTime->isYesterday()) {
+                $formattedTime = 'Yesterday ' . $timeStr;
+            } else {
+                $diffDays = $currentTime->diffInDays($chatUpdatedTime);
+                $diffYears = $currentTime->diffInYears($chatUpdatedTime);
+
+                if ($diffYears > 0) {
+                    $formattedTime = $diffYears . ' ' . ($diffYears === 1 ? 'year' : 'years') . ' ago ' . $timeStr;
+                } else {
+                    $formattedTime = $diffDays . ' ' . ($diffDays === 1 ? 'day' : 'days') . ' ago ' . $timeStr;
+                }
+            }
 
             return [
                 'user' => 'Visitor ' . substr($visitorId, 0, 8),
                 'email' => $email ?? $visitorId . '@visitor.com',
                 'phone' => $phone,
                 'last_message' => $lastMessage ? $lastMessage->message : 'No messages yet',
-                'time' => $chatUpdatedTime->format('h:i A'),
+                'time' => $formattedTime,
                 'status' => $status,
                 'avatar' => $initials,
                 'visitor_id' => $visitorId
@@ -201,47 +250,19 @@ class UserChatsController extends Controller
 
     public function broadcast(Request $request)
     {
-        try {
-            $request->validate([
-                'message' => 'required|string',
-                'sender' => 'required|in:user,ai,admin',
-                'visitor_id' => 'required'
-            ]);
+        $message = $request->input('message');
+        $sender = $request->input('sender');
+        $visitor_id = $request->input('visitor_id');
 
-            $message = $request->input('message');
-            $sender = $request->input('sender');
-            $visitor_id = $request->input('visitor_id');
+        event(new NewChatMessage($message, $sender, $visitor_id));
 
-            \Log::info('Broadcasting message:', [
-                'message' => $message,
-                'sender' => $sender,
-                'visitor_id' => $visitor_id
-            ]);
-
-            broadcast(new NewChatMessage($message, $sender, $visitor_id))->toOthers();
-
-            \Log::info('Message broadcasted successfully');
-
-            return response()->json([
-                'status' => 'Message broadcasted successfully',
-                'message' => $message,
-                'sender' => $sender,
-                'visitor_id' => $visitor_id
-            ]);
-        } catch (\Exception $e) {
-            \Log::error('Broadcast error: ' . $e->getMessage());
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Failed to broadcast message',
-                'error' => $e->getMessage()
-            ], 500);
-        }
+        return response()->json(['status' => 'success']);
     }
     public function takeControl(Request $request)
     {
         $user = auth()->guard('admin')->user();
 
-        if (!in_array($user->role, ['super_admin', 'admin','contact_support'])) {
+        if (!in_array($user->role, ['super_admin', 'admin', 'contact_support'])) {
             abort(403, 'Unauthorized');
         }
         try {
@@ -288,6 +309,7 @@ class UserChatsController extends Controller
 
     public function sendAdminMessage(Request $request)
     {
+        $user = auth()->guard('admin')->user();
         if (!in_array($user->role, ['super_admin', 'admin', 'contact_support'])) {
             abort(403, 'Unauthorized');
         }

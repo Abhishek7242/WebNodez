@@ -1704,10 +1704,12 @@ if (!localStorage.getItem('visitor_id')) {
 }
 localStorage.setItem('admin_control', 'false');
 var visitor_id = localStorage.getItem('visitor_id');
-var pusher = new Pusher('57d1bf302023911c127a', {
-  cluster: 'ap2'
+var pusher = new Pusher("57d1bf302023911c127a", {
+  cluster: "ap2",
+  encrypted: true
 });
-var channel = pusher.subscribe('chatbot');
+var channel = pusher.subscribe('chatbot.' + visitor_id);
+console.log('channel', channel);
 var channel2 = pusher.subscribe('chat.' + visitor_id);
 var chatbotController = localStorage.getItem('admin_control') === 'true';
 console.log('chatbotController', chatbotController);
@@ -1731,7 +1733,7 @@ channel2.bind('take.control', function (data) {
     var _messagesContainer = document.querySelector('.chatbot-messages');
     var messageElement = document.createElement('div');
     messageElement.className = 'chatbot-message bot-message';
-    messageElement.innerHTML = "\n            <div class=\"bot-avatar\">\n                <img src=\"https://cdn-icons-gif.flaticon.com/17576/17576964.gif\" alt=\"Support Team\" />\n            </div>\n            <div class=\"message-content\">\n                <span class=\"typing-text\">You are now connected with our contact team support. How can we assist you?</span>\n            </div>\n        ";
+    messageElement.innerHTML = "\n            <div class=\"bot-avatar\">\n                <img src=\"https://cdn-icons-gif.flaticon.com/17576/17576964.gif\" alt=\"Support Team\" />\n            </div>\n            <div class=\"message-content\">\n                <span class=\"typing-text\">You are now connected with our contact team support. How can we assist you?</span>\n                <div class=\"warning-message\" style=\"color: #ff4444; font-size: 0.7em; margin-top: 8px;\">\n                    \u26A0\uFE0F Please do not reload the page while talking to our team to maintain the connection.\n                </div>\n            </div>\n        ";
     _messagesContainer.appendChild(messageElement);
     _messagesContainer.scrollTop = _messagesContainer.scrollHeight;
   } else {
@@ -1986,10 +1988,14 @@ var Chatbot = /*#__PURE__*/function () {
                 setTimeout(function () {
                   var messageElement = document.createElement('div');
                   messageElement.className = 'chatbot-message bot-message';
-                  messageElement.innerHTML = "\n                        <div class=\"bot-avatar\">\n                            <img src=\"/images/bot-avatar.svg\" alt=\"Harmony Bot\" />\n                        </div>\n                        <div class=\"message-content\">\n                            <span class=\"typing-text\">I remember our previous conversation. How can I help you continue?</span>\n                        </div>\n                    ";
+                  if (chatbotController) {
+                    messageElement.innerHTML = "\n                            <div class=\"bot-avatar\">\n                                <img src=\"https://cdn-icons-gif.flaticon.com/17576/17576964.gif\" alt=\"Support Team\" />\n                            </div>\n                            <div class=\"message-content\">\n                                <span class=\"typing-text\">You are now connected with our contact team support. How can we assist you?</span>\n                                <div class=\"warning-message\" style=\"color: #ff4444; font-size: 0.7em; margin-top: 8px;\">\n                                    \u26A0\uFE0F Please do not reload the page while talking to our team to maintain the connection.\n                                </div>\n                            </div>\n                        ";
+                  } else {
+                    messageElement.innerHTML = "\n                            <div class=\"bot-avatar\">\n                                <img src=\"/images/bot-avatar.svg\" alt=\"Harmony Bot\" />\n                            </div>\n                            <div class=\"message-content\">\n                                <span class=\"typing-text\">I remember our previous conversation. How can I help you continue?</span>\n                            </div>\n                        ";
+                  }
                   _messagesContainer3.appendChild(messageElement);
                   _messagesContainer3.scrollTop = _messagesContainer3.scrollHeight;
-                }, 500);
+                }, 0);
               } else {
                 // Show terms notice for new users
                 this.showTermsNotice();
@@ -2216,6 +2222,7 @@ var Chatbot = /*#__PURE__*/function () {
         if (!token) {
           console.warn('CSRF token not found');
         }
+        console.log('message is broadcasted', message);
         fetch("/user-chats/broadcast", {
           method: 'POST',
           headers: {
