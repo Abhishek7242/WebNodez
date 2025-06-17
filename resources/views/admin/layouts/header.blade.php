@@ -29,7 +29,7 @@
             <ul class="navbar flex space-x-8 items-center">
                 <li><a href="/admin/dashboard" class="@yield('home', ' ') nav-links font-semibold ">Home</a></li>
                 <li><a href="/admin/manage-blogs" class="@yield('blog', ' ') nav-links font-semibold ">Blogs</a></li>
-                <li><a href="/services" class="@yield('services', ' ') nav-links font-semibold ">Services</a></li>
+                <li><a href="/admin/manage-services" class="@yield('services', ' ') nav-links font-semibold ">Services</a></li>
                 <li><a href="/admin/manage-portfolio" class="@yield('portfolio', ' ') nav-links font-semibold ">Portfolio</a>
                 </li>
 
@@ -96,12 +96,11 @@
                     })
                 </script>
                 <ul id="mobile-nav">
-                    <li class="nav-btns active"><a href="/">Home</a></li>
-                    <li class="nav-btns active"><a href="/blogs">Blogs</a></li>
-                    <li class="nav-btns active"><a href="/services">Services</a></li>
-                    <li class="nav-btns active"><a href="/portfolio">Portfolio</a></li>
-                    <li class="nav-btns"><a href="/about-us">About Us</a></li>
-                    <li class="nav-btns"><a href="/contact-us">Contact Us</a></li>
+                    <li class="nav-btns active"><a href="/admin/dashboard">Home</a></li>
+                    <li class="nav-btns active"><a href="/admin/manage-blogs">Blogs</a></li>
+                    <li class="nav-btns active"><a href="/admin/manage-services">Services</a></li>
+                    <li class="nav-btns active"><a href="/admin/manage-portfolio">Portfolio</a></li>
+                    <li class="nav-btns"><a href="/admin/manage-about">About Us</a></li>
 
                 </ul>
             </div>
