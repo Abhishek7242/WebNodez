@@ -159,10 +159,21 @@
                                     class="text-gray-400 hover:text-white transition-colors duration-200 p-2 rounded-lg hover:bg-white/5">
                                     <i class="fas fa-info-circle text-lg"></i>
                                 </button>
-                                <button
-                                    class="text-gray-400 hover:text-white transition-colors duration-200 p-2 rounded-lg hover:bg-white/5">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </button>
+                                <div class="relative">
+                                    <button onclick="toggleDropdown()"
+                                        class="text-gray-400 hover:text-white transition-colors duration-200 p-2 rounded-lg hover:bg-white/5">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div id="chatDropdown"
+                                        class="absolute right-0 mt-2 w-48 bg-gray-800 rounded-lg shadow-lg border border-gray-700 hidden z-50">
+                                        <div class="py-1">
+                                            <button onclick="deleteChat()"
+                                                class="w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-gray-700 hover:text-red-300 transition-colors duration-200">
+                                                <i class="fas fa-trash-alt mr-2"></i>Delete Chat
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -453,26 +464,26 @@
 
                     const messageContent = `
                         ${data.sender === 'user' ? `
-                                    <div class="h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm">
-                                        ${userAvatar}
-                                    </div>
-                                    <div class="flex-1">
-                                        <div class="bg-blue-500/20 rounded-lg p-3">
-                                            <p class="text-sm text-blue-400">${data.message}</p>
-                                        </div>
-                                        <span class="text-xs text-gray-400 mt-1">${formattedTime}</span>
-                                    </div>
-                                ` : `
-                                    <div class="flex-1 text-right">
-                                        <div class="bg-white/5 rounded-lg p-3 inline-block">
-                                            <p class="text-sm text-gray-300">${data.message}</p>
-                                        </div>
-                                        <span class="text-xs text-gray-400 mt-1 block">${formattedTime}</span>
-                                    </div>
-                                    <div class="h-8 w-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm">
-                                        <i class="fas fa-robot"></i>
-                                    </div>
-                                `}
+                                                <div class="h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm">
+                                                    ${userAvatar}
+                                                </div>
+                                                <div class="flex-1">
+                                                    <div class="bg-blue-500/20 rounded-lg p-3">
+                                                        <p class="text-sm text-blue-400">${data.message}</p>
+                                                    </div>
+                                                    <span class="text-xs text-gray-400 mt-1">${formattedTime}</span>
+                                                </div>
+                                            ` : `
+                                                <div class="flex-1 text-right">
+                                                    <div class="bg-white/5 rounded-lg p-3 inline-block">
+                                                        <p class="text-sm text-gray-300">${data.message}</p>
+                                                    </div>
+                                                    <span class="text-xs text-gray-400 mt-1 block">${formattedTime}</span>
+                                                </div>
+                                                <div class="h-8 w-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm">
+                                                    <i class="fas fa-robot"></i>
+                                                </div>
+                                            `}
                     `;
 
                     messageDiv.innerHTML = messageContent;
@@ -697,26 +708,26 @@
 
                             const messageContent = `
                                 ${msg.sender === 'user' ? `
-                                                                <div class="h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm">
-                                                                    ${userName.charAt(0).toUpperCase()}
-                                                                </div>
-                                                                <div class="flex-1">
-                                                                    <div class="bg-blue-500/20 rounded-lg p-3">
-                                                                        <p class="text-sm text-blue-400">${msg.message}</p>
-                                                                    </div>
-                                                                    <span class="text-xs text-gray-400 mt-1">${formattedTime}</span>
-                                                                </div>
-                                                            ` : `
-                                                                <div class="flex-1 text-right">
-                                                                    <div class="bg-white/5 rounded-lg p-3 inline-block">
-                                                                        <p class="text-sm text-gray-300">${msg.message}</p>
-                                                                    </div>
-                                                                    <span class="text-xs text-gray-400 mt-1 block">${formattedTime}</span>
-                                                                </div>
-                                                                <div class="h-8 w-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm">
-                                                                    <i class="fas fa-robot"></i>
-                                                                </div>
-                                                            `}
+                                                                            <div class="h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm">
+                                                                                ${userName.charAt(0).toUpperCase()}
+                                                                            </div>
+                                                                            <div class="flex-1">
+                                                                                <div class="bg-blue-500/20 rounded-lg p-3">
+                                                                                    <p class="text-sm text-blue-400">${msg.message}</p>
+                                                                                </div>
+                                                                                <span class="text-xs text-gray-400 mt-1">${formattedTime}</span>
+                                                                            </div>
+                                                                        ` : `
+                                                                            <div class="flex-1 text-right">
+                                                                                <div class="bg-white/5 rounded-lg p-3 inline-block">
+                                                                                    <p class="text-sm text-gray-300">${msg.message}</p>
+                                                                                </div>
+                                                                                <span class="text-xs text-gray-400 mt-1 block">${formattedTime}</span>
+                                                                            </div>
+                                                                            <div class="h-8 w-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm">
+                                                                                <i class="fas fa-robot"></i>
+                                                                            </div>
+                                                                        `}
                             `;
 
                             messageDiv.innerHTML = messageContent;
@@ -981,9 +992,9 @@
             // Only update the user list, do not hide or change chat details or chatMessages
             // Remove or comment out the following block:
             /*
-                                if (visibleChats === 0) {
-                                    chatDetails.style.display = 'none';
-                                    chatMessagesContainer.innerHTML = `
+                                            if (visibleChats === 0) {
+                                                chatDetails.style.display = 'none';
+                                                chatMessagesContainer.innerHTML = `
             <div class="flex items-center justify-center h-full">
                 <div class="text-center text-gray-400">
                     <i class="fas fa-search text-4xl mb-2"></i>
@@ -991,23 +1002,23 @@
                 </div>
             </div>
         `;
-                                } else {
-                                    chatDetails.style.display = '';
-                                    // If the currently displayed chat is hidden by filters, show the first visible chat
-                                    const activeChat = document.querySelector('.chat-item.active');
-                                    if (activeChat && activeChat.style.display === 'none') {
-                                        const firstVisibleChat = document.querySelector('.chat-item[style=""]');
-                                        if (firstVisibleChat) {
-                                            const userName = firstVisibleChat.querySelector('.chat-username').textContent;
-                                            const userEmail = firstVisibleChat.querySelector('.chat-email').textContent;
-                                            const userAvatar = firstVisibleChat.querySelector('.chat-avatar').textContent.trim();
-                                            const userStatus = firstVisibleChat.querySelector('.chat-status-text')?.textContent.includes('Active') ?
-                                                'active' : 'inactive';
-                                            showChat(userName, userEmail, userAvatar, userStatus);
-                                        }
-                                    }
-                                }
-                                */
+                                            } else {
+                                                chatDetails.style.display = '';
+                                                // If the currently displayed chat is hidden by filters, show the first visible chat
+                                                const activeChat = document.querySelector('.chat-item.active');
+                                                if (activeChat && activeChat.style.display === 'none') {
+                                                    const firstVisibleChat = document.querySelector('.chat-item[style=""]');
+                                                    if (firstVisibleChat) {
+                                                        const userName = firstVisibleChat.querySelector('.chat-username').textContent;
+                                                        const userEmail = firstVisibleChat.querySelector('.chat-email').textContent;
+                                                        const userAvatar = firstVisibleChat.querySelector('.chat-avatar').textContent.trim();
+                                                        const userStatus = firstVisibleChat.querySelector('.chat-status-text')?.textContent.includes('Active') ?
+                                                            'active' : 'inactive';
+                                                        showChat(userName, userEmail, userAvatar, userStatus);
+                                                    }
+                                                }
+                                            }
+                                            */
         }
 
         // Add event listeners for filters
@@ -1668,6 +1679,82 @@
 
             // Set up periodic updates
         });
+
+        // Add these new functions for the dropdown menu
+        function toggleDropdown() {
+            const dropdown = document.getElementById('chatDropdown');
+            dropdown.classList.toggle('hidden');
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function closeDropdown(e) {
+                if (!e.target.closest('.relative')) {
+                    dropdown.classList.add('hidden');
+                    document.removeEventListener('click', closeDropdown);
+                }
+            });
+        }
+
+        function deleteChat() {
+            if (!activeVisitorId) {
+                showNotification('No active chat selected', 'error');
+                return;
+            }
+
+            if (confirm('Are you sure you want to delete this chat? This action cannot be undone.')) {
+                const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+
+                fetch(`/user-chats/delete/${activeVisitorId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'X-CSRF-TOKEN': token || ''
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            showNotification('Chat deleted successfully', 'success');
+                            // Remove the chat from the list
+                            const chatItem = document.querySelector(`.chat-item[data-visitor-id="${activeVisitorId}"]`);
+                            if (chatItem) {
+                                chatItem.remove();
+                            }
+                            // Clear the chat details
+                            document.getElementById('chatMessages').innerHTML = `
+                            <div class="flex items-center justify-center h-[400px]">
+                                <div class="text-center text-gray-400">
+                                    <i class="fas fa-comments text-4xl mb-3 text-blue-400"></i>
+                                    <p class="text-lg font-medium">Select a conversation to view messages</p>
+                                    <p class="text-sm mt-1">Choose from the list on the left to start chatting</p>
+                                </div>
+                            </div>
+                        `;
+                            document.getElementById('chatUserName').textContent = 'Select a User';
+                            document.getElementById('chatUserEmail').textContent =
+                                'Choose a conversation to view messages';
+                            document.getElementById('chatStatus').textContent = 'Inactive';
+                            document.getElementById('chatAvatar').innerHTML = '<i class="fas fa-user"></i>';
+
+                            // Hide the three-dot menu and delete button
+                            const chatDetailsButtons = document.getElementById('chatDetailsButtons');
+                            if (chatDetailsButtons) {
+                                chatDetailsButtons.style.display = 'none';
+                            }
+
+                            // Reset active states
+                            activeVisitorId = '';
+                            takeControlVisitorId = '';
+                        } else {
+                            throw new Error(data.message || 'Failed to delete chat');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error deleting chat:', error);
+                        showNotification('Failed to delete chat: ' + error.message, 'error');
+                    });
+            }
+        }
     </script>
 
 @endsection

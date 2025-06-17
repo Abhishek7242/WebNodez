@@ -15,6 +15,8 @@
     <link href="{{ asset('css/services/our-services.css') }}" rel="stylesheet">
     <link href="{{ asset('css/services/our-process.css') }}" rel="stylesheet">
     <link href="{{ asset('css/services/contact-page.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/home/pricing.css') }}" rel="stylesheet">
+
     <script>
         document.documentElement.style.setProperty('--text-color', 'black');
         document.documentElement.style.setProperty('--intro-bg', '#FBFBFC');
@@ -25,6 +27,8 @@
     @include('frontend/services/our-services')
     @include('frontend/services/our-process')
     @include('frontend/services/overview')
+    @include('frontend/home/pricing')
+
     {{-- @include('frontend/services/technology') --}}
     @include('frontend/services/contact-page')
     @include('frontend/services/faq')

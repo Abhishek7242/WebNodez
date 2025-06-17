@@ -48,7 +48,7 @@
         </div> --}}
         @if ($blog->featured_image)
             <div class="blog-heading-image mb-10">
-                <img src="{{ $blog->featured_image }}" alt="{{ $blog->title }}">
+                <img src="{{ asset($blog->featured_image) }}" alt="{{ $blog->title }}">
             </div>
         @endif
     </section>
@@ -70,73 +70,82 @@
 
             {{-- //blog card --}}
             <div class="flex flex-wrap justify-center gap-10">
-                @foreach ($blogs->take(4) as $blog)
-                    <x-blog-card :image="$blog->featured_image" :category="$blog->category" :title="$blog->title" :excerpt="Str::limit(strip_tags($blog->content), 150)" :date="$blog->created_at->format('F d, Y')"
-                        :link="'/blog/' . $blog->slug" />
-                @endforeach
-            </div>
-        </div>
-    </section>
+                @foreach ($blogs->where('slug', '!=', $blog->slug)->take(4) as $innerblog)
+<x-blog-card 
+        :image="$innerblog->featured_image" 
+        :category="$innerblog->category" 
+        :title="$innerblog->title" 
+        :excerpt="Str::limit(strip_tags($innerblog->content), 150)" 
+        :date="$innerblog->created_at->format('F d, Y')"
+            :link="'/blog/'.$innerblog - > slug"
+        />
+     @endforeach
 
-    {{-- lets chat with us --}}
-    <section class="lets-chat">
-        <div class="container">
-            <div class="chat-content">
-                <div class="chat-text">
+                    </div>
+                    </div>
+                    </section>
+
+                    {{-- lets chat with us --}}
+                    <section class="lets-chat">
+                    <div class="container">
+                    <div class="chat-content">
+                    <div class="chat-text">
                     <span class="chat-subtitle">Let's Connect</span>
                     <h2 class="chat-title">Have Questions? Let's Chat!</h2>
-                    <p class="chat-description">We're here to help! Whether you have questions about our services, need
-                        technical support, or want to discuss your next project, our team is ready to assist you.</p>
+                    <p class="chat-description">We're here to help! Whether you have questions about our services,
+                    need
+                    technical support, or want to discuss your next project, our team is ready to assist you.</p>
                     <div class="chat-buttons">
-                        <a href="/contact-us" class="chat-btn primary">
-                            <span>Start a Conversation</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M5 12h14"></path>
-                                <path d="m12 5 7 7-7 7"></path>
-                            </svg>
-                        </a>
-                        <a href="mailto:support@webnodez.com" class="chat-btn secondary">
-                            <span>Email Us</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                                </path>
-                                <path d="m22 6-10 7L2 6"></path>
-                            </svg>
-                        </a>
+                    <a href="/contact-us" class="chat-btn primary">
+                    <span>Start a Conversation</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                    </svg>
+                    </a>
+                    <a href="mailto:support@webnodez.com" class="chat-btn secondary">
+                    <span>Email Us</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                    </path>
+                    <path d="m22 6-10 7L2 6"></path>
+                    </svg>
+                    </a>
                     </div>
-                </div>
-                <div class="chat-image">
-                    <img src="https://www.shutterstock.com/image-photo/human-holding-call-center-on-600nw-2422082399.jpg" alt="Let's Chat Illustration" class="floating">
-                </div>
-            </div>
-        </div>
-    </section>
+                    </div>
+                    <div class="chat-image">
+                    <img src="https://www.shutterstock.com/image-photo/human-holding-call-center-on-600nw-2422082399.jpg"
+                    alt="Let's Chat Illustration" class="floating">
+                    </div>
+                    </div>
+                    </div>
+                    </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const blogContent = document.getElementById('blogContent');
-            if (blogContent) {
-                // Find all images in the content
-                const images = blogContent.getElementsByTagName('img');
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const blogContent = document.getElementById('blogContent');
+                            if (blogContent) {
+                                // Find all images in the content
+                                const images = blogContent.getElementsByTagName('img');
 
-                // Loop through each image and fix the src
-                Array.from(images).forEach(img => {
-                    let src = img.getAttribute('src');
-                    if (src) {
-                        // Check if the URL is not already a full URL (http/https)
-                        if (!src.startsWith('http://') && !src.startsWith('https://')) {
-                            // Remove any ../../storage prefix
-                            src = src.replace(/^\.\.\/\.\.\/storage\//, '');
-                            // Add the correct storage URL
-                            img.setAttribute('src', '/storage/' + src);
-                        }
-                    }
-                });
-            }
-        });
-    </script>
-@endsection
+                                // Loop through each image and fix the src
+                                Array.from(images).forEach(img => {
+                                    let src = img.getAttribute('src');
+                                    if (src) {
+                                        // Check if the URL is not already a full URL (http/https)
+                                        if (!src.startsWith('http://') && !src.startsWith('https://')) {
+                                            // Remove any ../../storage prefix
+                                            src = src.replace(/^\.\.\/\.\.\/storage\//, '');
+                                            // Add the correct storage URL
+                                            img.setAttribute('src', '/storage/' + src);
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    </script>
+                @endsection)

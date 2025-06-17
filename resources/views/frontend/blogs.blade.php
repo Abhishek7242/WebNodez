@@ -6,7 +6,7 @@
 @section('meta_keywords',
     'web development blog, technology insights, digital solutions blog, web design articles, IT
     trends, software development blog, tech tutorials, industry updates')
-@section('og_image', asset('images/blogs-og.jpg'))
+@section('og_image', asset('images/blogs-og-image.jpg'))
 @section('blog', 'active')
 @section('main-section')
     <link href="{{ asset('css/blogs.css') }}" rel="stylesheet">
@@ -70,10 +70,10 @@
             @if ($blogs->count() > 0)
                 <div class="flex flex-wrap justify-center gap-10" id="blogs-container">
                     @foreach ($blogs->take(5) as $blog)
-                    @if($blog->slug != 'our-company')
-                        <x-blog-card :image="$blog->featured_image" :category="$blog->category" :title="$blog->title" :excerpt="Str::limit(strip_tags($blog->content), 150)"
-                            :date="$blog->created_at->format('F d, Y')" :link="'/blog/' . $blog->slug" />
-                    @endif
+                        @if ($blog->slug != 'our-company')
+                            <x-blog-card :image="url($blog->featured_image)" :category="$blog->category" :title="$blog->title" :excerpt="Str::limit(strip_tags($blog->content), 150)"
+                                :date="$blog->created_at->format('F d, Y')" :link="'/blog/' . $blog->slug" />
+                        @endif
                     @endforeach
                 </div>
 
@@ -95,6 +95,7 @@
                     const blogsContainer = document.getElementById('blogs-container');
                     const loadMoreBtn = document.getElementById('load-more-btn');
                     const allBlogs = @json($blogs);
+                    const baseUrl = '{{ config('app.url') }}';
                     let currentIndex = 5;
                     const blogsPerLoad = 4;
 
@@ -107,12 +108,10 @@
                                 const blogCard = document.createElement('div');
                                 blogCard.className = 'blog-container';
 
-                                // Create the blog card HTML structure matching the blog-card component
                                 blogCard.innerHTML = `
                                   <div class="blog-category-tag">${ blog.category }</div>
                                     <div class="blog-image-wrapper">
-
-                                        <img src="${blog.featured_image}" alt="${blog.title}" />
+                                        <img src="${baseUrl}${blog.featured_image}" alt="${blog.title}" />
                                         <div class="blog-overlay"></div>
                                     </div>
                                     <div class="blog-content">

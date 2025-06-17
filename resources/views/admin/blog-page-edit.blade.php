@@ -493,7 +493,8 @@
                         <input type="file" id="featured_image" name="featured_image" class="hidden" accept="image/*">
                     </div>
                     @if (isset($blog) && $blog->featured_image)
-                        <img src="{{ $blog->featured_image }}" alt="Current featured image" class="image-preview mt-2">
+                        <img src="{{ asset($blog->featured_image) }}" alt="Current featured image"
+                            class="image-preview mt-2">
                     @endif
                     <img id="imagePreview" class="image-preview hidden mt-2" src="" alt="Preview">
                     @error('featured_image')

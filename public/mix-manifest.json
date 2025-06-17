@@ -1,5 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/mobileNavbar.js": "/js/mobileNavbar.js",
     "/js/home.js": "/js/home.js",
     "/js/chatbot.js": "/js/chatbot.js",
     "/js/about.js": "/js/about.js",

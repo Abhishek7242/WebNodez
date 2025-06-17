@@ -5,7 +5,7 @@
     $service .
     ', web development, digital solutions, IT services, software development, custom
     solutions, professional services, technology solutions, business solutions, enterprise solutions')
-@section('og_image', asset('images/services/' . strtolower(str_replace(' ', '-', $service)) . '-og.jpg'))
+@section('og_image', asset('images/services/' . strtolower(str_replace(' ', '-', $service)) . '-og-image.jpg'))
 @section('services', 'active')
 @section('main-section')
     <link rel="stylesheet" href="{{ asset('css/service/intro.css') }}?v={{ time() }}">

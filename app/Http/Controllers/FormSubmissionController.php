@@ -38,11 +38,12 @@ class FormSubmissionController extends Controller
 
             ];
         });
-
+                $formantedDetails = $details->reverse();
         // return view('admin.manage-admins', ['admins' => $admins]);
 
-        return view('admin.contact-form-details', ['contacts' => $details]);
+        return view('admin.contact-form-details', ['contacts' => $formantedDetails]);
     }
+    
     public function contactUs(Request $request)
     {
         // Validate the incoming request data

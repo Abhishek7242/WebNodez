@@ -7,7 +7,7 @@
 @section('meta_keywords',
     'contact webnodez, web development contact, IT support contact, project consultation, customer
     support, technical support, business inquiry, digital solutions contact')
-@section('og_image', asset('images/contact-us-og.jpg'))
+@section('og_image', asset('images/contact-og-image.jpg'))
 @section('contact', 'active')
 @section('main-section')
     <link href="{{ asset('css/contact-us.css') }}" rel="stylesheet">

@@ -1,0 +1,18 @@
+config:
+  target: "http://127.0.0.1:8000"
+  phases:
+    - duration: 60
+      arrivalRate: 5
+scenarios:
+  - flow:
+      - get:
+          url: "/blogs"
+
+#use powershell
+          #npm install -g artillery
+          # artillery --version
+#Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+          # artillery run load-test.yml -o result.json
+
+

@@ -112,14 +112,14 @@
                                                 class="text-blue-400 hover:text-blue-300 transition-colors duration-200">
                                                 <i class="fas fa-eye"></i>
                                             </button>
-                                            <button onclick="markAsReplied('{{ $contact['id'] }}')"
-                                                class="text-yellow-400 hover:text-yellow-300 transition-colors duration-200">
-                                                <i class="fas fa-check"></i>
-                                            </button>
                                             <button onclick="deleteMessage('{{ $contact['id'] }}')"
-                                                class="text-red-400 hover:text-red-300 transition-colors duration-200">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
+                                            class="text-red-400 hover:text-red-300 transition-colors duration-200">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                        <button onclick="markAsReplied('{{ $contact['id'] }}')"
+                                            class="text-yellow-400 {{ $contact['status'] === 'Replied' ? 'hidden' : '' }} hover:text-yellow-300 transition-colors duration-200">
+                                            <i class="fas fa-check"></i>
+                                        </button>
                                         </div>
                                     </td>
                                 </tr>

@@ -126,14 +126,18 @@
         });
     </script>
 </footer>
+<script src="{{ asset('js/mobileNavbar.js') }}"></script>
 <script src="{{ asset('js/chatbot.js') }}"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         if (!window.chatbotInstance) {
             window.chatbotInstance = new Chatbot();
         }
     });
+    
 </script>
+
 </body>
 
 </html>

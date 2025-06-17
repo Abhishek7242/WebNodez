@@ -2,8 +2,8 @@ import { generateText } from './gemini.js';
 if (!localStorage.getItem('visitor_id')) {
     localStorage.setItem('visitor_id', crypto.randomUUID());
 }
-
 localStorage.setItem('admin_control', 'false');
+let hamIcon = document.getElementById('ham-icon')
 
 const visitor_id = localStorage.getItem('visitor_id');
 
@@ -113,13 +113,19 @@ class Chatbot {
         this.messages = [];
         this.hasInitialized = false;
         this.isFirstClick = true;
-        this.conversationHistory = []; // Array to store conversation history
+        this.conversationHistory = [];
         this.profanityWords = [
             'fuck', 'shit', 'ass', 'bitch', 'damn',
             'crap', 'piss', 'dick', 'cock', 'pussy', 'bastard',
             'fucking', 'shitty', 'asshole', 'bitchy', 'damned'
         ];
+        this.hasAgreedToTerms = false;
+        this.hasSelectedService = false;
+        this.hasProvidedEmail = false;
+        this.selectedService = null;
+        this.userEmail = null;
         this.initializeChatbot();
+        this.setupKeyboardDetection();
 
         // Bind to Pusher channel for real-time messages
         channel.bind('chatbot-message', (data) => {
@@ -137,7 +143,8 @@ class Chatbot {
             if (existingTypingIndicator) {
                 existingTypingIndicator.remove();
             }
-
+         
+             
             // Show typing indicator for admin message
             const messagesContainer = document.querySelector('.chatbot-messages');
             const typingIndicator = document.createElement('div');
@@ -189,6 +196,27 @@ class Chatbot {
             });
         });
     }
+  
+
+    setupKeyboardDetection() {
+        if (window.visualViewport) {
+            const container = document.querySelector('.chatbot-container');
+            const body = document.body;
+
+            window.visualViewport.addEventListener('resize', () => {
+                if (window.visualViewport.height < window.innerHeight) {
+                    // Keyboard is visible
+                    container.classList.add('keyboard-active');
+                    body.classList.add('no-scroll');
+                } else {
+                    // Keyboard is hidden
+                    container.classList.remove('keyboard-active');
+                    body.classList.remove('no-scroll');
+                }
+            });
+        }
+    }
+
 
     initializeChatbot() {
         // Check if chatbot already exists
@@ -211,7 +239,6 @@ class Chatbot {
         const container = document.createElement('div');
         container.className = 'chatbot-container chatbot-minimized';
         container.innerHTML = `
-        
             <div class="chatbot-header">
                 <div class="chatbot-title">
                     <div class="chatbot-avatar">
@@ -228,15 +255,18 @@ class Chatbot {
                 <button class="chatbot-minimize">−</button>
             </div>
             <div class="chatbot-messages"></div>
-            <div class="chatbot-input-container">
+            <div class="chatbot-input-container hidden">
                 <input type="text" class="chatbot-input" placeholder="Type your message...">
-                <button class="chatbot-send">Send</button>
+                <button class="chatbot-send">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
             </div>
         `;
+
         document.body.appendChild(container);
     }
-
-    addEventListeners() {
+  
+    async addEventListeners() {
         const container = document.querySelector('.chatbot-container');
         const minimizeBtn = container.querySelector('.chatbot-minimize');
         const sendBtn = container.querySelector('.chatbot-send');
@@ -246,20 +276,28 @@ class Chatbot {
         // Toggle chatbot on header click when minimized
         header.addEventListener('click', async (e) => {
             console.log('the chatbot clicked')
+            if (show) {
+                hamIcon.click();
+                await new Promise(resolve => setTimeout(resolve, 500)); // wait 2 sec
+            }
 
             if (e.target === header || e.target === header.querySelector('.chatbot-title')) {
                 if (container.classList.contains('chatbot-minimized')) {
                     if (this.isFirstClick) {
                         this.showMessageLogo();
                         this.isFirstClick = false;
+                        console.log('the chatbot first clicked')
+                        
                     } else {
+                        
                         await this.getTheOldChat();
+                      
                         this.toggleChatbot();
                     }
                 }
             }
         });
-
+   
         minimizeBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             this.toggleChatbot();
@@ -303,6 +341,12 @@ class Chatbot {
                 tagElement.innerHTML = 'Previous Messages';
                 messagesContainer.appendChild(tagElement);
 
+                // Track user's progress
+                let hasAgreed = false;
+                let hasSelectedService = false;
+                let hasProvidedEmail = false;
+                let selectedService = null;
+
                 // Add each message to the UI and conversation history
                 chatHistory.forEach(chat => {
                     const messageElement = document.createElement('div');
@@ -319,6 +363,17 @@ class Chatbot {
                         `;
                     } else {
                         messageElement.innerHTML = chat.message;
+
+                        // Check user's progress from messages
+                        if (chat.message.includes("I have read and agree to the terms and conditions")) {
+                            hasAgreed = true;
+                        } else if (chat.message.includes("I'm interested in")) {
+                            hasSelectedService = true;
+                            selectedService = chat.message.replace("I'm interested in ", "").trim();
+                        } else if (chat.message.includes("My email is")) {
+                            hasProvidedEmail = true;
+                            this.userEmail = chat.message.replace("My email is ", "").trim();
+                        }
                     }
 
                     messagesContainer.appendChild(messageElement);
@@ -338,77 +393,61 @@ class Chatbot {
                 newTagElement.innerHTML = 'New Messages';
                 messagesContainer.appendChild(newTagElement);
 
-                // Show continuation message
-                setTimeout(() => {
-                    const messageElement = document.createElement('div');
-                    messageElement.className = 'chatbot-message bot-message';
-                    if (chatbotController) {
-                        messageElement.innerHTML = `
-                            <div class="bot-avatar">
-                                <img src="https://cdn-icons-gif.flaticon.com/17576/17576964.gif" alt="Support Team" />
-                            </div>
-                            <div class="message-content">
-                                <span class="typing-text">You are now connected with our contact team support. How can we assist you?</span>
-                                <div class="warning-message" style="color: #ff4444; font-size: 0.7em; margin-top: 8px;">
-                                    ⚠️ Please do not reload the page while talking to our team to maintain the connection.
+                // Set the progress flags
+                this.hasAgreedToTerms = hasAgreed;
+                this.hasSelectedService = hasSelectedService;
+                this.hasProvidedEmail = hasProvidedEmail;
+                this.selectedService = selectedService;
+
+                // Show appropriate next step based on progress
+                if (!hasAgreed) {
+                    this.showTermsNotice();
+                } else if (!hasSelectedService) {
+                    this.showServiceSelection();
+                } else if (!hasProvidedEmail) {
+                    this.showEmailInput();
+                } else {
+                    // Show continuation message for completed setup
+                    setTimeout(() => {
+                        const messageElement = document.createElement('div');
+                        messageElement.className = 'chatbot-message bot-message';
+                        if (chatbotController) {
+                            messageElement.innerHTML = `
+                                <div class="bot-avatar">
+                                    <img src="https://cdn-icons-gif.flaticon.com/17576/17576964.gif" alt="Support Team" />
                                 </div>
-                            </div>
-                        `;
-                    } else {
-                        messageElement.innerHTML = `
-                            <div class="bot-avatar">
-                                <img src="/images/bot-avatar.svg" alt="Harmony Bot" />
-                            </div>
-                            <div class="message-content">
-                                <span class="typing-text">I remember our previous conversation. How can I help you continue?</span>
-                            </div>
-                        `;
-                    }
-                    messagesContainer.appendChild(messageElement);
-                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-                }, 0);
+                                <div class="message-content">
+                                    <span class="typing-text">You are now connected with our contact team support. How can we assist you?</span>
+                                    <div class="warning-message" style="color: #ff4444; font-size: 0.7em; margin-top: 8px;">
+                                        ⚠️ Please do not reload the page while talking to our team to maintain the connection.
+                                    </div>
+                                </div>
+                            `;
+                        } else {
+                            messageElement.innerHTML = `
+                                <div class="bot-avatar">
+                                    <img src="/images/bot-avatar.svg" alt="Harmony Bot" />
+                                </div>
+                                <div class="message-content">
+                                    <span class="typing-text">I remember our previous conversation. How can I help you continue?</span>
+                                </div>
+                            `;
+                        }
+                        messagesContainer.appendChild(messageElement);
+                        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+                        // Enable chat input for completed setup
+                        document.querySelector('.chatbot-input-container').classList.remove('hidden');
+                    }, 0);
+                }
             } else {
                 // Show terms notice for new users
                 this.showTermsNotice();
-
-                // Show welcome message after terms notice with a delay
-                setTimeout(() => {
-                    const messageElement = document.createElement('div');
-                    messageElement.className = 'chatbot-message bot-message';
-                    messageElement.innerHTML = `
-                        <div class="bot-avatar">
-                            <img src="/images/bot-avatar.svg" alt="Harmony Bot" />
-                        </div>
-                        <div class="message-content">
-                            <span class="typing-text">Hello! 👋 I'm Harmony, your WebNodez assistant. How can I help you today?</span>
-                        </div>
-                    `;
-                    messagesContainer.appendChild(messageElement);
-                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-                    this.hasInitialized = true;
-                }, 1000);
             }
         } catch (error) {
             console.error('Error fetching chat history:', error);
-            // Show terms notice and welcome message even if there's an error
+            // Show terms notice for new users
             this.showTermsNotice();
-
-            // Show welcome message after terms notice with a delay
-            setTimeout(() => {
-                const messageElement = document.createElement('div');
-                messageElement.className = 'chatbot-message bot-message';
-                messageElement.innerHTML = `
-                    <div class="bot-avatar">
-                        <img src="/images/bot-avatar.svg" alt="Harmony Bot" />
-                    </div>
-                    <div class="message-content">
-                        <span class="typing-text">Hello! 👋 I'm Harmony, your WebNodez assistant. How can I help you today?</span>
-                    </div>
-                `;
-                messagesContainer.appendChild(messageElement);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-                this.hasInitialized = true;
-            }, 1000);
         }
     }
 
@@ -549,6 +588,10 @@ class Chatbot {
     }
 
     handleUserInput() {
+        if (!this.hasAgreedToTerms || !this.hasSelectedService || !this.hasProvidedEmail) {
+            return;
+        }
+
         const input = document.querySelector('.chatbot-input');
         const message = input.value.trim();
 
@@ -706,6 +749,32 @@ class Chatbot {
                     const typingText = messageContent.querySelector('.typing-text');
 
                     // Type out the message
+                    // Broadcast the AI response after typing is complete
+                    const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+                    if (!token) {
+                        console.warn('CSRF token not found');
+                    }
+                    fetch(`/user-chats/broadcast`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'X-CSRF-TOKEN': token || ''
+                        },
+                        body: JSON.stringify({
+                            message: response,
+                            sender: 'ai',
+                            visitor_id: visitor_id
+                        })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('data is broadcasted', data);
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            typingIndicator.classList.add('error-message');
+                        });
                     let index = 0;
                     const typeInterval = setInterval(() => {
                         if (index < response.length) {
@@ -714,32 +783,7 @@ class Chatbot {
                             index++;
                         } else {
                             clearInterval(typeInterval);
-                            // Broadcast the AI response after typing is complete
-                            const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
-                            if (!token) {
-                                console.warn('CSRF token not found');
-                            }
-                            fetch(`/user-chats/broadcast`, {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'Accept': 'application/json',
-                                    'X-CSRF-TOKEN': token || ''
-                                },
-                                body: JSON.stringify({
-                                    message: response,
-                                    sender: 'ai',
-                                    visitor_id: visitor_id
-                                })
-                            })
-                                .then(response => response.json())
-                                .then(data => {
-                                    console.log('data is broadcasted', data);
-                                })
-                                .catch(error => {
-                                    console.error('Error:', error);
-                                    typingIndicator.classList.add('error-message');
-                                });
+
                         }
                     }, 30);
 
@@ -821,27 +865,6 @@ class Chatbot {
         }
     }
 
-    // Add new method for showing welcome message
-    showWelcomeMessage() {
-        if (!this.hasInitialized) {
-            const messagesContainer = document.querySelector('.chatbot-messages');
-            const messageElement = document.createElement('div');
-            messageElement.className = 'chatbot-message bot-message';
-            messageElement.innerHTML = `
-                <div class="bot-avatar">
-                    <img src="/images/bot-avatar.svg" alt="Harmony Bot" />
-                </div>
-                <div class="message-content">
-                    <span class="typing-text">Hello! 👋 I'm Harmony, your WebNodez assistant. How can I help you today?</span>
-                </div>
-            `;
-            messagesContainer.appendChild(messageElement);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            this.hasInitialized = true;
-        }
-    }
-
-    // Add this method to the Chatbot class
     showTermsNotice() {
         const messagesContainer = document.querySelector('.chatbot-messages');
         const termsNotice = document.createElement('div');
@@ -853,8 +876,232 @@ class Chatbot {
                     <a href="/terms-conditions#chatbot" class="terms-link" target="_blank">Read our Terms & Conditions</a>
                 </p>
             </div>
+            <div class="terms-agreement">
+                <div class="terms-agreement-text">Do you agree to our terms and conditions?</div>
+                <div class="terms-agreement-buttons">
+                    <button class="terms-agreement-btn terms-agree-btn">✓ Agree</button>
+                    <button class="terms-agreement-btn terms-disagree-btn">✕ Disagree</button>
+                </div>
+            </div>
         `;
         messagesContainer.appendChild(termsNotice);
+
+        // Add event listeners for agreement buttons
+        const agreeBtn = termsNotice.querySelector('.terms-agree-btn');
+        const disagreeBtn = termsNotice.querySelector('.terms-disagree-btn');
+
+        agreeBtn.addEventListener('click', async () => {
+            try {
+                // Store the agreement in database
+                const agreementMessage = "I have read and agree to the terms and conditions";
+                await this.storeMessage('user', agreementMessage);
+                this.conversationHistory.push({
+                    role: 'user',
+                    content: agreementMessage,
+                    timestamp: new Date().toISOString()
+                });
+
+                // Add agreement as user message
+                const userMessageElement = document.createElement('div');
+                userMessageElement.className = 'chatbot-message user-message';
+                userMessageElement.innerHTML = agreementMessage;
+                messagesContainer.appendChild(userMessageElement);
+
+                this.hasAgreedToTerms = true;
+                // Remove terms notice
+                termsNotice.remove();
+                // Show service selection
+                this.showServiceSelection();
+            } catch (error) {
+                console.error('Error storing agreement:', error);
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'chatbot-message bot-message';
+                errorMessage.innerHTML = `
+                    <div class="bot-avatar">
+                        <img src="/images/bot-avatar.svg" alt="Harmony Bot" />
+                    </div>
+                    <div class="message-content">
+                        <span class="typing-text">Sorry, there was an error processing your agreement. Please try again.</span>
+                    </div>
+                `;
+                messagesContainer.appendChild(errorMessage);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+        });
+
+        disagreeBtn.addEventListener('click', () => {
+            this.hasAgreedToTerms = false;
+            const messageElement = document.createElement('div');
+            messageElement.className = 'chatbot-message bot-message';
+            messageElement.innerHTML = `
+                <div class="bot-avatar">
+                    <img src="/images/bot-avatar.svg" alt="Harmony Bot" />
+                </div>
+                <div class="message-content">
+                    <span class="typing-text">I'm sorry, but you need to agree to our terms and conditions to use the chat service.</span>
+                </div>
+            `;
+            messagesContainer.appendChild(messageElement);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        });
+    }
+
+    showWelcomeMessage() {
+        const messagesContainer = document.querySelector('.chatbot-messages');
+        const messageElement = document.createElement('div');
+        messageElement.className = 'chatbot-message bot-message';
+        messageElement.innerHTML = `
+            <div class="bot-avatar">
+                <img src="/images/bot-avatar.svg" alt="Harmony Bot" />
+            </div>
+            <div class="message-content">
+                <span class="typing-text">Hello! 👋 I'm Harmony, your WebNodez assistant. How can I help you today?</span>
+            </div>
+        `;
+        messagesContainer.appendChild(messageElement);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        this.hasInitialized = true;
+    }
+
+    showServiceSelection() {
+        const messagesContainer = document.querySelector('.chatbot-messages');
+        const messageElement = document.createElement('div');
+        messageElement.className = 'chatbot-message bot-message';
+        messageElement.innerHTML = `
+            <div class="bot-avatar">
+                <img src="/images/bot-avatar.svg" alt="Harmony Bot" />
+            </div>
+            <div class="message-content">
+                <span class="typing-text">What service are you interested in?</span>
+            </div>
+        `;
+        messagesContainer.appendChild(messageElement);
+
+        const serviceSelection = document.createElement('div');
+        serviceSelection.className = 'service-selection';
+        serviceSelection.innerHTML = `
+            <div class="service-option" data-service="web-dev">Web Development</div>
+            <div class="service-option" data-service="app-dev">App Development</div>
+            <div class="service-option" data-service="ecommerce">E-commerce</div>
+            <div class="service-option" data-service="ui-ux">UI/UX Design</div>
+        `;
+        messagesContainer.appendChild(serviceSelection);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        // Add event listeners for service options
+        const serviceOptions = serviceSelection.querySelectorAll('.service-option');
+        serviceOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                // Remove selected class from all options
+                serviceOptions.forEach(opt => opt.classList.remove('selected'));
+                // Add selected class to clicked option
+                option.classList.add('selected');
+                this.selectedService = option.dataset.service;
+                this.hasSelectedService = true;
+
+                // Store the service selection as a user message
+                const serviceMessage = `I'm interested in ${option.textContent}`;
+                this.storeMessage('user', serviceMessage);
+                this.conversationHistory.push({
+                    role: 'user',
+                    content: serviceMessage,
+                    timestamp: new Date().toISOString()
+                });
+
+                // Add user's selection as a message
+                const userMessageElement = document.createElement('div');
+                userMessageElement.className = 'chatbot-message user-message';
+                userMessageElement.innerHTML = serviceMessage;
+                messagesContainer.appendChild(userMessageElement);
+
+                // Remove the service selection UI
+                messageElement.remove();
+                serviceSelection.remove();
+
+                // Show email input after service selection
+                setTimeout(() => {
+                    this.showEmailInput();
+                }, 500);
+            });
+        });
+    }
+
+    showEmailInput() {
+        const messagesContainer = document.querySelector('.chatbot-messages');
+        const messageElement = document.createElement('div');
+        messageElement.className = 'chatbot-message bot-message';
+        messageElement.innerHTML = `
+            <div class="bot-avatar">
+                <img src="/images/bot-avatar.svg" alt="Harmony Bot" />
+            </div>
+            <div class="message-content">
+                <span class="typing-text">Please provide your email address so we can get back to you.</span>
+            </div>
+        `;
+        messagesContainer.appendChild(messageElement);
+
+        const emailContainer = document.createElement('div');
+        emailContainer.className = 'email-input-container';
+        emailContainer.innerHTML = `
+            <input type="email" class="email-input" placeholder="Please enter your email address">
+            <button class="email-submit-btn">Submit Email</button>
+        `;
+        messagesContainer.appendChild(emailContainer);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        const emailInput = emailContainer.querySelector('.email-input');
+        const submitBtn = emailContainer.querySelector('.email-submit-btn');
+
+        submitBtn.addEventListener('click', () => {
+            const email = emailInput.value.trim();
+            if (this.validateEmail(email)) {
+                this.userEmail = email;
+                this.hasProvidedEmail = true;
+
+                // Store the email as a user message
+                const emailMessage = `My email is ${email}`;
+                this.storeMessage('user', emailMessage);
+                this.conversationHistory.push({
+                    role: 'user',
+                    content: emailMessage,
+                    timestamp: new Date().toISOString()
+                });
+
+                // Add email as user message
+                const userMessageElement = document.createElement('div');
+                userMessageElement.className = 'chatbot-message user-message';
+                userMessageElement.innerHTML = emailMessage;
+                messagesContainer.appendChild(userMessageElement);
+
+                // Remove the email input UI
+                messageElement.remove();
+                emailContainer.remove();
+
+                // Enable chat
+                document.querySelector('.chatbot-input-container').classList.remove('hidden');
+
+                // Show welcome message and confirmation
+                this.showWelcomeMessage();
+            } else {
+                const errorMessage = document.createElement('div');
+                errorMessage.className = 'chatbot-message bot-message';
+                errorMessage.innerHTML = `
+                    <div class="bot-avatar">
+                        <img src="/images/bot-avatar.svg" alt="Harmony Bot" />
+                    </div>
+                    <div class="message-content">
+                        <span class="typing-text">Please enter a valid email address.</span>
+                    </div>
+                `;
+                messagesContainer.appendChild(errorMessage);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+        });
+    }
+
+    validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
     }
 }
 
@@ -867,3 +1114,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         await window.chatbotInstance.getTheOldChat();
     }
 });
+let toggleChatbot = new Chatbot()
+const container = document.querySelector('.chatbot-container');
+hamIcon.addEventListener('click', function () {
+    if (!container.classList.contains('chatbot-minimized')) {
+        toggleChatbot.toggleChatbot();
+    }
+
+})

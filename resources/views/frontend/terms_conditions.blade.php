@@ -6,7 +6,7 @@
 @section('meta_keywords',
     'terms and conditions, service agreement, legal terms, user agreement, website terms, service
     terms, legal policy, terms of use')
-@section('og_image', asset('images/terms-og.jpg'))
+@section('og_image', asset('images/terms-og-image.jpg'))
 @section('', 'active')
 @section('main-section')
     <link href="{{ asset('css/terms_conditions.css') }}" rel="stylesheet">

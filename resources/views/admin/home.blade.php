@@ -14,7 +14,7 @@
     <script src="{{ asset('js/canvas-background.js') }}"></script>
 
     <!-- Canvas background container -->
-    <div id="canvas-background" class="canvas-background"></div>
+    <div id="canvas-background" class="canvas-background h-100vh"></div>
 
     <script>
         const el = document.querySelector('#header');
@@ -22,7 +22,7 @@
         el.style.setProperty('--dark-bg', 'white');
     </script>
 
-    <div class=" flex items-center justify-center">
+    <div class=" flex items-center justify-center h-100vh" style="height: 100vh;">
         <div class="text-center p-8 relative">
             <!-- Animated background elements -->
             {{-- <div class="absolute inset-0 -z-10">
@@ -38,7 +38,7 @@
             </div> --}}
 
             <!-- Welcome content -->
-            <div class="space-y-6">
+            <div class="space-y-6 h-full">
                 <h1 class="text-5xl font-bold text-white mb-4 tracking-tight">
                     Welcome <span
                         class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Boss</span>
@@ -129,6 +129,14 @@
                         </div>
                         <div class="text-gray-300">Privacy Policy</div>
                         <div class="text-sm text-gray-400 mt-1">Data Protection</div>
+                    </a>
+                    <a href="/admin/manage-og-images"
+                        class="bg-white/10 backdrop-blur-lg rounded-xl p-6 transform hover:scale-105 transition-all duration-300 group cursor-pointer">
+                        <div class="flex items-center justify-center mb-2">
+                            <i class="fas fa-images text-4xl text-orange-400 group-hover:animate-pulse"></i>
+                        </div>
+                        <div class="text-gray-300">OG Images</div>
+                        <div class="text-sm text-gray-400 mt-1">Meta Images</div>
                     </a>
                 </div>
 

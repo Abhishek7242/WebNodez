@@ -6,7 +6,7 @@
 @section('meta_keywords',
     'about webnodez, company story, mission vision, company culture, web development team, digital
     solutions company, IT services company, professional team')
-@section('og_image', asset('images/about-us-og.jpg'))
+@section('og_image', asset('images/about-og-image.jpg'))
 @section('about', 'active')
 @section('main-section')
     <link rel="stylesheet" href="{{ asset('css/about.css') }}">

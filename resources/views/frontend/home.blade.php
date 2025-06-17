@@ -6,7 +6,7 @@
 @section('meta_keywords',
     'web development, web design, digital solutions, IT services, software development, mobile
     apps, custom websites, e-commerce solutions')
-@section('og_image', asset('images/home-og-image.jpg'))
+@section('og_image', asset('images/home-og-image.png'))
 @section('home', 'active')
 @section('main-section')
 
@@ -18,7 +18,6 @@
     <link href="{{ asset('css/home/technologies.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/our-process.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/portfolio.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/home/pricing.css') }}" rel="stylesheet">
     <link href="{{ asset('css/home/why-us.css') }}" rel="stylesheet">
 
     <!-- Three.js and other required scripts -->
@@ -42,7 +41,6 @@
     {{-- @include('frontend/home/our-process') --}}
     @include('frontend/home/portfolio')
     @include('frontend/home/why-us')
-    @include('frontend/home/pricing')
 
     <script src="{{ asset('js/home.js') }}"></script>
 @endsection

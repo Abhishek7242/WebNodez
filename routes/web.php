@@ -5,6 +5,8 @@ use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminManageBlogController;
 use App\Http\Controllers\AdminManagePortfolio;
+use App\Http\Controllers\AdminPrivacyPolicyController;
+use App\Http\Controllers\AdminTermConditionController;
 use App\Http\Controllers\FormSubmissionController;
 use App\Http\Controllers\UserChatsController;
 use App\Models\Achievement;
@@ -34,10 +36,18 @@ Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.logi
 Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
+
+
+
 Route::middleware('auth:admin')->group(function () {
+
+    Route::get('/admin/manage-terms', [AdminTermConditionController::class, 'manageTerms'])->name('admin.manage-terms');
+    Route::get('/admin/manage-privacy', [AdminPrivacyPolicyController::class, 'managePrivacy'])->name('admin.manage-privacy');
     Route::get('/user-chats/last-active-time/{visitor_id}', [UserChatsController::class, 'getLastActiveTime'])->name('user.chats.last-active-time');
     Route::post('/user-chats/take-control', [UserChatsController::class, 'takeControl'])->name('user.chats.take-control');
     Route::post('/user-chats/admin-message', [UserChatsController::class, 'sendAdminMessage'])->name('user.chats.admin-message');
+    Route::delete('/user-chats/delete/{visitor_id}', [UserChatsController::class, 'deleteChat'])->name('user.chats.delete');
     Route::get('/admin/manage-portfolio', [AdminManagePortfolio::class, 'managePortfolio'])->name('admin.manage-portfolio');
     Route::get('/admin/manage-portfolio/gallery', [AdminManagePortfolio::class, 'managePortfolioGallery'])->name('admin.manage-portfolio.gallery');
     Route::post('/admin/manage-portfolio/gallery/store', [AdminManagePortfolio::class, 'storeGallery'])->name('admin.manage-portfolio.gallery.store');
@@ -104,7 +114,7 @@ Route::get('/portfolio', function () {
     $achievements = Cache::remember('achievements', 60 * 60 * 24 * 30, function () {
         return Achievement::all();
     });
-    return view('frontend.portfolio', compact('blogs', 'caseStudies','achievements'));
+    return view('frontend.portfolio', compact('blogs', 'caseStudies', 'achievements'));
 });
 
 // Route to list all services
@@ -115,3 +125,11 @@ Route::get('/services/{service}', [ServicesController::class, 'show'])->name('se
 
 
 Route::get('/pricing/{service}', [PricingController::class, 'index'])->name('pricing.index');
+
+// OG Images Management Routes
+Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
+    Route::get('/manage-og-images', [App\Http\Controllers\Admin\OgImageController::class, 'index'])->name('admin.og-images.index');
+    Route::post('/og-images/upload', [App\Http\Controllers\Admin\OgImageController::class, 'upload'])->name('admin.og-images.upload');
+    Route::put('/og-images/{filename}', [App\Http\Controllers\Admin\OgImageController::class, 'update'])->name('admin.og-images.update');
+    Route::delete('/og-images/{filename}', [App\Http\Controllers\Admin\OgImageController::class, 'delete'])->name('admin.og-images.delete');
+});

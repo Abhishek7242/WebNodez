@@ -6,7 +6,7 @@
 @section('meta_keywords',
     'web development portfolio, case studies, design gallery, client projects, web design
     showcase, digital solutions portfolio, IT projects, software development portfolio')
-@section('og_image', asset('images/portfolio-og.jpg'))
+@section('og_image', asset('images/portfolio-og-image.jpg'))
 @section('portfolio', 'active')
 @section('main-section')
     <link href="{{ asset('css/portfolio/intro.css') }}" rel="stylesheet">

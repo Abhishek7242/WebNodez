@@ -8,6 +8,7 @@ use App\Events\AdminMessageEvent;
 use App\Models\UserChat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
 use PhpParser\Node\Expr\FuncCall;
 
 class UserChatsController extends Controller
@@ -40,7 +41,7 @@ class UserChatsController extends Controller
                 'updated_at' => $chat->created_at->setTimezone('Asia/Kolkata')->format('Y-m-d H:i:s')
             ]);
         } catch (\Exception $e) {
-            \Log::error('Update user active error: ' . $e->getMessage());
+            Log::error('Update user active error: ' . $e->getMessage());
             return response()->json([
                 'status' => 'error',
                 'message' => 'Failed to update chat timestamp',
@@ -69,7 +70,7 @@ class UserChatsController extends Controller
                 'updated_at' => $chat->created_at->setTimezone('Asia/Kolkata')->format('Y-m-d H:i:s')
             ]);
         } catch (\Exception $e) {
-            \Log::error('Update user active error: ' . $e->getMessage());
+            Log::error('Update user active error: ' . $e->getMessage());
             return response()->json([
                 'status' => 'error',
                 'message' => 'Failed to update chat timestamp',
@@ -134,9 +135,6 @@ class UserChatsController extends Controller
             $firstMessage = $chat->messages->first();
             $isUser = $firstMessage && $firstMessage->sender === 'user';
 
-            // Generate initials from visitor ID (first two characters)
-            $initials = strtoupper(substr($visitorId, 0, 2));
-
             // Extract email and phone from messages
             $email = null;
             $phone = null;
@@ -151,6 +149,34 @@ class UserChatsController extends Controller
                         $phone = $phoneMatches[0];
                     }
                 }
+            }
+
+            // Generate username and avatar from email
+            $username = 'Visitor ' . substr($visitorId, 0, 8);
+            $avatar = strtoupper(substr($visitorId, 0, 2));
+
+            if ($email) {
+                // Extract name from email (part before @)
+                $emailParts = explode('@', $email);
+                $namePart = $emailParts[0];
+
+                // Convert to proper case and replace special characters
+                $namePart = str_replace(['.', '_', '-'], ' ', $namePart);
+                $namePart = ucwords($namePart);
+
+                // Use first two words if name is long
+                $nameWords = explode(' ', $namePart);
+                $displayName = implode(' ', array_slice($nameWords, 0, 2));
+
+                // Generate initials for avatar
+                $initials = '';
+                foreach ($nameWords as $word) {
+                    $initials .= strtoupper(substr($word, 0, 1));
+                }
+                $initials = substr($initials, 0, 2);
+
+                $username = $displayName;
+                $avatar = $initials;
             }
 
             // Check if chat was updated within 1 minute
@@ -180,13 +206,13 @@ class UserChatsController extends Controller
             }
 
             return [
-                'user' => 'Visitor ' . substr($visitorId, 0, 8),
+                'user' => $username,
                 'email' => $email ?? $visitorId . '@visitor.com',
                 'phone' => $phone,
                 'last_message' => $lastMessage ? $lastMessage->message : 'No messages yet',
                 'time' => $formattedTime,
                 'status' => $status,
-                'avatar' => $initials,
+                'avatar' => $avatar,
                 'visitor_id' => $visitorId
             ];
         });
@@ -231,6 +257,11 @@ class UserChatsController extends Controller
             return response()->json(['error' => 'Chat not found'], 404);
         }
 
+        // Calculate days until deletion
+        $createdAt = Carbon::parse($chat->created_at);
+        $daysUntilDeletion = 90 - $createdAt->diffInDays(now());
+        $isExpiringSoon = $daysUntilDeletion <= 7;
+
         $messages = $chat->messages->map(function ($message) {
             return [
                 'id' => $message->id,
@@ -244,7 +275,9 @@ class UserChatsController extends Controller
 
         return response()->json([
             'visitor_id' => $visitor_id,
-            'messages' => $messages
+            'messages' => $messages,
+            'days_until_deletion' => $daysUntilDeletion,
+            'is_expiring_soon' => $isExpiringSoon
         ]);
     }
 
@@ -283,14 +316,14 @@ class UserChatsController extends Controller
                 ], 404);
             }
 
-            \Log::info('Take control:', [
+            Log::info('Take control:', [
                 'admin_control' => $admin_control,
                 'visitor_id' => $visitor_id
             ]);
 
             broadcast(new TakeControlEvent($admin_control, $visitor_id))->toOthers();
 
-            \Log::info('Take control successfully');
+            Log::info('Take control successfully');
 
             return response()->json([
                 'status' => 'Control broadcasted successfully',
@@ -298,7 +331,7 @@ class UserChatsController extends Controller
                 'visitor_id' => $visitor_id
             ]);
         } catch (\Exception $e) {
-            \Log::error('Broadcast error: ' . $e->getMessage());
+            Log::error('Broadcast error: ' . $e->getMessage());
             return response()->json([
                 'status' => 'error',
                 'message' => 'Failed to broadcast control',
@@ -324,7 +357,7 @@ class UserChatsController extends Controller
             $visitor_id = $request->input('visitor_id');
             $admin_name = $request->input('admin_name');
 
-            \Log::info('Broadcasting admin message:', [
+            Log::info('Broadcasting admin message:', [
                 'message' => $message,
                 'admin_name' => $admin_name,
                 'visitor_id' => $visitor_id
@@ -338,10 +371,47 @@ class UserChatsController extends Controller
                 'message' => 'Message sent successfully'
             ]);
         } catch (\Exception $e) {
-            \Log::error('Admin message error: ' . $e->getMessage());
+            Log::error('Admin message error: ' . $e->getMessage());
             return response()->json([
                 'status' => 'error',
                 'message' => 'Failed to send message',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function deleteChat($visitor_id)
+    {
+        $user = auth()->guard('admin')->user();
+        if (!in_array($user->role, ['super_admin', 'admin'])) {
+            abort(403, 'Unauthorized');
+        }
+
+        try {
+            $chat = UserChat::where('visitor_id', $visitor_id)->first();
+
+            if (!$chat) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Chat not found'
+                ], 404);
+            }
+
+            // Delete all messages associated with this chat
+            $chat->messages()->delete();
+
+            // Delete the chat itself
+            $chat->delete();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Chat deleted successfully'
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Delete chat error: ' . $e->getMessage());
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Failed to delete chat',
                 'error' => $e->getMessage()
             ], 500);
         }

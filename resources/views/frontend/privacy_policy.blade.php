@@ -6,7 +6,7 @@
 @section('meta_keywords',
     'privacy policy, data protection, user privacy, data security, GDPR compliance, privacy
     rights, data collection, cookie policy, chatbot privacy, AI services privacy')
-@section('og_image', asset('images/privacy-policy-og.jpg'))
+@section('og_image', asset('images/privacy-og-image.jpg'))
 @section('main-section')
     <link href="{{ asset('css/privacy_policy.css') }}" rel="stylesheet">
 
