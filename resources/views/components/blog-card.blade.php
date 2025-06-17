@@ -1,7 +1,7 @@
 <div class="blog-container">
     <div class="blog-category-tag">{{ $category }}</div>
     <div class="blog-image-wrapper">
-        <img src="{{ asset($image) }}" alt="{{ $title }}" />
+        <img loading="lazy" src="{{ asset($image) }}" alt="{{ $title }}" />
         <div class="blog-overlay"></div>
     </div>
     <div class="blog-content">

@@ -106,7 +106,7 @@
                 class="tech-group-list-item relative flex flex-col items-center p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
                 <div
                     class="tech-group-list-item-img w-20 h-20 mb-4 flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-3">
-                    <img src="{{ $item['icon'] }}" alt="{{ $item['name'] }}"
+                    <img loading="lazy" src="{{ $item['icon'] }}" alt="{{ $item['name'] }}"
                         class="w-14 h-14 object-contain transform group-hover:scale-110 transition-transform duration-300">
                 </div>
                 <h4

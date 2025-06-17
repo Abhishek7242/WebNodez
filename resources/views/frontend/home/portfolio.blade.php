@@ -28,7 +28,7 @@
             @foreach ($designs as $design)
                 <div class="home-design-gallery-item" data-category="{{ $design->category }}">
                     <div class="home-design-gallery-image">
-                        <img src="{{ $design->image }}" alt="{{ $design->title }}">
+                        <img loading="lazy" src="{{ $design->image }}" alt="{{ $design->title }}">
                         <div class="home-design-gallery-overlay">
                             <h3 class="home-design-gallery-item-title">{{ $design->title }}</h3>
                             @if ($design->link)

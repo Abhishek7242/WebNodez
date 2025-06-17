@@ -3,8 +3,11 @@
 use App\Http\Controllers\PricingController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminManageAboutUsController;
 use App\Http\Controllers\AdminManageBlogController;
+use App\Http\Controllers\AdminManageHomeController;
 use App\Http\Controllers\AdminManagePortfolio;
+use App\Http\Controllers\AdminManageServicesController;
 use App\Http\Controllers\AdminPrivacyPolicyController;
 use App\Http\Controllers\AdminTermConditionController;
 use App\Http\Controllers\FormSubmissionController;
@@ -42,6 +45,9 @@ Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('adm
 
 Route::middleware('auth:admin')->group(function () {
 
+    Route::get('/admin/manage-home', [AdminManageHomeController::class, 'index'])->name('admin.manage-home');
+    Route::get('/admin/manage-about', [AdminManageAboutUsController::class, 'index'])->name('admin.manage-about-us');
+    Route::get('/admin/manage-services', [AdminManageServicesController::class, 'index'])->name('admin.manage-services');
     Route::get('/admin/manage-terms', [AdminTermConditionController::class, 'manageTerms'])->name('admin.manage-terms');
     Route::get('/admin/manage-privacy', [AdminPrivacyPolicyController::class, 'managePrivacy'])->name('admin.manage-privacy');
     Route::get('/user-chats/last-active-time/{visitor_id}', [UserChatsController::class, 'getLastActiveTime'])->name('user.chats.last-active-time');

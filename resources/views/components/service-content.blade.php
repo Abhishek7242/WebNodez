@@ -21,7 +21,7 @@
                 </a>
             </div>
             <div class="our-services-image">
-                <img src="{{ $service['image'] }}" alt="{{ $service['title'] }}" class="rounded-lg shadow-md">
+                <img loading="lazy" src="{{ $service['image'] }}" alt="{{ $service['title'] }}" class="rounded-lg shadow-md">
             </div>
         </div>
     </div>

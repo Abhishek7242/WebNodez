@@ -29,7 +29,7 @@
                 <div class="design-gallery-item {{ $index >= 6 ? 'design-gallery-hidden' : '' }}"
                     data-category="{{ $design->category }}">
                     <div class="design-gallery-image">
-                        <img src="{{ $design->image }}" alt="{{ $design->title }}">
+                        <img loading="lazy" src="{{ $design->image }}" alt="{{ $design->title }}">
                         <div class="design-gallery-overlay">
                             <h3 class="design-gallery-item-title">{{ $design->title }}</h3>
                             @if ($design->link)

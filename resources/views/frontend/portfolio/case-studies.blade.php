@@ -11,7 +11,7 @@
             @foreach ($caseStudies as $caseStudy)
                 <div class="case-studies-card" data-category="{{ $caseStudy->category }}">
                     <div class="case-studies-image">
-                        <img src="{{ $caseStudy->image }}" alt="{{ $caseStudy->title }}" loading="lazy">
+                        <img loading="lazy" src="{{ $caseStudy->image }}" alt="{{ $caseStudy->title }}" loading="lazy">
                         <div class="case-studies-overlay">
                             <div class="case-studies-overlay-content">
                                 <span class="case-studies-duration">{{ $caseStudy->duration }}</span>

@@ -48,7 +48,7 @@
                 </p>
 
                 <!-- Quick stats -->
-                <div class="grid grid-cols-1 md:grid-cols-5 gap-6 mt-12">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
 
                     <a href="/admin/user-ai-chats"
                         class="bg-white/10 backdrop-blur-lg rounded-xl p-6 transform hover:scale-105 transition-all duration-300 group cursor-pointer">
@@ -140,13 +140,13 @@
                     </a>
                 </div>
 
-                <!-- Quick actions -->
+                {{-- <!-- Quick actions -->
                 <div class="mt-12">
                     <button
                         class="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 transform hover:-translate-y-1">
                         Launch Dashboard
                     </button>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

@@ -2,7 +2,7 @@
 
   <!-- Left Image Container -->
   <div class="overflow-hidden flex-1 h-full rounded-l-full">
-    <img src="{{$img1}}" alt="Left"
+    <img loading="lazy" src="{{$img1}}" alt="Left"
          class="h-full object-cover w-full transition-transform duration-400 ease-in-out" />
   </div>
 
@@ -10,7 +10,7 @@
 
   <!-- Right Image Container -->
   <div class="overflow-hidden flex-1 h-full rounded-r-full">
-    <img src="{{$img2}}" alt="Right"
+    <img loading="lazy" src="{{$img2}}" alt="Right"
          class="h-full object-cover w-full transition-transform duration-400 ease-in-out" />
   </div>
 

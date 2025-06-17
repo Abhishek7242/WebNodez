@@ -36,7 +36,7 @@
                     <div class="w-full md:flex-1 md:pl-8">
                         <div
                             class="about-us-our-story-image relative h-48 md:h-64 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            <img src="https://img.freepik.com/free-photo/teamwork-meeting-with-business-people_23-2148825936.jpg"
+                            <img loading="lazy" src="https://img.freepik.com/free-photo/teamwork-meeting-with-business-people_23-2148825936.jpg"
                                 alt="Team Meeting 2015"
                                 class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500" />
                         </div>
@@ -48,7 +48,7 @@
                     <div class="w-full md:flex-1 md:pr-8 order-2 md:order-1">
                         <div
                             class="about-us-our-story-image relative h-48 md:h-64 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            <img src="https://img.freepik.com/free-photo/business-people-discussing-charts_53876-25060.jpg"
+                            <img loading="lazy" src="https://img.freepik.com/free-photo/business-people-discussing-charts_53876-25060.jpg"
                                 alt="Business Growth 2018"
                                 class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500" />
                         </div>
@@ -90,7 +90,7 @@
                     <div class="w-full md:flex-1 md:pl-8">
                         <div
                             class="about-us-our-story-image relative h-48 md:h-64 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-                            <img src="https://img.freepik.com/free-photo/global-business-internet-network-connection-iot-internet-things-business-intelligence-concept-business-global-network-futuristic-technology-background-ai-generative_1258-150760.jpg"
+                            <img loading="lazy" src="https://img.freepik.com/free-photo/global-business-internet-network-connection-iot-internet-things-business-intelligence-concept-business-global-network-futuristic-technology-background-ai-generative_1258-150760.jpg"
                                 alt="Global Reach 2022"
                                 class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500" />
                         </div>

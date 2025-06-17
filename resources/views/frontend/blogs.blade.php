@@ -26,7 +26,7 @@
         </div>
         <div class="blog-hero">
             <div class="blog-hero-image">
-                <img src="https://media.licdn.com/dms/image/v2/D4D12AQHqsDNHkRfi1A/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1690816353140?e=2147483647&v=beta&t=QEzfPwHWu9Rais39Xk3-FzanD-3InZ0voTzlvm48ZWw"
+                <img  src="https://media.licdn.com/dms/image/v2/D4D12AQHqsDNHkRfi1A/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1690816353140?e=2147483647&v=beta&t=QEzfPwHWu9Rais39Xk3-FzanD-3InZ0voTzlvm48ZWw"
                     alt="Blog Hero Image">
                 <div class="image-overlay"></div>
             </div>

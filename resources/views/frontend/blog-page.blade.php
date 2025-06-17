@@ -48,7 +48,7 @@
         </div> --}}
         @if ($blog->featured_image)
             <div class="blog-heading-image mb-10">
-                <img src="{{ asset($blog->featured_image) }}" alt="{{ $blog->title }}">
+                <img  src="{{ asset($blog->featured_image) }}" alt="{{ $blog->title }}">
             </div>
         @endif
     </section>

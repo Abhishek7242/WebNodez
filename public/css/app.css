@@ -875,6 +875,9 @@ video {
 .h-full {
   height: 100%;
 }
+.h-auto {
+  height: auto;
+}
 .max-h-0 {
   max-height: 0px;
 }
@@ -2867,6 +2870,10 @@ body.dark-mode {
 
   .md\:grid-cols-5 {
     grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .md\:flex-row {

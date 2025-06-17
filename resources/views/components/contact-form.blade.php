@@ -77,7 +77,7 @@
                     <h2>Contact Us</h2>
                 </div>
 
-                <img class="filter-green "
+                <img loading="lazy" class="filter-green "
                     src="https://static.wixstatic.com/media/fa1267_8d5e4df280eb42f496d1c6544a8eee8b~mv2.gif"
                     alt="">
             </div>
