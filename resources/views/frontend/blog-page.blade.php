@@ -77,7 +77,7 @@
         :title="$innerblog->title" 
         :excerpt="Str::limit(strip_tags($innerblog->content), 150)" 
         :date="$innerblog->created_at->format('F d, Y')"
-            :link="'/blog/'.$innerblog - > slug"
+            :link="'/blog/'.$innerblog -> slug"
         />
      @endforeach
 
