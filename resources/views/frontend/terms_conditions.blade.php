@@ -1,7 +1,7 @@
 @extends('frontend/layouts/main')
-@section('title', 'WebNodez - Terms & Conditions')
+@section('title', 'Linkuss - Terms & Conditions')
 @section('meta_description',
-    'Read WebNodez Terms and Conditions. Understand our service agreements, user
+    'Read Linkuss Terms and Conditions. Understand our service agreements, user
     responsibilities, intellectual property rights, and legal terms for using our web development and digital services.')
 @section('meta_keywords',
     'terms and conditions, service agreement, legal terms, user agreement, website terms, service
@@ -51,13 +51,13 @@
                 'id' => 'introduction',
                 'title' => 'Introduction',
                 'description' =>
-                    'Welcome to WebNodez. By accessing or using our website and services, you agree to be bound by these Terms and Conditions. These terms constitute a legally binding agreement between you and WebNodez. If you do not agree to these terms, please do not use our services.',
+                    'Welcome to Linkuss. By accessing or using our website and services, you agree to be bound by these Terms and Conditions. These terms constitute a legally binding agreement between you and Linkuss. If you do not agree to these terms, please do not use our services.',
             ],
             [
                 'id' => 'definitions',
                 'title' => 'Definitions',
                 'description' =>
-                    '"Service" refers to all services provided by WebNodez. "User," "you," and "your" refer to individuals or entities accessing or using our services. "We," "us," and "our" refer to WebNodez. "Content" includes all materials, information, and data available through our services.',
+                    '"Service" refers to all services provided by Linkuss. "User," "you," and "your" refer to individuals or entities accessing or using our services. "We," "us," and "our" refer to Linkuss. "Content" includes all materials, information, and data available through our services.',
             ],
             [
                 'id' => 'use-of-services',
@@ -75,7 +75,7 @@
                 'id' => 'intellectual-property',
                 'title' => 'Intellectual Property',
                 'description' =>
-                    'All content, trademarks, logos, and intellectual property displayed on this site are the property of WebNodez or its licensors. You may not use, reproduce, modify, distribute, or create derivative works without our express written consent. Any unauthorized use may result in legal action.',
+                    'All content, trademarks, logos, and intellectual property displayed on this site are the property of Linkuss or its licensors. You may not use, reproduce, modify, distribute, or create derivative works without our express written consent. Any unauthorized use may result in legal action.',
             ],
             [
                 'id' => 'user-accounts',

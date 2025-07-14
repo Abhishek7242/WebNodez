@@ -1,7 +1,7 @@
 @extends('frontend/layouts/main')
 @section('title', 'Pricing - ' . $service)
 @section('meta_description',
-    'Explore WebNodez transparent pricing plans for ' .
+    'Explore Linkuss transparent pricing plans for ' .
     $service .
     '. Get detailed information
     about our service packages, features, and competitive rates. Start your project with our flexible pricing options.')

@@ -1,7 +1,7 @@
 @extends('frontend/layouts/main')
-@section('title', 'WebNodez - Contact Us')
+@section('title', 'Linkuss - Contact Us')
 @section('meta_description',
-    'Contact WebNodez for professional web development and digital solutions. Get in touch with
+    'Contact Linkuss for professional web development and digital solutions. Get in touch with
     our expert team for project inquiries, support, or consultations. Available Mon-Fri, 9am-6pm with multilingual
     support.')
 @section('meta_keywords',
@@ -21,7 +21,7 @@
     <section class="contact-us-section relative text-black py-16 md:py-20 lg:py-24 px-4 md:px-8 lg:px-16 overflow-hidden">
         <div class="max-w-4xl mx-auto text-center z-10 relative">
             <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-3 md:mb-4 tracking-tight leading-tight">
-                Get in Touch with <span class="text-[--color-primary]">WebNodez Team</span>
+                Get in Touch with <span class="text-[--color-primary]">Linkuss Team</span>
             </h1>
             <p class="text-base sm:text-lg md:text-xl text-gray-500 mb-6 md:mb-10 max-w-2xl mx-auto leading-relaxed">
                 Let's build something amazing together. Whether it's a question, project idea, or just a hello — we'd love

@@ -1,7 +1,7 @@
 @extends('frontend/layouts/main')
-@section('title', 'WebNodez - About Us')
+@section('title', 'Linkuss - About Us')
 @section('meta_description',
-    'Learn about WebNodez - our story, mission, vision, and company culture. Discover how we
+    'Learn about Linkuss - our story, mission, vision, and company culture. Discover how we
     deliver innovative web development and digital solutions with a team of expert professionals.')
 @section('meta_keywords',
     'about webnodez, company story, mission vision, company culture, web development team, digital

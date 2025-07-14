@@ -7,25 +7,25 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Primary Meta Tags -->
-    <title>@yield('title', 'WebNodez - Web Development & Digital Solutions')</title>
-    <meta name="title" content="@yield('title', 'WebNodez - Web Development & Digital Solutions')">
-    <meta name="description" content="@yield('meta_description', 'WebNodez provides professional web development, digital solutions, and IT services. Expert team delivering innovative solutions for your business needs.')">
+    <title>@yield('title', 'Linkuss - Web Development & Digital Solutions')</title>
+    <meta name="title" content="@yield('title', 'Linkuss - Web Development & Digital Solutions')">
+    <meta name="description" content="@yield('meta_description', 'Linkuss provides professional web development, digital solutions, and IT services. Expert team delivering innovative solutions for your business needs.')">
     <meta name="keywords" content="@yield('meta_keywords', 'web development, digital solutions, IT services, software development, web design, mobile apps')">
-    <meta name="author" content="WebNodez">
+    <meta name="author" content="Linkuss">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="@yield('title', 'WebNodez - Web Development & Digital Solutions')">
-    <meta property="og:description" content="@yield('meta_description', 'WebNodez provides professional web development, digital solutions, and IT services. Expert team delivering innovative solutions for your business needs.')">
+    <meta property="og:title" content="@yield('title', 'Linkuss - Web Development & Digital Solutions')">
+    <meta property="og:description" content="@yield('meta_description', 'Linkuss provides professional web development, digital solutions, and IT services. Expert team delivering innovative solutions for your business needs.')">
     <meta property="og:image" content="@yield('og_image', asset('images/og-image.jpg'))">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="@yield('title', 'WebNodez - Web Development & Digital Solutions')">
-    <meta property="twitter:description" content="@yield('meta_description', 'WebNodez provides professional web development, digital solutions, and IT services. Expert team delivering innovative solutions for your business needs.')">
+    <meta property="twitter:title" content="@yield('title', 'Linkuss - Web Development & Digital Solutions')">
+    <meta property="twitter:description" content="@yield('meta_description', 'Linkuss provides professional web development, digital solutions, and IT services. Expert team delivering innovative solutions for your business needs.')">
     <meta property="twitter:image" content="@yield('og_image', asset('images/og-image.jpg'))">
 
     <!-- Favicon -->
@@ -60,9 +60,11 @@
     <header id="header">
         <!-- Tailwind CSS Navbar -->
         <nav class=" px-6 py-4 flex justify-evenly items-center">
-            <div class="text-2xl font-bold text-green-500 cursor-default">
-                WebNodez
-            </div>
+            <div class="navbar-logo-container">
+                <a href="/">
+                    <img src="{{ asset('assets/Linkuss_logo.png') }}" alt="Linkuss logo" class="navbar-logo">
+                </a>
+                </div>
 
             <ul class="navbar flex space-x-8 items-center">
                 <li><a href="/" class="@yield('home', ' ') nav-links font-semibold ">Home</a></li>
@@ -120,10 +122,6 @@
 
         <!-- Mobile menu -->
 
-<script>
-let show = false
-
-</script>
-
-
-   
+        <script>
+            let show = false
+        </script>

@@ -2,7 +2,9 @@
     <div class="footer-grid">
         <!-- Brand Section -->
         <div class="footer-brand">
-            <h3><a href="#header">WebNodez</a></h3>
+            <h3><a href="#header">   
+                <img src="{{ asset('assets/Linkuss_logo.png') }}" alt="Linkuss logo" class="navbar-logo">
+            </a></h3>
             <p>Building smart digital experiences that move your business forward.</p>
             <a href="/contact-us" class="footer-contact-btn">
                 <span>Contact Us</span>
@@ -68,12 +70,12 @@
                     </svg>
                 </a>
             </div>
-            <a href="mailto:company.webnodez@gmail.com" class="footer-mail" title="Email Us">
+            <a href="mailto:company.    linkuss@gmail.com" class="footer-mail" title="Email Us">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path
                         d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z" />
                 </svg>
-                <span>company.webnodez@gmail.com</span>
+                <span>company.linkuss@gmail.com</span>
             </a>
         </div>
     </div>
@@ -85,14 +87,14 @@
         </div>
         <div class="footer-copyright">
             <div id="footer-year"></div>
-            <p>WebNodez : Crafted with ❤️ using creativity and code.</p>
+            <p>Linkuss : Crafted with ❤️ using creativity and code.</p>
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             const year = new Date().getFullYear();
-            document.getElementById('footer-year').textContent = `© ${year} WebNodez. All rights Reserved`;
+            document.getElementById('footer-year').textContent = `© ${year} Linkuss. All rights Reserved`;
 
             // Add interval to update user active status
             setInterval(() => {

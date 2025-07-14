@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>WebNodez - Admin_login</title>
+    <title>Linkuss - Admin_login</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -39,7 +39,7 @@
                 <div class="text-center mb-8">
                     <h1 class="text-4xl font-bold text-white mb-2">
                         <span
-                            class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">WebNodez</span>
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Linkuss</span>
                     </h1>
                     <p class="text-gray-300">Admin Portal</p>
                 </div>
@@ -165,6 +165,42 @@
                 passwordInput.type = 'password';
                 icon.classList.remove('fa-eye-slash');
                 icon.classList.add('fa-eye');
+            }
+        });
+
+        // handle errors
+        document.addEventListener('DOMContentLoaded', function() {
+            const errorElements = document.querySelectorAll('.text-red-400 li');
+            errorElements.forEach(function(el) {
+                if (el.textContent.toLowerCase().includes('blocked')) {
+                    // Set blocked and store timestamp
+                    localStorage.setItem('blocked', '1');
+                    localStorage.setItem('blocked_time', Date.now().toString());
+                }
+            });
+
+            // Disable Sign In button if blocked
+            if (localStorage.getItem('blocked') === '1') {
+                const signInBtn = document.querySelector('button[type="submit"]');
+                if (signInBtn) {
+                    signInBtn.disabled = true;
+                    signInBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                    signInBtn.textContent = 'Blocked';
+                }
+            }
+
+            // After disabling button
+            // Check if 2 hours passed since blocked
+            const blockedTime = localStorage.getItem('blocked_time');
+            if (blockedTime) {
+                const now = Date.now();
+                const diff = now - parseInt(blockedTime, 10);
+                if (diff > 2 * 60 * 60 * 1000) { // 2 hours in ms
+                    localStorage.removeItem('blocked');
+                    localStorage.removeItem('blocked_time');
+                    // Optionally reload to re-enable button
+                    location.reload();
+                }
             }
         });
     </script>

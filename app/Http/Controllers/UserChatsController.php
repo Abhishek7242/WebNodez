@@ -82,7 +82,7 @@ class UserChatsController extends Controller
     {
         $request->validate([
             'visitor_id' => 'required|uuid',
-            'sender' => 'required|in:user,ai,admin',
+            'sender' => 'required|',
             'message' => 'required|string',
         ]);
 
@@ -118,9 +118,14 @@ class UserChatsController extends Controller
     public function userAIChats()
     {
         $user = auth()->guard('admin')->user();
+        if($user->status === 'blocked') {
+            session()->forget('super_admin_logged_in');
+            auth()->guard('admin')->logout();
+            return redirect()->route('admin.unauthorized')->with('error', 'You are blocked.');
+        }
 
         $lastMessageTime = '';
-        if (!in_array($user->role, ['super_admin', 'admin'])) {
+        if (!in_array($user->role, ['super_admin', 'admin','god_admin'])) {
             abort(403, 'Unauthorized');
         }
         $chats = UserChat::with(['messages' => function ($query) {
@@ -295,7 +300,7 @@ class UserChatsController extends Controller
     {
         $user = auth()->guard('admin')->user();
 
-        if (!in_array($user->role, ['super_admin', 'admin', 'contact_support'])) {
+        if (!in_array($user->role, ['super_admin', 'admin','god_admin', 'contact_support'])) {
             abort(403, 'Unauthorized');
         }
         try {
@@ -343,7 +348,7 @@ class UserChatsController extends Controller
     public function sendAdminMessage(Request $request)
     {
         $user = auth()->guard('admin')->user();
-        if (!in_array($user->role, ['super_admin', 'admin', 'contact_support'])) {
+        if (!in_array($user->role, ['super_admin', 'admin', 'god_admin', 'contact_support'])) {
             abort(403, 'Unauthorized');
         }
         try {
@@ -383,7 +388,7 @@ class UserChatsController extends Controller
     public function deleteChat($visitor_id)
     {
         $user = auth()->guard('admin')->user();
-        if (!in_array($user->role, ['super_admin', 'admin'])) {
+        if (!in_array($user->role, ['super_admin', 'admin','god_admin'])) {
             abort(403, 'Unauthorized');
         }
 

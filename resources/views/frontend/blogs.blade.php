@@ -1,7 +1,7 @@
 @extends('frontend/layouts/main')
-@section('title', 'WebNodez - Blogs')
+@section('title', 'Linkuss - Blogs')
 @section('meta_description',
-    'Explore WebNodez blog for the latest insights on web development, technology trends, and
+    'Explore Linkuss blog for the latest insights on web development, technology trends, and
     digital solutions. Read expert articles, tutorials, and industry updates from our team.')
 @section('meta_keywords',
     'web development blog, technology insights, digital solutions blog, web design articles, IT
@@ -19,7 +19,7 @@
     <section class="blog-intro">
         <div class="container">
             <div class="blog-intro-content">
-                <span class="journal-label">The WebNodez Journal</span>
+                <span class="journal-label">The Linkuss Journal</span>
                 <h1 class="blog-title">Insights, Updates & Stories</h1>
                 <p class="blog-description">Discover the latest trends, insights, and stories from our team of experts</p>
             </div>

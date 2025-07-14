@@ -1,5 +1,5 @@
 @extends('admin/layouts/main')
-@section('title', 'WebNodez - Admin Dashboard')
+@section('title', 'Linkuss - Admin Dashboard')
 @section('home', 'active')
 @section('main-section')
 
@@ -58,6 +58,7 @@
                         <div class="text-gray-300">Users AI Chat</div>
                         <div class="text-sm text-gray-400 mt-1">Active Conversations</div>
                     </a>
+                    @if (Auth::guard('admin')->user()->role == 'super_admin' || Auth::guard('admin')->user()->role == 'god_admin')
                     <a href="/admin/manage-admins"
                         class="bg-white/10 backdrop-blur-lg rounded-xl p-6 transform hover:scale-105 transition-all duration-300 group cursor-pointer">
                         <div class="flex items-center justify-center mb-2">
@@ -66,6 +67,7 @@
                         <div class="text-gray-300">Manage Admins</div>
                         <div class="text-sm text-gray-400 mt-1">Admin Controls</div>
                     </a>
+                    @endif
                     <a href="/admin/contact-details"
                         class="bg-white/10 backdrop-blur-lg rounded-xl p-6 transform hover:scale-105 transition-all duration-300 group cursor-pointer">
                         <div class="flex items-center justify-center mb-2">
@@ -137,6 +139,14 @@
                         </div>
                         <div class="text-gray-300">OG Images</div>
                         <div class="text-sm text-gray-400 mt-1">Meta Images</div>
+                    </a>
+                    <a href="/admin/manage-client-progress"
+                        class="bg-white/10 backdrop-blur-lg rounded-xl p-6 transform hover:scale-105 transition-all duration-300 group cursor-pointer">
+                        <div class="flex items-center justify-center mb-2">
+                            <i class="fas fa-chart-line text-4xl text-orange-400 group-hover:animate-pulse"></i>
+                        </div>
+                        <div class="text-gray-300">Manage Progress</div>
+                        <div class="text-sm text-gray-400 mt-1">Client project progress and status</div>
                     </a>
                 </div>
 

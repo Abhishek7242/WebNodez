@@ -8,6 +8,9 @@ use App\Models\BookThisTour;
 use App\Models\ContactForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator; // Ensure correct import
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
+use App\Mail\ContactFormEmail;
 
 class FormSubmissionController extends Controller
 {
@@ -16,11 +19,7 @@ class FormSubmissionController extends Controller
     {
         $user = auth()->guard('admin')->user();
 
-        if (!in_array($user->role, ['super_admin', 'admin'])) {
-            abort(403, 'Unauthorized');
-        }
-
-        if ($user->role !== 'super_admin' && $user->email !== env('SUPER_ADMIN_EMAIL')) {
+        if (!in_array($user->role, ['super_admin', 'admin', 'god_admin'])) {
             abort(403, 'Unauthorized');
         }
 
@@ -38,12 +37,12 @@ class FormSubmissionController extends Controller
 
             ];
         });
-                $formantedDetails = $details->reverse();
+        $formantedDetails = $details->reverse();
         // return view('admin.manage-admins', ['admins' => $admins]);
 
         return view('admin.contact-form-details', ['contacts' => $formantedDetails]);
     }
-    
+
     public function contactUs(Request $request)
     {
         // Validate the incoming request data
@@ -60,10 +59,7 @@ class FormSubmissionController extends Controller
             ], 422);
         }
 
-
-        // If validation passes, you can save the data
-        // Uncomment and use if you have a corresponding model
-
+        // If validation passes, save the data
         $contact = new ContactForm();
 
         $contact->name = $request->name;
@@ -73,10 +69,41 @@ class FormSubmissionController extends Controller
         $contact->message = $request->message ? $request->message : '';
         $contact->status = 'New';
         $contact->save();
+
+        // Prepare email data
+        $emailData = [
+            'name' => $contact->name,
+            'email' => $contact->email,
+            'phone' => $contact->number,
+            'message' => $contact->message,
+            'created_at' => $contact->created_at->format('F j, Y \a\t g:i A'),
+        ];
+
+        // Send email to all super_admin and god_admin users
+        try {
+            // Get all super_admin and god_admin users
+            $adminUsers = \App\Models\Admin::whereIn('role', ['super_admin', 'god_admin'])
+                ->where('status', '!=', 'blocked')
+                ->get();
+
+            $adminEmails = $adminUsers->pluck('email')->toArray();
+
+            // If no admin users found, use default email
+            if (empty($adminEmails)) {
+                $adminEmails = [env('ADMIN_EMAIL', 'mark217242@gmail.com')];
+            }
+
+            // Send email to all admin users
+            Mail::to($adminEmails)->send(new ContactFormEmail($emailData));
+        } catch (\Exception $e) {
+            // Log the error but don't fail the form submission
+            Log::error('Failed to send contact form email: ' . $e->getMessage());
+        }
+
         // Return a success response
         return response()->json([
             'success' => true,
-            'message' => 'Client added successfully',
+            'message' => 'Contact form submitted successfully',
             'data' => $request->all(),
         ], 201);
     }
@@ -85,13 +112,11 @@ class FormSubmissionController extends Controller
     {
         $user = auth()->guard('admin')->user();
 
-        if (!in_array($user->role, ['super_admin', 'admin'])) {
+        if (!in_array($user->role, ['super_admin', 'admin', 'god_admin'])) {
             abort(403, 'Unauthorized');
         }
 
-        if ($user->role !== 'super_admin' && $user->email !== env('SUPER_ADMIN_EMAIL')) {
-            abort(403, 'Unauthorized');
-        }
+
 
         $contact = ContactForm::findOrFail($id);
         $contact->status = 'read';
@@ -111,13 +136,11 @@ class FormSubmissionController extends Controller
     {
         $user = auth()->guard('admin')->user();
 
-        if (!in_array($user->role, ['super_admin', 'admin'])) {
+        if (!in_array($user->role, ['super_admin', 'admin', 'god_admin'])) {
             abort(403, 'Unauthorized');
         }
 
-        if ($user->role !== 'super_admin' && $user->email !== env('SUPER_ADMIN_EMAIL')) {
-            abort(403, 'Unauthorized');
-        }
+
 
         $contact = ContactForm::findOrFail($id);
         $contact->status = 'Replied';
@@ -133,13 +156,10 @@ class FormSubmissionController extends Controller
     {
         $user = auth()->guard('admin')->user();
 
-        if (!in_array($user->role, ['super_admin', 'admin'])) {
+        if (!in_array($user->role, ['super_admin', 'admin', 'god_admin'])) {
             abort(403, 'Unauthorized');
         }
 
-        if ($user->role !== 'super_admin' && $user->email !== env('SUPER_ADMIN_EMAIL')) {
-            abort(403, 'Unauthorized');
-        }
 
         $contact = ContactForm::findOrFail($id);
         $contact->delete();

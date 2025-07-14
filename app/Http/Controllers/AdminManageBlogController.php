@@ -14,7 +14,7 @@ class AdminManageBlogController extends Controller
     public function index()
     {
         $user = auth()->guard('admin')->user();
-        if (!in_array($user->role, ['super_admin', 'admin','editor'])) {
+        if (!in_array($user->role, ['super_admin', 'admin','editor', 'god_admin'])) {
             abort(403, 'Unauthorized');
         }
         $blogs = Cache::remember('admin.blogs.all', 3600, function () {
@@ -35,7 +35,7 @@ class AdminManageBlogController extends Controller
     public function newBlog()
     {
         $user = auth()->guard('admin')->user();
-        if (!in_array($user->role, ['super_admin', 'admin', 'editor'])) {
+        if (!in_array($user->role, ['super_admin', 'admin', 'editor', 'god_admin'])) {
             abort(403, 'Unauthorized');
         }
         Cache::forget('admin.blogs.all');
@@ -45,7 +45,7 @@ class AdminManageBlogController extends Controller
     public function editBlog($id)
     {
         $user = auth()->guard('admin')->user();
-        if (!in_array($user->role, ['super_admin', 'admin','editor'])) {
+        if (!in_array($user->role, ['super_admin', 'admin','editor', 'god_admin'])) {
             abort(403, 'Unauthorized');
         }
         $blog = Cache::remember('blog.' . $id, 3600, function () use ($id) {
@@ -59,7 +59,7 @@ class AdminManageBlogController extends Controller
     public function updateBlog(Request $request, $id)
     {
         $user = auth()->guard('admin')->user();
-        if (!in_array($user->role, ['super_admin', 'admin','editor'])) {
+        if (!in_array($user->role, ['super_admin', 'admin','editor', 'god_admin'])) {
             abort(403, 'Unauthorized');
         }
         $blog = Blog::findOrFail($id);
@@ -120,7 +120,7 @@ class AdminManageBlogController extends Controller
     public function uploadImage(Request $request)
     {
         $user = auth()->guard('admin')->user();
-        if (!in_array($user->role, ['super_admin', 'admin','editor'])) {
+        if (!in_array($user->role, ['super_admin', 'admin','editor', 'god_admin'])) {
             abort(403, 'Unauthorized');
         }
         if (!$request->hasFile('file')) {
@@ -149,7 +149,7 @@ class AdminManageBlogController extends Controller
     public function saveBlog(Request $request)
     {
         $user = auth()->guard('admin')->user();
-        if (!in_array($user->role, ['super_admin', 'admin','editor'])) {
+        if (!in_array($user->role, ['super_admin', 'admin','editor', 'god_admin'])) {
             abort(403, 'Unauthorized');
         }
             // Validate the request
@@ -201,7 +201,7 @@ class AdminManageBlogController extends Controller
     public function deleteBlog($id)
     {
         $user = auth()->guard('admin')->user();
-        if (!in_array($user->role, ['super_admin', 'admin','editor'])) {
+        if (!in_array($user->role, ['super_admin', 'admin','editor', 'god_admin'])) {
             abort(403, 'Unauthorized');
         }
         $blog = Blog::findOrFail($id);
@@ -218,7 +218,7 @@ class AdminManageBlogController extends Controller
     public function viewBlog($id)
     {
         $user = auth()->guard('admin')->user();
-        if (!in_array($user->role, ['super_admin', 'admin','editor'])) {
+        if (!in_array($user->role, ['super_admin', 'admin','editor', 'god_admin'])) {
             abort(403, 'Unauthorized');
         }
         $blog = Cache::remember('blog.' . $id, 3600, function () use ($id) {

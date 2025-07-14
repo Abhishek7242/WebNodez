@@ -27,8 +27,8 @@
     
     
     <div id="orbit" class="relative w-[320px] h-[320px] mx-auto ">
-      <div id="center-planet" class="absolute w-28 h-28 rounded-full overflow-hidden border-4 border-white left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-        <img src="https://img.freepik.com/free-vector/abstract-realistic-technology-particle-screensaver_52683-33640.jpg" alt="Center" class="w-full h-full object-cover">
+      <div id="center-planet" class="flex justify-center items-center absolute w-28 h-28 rounded-full overflow-hidden border-4 border-white left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <img src="{{ asset('assets/Linkuss_logo.png') }}" alt="Linkuss logo" class="navbar-logo">
       </div>
     </div>
     

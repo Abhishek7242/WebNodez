@@ -15,7 +15,7 @@ class AdminManagePortfolio extends Controller
     public function managePortfolio()
     {
         $user = auth()->guard('admin')->user();
-        if (!in_array($user->role, ['super_admin', 'admin'])) {
+        if (!in_array($user->role, ['super_admin', 'admin','god_admin'])) {
             abort(403, 'Unauthorized');
         }
         return view('admin.manage-portfolio');
@@ -30,7 +30,7 @@ class AdminManagePortfolio extends Controller
     public function storeGallery(Request $request)
     {
         $user = auth()->guard('admin')->user();
-        if (!in_array($user->role, ['super_admin', 'admin'])) {
+        if (!in_array($user->role, ['super_admin', 'admin', 'god_admin'])) {
             abort(403, 'Unauthorized');
         }
         try {
@@ -69,7 +69,7 @@ class AdminManagePortfolio extends Controller
     public function updateGallery(Request $request, $id)
     {
         $user = auth()->guard('admin')->user();
-        if (!in_array($user->role, ['super_admin', 'admin'])) {
+        if (!in_array($user->role, ['super_admin', 'admin', 'god_admin'])) {
             abort(403, 'Unauthorized');
         }
         try {
@@ -107,7 +107,7 @@ class AdminManagePortfolio extends Controller
     public function deleteGallery($id)
     {
         $user = auth()->guard('admin')->user();
-        if (!in_array($user->role, ['super_admin', 'admin'])) {
+        if (!in_array($user->role, ['super_admin', 'admin', 'god_admin'])) {
             abort(403, 'Unauthorized');
         }
         try {
@@ -131,7 +131,7 @@ class AdminManagePortfolio extends Controller
     public function manageCaseStudies()
     {
         $user = auth()->guard('admin')->user();
-        if (!in_array($user->role, ['super_admin'])) {
+        if (!in_array($user->role, ['super_admin', 'god_admin'])) {
             abort(403, 'Unauthorized');
         }
         $caseStudies = CaseStudy::orderBy('order')->get();
@@ -141,7 +141,7 @@ class AdminManagePortfolio extends Controller
     public function storeCaseStudy(Request $request)
     {
         $user = auth()->guard('admin')->user();
-        if (!in_array($user->role, ['super_admin'])) {
+        if (!in_array($user->role, ['super_admin', 'god_admin'])) {
             abort(403, 'Unauthorized');
         }
         try {
@@ -189,7 +189,7 @@ class AdminManagePortfolio extends Controller
     public function updateCaseStudy(Request $request, $id)
     {
         $user = auth()->guard('admin')->user();
-        if (!in_array($user->role, ['super_admin'])) {
+        if (!in_array($user->role, ['super_admin', 'god_admin'])) {
             abort(403, 'Unauthorized');
         }
         try {
@@ -236,7 +236,7 @@ class AdminManagePortfolio extends Controller
     public function deleteCaseStudy($id)
     {
         $user = auth()->guard('admin')->user();
-        if (!in_array($user->role, ['super_admin'])) {
+        if (!in_array($user->role, ['super_admin', 'god_admin'])) {
             abort(403, 'Unauthorized');
         }
         try {
@@ -260,7 +260,7 @@ class AdminManagePortfolio extends Controller
     public function manageAchievements()
     {
         $user = auth()->guard('admin')->user();
-        if (!in_array($user->role, ['super_admin','admin'])) {
+        if (!in_array($user->role, ['super_admin','admin', 'god_admin'])) {
             abort(403, 'Unauthorized');
         }
         $achievements = Achievement::all();
@@ -269,7 +269,7 @@ class AdminManagePortfolio extends Controller
     public function updateAchievement(Request $request, $id)
     {
         $user = auth()->guard('admin')->user();
-        if (!in_array($user->role, ['super_admin','admin'])) {
+        if (!in_array($user->role, ['super_admin','admin', 'god_admin'])) {
             abort(403, 'Unauthorized');
         }
         try {

@@ -1,5 +1,5 @@
 @extends('frontend/layouts/main')
-@section('title', 'WebNodez - Services')
+@section('title', 'Linkuss - Services')
 @section('meta_description',
     'Explore our comprehensive range of web development and digital services. From custom
     website development to mobile apps, e-commerce solutions, and IT services - we deliver innovative digital solutions for

@@ -23,13 +23,16 @@
         <!-- Tailwind CSS Navbar -->
         <nav class=" px-6 py-4 flex justify-between items-center">
             <div class="text-2xl font-bold text-green-500 cursor-default">
-                WebNodez
+                 <a href="/">
+                    <img src="{{ asset('assets/Linkuss_logo.png') }}" alt="Linkuss logo" class="navbar-logo">
+                </a>
             </div>
 
             <ul class="navbar flex space-x-8 items-center">
                 <li><a href="/admin/dashboard" class="@yield('home', ' ') nav-links font-semibold ">Home</a></li>
                 <li><a href="/admin/manage-blogs" class="@yield('blog', ' ') nav-links font-semibold ">Blogs</a></li>
-                <li><a href="/admin/manage-services" class="@yield('services', ' ') nav-links font-semibold ">Services</a></li>
+                <li><a href="/admin/manage-services" class="@yield('services', ' ') nav-links font-semibold ">Services</a>
+                </li>
                 <li><a href="/admin/manage-portfolio" class="@yield('portfolio', ' ') nav-links font-semibold ">Portfolio</a>
                 </li>
 
@@ -63,6 +66,11 @@
                                 </span>
                             </div>
                         </div>
+                        <a href="{{ route('admin.password.change') }}"
+                            class="w-full text-left block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <i class="fas fa-key mr-2"></i>
+                            Change Password
+                        </a>
                         <form method="POST" action="{{ route('admin.logout') }}" class="block">
                             @csrf
                             <button type="submit"
@@ -161,18 +169,18 @@
 
 
 
-    setInterval(() => {
-        console.log('heartbeat ')
-            fetch('/admin/heartbeat', {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({})
-            });
-        }, 60000); // Every 60 seconds
+            setInterval(() => {
+                console.log('heartbeat ')
+                fetch('/admin/heartbeat', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({})
+                });
+            }, 60000); // Every 60 seconds
 
 
 

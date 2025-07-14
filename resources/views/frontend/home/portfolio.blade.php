@@ -32,7 +32,7 @@
                         <div class="home-design-gallery-overlay">
                             <h3 class="home-design-gallery-item-title">{{ $design->title }}</h3>
                             @if ($design->link)
-                                <a href="{{ $design->link }}" class="home-design-gallery-view-btn">View Project</a>
+                                <a target="_blank" href="{{ $design->link }}" class="home-design-gallery-view-btn">View Project</a>
                             @endif
                         </div>
                     </div>

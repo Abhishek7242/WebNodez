@@ -1779,7 +1779,7 @@ var Chatbot = /*#__PURE__*/function () {
       console.log('user message is broadcasted', data.message);
       console.log(data);
       // Only show AI messages from admin panel
-      if (data.sender === 'ai' || data.sender === 'admin') {
+      if (data.sender != 'user') {
         _this.addBotMessage(data.message);
       }
     });
@@ -1815,7 +1815,7 @@ var Chatbot = /*#__PURE__*/function () {
         } else {
           clearInterval(typeInterval);
           // Store admin message in database
-          _this.storeMessage('ai', data.message)["catch"](function (error) {
+          _this.storeMessage(data.admin_name, data.message)["catch"](function (error) {
             console.error('Error storing admin message:', error);
             typingIndicator.classList.add('error-message');
           });
@@ -2015,12 +2015,14 @@ var Chatbot = /*#__PURE__*/function () {
                 selectedService = null; // Add each message to the UI and conversation history
                 chatHistory.forEach(function (chat) {
                   var messageElement = document.createElement('div');
-                  messageElement.className = "chatbot-message ".concat(chat.sender, "-message");
+                  messageElement.className = "chatbot-message ".concat(chat.sender == 'user' ? 'user' : 'bot', "-message");
                   if (chat.sender === 'ai') {
                     messageElement.innerHTML = "\n                            <div class=\"bot-avatar\">\n                                <img src=\"/images/bot-avatar.svg\" alt=\"Harmony Bot\" />\n                            </div>\n                            <div class=\"message-content\">\n                                <span class=\"typing-text\">".concat(chat.message, "</span>\n                            </div>\n                        ");
+                  } else if (chat.sender !== 'user') {
+                    // For admin or support team messages
+                    messageElement.innerHTML = "\n                            <div class=\"bot-avatar\">\n                                <img src=\"https://cdn-icons-gif.flaticon.com/17576/17576964.gif\" alt=\"Support Team\" />\n                            </div>\n                            <div class=\"message-content\">\n                                <span class=\"typing-text\">".concat(chat.message, "</span>\n                            </div>\n                        ");
                   } else {
                     messageElement.innerHTML = chat.message;
-
                     // Check user's progress from messages
                     if (chat.message.includes("I have read and agree to the terms and conditions")) {
                       hasAgreed = true;
@@ -2051,8 +2053,11 @@ var Chatbot = /*#__PURE__*/function () {
 
                 // Set the progress flags
                 this.hasAgreedToTerms = hasAgreed;
+                console.log(hasAgreed);
                 this.hasSelectedService = hasSelectedService;
+                console.log(hasAgreed);
                 this.hasProvidedEmail = hasProvidedEmail;
+                console.log(hasAgreed);
                 this.selectedService = selectedService;
 
                 // Show appropriate next step based on progress
@@ -2168,7 +2173,8 @@ var Chatbot = /*#__PURE__*/function () {
               }
               throw new Error('CSRF token not found');
             case 5:
-              _context4.next = 7;
+              console.log(messageData);
+              _context4.next = 8;
               return fetch('/user-chats', {
                 method: 'POST',
                 headers: {
@@ -2178,28 +2184,28 @@ var Chatbot = /*#__PURE__*/function () {
                 },
                 body: JSON.stringify(messageData)
               });
-            case 7:
+            case 8:
               response = _context4.sent;
               if (response.ok) {
-                _context4.next = 10;
+                _context4.next = 11;
                 break;
               }
               throw new Error("Server error: ".concat(response.status, " ").concat(response.statusText));
-            case 10:
-              _context4.next = 12;
+            case 11:
+              _context4.next = 13;
               return response.json();
-            case 12:
+            case 13:
               return _context4.abrupt("return", _context4.sent);
-            case 15:
-              _context4.prev = 15;
+            case 16:
+              _context4.prev = 16;
               _context4.t0 = _context4["catch"](1);
               console.error('Error storing message:', _context4.t0);
               throw _context4.t0;
-            case 19:
+            case 20:
             case "end":
               return _context4.stop();
           }
-        }, _callee4, null, [[1, 15]]);
+        }, _callee4, null, [[1, 16]]);
       }));
       function storeMessage(_x2, _x3) {
         return _storeMessage.apply(this, arguments);
@@ -2266,6 +2272,7 @@ var Chatbot = /*#__PURE__*/function () {
     value: function handleUserInput() {
       var _this6 = this;
       if (!this.hasAgreedToTerms || !this.hasSelectedService || !this.hasProvidedEmail) {
+        console.log(this.hasAgreedToTerms);
         return;
       }
       var input = document.querySelector('.chatbot-input');
@@ -2718,11 +2725,12 @@ document.addEventListener('DOMContentLoaded', /*#__PURE__*/_asyncToGenerator(/*#
     }
   }, _callee7);
 })));
-var toggleChatbot = new Chatbot();
 var container = document.querySelector('.chatbot-container');
 hamIcon.addEventListener('click', function () {
   if (!container.classList.contains('chatbot-minimized')) {
-    toggleChatbot.toggleChatbot();
+    if (window.chatbotInstance) {
+      window.chatbotInstance.toggleChatbot();
+    }
   }
 });
 })();

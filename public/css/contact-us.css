@@ -288,12 +288,16 @@ fill: rgb(255, 0, 0);
 }
 #countryCode{
     left: 20px;
-    background:white;
     z-index: 1111;
+    color: #000;
     padding: 4px 0;
+    background: transparent;
     border: none;
     opacity: 0;
     transition: .4s;
+}
+.dark-mode #countryCode{
+    color: #ffffff;
 }
 
 #contact-form-section #contact-form-container form div input{
@@ -307,6 +311,12 @@ fill: rgb(255, 0, 0);
     border: none;
     outline: none;
     width: 100%;
+    color: #000;
+/* padding: 10px; */
+}
+.dark-mode #contact-form-section #contact-form-container form div input{
+
+    color: #ffffff;
 /* padding: 10px; */
 }
 input:-webkit-autofill,

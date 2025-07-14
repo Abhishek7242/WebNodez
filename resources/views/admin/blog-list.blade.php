@@ -1,5 +1,5 @@
 @extends('admin/layouts/main')
-@section('title', 'WebNodez - Manage Blogs')
+@section('title', 'Linkuss - Manage Blogs')
 @section('home', 'active')
 @section('main-section')
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">

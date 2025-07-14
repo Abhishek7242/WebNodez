@@ -12,8 +12,8 @@ class OgImageController extends Controller
     private function checkSuperAdmin()
     {
         $user = auth()->guard('admin')->user();
-        if ($user->role !== 'super_admin') {
-            return response()->json(['success' => false, 'message' => 'Unauthorized'], 403);
+        if (!in_array($user->role, ['super_admin', 'admin', 'editor', 'god_admin'])) {
+            abort(403, 'Unauthorized');
         }
         return null;
     }

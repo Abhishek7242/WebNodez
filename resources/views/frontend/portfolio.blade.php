@@ -1,7 +1,7 @@
 @extends('frontend/layouts/main')
-@section('title', 'WebNodez - Portfolio')
+@section('title', 'Linkuss - Portfolio')
 @section('meta_description',
-    'Explore WebNodez portfolio showcasing our web development projects, case studies, and
+    'Explore Linkuss portfolio showcasing our web development projects, case studies, and
     design gallery. View our successful client projects, innovative solutions, and creative designs.')
 @section('meta_keywords',
     'web development portfolio, case studies, design gallery, client projects, web design

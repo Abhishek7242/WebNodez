@@ -1,5 +1,5 @@
 @extends('admin/layouts/main')
-@section('title', $blog->title . ' - WebNodez')
+@section('title', $blog->title . ' - Linkuss')
 @section('home', 'active')
 @section('main-section')
 

@@ -1,7 +1,7 @@
 @extends('frontend/layouts/main')
-@section('title', 'WebNodez - Privacy Policy')
+@section('title', 'Linkuss - Privacy Policy')
 @section('meta_description',
-    'Read WebNodez comprehensive privacy policy. Learn how we collect, use, and protect your
+    'Read Linkuss comprehensive privacy policy. Learn how we collect, use, and protect your
     data, including information about our chatbot and AI services, data retention, and your privacy rights.')
 @section('meta_keywords',
     'privacy policy, data protection, user privacy, data security, GDPR compliance, privacy

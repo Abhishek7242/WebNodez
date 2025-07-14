@@ -1,5 +1,5 @@
 @extends('admin/layouts/main')
-@section('title', 'WebNodez - Manage Achievements')
+@section('title', 'Linkuss - Manage Achievements')
 @section('home', 'active')
 @section('main-section')
 

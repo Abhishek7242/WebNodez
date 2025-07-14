@@ -132,7 +132,7 @@ class Chatbot {
             console.log('user message is broadcasted', data.message);
             console.log(data);
             // Only show AI messages from admin panel
-            if (data.sender === 'ai' || data.sender === 'admin') {
+            if (data.sender != 'user') {
                 this.addBotMessage(data.message);
             }
         });
@@ -143,8 +143,8 @@ class Chatbot {
             if (existingTypingIndicator) {
                 existingTypingIndicator.remove();
             }
-         
-             
+
+
             // Show typing indicator for admin message
             const messagesContainer = document.querySelector('.chatbot-messages');
             const typingIndicator = document.createElement('div');
@@ -180,7 +180,7 @@ class Chatbot {
                 } else {
                     clearInterval(typeInterval);
                     // Store admin message in database
-                    this.storeMessage('ai', data.message)
+                    this.storeMessage(data.admin_name, data.message)
                         .catch(error => {
                             console.error('Error storing admin message:', error);
                             typingIndicator.classList.add('error-message');
@@ -196,7 +196,7 @@ class Chatbot {
             });
         });
     }
-  
+
 
     setupKeyboardDetection() {
         if (window.visualViewport) {
@@ -265,7 +265,7 @@ class Chatbot {
 
         document.body.appendChild(container);
     }
-  
+
     async addEventListeners() {
         const container = document.querySelector('.chatbot-container');
         const minimizeBtn = container.querySelector('.chatbot-minimize');
@@ -287,17 +287,17 @@ class Chatbot {
                         this.showMessageLogo();
                         this.isFirstClick = false;
                         console.log('the chatbot first clicked')
-                        
+
                     } else {
-                        
+
                         await this.getTheOldChat();
-                      
+
                         this.toggleChatbot();
                     }
                 }
             }
         });
-   
+
         minimizeBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             this.toggleChatbot();
@@ -350,7 +350,7 @@ class Chatbot {
                 // Add each message to the UI and conversation history
                 chatHistory.forEach(chat => {
                     const messageElement = document.createElement('div');
-                    messageElement.className = `chatbot-message ${chat.sender}-message`;
+                    messageElement.className = `chatbot-message ${chat.sender == 'user' ? 'user' : 'bot'}-message`;
 
                     if (chat.sender === 'ai') {
                         messageElement.innerHTML = `
@@ -361,12 +361,23 @@ class Chatbot {
                                 <span class="typing-text">${chat.message}</span>
                             </div>
                         `;
+                    } else if (chat.sender !== 'user') {
+                        // For admin or support team messages
+                        messageElement.innerHTML = `
+                            <div class="bot-avatar">
+                                <img src="https://cdn-icons-gif.flaticon.com/17576/17576964.gif" alt="Support Team" />
+                            </div>
+                            <div class="message-content">
+                                <span class="typing-text">${chat.message}</span>
+                            </div>
+                        `;
                     } else {
                         messageElement.innerHTML = chat.message;
-
                         // Check user's progress from messages
                         if (chat.message.includes("I have read and agree to the terms and conditions")) {
                             hasAgreed = true;
+
+
                         } else if (chat.message.includes("I'm interested in")) {
                             hasSelectedService = true;
                             selectedService = chat.message.replace("I'm interested in ", "").trim();
@@ -395,8 +406,12 @@ class Chatbot {
 
                 // Set the progress flags
                 this.hasAgreedToTerms = hasAgreed;
+                console.log(hasAgreed);
+
                 this.hasSelectedService = hasSelectedService;
+                console.log(hasAgreed);
                 this.hasProvidedEmail = hasProvidedEmail;
+                console.log(hasAgreed);
                 this.selectedService = selectedService;
 
                 // Show appropriate next step based on progress
@@ -504,6 +519,7 @@ class Chatbot {
                 throw new Error('CSRF token not found');
             }
 
+            console.log(messageData);
             const response = await fetch('/user-chats', {
                 method: 'POST',
                 headers: {
@@ -589,6 +605,8 @@ class Chatbot {
 
     handleUserInput() {
         if (!this.hasAgreedToTerms || !this.hasSelectedService || !this.hasProvidedEmail) {
+            console.log(this.hasAgreedToTerms);
+
             return;
         }
 
@@ -1114,11 +1132,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         await window.chatbotInstance.getTheOldChat();
     }
 });
-let toggleChatbot = new Chatbot()
+
 const container = document.querySelector('.chatbot-container');
 hamIcon.addEventListener('click', function () {
     if (!container.classList.contains('chatbot-minimized')) {
-        toggleChatbot.toggleChatbot();
+        if (window.chatbotInstance) {
+            window.chatbotInstance.toggleChatbot();
+        }
     }
-
-})
+});

@@ -566,7 +566,9 @@
     padding: 0;
     flex-shrink: 0;
 }
-
+  .chatbot-container.chatbot-minimized.keyboard-active {
+        height: 60px !important;
+    }
 .chatbot-send i {
     font-size: 1.2rem;
     transition: transform 0.2s ease;
@@ -726,14 +728,14 @@
         overflow-x: hidden;
     }
 
-    .chatbot-container.chatbot-minimized.keyboard-active {
-        height: 60px !important;
-        top: 0;
-        border-radius: 50%;
-    }
+  
     .chatbot-container.keyboard-active {
         height: 50vh !important;
         border-radius: 1rem 1rem 0 0;
+    }
+      .chatbot-container.chatbot-minimized.keyboard-active {
+        height: 60px !important;
+        border-radius: 50%;
     }
 }
 
@@ -821,7 +823,6 @@
 
     .chatbot-container.keyboard-active {
         height: 50vh !important;
-        bottom: 0 !important;
         border-radius: 1rem 1rem 0 0;
     }
 }
@@ -913,7 +914,6 @@
 
     .chatbot-container.keyboard-active {
         height: 50vh !important;
-        bottom: 0 !important;
         border-radius: 1rem 1rem 0 0;
     }
 }
@@ -1123,7 +1123,6 @@
 /* Add styles for keyboard active state */
 .chatbot-container.keyboard-active {
     height: 50vh !important;
-    bottom: 0 !important;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 

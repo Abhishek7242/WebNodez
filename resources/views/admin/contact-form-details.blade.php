@@ -1,5 +1,5 @@
 @extends('admin/layouts/main')
-@section('title', 'WebNodez - Contact Form Details')
+@section('title', 'Linkuss - Contact Form Details')
 @section('main-section')
 
 

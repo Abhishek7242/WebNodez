@@ -1,7 +1,7 @@
 @extends('frontend/layouts/main')
-@section('title', 'WebNodez - Home')
+@section('title', 'Linkuss - Home')
 @section('meta_description',
-    'WebNodez is a leading web development and digital solutions company. We offer professional
+    'Linkuss is a leading web development and digital solutions company. We offer professional
     web design, development, and IT services to help businesses grow online.')
 @section('meta_keywords',
     'web development, web design, digital solutions, IT services, software development, mobile

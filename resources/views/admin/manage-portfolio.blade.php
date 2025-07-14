@@ -1,5 +1,5 @@
 @extends('admin/layouts/main')
-@section('title', 'WebNodez - Manage Portfolio')
+@section('title', 'Linkuss - Manage Portfolio')
 @section('portfolio', 'active')
 @section('main-section')
 

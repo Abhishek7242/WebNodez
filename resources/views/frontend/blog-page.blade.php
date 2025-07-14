@@ -4,7 +4,7 @@
     'Read our detailed article about ' .
     $blog->title .
     '. Discover expert insights, industry
-    trends, and professional analysis from WebNodez team of specialists.')
+    trends, and professional analysis from Linkuss team of specialists.')
 @section('meta_keywords',
     $blog->title .
     ', web development blog, technology insights, digital solutions, industry
@@ -148,4 +148,4 @@
                             }
                         });
                     </script>
-                @endsection)
+                @endsection

@@ -39,17 +39,32 @@ Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.logi
 Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('/admin/unauthorized', function () {
+    return view('admin.unauthorized');
+})->name('admin.unauthorized');
 
 
 
 
 Route::middleware('auth:admin')->group(function () {
+    Route::put('/admin/unblock/{id}', [AdminController::class, 'unblockAdmin'])->name('admin.unblock');
 
     Route::get('/admin/manage-home', [AdminManageHomeController::class, 'index'])->name('admin.manage-home');
     Route::get('/admin/manage-about', [AdminManageAboutUsController::class, 'index'])->name('admin.manage-about-us');
     Route::get('/admin/manage-services', [AdminManageServicesController::class, 'index'])->name('admin.manage-services');
     Route::get('/admin/manage-terms', [AdminTermConditionController::class, 'manageTerms'])->name('admin.manage-terms');
     Route::get('/admin/manage-privacy', [AdminPrivacyPolicyController::class, 'managePrivacy'])->name('admin.manage-privacy');
+    Route::get('/admin/manage-client-progress', [App\Http\Controllers\AdminManageClientProgressController::class, 'index'])->name('admin.manage-client-progress');
+
+    // Client Progress View Route
+    
+    Route::post('/admin/client-projects', [App\Http\Controllers\AdminManageClientProgressController::class, 'store'])->name('admin.client-projects.store');
+    Route::get('/admin/client-projects/{uuid}', [App\Http\Controllers\AdminManageClientProgressController::class, 'show'])->name('admin.client-projects.show');
+    Route::put('/admin/client-projects/{uuid}', [App\Http\Controllers\AdminManageClientProgressController::class, 'update'])->name('admin.client-projects.update');
+    Route::delete('/admin/client-projects/{uuid}', [App\Http\Controllers\AdminManageClientProgressController::class, 'destroy'])->name('admin.client-projects.destroy');
+    Route::get('/admin/client-projects/{uuid}/progress', [App\Http\Controllers\AdminManageClientProgressController::class, 'viewProgress'])->name('admin.client-projects.progress');
+    Route::post('/admin/client-projects/{uuid}/complete-phase', [App\Http\Controllers\AdminManageClientProgressController::class, 'completePhase'])->name('admin.client-projects.complete-phase');
+    Route::post('/admin/client-projects/{uuid}/send-email', [App\Http\Controllers\AdminManageClientProgressController::class, 'sendProjectEmail'])->name('admin.client-projects.send-email');
     Route::get('/user-chats/last-active-time/{visitor_id}', [UserChatsController::class, 'getLastActiveTime'])->name('user.chats.last-active-time');
     Route::post('/user-chats/take-control', [UserChatsController::class, 'takeControl'])->name('user.chats.take-control');
     Route::post('/user-chats/admin-message', [UserChatsController::class, 'sendAdminMessage'])->name('user.chats.admin-message');
@@ -77,8 +92,14 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/admin/edit/{id}', [AdminController::class, 'update'])->name('admin.edit');
     Route::delete('/admin/delete/{id}', [AdminController::class, 'destroy'])->name('admin.delete');
     Route::post('/admin/heartbeat', [AdminController::class, 'heartbeat'])->name('admin.heartbeat');
+    Route::get('/admin/change-password', [AdminController::class, 'showChangePasswordForm'])->name('admin.password.change');
+    Route::post('/admin/change-password', [AdminController::class, 'sendOtp'])->name('admin.password.send.otp');
+    Route::get('/admin/verify-password-otp', [AdminController::class, 'showVerifyOtpForm'])->name('admin.password.verify.form');
+    Route::post('/admin/verify-password-otp', [AdminController::class, 'verifyOtpAndUpdatePassword'])->name('admin.password.verify.otp');
 
     Route::get('/admin/manage-admins', [AdminController::class, 'manageAdmins'])->name('admin.manage-admins');
+    Route::get('/admin/manage-admins/sign-in-logs', [AdminController::class, 'signInLogs'])->name('admin.sign-in-logs');
+
     Route::get('/admin/contact-details', [FormSubmissionController::class, 'contactDetails'])->name('admin.contact-details');
     Route::get('/admin/contact/{id}', [FormSubmissionController::class, 'getContactDetails']);
     Route::put('/admin/contact/{id}/mark-replied', [FormSubmissionController::class, 'markReplied']);
@@ -131,7 +152,7 @@ Route::get('/services/{service}', [ServicesController::class, 'show'])->name('se
 
 
 Route::get('/pricing/{service}', [PricingController::class, 'index'])->name('pricing.index');
-
+Route::get('/client/progress/{uuid}', [App\Http\Controllers\ClientProgressController::class, 'show'])->name('client.progress');
 // OG Images Management Routes
 Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
     Route::get('/manage-og-images', [App\Http\Controllers\Admin\OgImageController::class, 'index'])->name('admin.og-images.index');

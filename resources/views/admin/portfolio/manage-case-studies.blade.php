@@ -1,5 +1,5 @@
 @extends('admin/layouts/main')
-@section('title', 'WebNodez - Case Studies')
+@section('title', 'Linkuss - Case Studies')
 @section('home', 'active')
 @section('main-section')
 

@@ -21,6 +21,7 @@ return new class extends Migration
                 $table->string('password');
                 $table->string('role');
                 $table->string('status');
+                $table->integer('login_count')->default(0);
                 $table->timestamp('last_seen')->nullable();
                 $table->rememberToken(); // Adds a nullable string column 'remember_token'
                 $table->timestamps();

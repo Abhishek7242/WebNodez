@@ -1,5 +1,5 @@
 @extends('admin/layouts/main')
-@section('title', 'WebNodez - Manage Admins')
+@section('title', 'Linkuss - Manage Admins')
 @section('main-section')
 
 
@@ -29,12 +29,21 @@
                     <h1 class="text-3xl font-bold text-white mb-2">Manage Admins</h1>
                     <p class="text-gray-400">Control and manage admin access to your platform</p>
                 </div>
-                @if (auth()->guard('admin')->user()->role === 'super_admin')
+                <div>
+
+                @if (auth()->guard('admin')->user()->role === 'super_admin' || auth()->guard('admin')->user()->role === 'god_admin')
+                <a href="/admin/manage-admins/sign-in-logs">
+                    <button 
+                        class="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 transform hover:-translate-y-0.5">
+                        <i class="fas fa-clipboard-list mr-2"></i> Sign in Logs
+                    </button></a>
                     <button onclick="openAdminModal()"
                         class="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 transform hover:-translate-y-0.5">
                         <i class="fas fa-plus mr-2"></i>Add New Admin
                     </button>
                 @endif
+                </div>
+
             </div>
 
             <!-- Search and Filter Section -->
@@ -105,27 +114,43 @@
                                     </td>
                                     <td class="px-6 py-4">
                                         <span
-                                            class="px-3 py-1 text-xs font-semibold rounded-full {{ $admin['status'] === 'active' ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400' }}">
-                                            {{ ucfirst($admin['status']) }}
+                                            class="px-3 py-1 text-xs font-semibold rounded-full
+                                            {{ $admin['status'] === 'active'
+                                                ? 'bg-green-500/20 text-green-500'
+                                                : ($admin['status'] === 'blocked'
+                                                    ? 'bg-red-600 text-white border border-red-800 shadow-md animate-pulse'
+                                                    : 'bg-yellow-500/20 text-yellow-500') }}">
+                                            {{ $admin['status'] === 'blocked' ? '🚫 Blocked' : ucfirst($admin['status']) }}
                                         </span>
+
                                     </td>
                                     <td class="px-6 py-4 text-sm text-gray-400">
                                         {{ $admin['last_login'] }}
                                     </td>
                                     <td class="px-6 py-4">
                                         <div class="flex space-x-3">
-                                            @if (auth()->guard('admin')->user()->role === 'super_admin')
+                                            @if (auth()->guard('admin')->user()->role === 'super_admin' || auth()->guard('admin')->user()->role === 'god_admin')
                                                 @if (auth()->guard('admin')->user()->id != $admin['id'])
-                                                    <button
-                                                        onclick="openAdminModal('edit', '{{ $admin['name'] }}', '{{ $admin['email'] }}', '{{ $admin['role'] }}','{{ $admin['id'] }}')"
-                                                        class="text-blue-400 hover:text-blue-300 transition-colors duration-200">
-                                                        <i class="fas fa-edit"></i>
-                                                    </button>
-                                                    <button
-                                                        onclick="deleteAdmin('{{ $admin['id'] }}', '{{ $admin['name'] }}')"
-                                                        class="text-red-400 hover:text-red-300 transition-colors duration-200">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
+                                                    @if ($admin['role'] != 'super_admin' || auth()->guard('admin')->user()->role == 'god_admin')
+                                                        <button
+                                                            onclick="openAdminModal('edit', '{{ $admin['name'] }}', '{{ $admin['email'] }}', '{{ $admin['role'] }}','{{ $admin['id'] }}')"
+                                                            class="text-blue-400 hover:text-blue-300 transition-colors duration-200">
+                                                            <i class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button
+                                                            onclick="deleteAdmin('{{ $admin['id'] }}', '{{ $admin['name'] }}')"
+                                                            class="text-red-400 hover:text-red-300 transition-colors duration-200">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                        @if ($admin['status'] === 'blocked')
+                                                            <button
+                                                                onclick="unblockAdmin('{{ $admin['id'] }}', '{{ $admin['name'] }}')"
+                                                                class="text-green-500 hover:text-green-400 transition-colors duration-200"
+                                                                title="Unblock Admin">
+                                                                <i class="fas fa-unlock"></i>
+                                                            </button>
+                                                        @endif
+                                                    @endif
                                                 @else
                                                     <span class="text-gray-400 text-sm">Current User</span>
                                                 @endif
@@ -459,7 +484,7 @@
         }
 
         // Add heartbeat functionality
-    
+
 
         // Refresh admin status every 30 seconds
         setInterval(() => {
@@ -493,6 +518,31 @@
                     });
                 });
         }, 30000); // Every 30 seconds
+
+        function unblockAdmin(id, name) {
+            if (confirm(`Are you sure you want to unblock admin "${name}"?`)) {
+                fetch(`/admin/unblock/${id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                            'Accept': 'application/json',
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert(data.message || 'Admin unblocked successfully.');
+                            window.location.reload();
+                        } else {
+                            alert(data.message || 'An error occurred while unblocking.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('An error occurred while processing your request');
+                    });
+            }
+        }
     </script>
 
 @endsection
