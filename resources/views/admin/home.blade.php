@@ -22,7 +22,7 @@
         el.style.setProperty('--dark-bg', 'white');
     </script>
 
-    <div class=" flex items-center justify-center h-100vh" style="height: 100vh;">
+    <div class=" flex items-center justify-center " >
         <div class="text-center p-8 relative">
             <!-- Animated background elements -->
             {{-- <div class="absolute inset-0 -z-10">
@@ -59,14 +59,14 @@
                         <div class="text-sm text-gray-400 mt-1">Active Conversations</div>
                     </a>
                     @if (Auth::guard('admin')->user()->role == 'super_admin' || Auth::guard('admin')->user()->role == 'god_admin')
-                    <a href="/admin/manage-admins"
-                        class="bg-white/10 backdrop-blur-lg rounded-xl p-6 transform hover:scale-105 transition-all duration-300 group cursor-pointer">
-                        <div class="flex items-center justify-center mb-2">
-                            <i class="fas fa-user-shield text-4xl text-blue-400 group-hover:animate-pulse"></i>
-                        </div>
-                        <div class="text-gray-300">Manage Admins</div>
-                        <div class="text-sm text-gray-400 mt-1">Admin Controls</div>
-                    </a>
+                        <a href="/admin/manage-admins"
+                            class="bg-white/10 backdrop-blur-lg rounded-xl p-6 transform hover:scale-105 transition-all duration-300 group cursor-pointer">
+                            <div class="flex items-center justify-center mb-2">
+                                <i class="fas fa-user-shield text-4xl text-blue-400 group-hover:animate-pulse"></i>
+                            </div>
+                            <div class="text-gray-300">Manage Admins</div>
+                            <div class="text-sm text-gray-400 mt-1">Admin Controls</div>
+                        </a>
                     @endif
                     <a href="/admin/contact-details"
                         class="bg-white/10 backdrop-blur-lg rounded-xl p-6 transform hover:scale-105 transition-all duration-300 group cursor-pointer">
@@ -147,6 +147,14 @@
                         </div>
                         <div class="text-gray-300">Manage Progress</div>
                         <div class="text-sm text-gray-400 mt-1">Client project progress and status</div>
+                    </a>
+                    <a href="/admin/manage-feedback"
+                        class="bg-white/10 backdrop-blur-lg rounded-xl p-6 transform hover:scale-105 transition-all duration-300 group cursor-pointer">
+                        <div class="flex items-center justify-center mb-2">
+                            <i class="fas fa-star text-4xl text-yellow-400 group-hover:animate-pulse"></i>
+                        </div>
+                        <div class="text-gray-300">User Feedback</div>
+                        <div class="text-sm text-gray-400 mt-1">View ratings and comments</div>
                     </a>
                 </div>
 

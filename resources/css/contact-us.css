@@ -232,6 +232,10 @@ height: 100px;
 justify-content: start;
 padding-left: 20px;
 }
+#contact-form-section #contact-form-container form #textarea-container textarea:focus{
+border: 2px solid #0000009a;
+transition: border 0.3s ease-in-out;
+}
 #contact-form-section #contact-form-container form div > span{
 position: absolute;
 left: 23px;
@@ -299,6 +303,7 @@ fill: rgb(255, 0, 0);
 }
 .dark-mode #countryCode{
     color: #ffffff;
+    background: black;
 }
 
 #contact-form-section #contact-form-container form div input{
@@ -345,7 +350,7 @@ input:-webkit-autofill:hover {
     bottom: -44px;
 }
     #contact-form-section #contact-form-container form div textarea{
-
+color: #000;
      z-index: 1;
     padding: 5px;
     font-size: 18px;
@@ -355,6 +360,9 @@ input:-webkit-autofill:hover {
     outline: none;
     width: 100%;
 /* padding: 10px; */
+}
+.dark-mode #contact-form-section #contact-form-container form div textarea{
+    color: #fff;
 }
 
 #contact-form-section #contact-form-container form div .i{
@@ -603,6 +611,12 @@ color:white;
     }
     
 }
+#contact-form-section label {
+    color: #000;
+}
+.dark-mode #contact-form-section label {
+   color: #fff;
+}
 @media only screen and (max-width: 1250px) {
 #contact-form-section #contact-form-outer-container {
   gap: 20px;
@@ -667,6 +681,7 @@ color:white;
 
 }
 #contact-form-section label {
+    
     font-size: 12px;
 }
 #contact-form-section #contact-us-logo div {

@@ -1,8 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-
-const API_KEY = "AIzaSyD33XJDaflftv-k0Iz2KKqd9YlGZq45DeA"; // Replace with your real API key
-
-const genAI = new GoogleGenerativeAI(API_KEY);
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 async function generateText(userPrompt) {
     console.log("Generating text with Gemini API...", userPrompt);

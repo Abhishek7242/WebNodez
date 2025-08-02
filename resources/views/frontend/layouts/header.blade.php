@@ -28,9 +28,16 @@
     <meta property="twitter:description" content="@yield('meta_description', 'Linkuss provides professional web development, digital solutions, and IT services. Expert team delivering innovative solutions for your business needs.')">
     <meta property="twitter:image" content="@yield('og_image', asset('images/og-image.jpg'))">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
-    <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('assets/favicon/site.webmanifest') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon/favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="192x192"
+        href="{{ asset('assets/favicon/android-chrome-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="512x512"
+        href="{{ asset('assets/favicon/android-chrome-512x512.png') }}">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="{{ url()->current() }}">
@@ -53,6 +60,9 @@
 
     <!-- reCAPTCHA -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="position-relative">
@@ -64,7 +74,7 @@
                 <a href="/">
                     <img src="{{ asset('assets/Linkuss_logo.png') }}" alt="Linkuss logo" class="navbar-logo">
                 </a>
-                </div>
+            </div>
 
             <ul class="navbar flex space-x-8 items-center">
                 <li><a href="/" class="@yield('home', ' ') nav-links font-semibold ">Home</a></li>

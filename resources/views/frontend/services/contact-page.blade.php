@@ -72,6 +72,9 @@
     </div>
 </section>
 
+<!-- Include the feedback component -->
+@include('components.feedback')
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const form = document.getElementById('contactForm');
@@ -93,7 +96,7 @@
         form.addEventListener('submit', async function(e) {
 
             e.preventDefault();
-console.log('clicked')
+            console.log('clicked')
             // Clear previous errors
             clearErrors();
 
@@ -134,6 +137,49 @@ console.log('clicked')
 
                 // Reset form
                 form.reset();
+
+                // Show feedback popup after successful submission
+                setTimeout(function() {
+                    console.log('Attempting to show feedback popup...');
+                    console.log('showFeedbackPopup function exists:',
+                        typeof showFeedbackPopup);
+                    console.log('window.showFeedbackPopup function exists:', typeof window
+                        .showFeedbackPopup);
+
+                    function tryShowFeedbackPopup(attempt = 1) {
+                        if (typeof showFeedbackPopup === 'function') {
+                            console.log('showFeedbackPopup function found, calling it...');
+                            showFeedbackPopup();
+                        } else if (typeof window.showFeedbackPopup === 'function') {
+                            console.log(
+                                'window.showFeedbackPopup function found, calling it...'
+                            );
+                            window.showFeedbackPopup();
+                        } else {
+                            console.log('showFeedbackPopup function not found, attempt:',
+                                attempt);
+                            console.log('Available global functions:', Object.keys(window)
+                                .filter(key => key.includes('feedback')));
+                            // Try to manually show the popup
+                            const popup = document.getElementById('feedback-popup');
+                            if (popup) {
+                                console.log('Manually showing feedback popup...');
+                                popup.style.display = 'flex';
+                                document.body.style.overflow = 'hidden';
+                            } else {
+                                console.error('Feedback popup element not found');
+                                // Retry after a short delay if this is the first attempt
+                                if (attempt < 3) {
+                                    console.log('Retrying in 500ms...');
+                                    setTimeout(() => tryShowFeedbackPopup(attempt + 1),
+                                        500);
+                                }
+                            }
+                        }
+                    }
+
+                    tryShowFeedbackPopup();
+                }, 1000); // 1 second delay
 
                 // Reset button after 2 seconds
                 setTimeout(() => {

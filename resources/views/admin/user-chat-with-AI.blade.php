@@ -348,7 +348,9 @@
         const userDetails = @json($conversations);
 
         // Initialize Pusher
-        const pusher = new Pusher('57d1bf302023911c127a', {
+        const PUSHER_APP_KEY = "{{ config('app.pusher_app_key') }}";
+  
+        const pusher = new Pusher(PUSHER_APP_KEY, {
             cluster: 'ap2',
             encrypted: true
         });

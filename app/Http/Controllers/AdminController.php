@@ -49,6 +49,9 @@ class AdminController extends Controller
 
         $userAgentShort = $browser . ' ' . $browserVersion . ' on ' . $platform . ' ' . $platformVersion;
         $admin = Admin::where('email', $credentials['email'])->first();
+        if (!$admin) {
+            return back()->withErrors(['email' => 'Invalid credentials']);
+        }
         $logData = [
             'admin_id' => $admin ? $admin->id : null,
             'name' => $admin ? $admin->name : $credentials['email'],
@@ -160,22 +163,31 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-
-        if (!Auth::guard('admin')->check() && !session('super_admin_logged_in') && !Auth::guard('admin')->check() && !session('god_admin_logged_in')) {
+        // First check if user is authenticated
+        if (!Auth::guard('admin')->check() && !session('super_admin_logged_in') && !session('god_admin_logged_in')) {
             return redirect()->route('login');
         }
-        if (Auth::guard('admin')->user()->status == 'blocked') {
-            return redirect()->route('admin.unauthorized')->with('error', 'Your account is blocked. Please contact with Super Admin or The GOD ADMIN.');
-        }
-        if (Auth::guard('admin')->user()->role == 'editor') {
-            return redirect()->route('admin.blog.list');
-        }
-        if (Auth::guard('admin')->user()->status == 'unactivated') {
-            return redirect()->intended(
-                '/admin/change-password'
-            );
+
+        // Now safely get the authenticated user
+        $user = Auth::guard('admin')->user();
+
+        // If no user found (shouldn't happen but safety check)
+        if (!$user) {
+            return redirect()->route('login');
         }
 
+        // Check user status
+        if ($user->status == 'blocked') {
+            return redirect()->route('admin.unauthorized')->with('error', 'Your account is blocked. Please contact with Super Admin or The GOD ADMIN.');
+        }
+
+        if ($user->role == 'editor') {
+            return redirect()->route('admin.blog.list');
+        }
+
+        if ($user->status == 'unactivated') {
+            return redirect()->intended('/admin/change-password');
+        }
 
         return view('admin.home');
     }

@@ -40,6 +40,8 @@ return [
     */
 
     'debug' => (bool) env('APP_DEBUG', false),
+    // config/app.php
+    'pusher_app_key' => env('MIX_PUSHER_APP_KEY', ''),
 
     /*
     |--------------------------------------------------------------------------

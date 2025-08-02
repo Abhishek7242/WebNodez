@@ -15,6 +15,9 @@
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- SweetAlert2 for admin notifications -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="position-relative">
@@ -23,7 +26,7 @@
         <!-- Tailwind CSS Navbar -->
         <nav class=" px-6 py-4 flex justify-between items-center">
             <div class="text-2xl font-bold text-green-500 cursor-default">
-                 <a href="/">
+                <a href="/">
                     <img src="{{ asset('assets/Linkuss_logo.png') }}" alt="Linkuss logo" class="navbar-logo">
                 </a>
             </div>

@@ -31,17 +31,17 @@
                 </div>
                 <div>
 
-                @if (auth()->guard('admin')->user()->role === 'super_admin' || auth()->guard('admin')->user()->role === 'god_admin')
-                <a href="/admin/manage-admins/sign-in-logs">
-                    <button 
-                        class="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 transform hover:-translate-y-0.5">
-                        <i class="fas fa-clipboard-list mr-2"></i> Sign in Logs
-                    </button></a>
-                    <button onclick="openAdminModal()"
-                        class="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 transform hover:-translate-y-0.5">
-                        <i class="fas fa-plus mr-2"></i>Add New Admin
-                    </button>
-                @endif
+                    @if (auth()->guard('admin')->user()->role === 'super_admin' || auth()->guard('admin')->user()->role === 'god_admin')
+                        <a href="/admin/manage-admins/sign-in-logs">
+                            <button
+                                class="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 transform hover:-translate-y-0.5">
+                                <i class="fas fa-clipboard-list mr-2"></i> Sign in Logs
+                            </button></a>
+                        <button onclick="openAdminModal()"
+                            class="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all duration-300 transform hover:-translate-y-0.5">
+                            <i class="fas fa-plus mr-2"></i>Add New Admin
+                        </button>
+                    @endif
                 </div>
 
             </div>
@@ -346,15 +346,21 @@
         }
 
         // Form submission
-        document.getElementById('adminForm').addEventListener('submit', function(e) {
+        document.getElementById('adminForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const formData = new FormData(this);
             const isEdit = document.getElementById('modalTitle').textContent === 'Edit Admin';
             const adminId = document.getElementById('adminId').value;
             const url = isEdit ? `/admin/edit/${adminId}` : '/admin/create';
+            const submitButton = document.getElementById('submitButton');
+            const originalButtonText = submitButton.textContent;
+
+            // Show loader
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
 
             // Send data to backend
-            fetch(url, {
+            await fetch(url, {
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
@@ -374,9 +380,14 @@
                 .catch(error => {
                     console.error('Error:', error);
                     alert('An error occurred while processing your request');
+                })
+                .finally(() => {
+                    // Hide loader and restore button
+                    submitButton.disabled = false;
+                    submitButton.textContent = originalButtonText;
                 });
 
-            closeAdminModal();
+            await closeAdminModal();
         });
 
         // Close modal when clicking outside

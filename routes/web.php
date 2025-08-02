@@ -57,7 +57,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/admin/manage-client-progress', [App\Http\Controllers\AdminManageClientProgressController::class, 'index'])->name('admin.manage-client-progress');
 
     // Client Progress View Route
-    
+
     Route::post('/admin/client-projects', [App\Http\Controllers\AdminManageClientProgressController::class, 'store'])->name('admin.client-projects.store');
     Route::get('/admin/client-projects/{uuid}', [App\Http\Controllers\AdminManageClientProgressController::class, 'show'])->name('admin.client-projects.show');
     Route::put('/admin/client-projects/{uuid}', [App\Http\Controllers\AdminManageClientProgressController::class, 'update'])->name('admin.client-projects.update');
@@ -98,7 +98,12 @@ Route::middleware('auth:admin')->group(function () {
     Route::post('/admin/verify-password-otp', [AdminController::class, 'verifyOtpAndUpdatePassword'])->name('admin.password.verify.otp');
 
     Route::get('/admin/manage-admins', [AdminController::class, 'manageAdmins'])->name('admin.manage-admins');
-    Route::get('/admin/manage-admins/sign-in-logs', [AdminController::class, 'signInLogs'])->name('admin.sign-in-logs');
+    Route::get('/admin/manage-admins/sign-in-logs', [AdminController::class, 'signInLogs'])
+        ->name('admin.sign-in-logs');
+    // Feedback management route
+    Route::get('/admin/manage-feedback', [FormSubmissionController::class, 'manageFeedback'])->name('admin.manage-feedback');
+
+    Route::get('/admin/sign-in-logs', [AdminController::class, 'signInLogs'])->name('admin.sign-in-logs');
 
     Route::get('/admin/contact-details', [FormSubmissionController::class, 'contactDetails'])->name('admin.contact-details');
     Route::get('/admin/contact/{id}', [FormSubmissionController::class, 'getContactDetails']);
@@ -160,3 +165,6 @@ Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
     Route::put('/og-images/{filename}', [App\Http\Controllers\Admin\OgImageController::class, 'update'])->name('admin.og-images.update');
     Route::delete('/og-images/{filename}', [App\Http\Controllers\Admin\OgImageController::class, 'delete'])->name('admin.og-images.delete');
 });
+
+// Feedback submission route
+Route::post('/submit-feedback', [FormSubmissionController::class, 'submitFeedback'])->name('submit.feedback');

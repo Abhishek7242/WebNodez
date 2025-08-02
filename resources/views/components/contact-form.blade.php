@@ -85,4 +85,27 @@
     </div>
 </div>
 
+<!-- Include the feedback component -->
+@include('components.feedback')
+
 <script src="{{ asset('js/contactUsForm.js') }}"></script>
+
+<!-- Test button for debugging (remove in production) -->
+{{-- <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add a test button to manually trigger feedback popup
+        const testButton = document.createElement('button');
+        testButton.textContent = 'Test Feedback Popup';
+        testButton.style.cssText =
+            'position: fixed; top: 10px; right: 10px; z-index: 10000; background: red; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer;';
+        testButton.onclick = function() {
+            console.log('Test button clicked');
+            if (typeof showFeedbackPopup === 'function') {
+                showFeedbackPopup();
+            } else {
+                console.error('showFeedbackPopup function not found');
+            }
+        };
+        document.body.appendChild(testButton);
+    });
+</script> --}}

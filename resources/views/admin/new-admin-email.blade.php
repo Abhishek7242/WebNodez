@@ -67,6 +67,13 @@
                                 <strong>Note:</strong> You can change your password after logging in for security.
                             </p>
 
+                            <div style="text-align: center; margin: 30px 0;">
+                                <a href="{{ url('/admin/dashboard') }}"
+                                    style="display: inline-block; background-color: #007bff; color: #ffffff; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px; transition: background-color 0.3s ease;">
+                                    Access Admin Dashboard
+                                </a>
+                            </div>
+
                             <p style="color: #555555; font-size: 16px; line-height: 1.6;">
                                 You can now log in to the admin panel as a(n)
                                 <strong>{{ ucfirst(str_replace('_', ' ', $adminData['role'])) }}</strong>. If you have
