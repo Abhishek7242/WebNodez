@@ -55,7 +55,7 @@ Want to collaborate? We'd love to have you.
 
 ## 📬 Contact Us
 
-📧 Email: [your-email@example.com]  
+📧 Email: [vabhishak45@gmail.com]  
 🌐 Website: [https://linkuss.dev](https://linkuss.dev) *(Coming Soon)*
 
 ---
