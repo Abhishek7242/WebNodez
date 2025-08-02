@@ -13,6 +13,7 @@ class CreateFeedbackTable extends Migration
      */
     public function up()
     {
+        if (!Schema::hasTable('feedback')) {
         Schema::create('feedback', function (Blueprint $table) {
             $table->id();
             $table->integer('rating')->comment('1-5 star rating');
@@ -22,6 +23,7 @@ class CreateFeedbackTable extends Migration
             $table->string('page_url')->nullable()->comment('Page where feedback was submitted');
             $table->timestamps();
         });
+    }
     }
 
     /**

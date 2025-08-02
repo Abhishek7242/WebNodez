@@ -13,15 +13,15 @@ var pusher = new Pusher(process.env.MIX_PUSHER_APP_KEY, {
 });
 
 var channel = pusher.subscribe('chatbot.' + visitor_id);
-console.log('channel', channel);
+// console.log('channel', channel);
 var channel2 = pusher.subscribe('chat.' + visitor_id);
 
 let chatbotController = localStorage.getItem('admin_control') === 'true';
-console.log('chatbotController', chatbotController);
+// console.log('chatbotController', chatbotController);
 
 
 channel2.bind('take.control', (data) => {
-    console.log('take control', data);
+    // console.log('take control', data);
     chatbotController = data.admin_control;
     localStorage.setItem('admin_control', data.admin_control.toString());
 
@@ -33,6 +33,19 @@ channel2.bind('take.control', (data) => {
     const botImg = avatar.querySelector('.bot-avatar-img');
 
     if (data.admin_control) {
+        // Enable chat input when admin takes control
+        // this.enableChatInput();
+        const input = document.querySelector('.chatbot-input');
+        const sendBtn = document.querySelector('.chatbot-send');
+        const inputContainer = document.querySelector('.chatbot-input-container');
+
+        if (input && sendBtn && inputContainer) {
+            input.disabled = false;
+            sendBtn.disabled = false;
+            input.style.opacity = '1';
+            sendBtn.style.opacity = '1';
+            inputContainer.classList.remove('disabled');
+        }
         // Change title to show admin name if available
         const adminName = data.admin_name || 'Support Team';
         titleElement.innerHTML = `
@@ -124,6 +137,10 @@ class Chatbot {
         this.hasProvidedEmail = false;
         this.selectedService = null;
         this.userEmail = null;
+
+        // Add CSS for disabled state
+        this.addDisabledStyles();
+
         this.initializeChatbot();
         this.setupKeyboardDetection();
 
@@ -144,6 +161,8 @@ class Chatbot {
                 existingTypingIndicator.remove();
             }
 
+            // Enable chat input for admin messages
+            this.enableChatInput();
 
             // Show typing indicator for admin message
             const messagesContainer = document.querySelector('.chatbot-messages');
@@ -180,6 +199,7 @@ class Chatbot {
                 } else {
                     clearInterval(typeInterval);
                     // Store admin message in database
+                    console.log('admin meaage skdiewdhiuwe',data.admin_name, data.message);
                     this.storeMessage(data.admin_name, data.message)
                         .catch(error => {
                             console.error('Error storing admin message:', error);
@@ -195,6 +215,56 @@ class Chatbot {
                 timestamp: new Date().toISOString()
             });
         });
+    }
+
+    addDisabledStyles() {
+        // Add CSS for disabled state if not already added
+        if (!document.getElementById('chatbot-disabled-styles')) {
+            const style = document.createElement('style');
+            style.id = 'chatbot-disabled-styles';
+            style.textContent = `
+                .chatbot-input:disabled {
+                    cursor: not-allowed;
+                    background-color: #f5f5f5;
+                }
+                .chatbot-send:disabled {
+                    cursor: not-allowed;
+                    background-color: #cccccc !important;
+                }
+                .chatbot-input-container.disabled {
+                    pointer-events: none;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+
+    disableChatInput() {
+        const input = document.querySelector('.chatbot-input');
+        const sendBtn = document.querySelector('.chatbot-send');
+        const inputContainer = document.querySelector('.chatbot-input-container');
+
+        if (input && sendBtn && inputContainer) {
+            input.disabled = true;
+            sendBtn.disabled = true;
+            input.style.opacity = '0.6';
+            sendBtn.style.opacity = '0.6';
+            inputContainer.classList.add('disabled');
+        }
+    }
+
+    enableChatInput() {
+        const input = document.querySelector('.chatbot-input');
+        const sendBtn = document.querySelector('.chatbot-send');
+        const inputContainer = document.querySelector('.chatbot-input-container');
+
+        if (input && sendBtn && inputContainer) {
+            input.disabled = false;
+            sendBtn.disabled = false;
+            input.style.opacity = '1';
+            sendBtn.style.opacity = '1';
+            inputContainer.classList.remove('disabled');
+        }
     }
 
 
@@ -422,6 +492,10 @@ class Chatbot {
                 } else if (!hasProvidedEmail) {
                     this.showEmailInput();
                 } else {
+                    // Enable chat input for completed setup
+                    document.querySelector('.chatbot-input-container').classList.remove('hidden');
+                    this.enableChatInput();
+
                     // Show continuation message for completed setup
                     setTimeout(() => {
                         const messageElement = document.createElement('div');
@@ -611,9 +685,13 @@ class Chatbot {
         }
 
         const input = document.querySelector('.chatbot-input');
+        const sendBtn = document.querySelector('.chatbot-send');
         const message = input.value.trim();
 
         if (message) {
+            // Disable input and send button
+            this.disableChatInput();
+
             // Add user message instantly with sending animation
             const messagesContainer = document.querySelector('.chatbot-messages');
             const messageElement = document.createElement('div');
@@ -675,6 +753,9 @@ class Chatbot {
                     `;
                     messagesContainer.appendChild(errorElement);
                     messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+                    // Re-enable input and send button on error
+                    this.enableChatInput();
                 });
         }
     }
@@ -682,6 +763,7 @@ class Chatbot {
     processUserMessage(message, user) {
         // Show typing indicator
         const messagesContainer = document.querySelector('.chatbot-messages');
+
         const typingIndicator = document.createElement('div');
         typingIndicator.className = 'chatbot-message bot-message typing-indicator';
         typingIndicator.innerHTML = `
@@ -720,6 +802,9 @@ class Chatbot {
                         index++;
                     } else {
                         clearInterval(typeInterval);
+                        // Re-enable input and send button
+                        this.enableChatInput();
+
                         // Broadcast the AI response after typing is complete
                         const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
                         if (!token) {
@@ -801,7 +886,8 @@ class Chatbot {
                             index++;
                         } else {
                             clearInterval(typeInterval);
-
+                            // Re-enable input and send button
+                            this.enableChatInput();
                         }
                     }, 30);
 
@@ -819,6 +905,9 @@ class Chatbot {
                 const messageContent = typingIndicator.querySelector('.message-content');
                 messageContent.innerHTML = `<span class="typing-text">I'm having trouble right now. Please try again or contact support.</span>`;
                 typingIndicator.classList.add('error-message');
+
+                // Re-enable input and send button on error
+                this.enableChatInput();
             });
         }
     }
@@ -865,12 +954,13 @@ class Chatbot {
             7. Use natural, friendly language
             8. Add an emoji only when appropriate (greetings, thank you)
             9. Maximum 2-3 sentences per response
-            10. If the question is not about WebNodez, politely redirect to WebNodez services
-            11. If user shows interest in contact, ask for their email or number
+            10. If the question is not about Linkuss, politely redirect to Linkuss services
+            11. If user shows interest in contact, ask for their name 
             12. Consider the conversation history for context-aware responses
             13. Don't repeat information already mentioned in the conversation
             14. If asked about your name, just say "I'm Harmony" without adding extra questions
-            15. If discussing a project, focus on the project details before asking for contact info
+            15. Info: Email is already provided by user.
+            16. If user want to talk to team of Linkuss, tell user to wait for email . We will reach you on email or you can provide your number .
 
             User's question: ${message}
             `;
@@ -1097,6 +1187,7 @@ class Chatbot {
 
                 // Enable chat
                 document.querySelector('.chatbot-input-container').classList.remove('hidden');
+                this.enableChatInput();
 
                 // Show welcome message and confirmation
                 this.showWelcomeMessage();

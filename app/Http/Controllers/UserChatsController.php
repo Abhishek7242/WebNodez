@@ -82,7 +82,7 @@ class UserChatsController extends Controller
     {
         $request->validate([
             'visitor_id' => 'required|uuid',
-            'sender' => 'required|',
+            'sender' => 'required',
             'message' => 'required|string',
         ]);
 

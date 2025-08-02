@@ -54,6 +54,7 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/services/intro.js', 'public/js/services/')
     .js('resources/js/canvas-background.js', 'public/js')
     .js('resources/js/dark-mode.js', 'public/js')
+    .js('resources/js/gemini.js', 'public/js')
     .browserSync({
         proxy: 'http://127.0.0.1:8000',
         files: [
