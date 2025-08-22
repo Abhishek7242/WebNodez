@@ -42,7 +42,9 @@
                 <!-- Phone Field (Optional) -->
                 <div class="contact-page-form-group">
                     <div class="contact-page-input-wrapper">
-                        <input type="tel" id="phone" name="number"
+                        <input pattern="\d{10}" autocomplete="tel" maxlength="10"
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" type="number"
+                            id="phone" name="number"
                             class="contact-page-input w-full px-3 md:px-4 py-2.5 md:py-3.5 rounded-lg md:rounded-xl bg-gray-50 border-0 focus:ring-2 focus:ring-gray-200 transition-all duration-300 text-sm md:text-base"
                             placeholder="Phone Number (Optional)">
                         <div class="error-message text-red-500 text-sm mt-1" id="phoneError"></div>

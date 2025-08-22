@@ -36,8 +36,10 @@
                         <option value="81">+81</option>
                         <!-- Add more country codes as needed -->
                     </select>
-                    <input required autocomplete="phone" id="contactNumber" type="phone" name="phone"
-                        data-error-target="phone">
+                    <input required id="contactNumber" type="text" name="phone" pattern="\d{10}" autocomplete="tel"
+                        maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)"
+                        title="Please enter exactly 10 digits" data-error-target="phone">
+
                     <i class="i"></i>
                     <span id="phone">Contact No.</span>
                     <i class="svg-box"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -57,7 +59,7 @@
                         </svg></i>
                 </div>
                 <div id="term-conditions">
-                    <a href="/terms-conditions#contact-us">terms and conditions</a>
+                    <a href="/terms-conditions#contact-us">Terms and conditions</a>
                     @if ($errors->has('g-recaptcha-response'))
                         <span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
                     @endif
@@ -79,7 +81,7 @@
 
                 <img loading="lazy" class="filter-green "
                     src="https://static.wixstatic.com/media/fa1267_8d5e4df280eb42f496d1c6544a8eee8b~mv2.gif"
-                    alt="">
+                    alt="Animated illustration of customer support for Linkuss contact form">
             </div>
         </div>
     </div>

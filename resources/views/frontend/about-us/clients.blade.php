@@ -8,9 +8,9 @@
                     class="clients-badge inline-block px-4 py-2 bg-green-500/10 rounded-full border border-green-500/20">
                     <span class="text-green-400 font-medium">Est. 2023</span>
                 </div>
-                <h1 class="clients-title text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                <h2 class="clients-title text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                     Crafting Digital Excellence Through Innovation
-                </h1>
+                </h2>
                 <p class="clients-description text-lg text-gray-300 leading-relaxed">
                     At WebNodez, we're more than just developers – we're digital architects building the future of
                     technology. Our journey is defined by innovation, expertise, and a relentless pursuit of excellence.

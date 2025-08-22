@@ -38,7 +38,7 @@
         href="{{ asset('assets/favicon/android-chrome-192x192.png') }}">
     <link rel="icon" type="image/png" sizes="512x512"
         href="{{ asset('assets/favicon/android-chrome-512x512.png') }}">
-
+    @yield('organization_schema')
     <!-- Canonical URL -->
     <link rel="canonical" href="{{ url()->current() }}">
     <script src="{{ asset('js/dark-mode.js') }}"></script>

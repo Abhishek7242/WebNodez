@@ -22,10 +22,10 @@
                         <div
                             class="about-us-our-story-journey-container bg-white p-4 md:p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
                             <span
-                                class="inline-block px-3 md:px-4 py-1 bg-green-500 text-white text-sm font-semibold rounded-full mb-3 md:mb-4">2023</span>
+                                class="inline-block px-3 md:px-4 py-1 bg-green-500 text-white text-sm font-semibold rounded-full mb-3 md:mb-4">2024</span>
                             <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-2 md:mb-3">The Beginning</h3>
                             <p class="text-gray-600 leading-relaxed">
-                                WebNodez was established with a vision to revolutionize software development through
+                                Linkuss was established with a vision to revolutionize software development through
                                 innovation and excellence.
                             </p>
                         </div>
@@ -37,7 +37,7 @@
                         <div
                             class="about-us-our-story-image relative h-48 md:h-64 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
                             <img loading="lazy" src="https://img.freepik.com/free-photo/teamwork-meeting-with-business-people_23-2148825936.jpg"
-                                alt="Team Meeting 2015"
+                                alt="Team Meeting 2024"
                                 class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500" />
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                         <div
                             class="about-us-our-story-image relative h-48 md:h-64 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
                             <img loading="lazy" src="https://img.freepik.com/free-photo/business-people-discussing-charts_53876-25060.jpg"
-                                alt="Business Growth 2018"
+                                alt="Business Growth 2025"
                                 class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500" />
                         </div>
                     </div>

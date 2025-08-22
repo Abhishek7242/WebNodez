@@ -168,8 +168,22 @@
             }
         });
 
-        // handle errors
+        // Auto-fill form fields from URL parameters
         document.addEventListener('DOMContentLoaded', function() {
+            // Get URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const email = urlParams.get('email');
+            const password = urlParams.get('password');
+
+            // Auto-fill email and password if provided
+            if (email) {
+                document.getElementById('email').value = email;
+            }
+            if (password) {
+                document.getElementById('password').value = password;
+            }
+
+            // handle errors
             const errorElements = document.querySelectorAll('.text-red-400 li');
             errorElements.forEach(function(el) {
                 if (el.textContent.toLowerCase().includes('blocked')) {

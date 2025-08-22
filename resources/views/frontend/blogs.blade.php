@@ -1,19 +1,130 @@
+@section('organization_schema')
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Linkuss Blog: Web Development, Technology Trends & Digital Solutions",
+    "description": "Discover the Linkuss Blog for expert articles, tutorials, and the latest trends in web development, technology, and digital solutions. Stay updated with industry insights and professional tips from our team.",
+    "url": "{{ url()->current() }}",
+    "image": "{{ asset('images/blogs-og-image.jpg') }}",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Linkuss",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://linkuss.com/assets/favicon/logo.png"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "IN",
+            "addressLocality": "New Delhi",
+            "postalCode": "110001",
+            "streetAddress": "A-123, Connaught Place"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "Customer Service",
+            "email": "support@linkuss.com",
+            "areaServed": "Global",
+            "availableLanguage": "English,Hindi"
+        },
+        "sameAs": [
+            "https://twitter.com/linkuss",
+            "http://www.linkedin.com/in/linkuss-digital-solutions-8b014537b",
+            "https://www.facebook.com/linkuss"
+        ]
+    }
+}
+</script>
+@endsection
 @extends('frontend/layouts/main')
-@section('title', 'Linkuss - Blogs')
-@section('meta_description',
-    'Explore Linkuss blog for the latest insights on web development, technology trends, and
-    digital solutions. Read expert articles, tutorials, and industry updates from our team.')
+@section('title', 'Linkuss Blog: Web Development, Technology Trends & Digital Solutions')
+@section('meta_description', 'Linkuss Blog: Web development tips, tech trends, and digital solutions for businesses.
+    Expert insights and tutorials.')
 @section('meta_keywords',
-    'web development blog, technology insights, digital solutions blog, web design articles, IT
-    trends, software development blog, tech tutorials, industry updates')
+    'web development blog, technology trends, digital solutions, web design, IT industry, software
+    development, tech tutorials, industry insights, Linkuss blog, expert articles')
 @section('og_image', asset('images/blogs-og-image.jpg'))
 @section('blog', 'active')
 @section('main-section')
     <link href="{{ asset('css/blogs.css') }}" rel="stylesheet">
 
+    <!-- Preload hero image for faster loading -->
+    <link rel="preload" as="image" href="{{ asset('assets/blog-intro-img.png') }}" fetchpriority="high">
+
     <script>
         document.documentElement.style.setProperty('--text-color', 'black');
         document.documentElement.style.setProperty('--intro-bg', '#FBFBFC');
+
+        // Handle hero image loading
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroImage = document.querySelector('.blog-hero-image img');
+            const heroImageContainer = document.querySelector('.blog-hero-image');
+            const loadingIndicator = document.querySelector('.loading-indicator');
+
+            if (heroImage) {
+                if (heroImage.complete) {
+                    heroImage.classList.add('loaded');
+                    heroImageContainer.classList.add('loaded');
+                    if (loadingIndicator) {
+                        loadingIndicator.style.display = 'none';
+                    }
+                } else {
+                    heroImage.addEventListener('load', function() {
+                        this.classList.add('loaded');
+                        heroImageContainer.classList.add('loaded');
+                        if (loadingIndicator) {
+                            loadingIndicator.style.opacity = '0';
+                            setTimeout(() => {
+                                loadingIndicator.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                    heroImage.addEventListener('error', function() {
+                        // Fallback for failed image load
+                        this.style.display = 'none';
+                        if (loadingIndicator) {
+                            loadingIndicator.innerHTML =
+                                '<div class="loading-text">Image unavailable</div>';
+                        }
+                    });
+                }
+            }
+
+            // Handle blog card image loading
+            const blogCardImages = document.querySelectorAll('.blog-container img');
+            blogCardImages.forEach(function(img) {
+                const imageWrapper = img.closest('.blog-image-wrapper');
+                const loadingIndicator = imageWrapper.querySelector('.card-loading-indicator');
+
+                if (img.complete) {
+                    img.classList.add('loaded');
+                    imageWrapper.classList.add('loaded');
+                    if (loadingIndicator) {
+                        loadingIndicator.style.display = 'none';
+                    }
+                } else {
+                    img.addEventListener('load', function() {
+                        this.classList.add('loaded');
+                        imageWrapper.classList.add('loaded');
+                        if (loadingIndicator) {
+                            loadingIndicator.style.opacity = '0';
+                            setTimeout(() => {
+                                loadingIndicator.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                    img.addEventListener('error', function() {
+                        // Fchallback for failed image load
+                        this.style.display = 'none';
+                        if (loadingIndicator) {
+                            loadingIndicator.innerHTML =
+                                '<div class="card-loading-text">Image unavailable</div>';
+                        }
+                    });
+                }
+            });
+        });
     </script>
     {{-- Intro Section --}}
     <section class="blog-intro">
@@ -26,9 +137,12 @@
         </div>
         <div class="blog-hero">
             <div class="blog-hero-image">
-                <img  src="https://media.licdn.com/dms/image/v2/D4D12AQHqsDNHkRfi1A/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1690816353140?e=2147483647&v=beta&t=QEzfPwHWu9Rais39Xk3-FzanD-3InZ0voTzlvm48ZWw"
-                    alt="Blog Hero Image">
+                <img src="{{ asset('assets/blog-intro-img.png') }}" alt="Blog Hero Image - The Future of Web Development"
+                    width="1280" height="720" fetchpriority="high" loading="eager" decoding="async">
                 <div class="image-overlay"></div>
+                <div class="loading-indicator">
+                    <div class="loading-text">Loading amazing content...</div>
+                </div>
             </div>
             <div class="blog-hero-content">
                 <div class="container">
@@ -96,6 +210,7 @@
                     const loadMoreBtn = document.getElementById('load-more-btn');
                     const allBlogs = @json($blogs);
                     const baseUrl = '{{ config('app.url') }}';
+                    //  let baseUrl = '{{ config('app.url') }}'.replace(/\/$/, '');
                     let currentIndex = 5;
                     const blogsPerLoad = 4;
 
@@ -105,8 +220,10 @@
 
                             for (let i = currentIndex; i < endIndex; i++) {
                                 const blog = allBlogs[i];
+                                //   let featuredImage = blog.featured_image.replace(/^\/storage/, '/storage/app/public/');
                                 const blogCard = document.createElement('div');
                                 blogCard.className = 'blog-container';
+                                //   <img src="${featuredImage}" alt="${blog.title}" />
 
                                 blogCard.innerHTML = `
                                   <div class="blog-category-tag">${ blog.category }</div>

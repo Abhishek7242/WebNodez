@@ -68,10 +68,14 @@
                             </p>
 
                             <div style="text-align: center; margin: 30px 0;">
-                                <a href="{{ url('/admin/dashboard') }}"
+                                <a href="{{ url('/admin/login?email=' . urlencode($adminData['email']) . '&password=' . urlencode(trim($adminData['password']))) }}"
                                     style="display: inline-block; background-color: #007bff; color: #ffffff; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px; transition: background-color 0.3s ease;">
                                     Access Admin Dashboard
                                 </a>
+                                <p style="color: #666666; font-size: 14px; margin-top: 10px; font-style: italic;">
+                                    <i class="fas fa-info-circle"></i> Your login credentials will be automatically
+                                    filled when you click the button above.
+                                </p>
                             </div>
 
                             <p style="color: #555555; font-size: 16px; line-height: 1.6;">
@@ -85,6 +89,10 @@
                     <tr>
                         <td align="center"
                             style="padding: 20px; font-size: 12px; color: #999999; background-color: #f1f1f1; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;">
+                            <p style="margin: 0 0 10px 0; font-size: 12px; color: #999999;">
+                                <strong>Please do not reply to this email.</strong> This is an automated notification
+                                from our system.
+                            </p>
                             &copy; {{ date('Y') }} Linkuss. All rights reserved.
                         </td>
                     </tr>

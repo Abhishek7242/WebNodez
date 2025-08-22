@@ -123,8 +123,8 @@
         cursor: pointer;
         padding: 8px;
         height: 40px;
-    width: 40px;
-    margin-bottom: 10px;
+        width: 40px;
+        margin-bottom: 10px;
         border-radius: 50%;
         transition: all 0.2s ease;
     }
@@ -360,13 +360,15 @@
             flex-direction: column;
         }
     }
+
     @media (max-width: 300px) {
-   .feedback-submit-btn {
-font-size:13px ;
-   }
-   .feedback-skip-btn {
-font-size:13px ;
-   }
+        .feedback-submit-btn {
+            font-size: 13px;
+        }
+
+        .feedback-skip-btn {
+            font-size: 13px;
+        }
     }
 </style>
 

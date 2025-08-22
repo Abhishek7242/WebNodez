@@ -1,16 +1,38 @@
 @extends('frontend/layouts/main')
-@section('title', 'Blogs - ' . $blog->title)
-@section('meta_description',
-    'Read our detailed article about ' .
-    $blog->title .
-    '. Discover expert insights, industry
-    trends, and professional analysis from Linkuss team of specialists.')
+@section('title', $blog->title . ' | Linkuss Blog')
+@section('meta_description', $blog->title . ' - Web development, tech trends, and digital solutions from Linkuss.')
 @section('meta_keywords',
     $blog->title .
     ', web development blog, technology insights, digital solutions, industry
     trends, expert analysis, tech blog, professional insights')
 @section('og_image', $blog->featured_image)
 @section('blog', 'active')
+@section('organization_schema')
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": "{{ $blog->title }}",
+            "description": "{{ Str::limit(strip_tags($blog->content), 160) }}",
+            "image": "{{ asset($blog->featured_image) }}",
+            "author": {
+                "@type": "Person",
+                "name": "{{ $blog->author->name ?? 'Admin' }}"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Linkuss",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "{{ asset('assets/linkuss-email-logo.png') }}"
+                }
+            },
+            "datePublished": "{{ $blog->created_at->toIso8601String() }}",
+            "dateModified": "{{ $blog->updated_at->toIso8601String() }}",
+            "mainEntityOfPage": "{{ url()->current() }}"
+        }
+        </script>
+@endsection
 @section('main-section')
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -28,9 +50,10 @@
                 team of experts.</p>
         </div>
         <h1 class="text-4xl md:text-4xl text-center font-bold">{{ $blog->title }}</h1>
-        {{-- <div class="blog-meta">
-            <span class="blog-category">{{ $blog->category }}</span>
-            <span class="blog-date">
+        <div class="blog-meta" itemscope itemtype="https://schema.org/BlogPosting">
+            <meta itemprop="mainEntityOfPage" content="{{ url()->current() }}" />
+            <span class="blog-category" itemprop="articleSection">{{ $blog->category }}</span>
+            <span class="blog-date" itemprop="datePublished" content="{{ $blog->created_at->toIso8601String() }}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd"
                         d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
@@ -38,17 +61,26 @@
                 </svg>
                 {{ $blog->created_at->format('F d, Y') }}
             </span>
-            <div class="blog-author">
+            <div class="blog-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
                 <div class="author-avatar">
                     {{ substr($blog->author->name ?? 'A', 0, 1) }}
                 </div>
-                <span>{{ $blog->author->name ?? 'Admin' }}</span>
+                <span itemprop="name">{{ $blog->author->name ?? 'Admin' }}</span>
             </div>
-
-        </div> --}}
+            <meta itemprop="headline" content="{{ $blog->title }}" />
+            <meta itemprop="description" content="{{ Str::limit(strip_tags($blog->content), 160) }}">
+            <meta itemprop="dateModified" content="{{ $blog->updated_at->toIso8601String() }}" />
+            <meta itemprop="image" content="{{ asset($blog->featured_image) }}" />
+            <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                <meta itemprop="name" content="Linkuss" />
+                <meta itemprop="logo" content="{{ asset('assets/linkuss-email-logo.png') }}" />
+            </div>
+            <meta itemprop="articleBody" content="{{ Str::limit(strip_tags($blog->content), 500) }}" />
+        </div>
         @if ($blog->featured_image)
             <div class="blog-heading-image mb-10">
-                <img  src="{{ asset($blog->featured_image) }}" alt="{{ $blog->title }}">
+                <img src="{{ asset($blog->featured_image) }}" alt="Featured image for {{ $blog->title }}">
+                {{-- <img loading="lazy" src="{{ asset('storage/app/public/blog-images/' . basename($blog->featured_image)) }}" alt="{{ $blog->title }}"> --}}
             </div>
         @endif
     </section>
@@ -77,8 +109,8 @@
         :title="$innerblog->title" 
         :excerpt="Str::limit(strip_tags($innerblog->content), 150)" 
         :date="$innerblog->created_at->format('F d, Y')"
-            :link="'/blog/'.$innerblog -> slug"
-        />
+                            :link="'/blog/'.$innerblog -> slug"
+                        />
      @endforeach
 
                     </div>
@@ -105,7 +137,7 @@
                     <path d="m12 5 7 7-7 7"></path>
                     </svg>
                     </a>
-                    <a href="mailto:support@webnodez.com" class="chat-btn secondary">
+                    <a href="mailto:support@linkuss.com" class="chat-btn secondary">
                     <span>Email Us</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -119,7 +151,7 @@
                     </div>
                     <div class="chat-image">
                     <img src="https://www.shutterstock.com/image-photo/human-holding-call-center-on-600nw-2422082399.jpg"
-                    alt="Let's Chat Illustration" class="floating">
+                    alt="Customer support illustration" class="floating">
                     </div>
                     </div>
                     </div>
@@ -132,18 +164,20 @@
                                 // Find all images in the content
                                 const images = blogContent.getElementsByTagName('img');
 
-                                // Loop through each image and fix the src
+                                // Loop through each image and fix the src and alt
                                 Array.from(images).forEach(img => {
                                     let src = img.getAttribute('src');
+                                    // Fix src if needed
                                     if (src) {
-                                        // Check if the URL is not already a full URL (http/https)
                                         if (!src.startsWith('http://') && !src.startsWith('https://')) {
-                                            // Remove any ../../storage prefix
                                             src = src.replace(/^\.\.\/\.\.\/storage\//, '');
-                                            // Add the correct storage URL
                                             img.setAttribute('src', '/storage/' + src);
                                         }
                                     }
+                                    // Add alt if missing
+                                    // if (!img.hasAttribute('alt') || !img.getAttribute('alt')) {
+                                    //     img.setAttribute('alt', '{{ $blog->title }} blog image');
+                                    // }
                                 });
                             }
                         });

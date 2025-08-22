@@ -349,7 +349,7 @@
 
         // Initialize Pusher
         const PUSHER_APP_KEY = "{{ config('app.pusher_app_key') }}";
-  
+
         const pusher = new Pusher(PUSHER_APP_KEY, {
             cluster: 'ap2',
             encrypted: true
@@ -466,26 +466,26 @@
 
                     const messageContent = `
                         ${data.sender === 'user' ? `
-                                                                    <div class="h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm">
-                                                                        ${userAvatar}
-                                                                    </div>
-                                                                    <div class="flex-1">
-                                                                        <div class="bg-blue-500/20 rounded-lg p-3">
-                                                                            <p class="text-sm text-blue-400">${data.message}</p>
+                                                                        <div class="h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm">
+                                                                            ${userAvatar}
                                                                         </div>
-                                                                        <span class="text-xs text-gray-400 mt-1">${formattedTime}</span>
-                                                                    </div>
-                                                                ` : `
-                                                                    <div class="flex-1 text-right">
-                                                                        <div class="bg-white/5 rounded-lg p-3 inline-block">
-                                                                            <p class="text-sm text-gray-300">${data.message}</p>
+                                                                        <div class="flex-1">
+                                                                            <div class="bg-blue-500/20 rounded-lg p-3">
+                                                                                <p class="text-sm text-blue-400">${data.message}</p>
+                                                                            </div>
+                                                                            <span class="text-xs text-gray-400 mt-1">${formattedTime}</span>
                                                                         </div>
-                                                                        <span class="text-xs text-gray-400 mt-1 block">${formattedTime}</span>
-                                                                    </div>
-                                                                    <div class="h-8 w-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm">
-                                                                        <i class="fas fa-robot"></i>
-                                                                    </div>
-                                                                `}
+                                                                    ` : `
+                                                                        <div class="flex-1 text-right">
+                                                                            <div class="bg-white/5 rounded-lg p-3 inline-block">
+                                                                                <p class="text-sm text-gray-300">${data.message}</p>
+                                                                            </div>
+                                                                            <span class="text-xs text-gray-400 mt-1 block">${formattedTime}</span>
+                                                                        </div>
+                                                                        <div class="h-8 w-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm">
+                                                                            <i class="fas fa-robot"></i>
+                                                                        </div>
+                                                                    `}
                     `;
 
                     messageDiv.innerHTML = messageContent;
@@ -710,26 +710,26 @@
 
                             const messageContent = `
                                 ${msg.sender === 'user' ? `
-                                                                                                <div class="h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm">
-                                                                                                    ${userName.charAt(0).toUpperCase()}
-                                                                                                </div>
-                                                                                                <div class="flex-1">
-                                                                                                    <div class="bg-blue-500/20 rounded-lg p-3">
-                                                                                                        <p class="text-sm text-blue-400">${msg.message}</p>
+                                                                                                    <div class="h-8 w-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-sm">
+                                                                                                        ${userName.charAt(0).toUpperCase()}
                                                                                                     </div>
-                                                                                                    <span class="text-xs text-gray-400 mt-1">${formattedTime}</span>
-                                                                                                </div>
-                                                                                            ` : `
-                                                                                                <div class="flex-1 text-right">
-                                                                                                    <div class="bg-white/5 rounded-lg p-3 inline-block">
-                                                                                                        <p class="text-sm text-gray-300">${msg.message}</p>
+                                                                                                    <div class="flex-1">
+                                                                                                        <div class="bg-blue-500/20 rounded-lg p-3">
+                                                                                                            <p class="text-sm text-blue-400">${msg.message}</p>
+                                                                                                        </div>
+                                                                                                        <span class="text-xs text-gray-400 mt-1">${formattedTime}</span>
                                                                                                     </div>
-                                                                                                    <span class="text-xs text-gray-400 mt-1 block">${formattedTime}</span>
-                                                                                                </div>
-                                                                                                <div class="h-8 w-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm">
-                                                                                                    <i class="fas fa-robot"></i>
-                                                                                                </div>
-                                                                                            `}
+                                                                                                ` : `
+                                                                                                    <div class="flex-1 text-right">
+                                                                                                        <div class="bg-white/5 rounded-lg p-3 inline-block">
+                                                                                                            <p class="text-sm text-gray-300">${msg.message}</p>
+                                                                                                        </div>
+                                                                                                        <span class="text-xs text-gray-400 mt-1 block">${formattedTime}</span>
+                                                                                                    </div>
+                                                                                                    <div class="h-8 w-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center text-white text-sm">
+                                                                                                        <i class="fas fa-robot"></i>
+                                                                                                    </div>
+                                                                                                `}
                             `;
 
                             messageDiv.innerHTML = messageContent;
@@ -994,9 +994,9 @@
             // Only update the user list, do not hide or change chat details or chatMessages
             // Remove or comment out the following block:
             /*
-                                                                if (visibleChats === 0) {
-                                                                    chatDetails.style.display = 'none';
-                                                                    chatMessagesContainer.innerHTML = `
+                                                                    if (visibleChats === 0) {
+                                                                        chatDetails.style.display = 'none';
+                                                                        chatMessagesContainer.innerHTML = `
             <div class="flex items-center justify-center h-full">
                 <div class="text-center text-gray-400">
                     <i class="fas fa-search text-4xl mb-2"></i>
@@ -1004,23 +1004,23 @@
                 </div>
             </div>
         `;
-                                                                } else {
-                                                                    chatDetails.style.display = '';
-                                                                    // If the currently displayed chat is hidden by filters, show the first visible chat
-                                                                    const activeChat = document.querySelector('.chat-item.active');
-                                                                    if (activeChat && activeChat.style.display === 'none') {
-                                                                        const firstVisibleChat = document.querySelector('.chat-item[style=""]');
-                                                                        if (firstVisibleChat) {
-                                                                            const userName = firstVisibleChat.querySelector('.chat-username').textContent;
-                                                                            const userEmail = firstVisibleChat.querySelector('.chat-email').textContent;
-                                                                            const userAvatar = firstVisibleChat.querySelector('.chat-avatar').textContent.trim();
-                                                                            const userStatus = firstVisibleChat.querySelector('.chat-status-text')?.textContent.includes('Active') ?
-                                                                                'active' : 'inactive';
-                                                                            showChat(userName, userEmail, userAvatar, userStatus);
+                                                                    } else {
+                                                                        chatDetails.style.display = '';
+                                                                        // If the currently displayed chat is hidden by filters, show the first visible chat
+                                                                        const activeChat = document.querySelector('.chat-item.active');
+                                                                        if (activeChat && activeChat.style.display === 'none') {
+                                                                            const firstVisibleChat = document.querySelector('.chat-item[style=""]');
+                                                                            if (firstVisibleChat) {
+                                                                                const userName = firstVisibleChat.querySelector('.chat-username').textContent;
+                                                                                const userEmail = firstVisibleChat.querySelector('.chat-email').textContent;
+                                                                                const userAvatar = firstVisibleChat.querySelector('.chat-avatar').textContent.trim();
+                                                                                const userStatus = firstVisibleChat.querySelector('.chat-status-text')?.textContent.includes('Active') ?
+                                                                                    'active' : 'inactive';
+                                                                                showChat(userName, userEmail, userAvatar, userStatus);
+                                                                            }
                                                                         }
                                                                     }
-                                                                }
-                                                                */
+                                                                    */
         }
 
         // Add event listeners for filters

@@ -80,14 +80,153 @@
     width: 100%;
     height: 600px;
     overflow: hidden;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 3s ease infinite, pulse 2s ease-in-out infinite;
+    transition: all 0.3s ease;
+}
+
+.dark-mode .blog-hero-image {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 3s ease infinite, pulse 2s ease-in-out infinite;
+}
+
+/* Stop all animations when image is loaded */
+.blog-hero-image.loaded {
+    animation: none;
+    background: transparent;
+}
+
+/* Enhanced loading animation with multiple effects */
+.blog-hero-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.4) 25%,
+        rgba(255, 255, 255, 0.8) 50%,
+        rgba(255, 255, 255, 0.4) 75%,
+        transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+.dark-mode .blog-hero-image::before {
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 25%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0.1) 75%,
+        transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}
+
+/* Hide loading animations when image is loaded */
+.blog-hero-image.loaded::before {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* Loading indicator text */
+.loading-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    text-align: center;
+    transition: opacity 0.3s ease;
+}
+
+.loading-text {
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 80px;
+    opacity: 0.9;
+    animation: textPulse 2s ease-in-out infinite;
+    text-shadow: 0 0 10px rgba(0, 255, 132, 0.3);
+}
+
+.dark-mode .loading-text {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+@keyframes textPulse {
+    0%,
+    100% {
+        opacity: 0.9;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
 }
 
 .blog-hero-image img {
+    opacity: 0;
+    transition: opacity 0.3s ease;
     width: 100%;
     height: 100%;
     -o-object-fit: cover;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    transition: transform 0.6s ease, opacity 0.3s ease;
+    /* Performance optimizations */
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    /* Prevent layout shift */
+    aspect-ratio: 16/9;
+    min-height: 600px;
+}
+
+.blog-hero-image img.loaded {
+    opacity: 1;
 }
 
 .image-overlay {
@@ -685,12 +824,11 @@
     }
 }
 @media (max-width: 350px) {
-    .container{
+    .container {
         padding: 0;
     }
-        .blog-description {
+    .blog-description {
         font-size: 0.8rem;
-     
     }
     .section-title {
         font-size: 2rem;
@@ -728,6 +866,7 @@
 .blog-card-image img {
     width: 100%;
     height: 100%;
+    -o-object-fit: cover;
     object-fit: cover;
     transition: transform 0.3s ease;
 }

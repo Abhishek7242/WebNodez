@@ -1,13 +1,40 @@
 @extends('frontend/layouts/main')
 @section('title', 'Linkuss - Services')
 @section('meta_description',
-    'Explore our comprehensive range of web development and digital services. From custom
-    website development to mobile apps, e-commerce solutions, and IT services - we deliver innovative digital solutions for
-    your business.')
+    'Web development, mobile apps, e-commerce, and IT services by Linkuss. Digital solutions
+    for business growth.')
 @section('meta_keywords',
     'web development services, custom website development, mobile app development, e-commerce
     solutions, IT services, software development, digital solutions, web design services')
 @section('og_image', asset('images/services-og-image.jpg'))
+
+@section('organization_schema')
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Linkuss Services",
+      "description": "Web development, mobile apps, e-commerce, and IT services by Linkuss. Digital solutions for business growth.",
+      "url": "{{ url()->current() }}",
+      "image": "{{ asset('images/services-og-image.jpg') }}",
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "Linkuss",
+        "url": "https://linkuss.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://linkuss.com/assets/favicon/logo.png"
+        },
+        "sameAs": [
+          "https://x.com/Linkuss?t=kPl0_8r4R6vYPkBK_JAKww&s=09",
+          "http://www.linkedin.com/in/linkuss-digital-solutions-8b014537b",
+          "https://www.facebook.com/linkuss",
+          "https://www.instagram.com/_linkuss?igsh=Z3k5dzlvNWYzeXRq"
+        ]
+      }
+    }
+    </script>
+@endsection
 @section('services', 'active')
 @section('main-section')
 

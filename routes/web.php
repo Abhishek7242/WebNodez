@@ -1,8 +1,10 @@
 <?php
 
+
 use App\Http\Controllers\PricingController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\SendEmailController;
 use App\Http\Controllers\AdminManageAboutUsController;
 use App\Http\Controllers\AdminManageBlogController;
 use App\Http\Controllers\AdminManageHomeController;
@@ -47,6 +49,10 @@ Route::get('/admin/unauthorized', function () {
 
 
 Route::middleware('auth:admin')->group(function () {
+
+    Route::get('/admin/send-email', [SendEmailController::class, 'showForm'])->name('admin.sendEmailForm');
+    Route::post('/admin/send-email', [SendEmailController::class, 'send'])->name('admin.sendEmail');
+
     Route::put('/admin/unblock/{id}', [AdminController::class, 'unblockAdmin'])->name('admin.unblock');
 
     Route::get('/admin/manage-home', [AdminManageHomeController::class, 'index'])->name('admin.manage-home');

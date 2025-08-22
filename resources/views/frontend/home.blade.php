@@ -1,12 +1,47 @@
+@section('organization_schema')
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Linkuss",
+    "url": "https://linkuss.com",
+    "description": "Linkuss is a leading web development and digital solutions company. We offer professional web design, development, and IT services to help businesses grow online.",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Linkuss",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://linkuss.com/assets/favicon/logo.png"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "Customer Service",
+            "email": "support@linkuss.com",
+            "areaServed": "Global",
+            "availableLanguage": "English,Hindi"
+        },
+        "sameAs": [
+            "https://twitter.com/linkuss",
+            "http://www.linkedin.com/in/linkuss-digital-solutions-8b014537b",
+            "https://www.facebook.com/linkuss"
+        ]
+    },
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://linkuss.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+@endsection
 @extends('frontend/layouts/main')
-@section('title', 'Linkuss - Home')
-@section('meta_description',
-    'Linkuss is a leading web development and digital solutions company. We offer professional
-    web design, development, and IT services to help businesses grow online.')
+@section('title', 'Linkuss | Web Development, Digital Solutions & IT Services')
+@section('meta_description', 'Web development, digital solutions, and IT services for business growth. Linkuss delivers
+    results.')
 @section('meta_keywords',
     'web development, web design, digital solutions, IT services, software development, mobile
     apps, custom websites, e-commerce solutions')
-@section('og_image', asset('images/home-og-image.png'))
+@section('og_image', asset('images/home-og-image.jpg'))
 @section('home', 'active')
 @section('main-section')
 

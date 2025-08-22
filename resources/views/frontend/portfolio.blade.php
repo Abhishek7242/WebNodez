@@ -1,12 +1,67 @@
+@section('organization_schema')
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Linkuss Portfolio | Web Development, Case Studies & Design Gallery",
+    "description": "See Linkuss portfolio: web, UI/UX, e-commerce, and digital projects for real client results.",
+    "url": "{{ url()->current() }}",
+    "image": "{{ asset('images/portfolio-og-image.jpg') }}",
+    "mainEntity": [
+        {
+            "@type": "CreativeWorkSeries",
+            "name": "Web Development Projects",
+            "description": "Custom websites, web apps, and digital platforms built for clients across industries.",
+            "url": "{{ url('/portfolio') }}"
+        },
+        {
+            "@type": "CreativeWorkSeries",
+            "name": "Case Studies",
+            "description": "In-depth stories of business challenges solved by Linkuss with technology and design.",
+            "url": "{{ url('/portfolio') }}#case-studies"
+        },
+        {
+            "@type": "CreativeWorkSeries",
+            "name": "Design Gallery",
+            "description": "Showcase of UI/UX, branding, and creative work for digital products.",
+            "url": "{{ url('/portfolio') }}#design-gallery"
+        }
+    ],
+    "publisher": {
+        "@type": "Organization",
+        "name": "Linkuss",
+        "url": "https://linkuss.com",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://linkuss.com/assets/favicon/logo.png"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "Customer Service",
+            "email": "support@linkuss.com",
+            "areaServed": "Global",
+            "availableLanguage": ["English", "Hindi"]
+        },
+        "sameAs": [
+            "https://x.com/Linkuss?t=kPl0_8r4R6vYPkBK_JAKww&s=09",
+            "http://www.linkedin.com/in/linkuss-digital-solutions-8b014537b",
+            "https://www.facebook.com/linkuss",
+            "https://www.instagram.com/_linkuss?igsh=Z3k5dzlvNWYzeXRq"
+        ]
+    }
+}
+</script>
+@endsection
 @extends('frontend/layouts/main')
-@section('title', 'Linkuss - Portfolio')
-@section('meta_description',
-    'Explore Linkuss portfolio showcasing our web development projects, case studies, and
-    design gallery. View our successful client projects, innovative solutions, and creative designs.')
+@section('title', 'Portfolio | Linkuss - Web Development, Case Studies & Design Gallery')
+@section('meta_description', 'See Linkuss portfolio: web, UI/UX, e-commerce, and digital projects for real client
+    results.')
 @section('meta_keywords',
     'web development portfolio, case studies, design gallery, client projects, web design
-    showcase, digital solutions portfolio, IT projects, software development portfolio')
+    showcase, digital solutions, IT projects, software development, Linkuss portfolio, creative work')
 @section('og_image', asset('images/portfolio-og-image.jpg'))
+
+
 @section('portfolio', 'active')
 @section('main-section')
     <link href="{{ asset('css/portfolio/intro.css') }}" rel="stylesheet">

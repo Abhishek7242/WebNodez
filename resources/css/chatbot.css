@@ -566,9 +566,9 @@
     padding: 0;
     flex-shrink: 0;
 }
-  .chatbot-container.chatbot-minimized.keyboard-active {
-        height: 60px !important;
-    }
+.chatbot-container.chatbot-minimized.keyboard-active {
+    height: 70px !important;
+}
 .chatbot-send i {
     font-size: 1.2rem;
     transition: transform 0.2s ease;
@@ -728,13 +728,12 @@
         overflow-x: hidden;
     }
 
-  
     .chatbot-container.keyboard-active {
         height: 50vh !important;
         border-radius: 1rem 1rem 0 0;
     }
-      .chatbot-container.chatbot-minimized.keyboard-active {
-        height: 60px !important;
+    .chatbot-container.chatbot-minimized.keyboard-active {
+        height: 70px !important;
         border-radius: 50%;
     }
 }
@@ -1008,6 +1007,22 @@
     word-wrap: break-word;
 }
 
+/* Mailto link styles */
+.typing-text a {
+    color: #4f46e5;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.typing-text a:hover {
+    color: #4338ca;
+    text-decoration: none;
+}
+
+.typing-text a:active {
+    color: #3730a3;
+}
+
 .chatbot-message-tag {
     text-align: center;
     color: #666;
@@ -1156,8 +1171,6 @@
 .chatbot-message:last-child {
     margin-bottom: 0;
 }
-
-
 
 /* Ensure input container stays at bottom */
 .chatbot-input-container {
@@ -1312,6 +1325,7 @@
     background: white;
     color: #1a202c;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 12px;
 }
 
 .email-input:focus {
@@ -1324,11 +1338,59 @@
     color: #a0aec0;
 }
 
-.email-submit-btn {
+/* Email error container */
+.email-error-container {
+    min-height: 0;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+}
+
+.email-error-container:empty {
+    min-height: 0;
+    margin-bottom: 0;
+}
+
+/* Email input error state */
+.email-input-error {
+    border-color: #ef4444 !important;
+    background-color: #fef2f2;
+}
+
+.email-input-error:focus {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* Email error message */
+.email-error-message {
+    color: #ef4444;
+    font-size: 0.875rem;
+    margin-top: 8px;
+    padding: 8px 12px;
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.email-error-message::before {
+    content: "⚠️";
+    font-size: 1rem;
+}
+
+.email-buttons {
+    display: flex;
+    gap: 12px;
     width: 100%;
+}
+
+.email-submit-btn {
+    flex: 1;
     padding: 14px;
-    margin-top: 12px;
-    background: var(--color-primary);
+    background: #6b7280;
     color: white;
     border: none;
     border-radius: 12px;
@@ -1336,18 +1398,36 @@
     font-weight: 500;
     font-size: 0.95rem;
     transition: all 0.2s ease;
-    box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .email-submit-btn:hover {
-    background: var(--color-secondary);
-    /* background: #4338ca; */
     transform: translateY(-1px);
-    box-shadow: 0 4px 6px rgba(79, 70, 229, 0.3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
 .email-submit-btn:active {
     transform: translateY(0);
+}
+
+.email-skip-btn {
+    background: #6b7280;
+    color: white;
+}
+
+.email-skip-btn:hover {
+    background: #4b5563;
+}
+
+.email-submit-btn-primary {
+    background: var(--color-primary);
+    color: white;
+    box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
+}
+
+.email-submit-btn-primary:hover {
+    background: var(--color-secondary);
+    box-shadow: 0 4px 6px rgba(79, 70, 229, 0.3);
 }
 
 /* Message Tags */
@@ -1394,10 +1474,29 @@
 
     .email-input {
         padding: 12px;
+        margin-bottom: 10px;
+    }
+
+    .email-buttons {
+        gap: 8px;
     }
 
     .email-submit-btn {
         padding: 12px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .email-buttons {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .email-submit-btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 0.85rem;
     }
 }
 

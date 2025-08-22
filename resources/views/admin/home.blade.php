@@ -22,7 +22,7 @@
         el.style.setProperty('--dark-bg', 'white');
     </script>
 
-    <div class=" flex items-center justify-center " >
+    <div class=" flex items-center justify-center ">
         <div class="text-center p-8 relative">
             <!-- Animated background elements -->
             {{-- <div class="absolute inset-0 -z-10">
@@ -155,6 +155,14 @@
                         </div>
                         <div class="text-gray-300">User Feedback</div>
                         <div class="text-sm text-gray-400 mt-1">View ratings and comments</div>
+                    </a>
+                    <a href="/admin/send-email"
+                        class="bg-white/10 backdrop-blur-lg rounded-xl p-6 transform hover:scale-105 transition-all duration-300 group cursor-pointer">
+                        <div class="flex items-center justify-center mb-2">
+                            <i class="fas fa-envelope text-4xl text-pink-400 group-hover:animate-pulse"></i>
+                        </div>
+                        <div class="text-gray-300">Send Email</div>
+                        <div class="text-sm text-gray-400 mt-1">Send emails to users</div>
                     </a>
                 </div>
 

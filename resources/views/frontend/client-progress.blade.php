@@ -1,5 +1,12 @@
+@section('title', 'Client Progress Tracker | Linkuss - Project Updates & Milestones')
+@section('meta_description', 'Track your project progress, milestones, and updates with Linkuss. Stay informed about
+    every step of your web development or digital solution journey.')
+@section('meta_keywords', 'client progress, project tracker, milestones, web development progress, digital solutions,
+    Linkuss project updates, client dashboard')
+@section('og_image', asset('images/client-progress-og-image.jpg'))
+
+
 @extends('frontend/layouts/main')
-@section('title', 'Project Progress - Linkuss')
 @section('main-section')
 
     <link href="{{ asset('css/home.css') }}" rel="stylesheet">

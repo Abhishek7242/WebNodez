@@ -50,6 +50,10 @@
                     <tr>
                         <td align="center"
                             style="padding: 20px; font-size: 12px; color: #999999; background-color: #f1f1f1; border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;">
+                            <p style="margin: 0 0 10px 0; font-size: 12px; color: #999999;">
+                                <strong>Please do not reply to this email.</strong> This is an automated notification
+                                from our system.
+                            </p>
                             &copy; {{ date('Y') }} Linkuss. All rights reserved.
                         </td>
                     </tr>

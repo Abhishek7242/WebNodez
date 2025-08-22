@@ -181,7 +181,7 @@
     'id' => 'contact-us',
     'title' => 'Contact Us',
     'description' =>
-        'For any questions or concerns regarding these Terms and Conditions, please contact us at <a href="mailto:support@webnodez.com" class="text-blue-600 underline hover:text-blue-800">support@webnodez.com</a>. We aim to respond to all inquiries within 24 hours.<br><br>
+        'For any questions or concerns regarding these Terms and Conditions, please contact us at <a href="mailto:support@linkuss.com" class="text-blue-600 underline hover:text-blue-800">support@linkuss.com</a>. We aim to respond to all inquiries within 24 hours.<br><br>
         By contacting us, you agree that we may store and process the personal data you provide, such as your name, email address, phone number  and the contents of your message, solely for the purpose of addressing your inquiry and improving our services. We are committed to protecting your privacy and will not share your contact details with third parties without your explicit consent, except as required by law.<br><br>
         For more information on how we handle your data, please refer to our <a href="/privacy-policy" class="text-blue-600 underline hover:text-blue-800">Privacy Policy</a>.',
 ],

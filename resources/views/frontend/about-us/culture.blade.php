@@ -105,7 +105,7 @@
             <p class="culture-cta-description call-description">We're not just building software — we're building a
                 culture of impact, growth, and shared success.</p>
 
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=youremail@example.com&su=Job Inquiry&body=Hi, I'm interested in joining your team."
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=linkuss01@gmail.com&su=Job Inquiry&body=Hi, I'm interested in joining your team."
                 target="_blank" class=" culture-cta-button animated-button cta-button">
                 <span>Join Our Team</span>
                 <i class="fas fa-arrow-right icon-transition ml-3"></i>

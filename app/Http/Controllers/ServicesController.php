@@ -560,7 +560,7 @@ class ServicesController extends Controller
                 'clientSatisfaction' => $achievements[2]['number'],
 
             ],
-        "app-development" => [
+            "app-design&development" => [
             'description' => 'Stunning, user-focused mobile apps built to elevate your brand.',
             'detailsArray' => [
                 [

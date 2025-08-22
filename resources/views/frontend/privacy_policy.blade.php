@@ -158,7 +158,7 @@
                         </ul>
                     </li>
                 </ul>
-                <p class="mt-4">For any questions about our chatbot and AI services, please contact us at privacy@webnodez.com.</p>',
+                <p class="mt-4">For any questions about our chatbot and AI services, please contact us at support@linkuss.com.</p>',
             ],
             [
                 'id' => 'data-retention',
@@ -197,7 +197,7 @@
                     <li>Data portability</li>
                     <li>Withdraw consent</li>
                 </ul>
-                To exercise these rights, please contact us at privacy@webnodez.com.',
+                To exercise these rights, please contact us at support@linkuss.com.',
             ],
             [
                 'id' => 'children-privacy',
@@ -222,9 +222,9 @@
                 'title' => 'Contact Us',
                 'description' => 'If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at:
                 <ul class="list-disc pl-6 mt-2">
-                    <li>Email: privacy@webnodez.com</li>
-                    <li>Phone: [Your Phone Number]</li>
-                    <li>Address: [Your Business Address]</li>
+                    <li>Email: support@linkuss.com</li>
+                    // <li>Phone: [Your Phone Number]</li>
+                    // <li>Address: [Your Business Address]</li>
                 </ul>
                 We aim to respond to all privacy-related inquiries within 48 hours.',
             ],

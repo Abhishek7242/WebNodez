@@ -566,9 +566,9 @@
                         @endif
                         <div class="blog-image-container">
                             @if ($blog->featured_image)
-                                <img src="{{ asset($blog->featured_image) }}" alt="{{ $blog->title }}"
-                                    class="blog-image">
+                                <img src="{{ asset($blog->featured_image) }}" alt="{{ $blog->title }}"class="blog-image">
                             @else
+                            
                                 <div class="blog-image bg-gray-100 flex items-center justify-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-400" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">

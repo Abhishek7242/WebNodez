@@ -1,12 +1,57 @@
-@extends('frontend/layouts/main')
-@section('title', 'Linkuss - Contact Us')
+@section('title', 'Contact Us | Linkuss - Get in Touch for Web Development')
 @section('meta_description',
-    'Contact Linkuss for professional web development and digital solutions. Get in touch with
-    our expert team for project inquiries, support, or consultations. Available Mon-Fri, 9am-6pm with multilingual
-    support.')
+    'Contact Linkuss for web development, digital solutions, and support. Quick replies, real
+    people.')
+@section('organization_schema')
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            "name": "Contact Us | Linkuss",
+            "description": "Contact Linkuss for web development, digital solutions, and support. Real people, fast replies.",
+            "url": "{{ url()->current() }}",
+            "image": "{{ asset('images/contact-og-image.jpg') }}",
+            "mainEntity": {
+                "@type": "Organization",
+                "name": "Linkuss",
+                "url": "https://linkuss.com",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://linkuss.com/assets/favicon/logo.png"
+                },
+                "contactPoint": [
+                    {
+                        "@type": "ContactPoint",
+                        "contactType": "Customer Support",
+                        "email": "support@linkuss.com",
+                        "areaServed": "Global",
+                        "availableLanguage": ["English", "Hindi"]
+                    },
+                    {
+                        "@type": "ContactPoint",
+                        "contactType": "Sales",
+                        "email": "sales@linkuss.com",
+                        "areaServed": "Global",
+                        "availableLanguage": ["English", "Hindi"]
+                    }
+                ],
+                "sameAs": [
+                    "https://x.com/Linkuss?t=kPl0_8r4R6vYPkBK_JAKww&s=09",
+                    "http://www.linkedin.com/in/linkuss-digital-solutions-8b014537b",
+                    "https://www.facebook.com/linkuss",
+                    "https://www.instagram.com/_linkuss?igsh=Z3k5dzlvNWYzeXRq"
+                ]
+            }
+        }
+        </script>
+@endsection
 @section('meta_keywords',
-    'contact webnodez, web development contact, IT support contact, project consultation, customer
-    support, technical support, business inquiry, digital solutions contact')
+    'contact linkuss, web development contact, digital solutions inquiry, IT services support,
+    project inquiry, contact form, Linkuss support')
+@section('og_image', asset('images/contact-og-image.jpg'))
+
+
+@extends('frontend/layouts/main')
 @section('og_image', asset('images/contact-og-image.jpg'))
 @section('contact', 'active')
 @section('main-section')

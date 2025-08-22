@@ -48,21 +48,14 @@ class AdminController extends Controller
         $platformVersion = $agent->version($platform);
 
         $userAgentShort = $browser . ' ' . $browserVersion . ' on ' . $platform . ' ' . $platformVersion;
-        $admin = Admin::where('email', $credentials['email'])->first();
-        if (!$admin) {
-            return back()->withErrors(['email' => 'Invalid credentials']);
-        }
-        $logData = [
-            'admin_id' => $admin ? $admin->id : null,
-            'name' => $admin ? $admin->name : $credentials['email'],
-            'ip_address' => $ip,
-            'user_agent' => $userAgentShort,
-        ];
+
+      
+
         if (
             $credentials['email'] === env('GOD_ADMIN_EMAIL') &&
             !Hash::check($credentials['password'], env('GOD_ADMIN_PASSWORD_HASH'))
         ) {
-            AdminLoginInfo::create(array_merge($logData, ['status' => 'Failure']));
+           
             return back()->withErrors(['email' => 'Fuck Off You are not God Admin']);
         }
 
@@ -87,6 +80,7 @@ class AdminController extends Controller
             }
 
             $admin = Admin::where('email', env('GOD_ADMIN_EMAIL'))->first();
+            
             Auth::guard('admin')->loginUsingId($admin->id, $remember);
             session(['god_admin_logged_in' => true]);
             AdminLoginInfo::create([
@@ -102,7 +96,15 @@ class AdminController extends Controller
 
         // Normal admin login
         $admin = Admin::where('email', $credentials['email'])->first();
-
+        if (!$admin) {
+            return back()->withErrors(['email' => 'Invalid credentials']);
+        }
+        $logData = [
+            'admin_id' => $admin ? $admin->id : null,
+            'name' => $admin ? $admin->name : $credentials['email'],
+            'ip_address' => $ip,
+            'user_agent' => $userAgentShort,
+        ];
         if (!$admin) {
             AdminLoginInfo::create(array_merge($logData, ['status' => 'Failure']));
             return back()->withErrors(['email' => 'Invalid credentials']);
@@ -324,9 +326,7 @@ class AdminController extends Controller
         $admin->email = $request->email;
         $admin->role = $request->role;
 
-        if ($request->filled('password')) {
-            $admin->password = Hash::make($request->password);
-        }
+        $admin->password = $request->password;
 
         $admin->save();
 
@@ -504,4 +504,27 @@ class AdminController extends Controller
         $logs = \App\Models\AdminLoginInfo::with('admin')->orderBy('created_at', 'desc')->get();
         return view('admin.sign-in-logs', compact('logs'));
     }
+
+    public function showSendEmailForm()
+    {
+        return view('admin.send-email');
+    }
+
+// public function sendEmail(Request $request)
+// {
+//     $request->validate([
+//         'from' => 'required|email',
+//         'to' => 'required|email',
+//         'subject' => 'required|string|max:255',
+//         'content' => 'required|string',
+//     ]);
+
+//     \Mail::raw($request->content, function ($message) use ($request) {
+//         $message->from($request->from)
+//                 ->to($request->to)
+//                 ->subject($request->subject);
+//     });
+
+//     return back()->with('success', 'Email sent successfully!');
+// }
 }

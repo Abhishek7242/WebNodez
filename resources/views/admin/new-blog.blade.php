@@ -478,6 +478,7 @@
             menubar: false,
             branding: false,
             promotion: false,
+            license_key: 'aeycodu5j1avic4jomsqz31ekkukgwyq3bugypde1er7241a',
             resize: true,
             height: 600,
             images_upload_url: '/admin/upload-image',

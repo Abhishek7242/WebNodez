@@ -11,7 +11,7 @@ hamIcon.addEventListener('click', function () {
         document.body.classList.add('no-scroll')
         show = true
 
-     
+
 
         mobileNav.style.right = '0px'
         navItems.forEach((item, index) => {

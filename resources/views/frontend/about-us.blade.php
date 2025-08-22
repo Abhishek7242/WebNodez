@@ -1,12 +1,40 @@
 @extends('frontend/layouts/main')
-@section('title', 'Linkuss - About Us')
+@section('title', 'About Linkuss | Web Development & Digital Solutions Team')
 @section('meta_description',
-    'Learn about Linkuss - our story, mission, vision, and company culture. Discover how we
-    deliver innovative web development and digital solutions with a team of expert professionals.')
+    'Meet Linkuss: Expert web development, digital solutions, and a passionate team driving
+    innovation for your business.')
 @section('meta_keywords',
-    'about webnodez, company story, mission vision, company culture, web development team, digital
+    'about linkuss, company story, mission vision, company culture, web development team, digital
     solutions company, IT services company, professional team')
 @section('og_image', asset('images/about-og-image.jpg'))
+
+@section('organization_schema')
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            "name": "About Linkuss",
+            "description": "Meet Linkuss: Expert web development, digital solutions, and a passionate team driving innovation for your business.",
+            "url": "{{ url()->current() }}",
+            "image": "{{ asset('images/about-og-image.jpg') }}",
+            "mainEntity": {
+                "@type": "Organization",
+                "name": "Linkuss",
+                "url": "https://linkuss.com",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://linkuss.com/assets/favicon/logo.png"
+                },
+                "sameAs": [
+                    "https://x.com/Linkuss?t=kPl0_8r4R6vYPkBK_JAKww&s=09",
+                    "http://www.linkedin.com/in/linkuss-digital-solutions-8b014537b",
+                    "https://www.facebook.com/linkuss",
+                    "https://www.instagram.com/_linkuss?igsh=Z3k5dzlvNWYzeXRq"
+                ]
+            }
+        }
+        </script>
+@endsection
 @section('about', 'active')
 @section('main-section')
     <link rel="stylesheet" href="{{ asset('css/about.css') }}">

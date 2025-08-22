@@ -16,7 +16,7 @@
             'description' =>
                 'Transform your ideas into powerful mobile applications. We develop native and cross-platform apps for iOS and Android that are scalable, secure, and user-friendly.',
             'features' => ['Native iOS & Android Apps', 'Cross-Platform Development', 'App Maintenance & Support'],
-            'link' => '/services/app-development',
+            'link' => '/services/app-design&development',
             'image' => 'https://miro.medium.com/v2/resize:fit:1200/0*psY5ZbMSEk7UXrw-.gif',
             'active' => false,
         ],

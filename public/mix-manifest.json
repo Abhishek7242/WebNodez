@@ -8,6 +8,7 @@
     "/js/services/intro.js": "/js/services/intro.js",
     "/js/canvas-background.js": "/js/canvas-background.js",
     "/js/dark-mode.js": "/js/dark-mode.js",
+    "/js/gemini.js": "/js/gemini.js",
     "/css/navbar.css": "/css/navbar.css",
     "/css/home/technologies.css": "/css/home/technologies.css",
     "/css/home/services.css": "/css/home/services.css",

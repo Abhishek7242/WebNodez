@@ -14,7 +14,7 @@
                         class="inline-block px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-white/10 backdrop-blur-sm text-white text-xs md:text-sm font-medium">
                         Discover Our Expertise
                     </span>
-                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                         Transforming Ideas into
                         <span class="relative">
                             Digital Reality
@@ -31,7 +31,7 @@
                                 </defs>
                             </svg>
                         </span>
-                    </h1>
+                    </h2>
                     <p class="text-base md:text-xl text-white/80 leading-relaxed">
                         We craft high-impact digital solutions tailored to your business needs — from design to
                         deployment.
