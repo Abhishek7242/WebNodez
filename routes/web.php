@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminManageHomeController;
 use App\Http\Controllers\AdminManagePortfolio;
 use App\Http\Controllers\AdminManageServicesController;
 use App\Http\Controllers\AdminPrivacyPolicyController;
+use App\Http\Controllers\AdminTasksController;
 use App\Http\Controllers\AdminTermConditionController;
 use App\Http\Controllers\FormSubmissionController;
 use App\Http\Controllers\UserChatsController;
@@ -19,7 +20,7 @@ use App\Models\Blog;
 use App\Models\CaseStudy;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Cache;
-
+use App\Http\Controllers\IndexNowController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,7 +38,7 @@ Route::get('/user-chats/{visitor_id}', [UserChatsController::class, 'oldMessage'
 Route::post('/user-chats/update-active', [UserChatsController::class, 'updateUserActive'])->name('user.chats.update-active');
 
 Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('login');
-Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.submit');
+Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.submit')->middleware('rate.limit:login,5,1');
 Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
@@ -49,6 +50,14 @@ Route::get('/admin/unauthorized', function () {
 
 
 Route::middleware('auth:admin')->group(function () {
+
+// tasks
+Route::get('/admin/tasks', [AdminTasksController::class, 'manageTasks'])->name('admin.tasks');
+
+// tasks
+
+
+
 
     Route::get('/admin/send-email', [SendEmailController::class, 'showForm'])->name('admin.sendEmailForm');
     Route::post('/admin/send-email', [SendEmailController::class, 'send'])->name('admin.sendEmail');
@@ -172,5 +181,12 @@ Route::prefix('admin')->middleware(['auth:admin'])->group(function () {
     Route::delete('/og-images/{filename}', [App\Http\Controllers\Admin\OgImageController::class, 'delete'])->name('admin.og-images.delete');
 });
 
+
+
+Route::get('/submit-sitemap-indexnow', [IndexNowController::class, 'submitSitemap']);
+
 // Feedback submission route
-Route::post('/submit-feedback', [FormSubmissionController::class, 'submitFeedback'])->name('submit.feedback');
+Route::post('/submit-feedback', [FormSubmissionController::class, 'submitFeedback'])->name('submit.feedback')->middleware('rate.limit:feedback,3,5');
+
+// SEO Routes
+Route::get('/sitemap.xml', [App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap');

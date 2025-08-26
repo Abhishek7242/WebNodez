@@ -75,7 +75,6 @@
     // Function to simulate a delayed response
 
     contactSubmitBtn.classList.remove('formNotSubmitted');
-    // contactSubmitBtn.classList.remove('submitForm');
     img.src = 'https://i.pinimg.com/originals/ea/b7/e1/eab7e1120c9dd628d3bb39a20a94927d.gif';
     contactSubmitBtn.innerText = '';
     contactSubmitBtn.appendChild(img);
@@ -84,22 +83,34 @@
     // Display loading state or message
     console.log('Submitting form...');
 
+    // Get reCAPTCHA response value
+    var recaptchaResponse = '';
+    var recaptchaElem = document.querySelector('textarea[name="g-recaptcha-response"]');
+    if (recaptchaElem) {
+      recaptchaResponse = recaptchaElem.value;
+    }
+
     // Simulate delayed response before making actual fetch call
     simulateDelayedResponse().then(function (simulatedResponse) {
+      var _document$querySelect;
       console.log('Simulated Response:', simulatedResponse);
 
+      // Get CSRF token from meta tag
+      var csrfToken = ((_document$querySelect = document.querySelector('meta[name="csrf-token"]')) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.getAttribute('content')) || '';
       // Construct options for actual fetch call
       var options = {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': csrfToken
         },
         body: JSON.stringify({
           name: contactName.value,
           email: contactEmail.value,
           number: contactNumber.value,
           countryCode: countryCode.value,
-          message: contactMessage.value
+          message: contactMessage.value,
+          'g-recaptcha-response': recaptchaResponse
         })
       };
       console.log(options);
@@ -114,7 +125,7 @@
       return response.json();
     }).then(function (data) {
       console.log(data);
-      contactSubmitBtn.classList.remove('submittingForm');
+      contactSubmitBtn.classList.remove;
       contactSubmitBtn.classList.add('submitFormSuccessfully');
       img.src = 'https://media.tenor.com/WsmiS-hUZkEAAAAj/verify.gif';
       contactName.value = '';
@@ -132,6 +143,11 @@
       contactName.removeAttribute('style');
       contactEmail.removeAttribute('style');
       contactNumber.removeAttribute('style');
+
+      // Reset reCAPTCHA widget after successful submission
+      if (typeof grecaptcha !== 'undefined') {
+        grecaptcha.reset();
+      }
 
       // Show feedback popup after successful submission
       setTimeout(function () {

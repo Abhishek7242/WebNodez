@@ -77,7 +77,10 @@
                             </button>
                         </div>
                     </div>
-
+   {!! NoCaptcha::renderJs() !!}
+                <div class="recaptcha-container">
+                    {!! NoCaptcha::display() !!}
+                </div>
                     <!-- Remember Me & Forgot Password -->
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
@@ -85,10 +88,10 @@
                                 class="h-4 w-4 text-blue-500 focus:ring-blue-500 border-gray-600 rounded bg-white/5">
                             <label for="remember" class="ml-2 block text-sm text-gray-300">Remember me</label>
                         </div>
-                        <a href="#"
+                        {{-- <a href="#"
                             class="text-sm text-blue-400 hover:text-blue-300 transition-colors duration-300">
                             Forgot password?
-                        </a>
+                        </a> --}}
                     </div>
 
                     <!-- Login Button -->

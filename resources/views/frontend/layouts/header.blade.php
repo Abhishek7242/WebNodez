@@ -55,6 +55,11 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
+
+    <!-- jQuery (must be before any script that uses $) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
+
     <!-- Pusher -->
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 
@@ -105,15 +110,11 @@
                 <div id="ham-icon" class="toggle">
                     <span></span>
                 </div>
-                <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-                    crossorigin="anonymous"></script>
                 <script type="text/javascript">
                     $(document).ready(function() {
                         $('.toggle').click(function() {
                             $('.toggle').toggleClass('active');
                             $('body').toggleClass('active');
-
-
                         })
                     })
                 </script>

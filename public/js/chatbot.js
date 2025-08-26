@@ -1788,15 +1788,15 @@ var Chatbot = /*#__PURE__*/function () {
 
     // Bind to Pusher channel for real-time messages
     channel.bind('chatbot-message', function (data) {
-      console.log('user message is broadcasted', data.message);
-      console.log(data);
+      // console.log('user message is broadcasted', data.message);
+      // console.log(data);
       // Only show AI messages from admin panel, not from local AI responses
       if (data.sender != 'user' && data.sender != 'ai') {
         _this.addBotMessage(data.message);
       }
     });
     adminMessageChannel.bind('admin.message', function (data) {
-      console.log('admin message', data);
+      // console.log('admin message', data);
       // Remove existing typing indicator if any
       var existingTypingIndicator = document.querySelector('.typing-indicator');
       if (existingTypingIndicator) {
@@ -1837,9 +1837,9 @@ var Chatbot = /*#__PURE__*/function () {
         } else {
           clearInterval(typeInterval);
           // Store admin message in database
-          console.log('admin meaage skdiewdhiuwe', data.admin_name, data.message);
+          // console.log('admin meaage skdiewdhiuwe', data.admin_name, data.message);
           _this.storeMessage(data.admin_name, data.message)["catch"](function (error) {
-            console.error('Error storing admin message:', error);
+            // console.error('Error storing admin message:', error);
             typingIndicator.classList.add('error-message');
           });
         }
@@ -1956,7 +1956,6 @@ var Chatbot = /*#__PURE__*/function () {
                   return _regenerator().w(function (_context) {
                     while (1) switch (_context.n) {
                       case 0:
-                        console.log('the chatbot clicked');
                         if (!show) {
                           _context.n = 1;
                           break;
@@ -1981,7 +1980,7 @@ var Chatbot = /*#__PURE__*/function () {
                         }
                         _this2.showMessageLogo();
                         _this2.isFirstClick = false;
-                        console.log('the chatbot first clicked');
+                        // console.log('the chatbot first clicked')
                         _context.n = 4;
                         break;
                       case 2:
@@ -2116,11 +2115,12 @@ var Chatbot = /*#__PURE__*/function () {
 
                 // Set the progress flags
                 this.hasAgreedToTerms = hasAgreed;
-                console.log(hasAgreed);
+                // console.log(hasAgreed);
+
                 this.hasSelectedService = hasSelectedService;
-                console.log(hasAgreed);
+                // console.log(hasAgreed);
                 this.hasProvidedEmail = hasProvidedEmail;
-                console.log(hasAgreed);
+                // console.log(hasAgreed);
                 this.selectedService = selectedService;
 
                 // Show appropriate next step based on progress
@@ -2160,7 +2160,7 @@ var Chatbot = /*#__PURE__*/function () {
             case 4:
               _context3.p = 4;
               _t = _context3.v;
-              console.error('Error fetching chat history:', _t);
+              // console.error('Error fetching chat history:', error);
               // Show terms notice for new users
               this.showTermsNotice();
             case 5:
@@ -2239,7 +2239,6 @@ var Chatbot = /*#__PURE__*/function () {
               }
               throw new Error('CSRF token not found');
             case 2:
-              console.log(messageData);
               _context4.n = 3;
               return fetch('/user-chats', {
                 method: 'POST',
@@ -2265,7 +2264,6 @@ var Chatbot = /*#__PURE__*/function () {
             case 6:
               _context4.p = 6;
               _t2 = _context4.v;
-              console.error('Error storing message:', _t2);
               throw _t2;
             case 7:
               return _context4.a(2);
@@ -2300,7 +2298,7 @@ var Chatbot = /*#__PURE__*/function () {
         // Only process response if message was stored successfully
         _this5.processUserMessage(message, 'user');
       })["catch"](function (error) {
-        console.error('Error storing message:', error);
+        // console.error('Error storing message:', error);
         // Find the last user message and add error state
         var userMessages = messagesContainer.querySelectorAll('.user-message');
         var lastUserMessage = userMessages[userMessages.length - 1];
@@ -2346,7 +2344,7 @@ var Chatbot = /*#__PURE__*/function () {
     value: function handleUserInput() {
       var _this6 = this;
       if (!this.hasAgreedToTerms || !this.hasSelectedService || !this.hasProvidedEmail) {
-        console.log(this.hasAgreedToTerms);
+        // console.log(this.hasAgreedToTerms);
         return;
       }
       var input = document.querySelector('.chatbot-input');
@@ -2401,9 +2399,9 @@ var Chatbot = /*#__PURE__*/function () {
         // First broadcast the message
         var token = (_document$querySelect2 = document.querySelector('meta[name="csrf-token"]')) === null || _document$querySelect2 === void 0 ? void 0 : _document$querySelect2.getAttribute('content');
         if (!token) {
-          console.warn('CSRF token not found');
+          // console.warn('CSRF token not found');
         }
-        console.log('message is broadcasted', message);
+        // console.log('message is broadcasted', message);
         fetch("/user-chats/broadcast", {
           method: 'POST',
           headers: {
@@ -2422,13 +2420,13 @@ var Chatbot = /*#__PURE__*/function () {
           }
           return response.json();
         }).then(function (data) {
-          console.log('data is broadcasted', data);
+          // console.log('data is broadcasted', data);
           // Remove sending animation after successful broadcast
           _messageElement2.classList.remove('sending-animation');
           // Add user message after successful broadcast
           _this6.addUserMessage(message);
         })["catch"](function (error) {
-          console.error('Error:', error);
+          // console.error('Error:', error);
           // Remove sending animation and add error state
           _messageElement2.classList.remove('sending-animation');
           _messageElement2.classList.add('error-message');
@@ -2482,7 +2480,7 @@ var Chatbot = /*#__PURE__*/function () {
               // Broadcast the AI response after typing is complete
               var token = (_document$querySelect3 = document.querySelector('meta[name="csrf-token"]')) === null || _document$querySelect3 === void 0 ? void 0 : _document$querySelect3.getAttribute('content');
               if (!token) {
-                console.warn('CSRF token not found');
+                // console.warn('CSRF token not found');
               }
               fetch("/user-chats/broadcast", {
                 method: 'POST',
@@ -2499,7 +2497,7 @@ var Chatbot = /*#__PURE__*/function () {
               }).then(function (response) {
                 return response.json();
               }).then(function (data) {
-                console.log('data is broadcasted', data);
+                // console.log('data is broadcasted', data);
               })["catch"](function (error) {
                 console.error('Error:', error);
                 typingIndicator.classList.add('error-message');
@@ -2529,7 +2527,7 @@ var Chatbot = /*#__PURE__*/function () {
             // Broadcast the AI response after typing is complete
             var token = (_document$querySelect4 = document.querySelector('meta[name="csrf-token"]')) === null || _document$querySelect4 === void 0 ? void 0 : _document$querySelect4.getAttribute('content');
             if (!token) {
-              console.warn('CSRF token not found');
+              // console.warn('CSRF token not found');
             }
             fetch("/user-chats/broadcast", {
               method: 'POST',
@@ -2546,9 +2544,9 @@ var Chatbot = /*#__PURE__*/function () {
             }).then(function (response) {
               return response.json();
             }).then(function (data) {
-              console.log('data is broadcasted', data);
+              // console.log('data is broadcasted', data);
             })["catch"](function (error) {
-              console.error('Error:', error);
+              // console.error('Error:', error);
               typingIndicator.classList.add('error-message');
             });
             var _index = 0;
@@ -2593,7 +2591,7 @@ var Chatbot = /*#__PURE__*/function () {
             })), 30);
           }
         })["catch"](function (error) {
-          console.error('Error generating response:', error);
+          // console.error('Error generating response:', error);
           // Transform typing indicator into error message
           typingIndicator.className = 'chatbot-message bot-message';
           var messageContent = typingIndicator.querySelector('.message-content');
@@ -2640,7 +2638,6 @@ var Chatbot = /*#__PURE__*/function () {
             case 3:
               _context6.p = 3;
               _t3 = _context6.v;
-              console.error('Error generating AI response:', _t3);
               return _context6.a(2, "I'm having trouble right now. Please try again or contact support team at <a href='mailto:support@linkuss.com' style='color: #4f46e5; text-decoration: underline;'>support@linkuss.com</a>.");
           }
         }, _callee6, this, [[1, 3]]);
@@ -2695,7 +2692,7 @@ var Chatbot = /*#__PURE__*/function () {
             case 2:
               _context7.p = 2;
               _t4 = _context7.v;
-              console.error('Error storing agreement:', _t4);
+              // console.error('Error storing agreement:', error);
               errorMessage = document.createElement('div');
               errorMessage.className = 'chatbot-message bot-message';
               errorMessage.innerHTML = "\n                    <div class=\"bot-avatar\">\n                        <img src=\"/images/bot-avatar.svg\" alt=\"Harmony Bot\" />\n                    </div>\n                    <div class=\"message-content\">\n                        <span class=\"typing-text\">Sorry, there was an error processing your agreement. Please try again.</span>\n                    </div>\n                ";

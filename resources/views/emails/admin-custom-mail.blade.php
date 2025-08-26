@@ -13,7 +13,7 @@
         style="background:#ffffff; border-radius:12px; box-shadow:0 4px 20px rgba(55,114,255,0.15); overflow:hidden;">
 
         <!-- Header -->
-        <tr>
+    <tr>
             <td style="padding:25px 32px 10px 32px; text-align:left;">
                 <img src="https://linkuss.com/assets/Linkuss_logo.png" alt="Linkuss Logo" style="height:48px;">
             </td>
@@ -33,13 +33,13 @@
             </td>
         </tr>
 
-        <!-- Social Links -->
+   <!-- Social Links -->
         <tr>
             <td align="center" style="padding:0 20px 10px 20px;">
                 <a href="https://www.instagram.com/_linkuss?igsh=Z3k5dzlvNWYzeXRq" style="display:inline-block;margin:0 6px;" target="_blank">
                     <img src="https://cdn-icons-png.flaticon.com/24/2111/2111463.png" alt="Instagram">
                 </a>
-                <a href="https://facebook.com/" style="display:inline-block;margin:0 6px;" target="_blank">
+                <a href="https://www.facebook.com/profile.php?id=61579859516381" style="display:inline-block;margin:0 6px;" target="_blank">
                     <img src="https://cdn-icons-png.flaticon.com/24/733/733547.png" alt="Facebook">
                 </a>
                 <a href="https://x.com/Linkuss?t=kPl0_8r4R6vYPkBK_JAKww&s=09" style="display:inline-block;margin:0 6px;" target="_blank">
@@ -50,16 +50,24 @@
                 </a>
             </td>
         </tr>
+        <!-- Small Visit Link -->
+        <tr>
+            <td align="center" style="padding:0 20px 20px 20px;">
+                <a href="https://linkuss.com" target="_blank"
+                    style="font-size:12px; color:#3772FF; text-decoration:none; font-weight:500;">
+                    Visit Linkuss.com
+                </a>
+            </td>
+        </tr>
 
         <!-- Footer -->
         <tr>
             <td style="padding:10px 32px 25px 32px; text-align:center; font-size:14px; color:#777;">
-                Sent from <strong>Linkuss Admin Panel</strong><br><br>
+                Sent from <strong>Linkuss Support Team</strong><br><br>
                 <strong style="color:#3772FF;">Best Regards,</strong><br>
                 <span style="font-weight:600; color:#222;">The Linkuss Team</span><br><br>
                 <div style="font-size:12px; color:#aaa; margin-top:10px;">
                     © {{ date('Y') }} Linkuss. All rights reserved.<br>
-                    {{-- <a href="#" style="color:#3772FF; text-decoration:none;">Unsubscribe</a> --}}
                 </div>
             </td>
         </tr>

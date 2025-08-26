@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\IndexNowHelper;
 use App\Models\Achievement;
 use App\Models\DesignGallery;
 use App\Models\CaseStudy;
@@ -173,7 +174,8 @@ class AdminManagePortfolio extends Controller
 
             // Clear the cache
             Cache::forget('case_studies_featured');
-
+            // ✅ Ping IndexNow
+            IndexNowHelper::ping($caseStudy);
             return response()->json([
                 'success' => true,
                 'message' => 'Case study added successfully',
@@ -220,7 +222,8 @@ class AdminManagePortfolio extends Controller
 
             // Clear the cache
             Cache::forget('case_studies_featured');
-
+            // ✅ Trigger IndexNow ping
+            IndexNowHelper::ping($caseStudy);
             return response()->json([
                 'success' => true,
                 'message' => 'Case study updated successfully',
@@ -245,7 +248,7 @@ class AdminManagePortfolio extends Controller
 
             // Clear the cache
             Cache::forget('case_studies_featured');
-
+            IndexNowHelper::pingUrl(url('/portfolio'));
             return response()->json([
                 'success' => true,
                 'message' => 'Case study deleted successfully'

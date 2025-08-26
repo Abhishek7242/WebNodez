@@ -50,6 +50,7 @@ class FormSubmissionController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:225',
             'email' => 'required|email|max:225',
+            'g-recaptcha-response' => 'required|captcha',
         ]);
 
         // Check if the validation fails

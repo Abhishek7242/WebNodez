@@ -10,6 +10,15 @@ class DesignGallery extends Model
 {
     use HasFactory, SoftDeletes;
 
+    /**
+     * Get the public URL for IndexNow ping.
+     */
+    public function getIndexNowUrl()
+    {
+        return url('/design-gallery/' . $this->id);
+    }
+    use HasFactory, SoftDeletes;
+
     protected $fillable = [
         'title',
         'image',

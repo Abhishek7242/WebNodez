@@ -45,7 +45,7 @@
         <div class="footer-links">
             <h4>Connect With Us</h4>
             <div class="footer-social">
-                <a href="#" class="footer-icon" title="Facebook" target="_blank" rel="noopener">
+                <a href="https://www.facebook.com/profile.php?id=61579859516381" class="footer-icon" title="Facebook" target="_blank" rel="noopener">
                     <svg fill="currentColor" viewBox="0 0 24 24">
                         <path
                             d="M22 12a10 10 0 10-11.63 9.86v-6.97h-2.3v-2.89h2.3v-2.2c0-2.27 1.35-3.52 3.43-3.52.99 0 2.02.18 2.02.18v2.21h-1.14c-1.12 0-1.47.7-1.47 1.42v1.91h2.5l-.4 2.89h-2.1v6.97A10 10 0 0022 12z" />
@@ -93,6 +93,11 @@
             <p>Linkuss : Crafted with ❤️ using creativity and code.</p>
         </div>
     </div>
+<!-- jsDelivr -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+
+<!-- OR cdnjs -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {

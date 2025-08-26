@@ -375,3 +375,23 @@
     }
 }
 
+.recaptcha-container {
+    width: 100%;
+    max-width: 304px; /* default widget width */
+   
+}
+@media (max-width: 380px) {
+    .recaptcha-container {
+        transform: scale(0.85);
+        transform-origin: 0 0;
+        height: 60px;
+    }
+}
+@media (max-width: 310px) {
+    .recaptcha-container {
+        transform: scale(0.70);
+        max-width: 100%;
+        height: 50px;
+    }
+}
+

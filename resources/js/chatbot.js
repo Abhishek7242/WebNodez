@@ -147,15 +147,15 @@ class Chatbot {
 
         // Bind to Pusher channel for real-time messages
         channel.bind('chatbot-message', (data) => {
-            console.log('user message is broadcasted', data.message);
-            console.log(data);
+            // console.log('user message is broadcasted', data.message);
+            // console.log(data);
             // Only show AI messages from admin panel, not from local AI responses
             if (data.sender != 'user' && data.sender != 'ai') {
                 this.addBotMessage(data.message);
             }
         });
         adminMessageChannel.bind('admin.message', (data) => {
-            console.log('admin message', data);
+            // console.log('admin message', data);
             // Remove existing typing indicator if any
             const existingTypingIndicator = document.querySelector('.typing-indicator');
             if (existingTypingIndicator) {
@@ -207,10 +207,10 @@ class Chatbot {
                 } else {
                     clearInterval(typeInterval);
                     // Store admin message in database
-                    console.log('admin meaage skdiewdhiuwe', data.admin_name, data.message);
+                    // console.log('admin meaage skdiewdhiuwe', data.admin_name, data.message);
                     this.storeMessage(data.admin_name, data.message)
                         .catch(error => {
-                            console.error('Error storing admin message:', error);
+                            // console.error('Error storing admin message:', error);
                             typingIndicator.classList.add('error-message');
                         });
                 }
@@ -353,7 +353,7 @@ class Chatbot {
 
         // Toggle chatbot on header click when minimized
         header.addEventListener('click', async (e) => {
-            console.log('the chatbot clicked')
+            // console.log('the chatbot clicked')
             if (show) {
                 hamIcon.click();
                 await new Promise(resolve => setTimeout(resolve, 500)); // wait 2 sec
@@ -364,7 +364,7 @@ class Chatbot {
                     if (this.isFirstClick) {
                         this.showMessageLogo();
                         this.isFirstClick = false;
-                        console.log('the chatbot first clicked')
+                        // console.log('the chatbot first clicked')
 
                     } else {
 
@@ -487,12 +487,12 @@ class Chatbot {
 
                 // Set the progress flags
                 this.hasAgreedToTerms = hasAgreed;
-                console.log(hasAgreed);
+                // console.log(hasAgreed);
 
                 this.hasSelectedService = hasSelectedService;
-                console.log(hasAgreed);
+                // console.log(hasAgreed);
                 this.hasProvidedEmail = hasProvidedEmail;
-                console.log(hasAgreed);
+                // console.log(hasAgreed);
                 this.selectedService = selectedService;
 
                 // Show appropriate next step based on progress
@@ -545,7 +545,7 @@ class Chatbot {
                 this.showTermsNotice();
             }
         } catch (error) {
-            console.error('Error fetching chat history:', error);
+            // console.error('Error fetching chat history:', error);
             // Show terms notice for new users
             this.showTermsNotice();
         }
@@ -604,7 +604,7 @@ class Chatbot {
                 throw new Error('CSRF token not found');
             }
 
-            console.log(messageData);
+            // console.log(messageData);
             const response = await fetch('/user-chats', {
                 method: 'POST',
                 headers: {
@@ -621,7 +621,7 @@ class Chatbot {
 
             return await response.json();
         } catch (error) {
-            console.error('Error storing message:', error);
+            // console.error('Error storing message:', error);
             throw error; // Re-throw the error to be caught by the caller
         }
     }
@@ -648,7 +648,7 @@ class Chatbot {
                 this.processUserMessage(message, 'user');
             })
             .catch(error => {
-                console.error('Error storing message:', error);
+                // console.error('Error storing message:', error);
                 // Find the last user message and add error state
                 const userMessages = messagesContainer.querySelectorAll('.user-message');
                 const lastUserMessage = userMessages[userMessages.length - 1];
@@ -713,7 +713,7 @@ class Chatbot {
 
     handleUserInput() {
         if (!this.hasAgreedToTerms || !this.hasSelectedService || !this.hasProvidedEmail) {
-            console.log(this.hasAgreedToTerms);
+            // console.log(this.hasAgreedToTerms);
             return;
         }
 
@@ -784,9 +784,9 @@ class Chatbot {
             // First broadcast the message
             const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
             if (!token) {
-                console.warn('CSRF token not found');
+                // console.warn('CSRF token not found');
             }
-            console.log('message is broadcasted', message);
+            // console.log('message is broadcasted', message);
             fetch(`/user-chats/broadcast`, {
                 method: 'POST',
                 headers: {
@@ -807,14 +807,14 @@ class Chatbot {
                     return response.json();
                 })
                 .then(data => {
-                    console.log('data is broadcasted', data);
+                    // console.log('data is broadcasted', data);
                     // Remove sending animation after successful broadcast
                     messageElement.classList.remove('sending-animation');
                     // Add user message after successful broadcast
                     this.addUserMessage(message);
                 })
                 .catch(error => {
-                    console.error('Error:', error);
+                    // console.error('Error:', error);
                     // Remove sending animation and add error state
                     messageElement.classList.remove('sending-animation');
                     messageElement.classList.add('error-message');
@@ -886,7 +886,7 @@ class Chatbot {
                         // Broadcast the AI response after typing is complete
                         const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
                         if (!token) {
-                            console.warn('CSRF token not found');
+                            // console.warn('CSRF token not found');
                         }
                         fetch(`/user-chats/broadcast`, {
                             method: 'POST',
@@ -903,7 +903,7 @@ class Chatbot {
                         })
                             .then(response => response.json())
                             .then(data => {
-                                console.log('data is broadcasted', data);
+                                // console.log('data is broadcasted', data);
                             })
                             .catch(error => {
                                 console.error('Error:', error);
@@ -933,7 +933,7 @@ class Chatbot {
                     // Broadcast the AI response after typing is complete
                     const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
                     if (!token) {
-                        console.warn('CSRF token not found');
+                        // console.warn('CSRF token not found');
                     }
                     fetch(`/user-chats/broadcast`, {
                         method: 'POST',
@@ -950,10 +950,10 @@ class Chatbot {
                     })
                         .then(response => response.json())
                         .then(data => {
-                            console.log('data is broadcasted', data);
+                            // console.log('data is broadcasted', data);
                         })
                         .catch(error => {
-                            console.error('Error:', error);
+                            // console.error('Error:', error);
                             typingIndicator.classList.add('error-message');
                         });
                     let index = 0;
@@ -986,7 +986,7 @@ class Chatbot {
                     }, 30);
                 }
             }).catch(error => {
-                console.error('Error generating response:', error);
+                // console.error('Error generating response:', error);
                 // Transform typing indicator into error message
                 typingIndicator.className = 'chatbot-message bot-message';
                 const messageContent = typingIndicator.querySelector('.message-content');
@@ -1046,7 +1046,7 @@ class Chatbot {
             const [response, title] = await generateText(prompt);
             return response;
         } catch (error) {
-            console.error('Error generating AI response:', error);
+            // console.error('Error generating AI response:', error);
             return "I'm having trouble right now. Please try again or contact support team at <a href='mailto:support@linkuss.com' style='color: #4f46e5; text-decoration: underline;'>support@linkuss.com</a>.";
         }
     }
@@ -1099,7 +1099,7 @@ class Chatbot {
                 // Show service selection
                 this.showServiceSelection();
             } catch (error) {
-                console.error('Error storing agreement:', error);
+                // console.error('Error storing agreement:', error);
                 const errorMessage = document.createElement('div');
                 errorMessage.className = 'chatbot-message bot-message';
                 errorMessage.innerHTML = `

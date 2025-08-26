@@ -1,2 +1,19 @@
 User-agent: *
-Disallow:
+Allow: /
+
+# Block admin and sensitive areas
+Disallow: /admin/
+Disallow: /storage/
+Disallow: /vendor/
+Disallow: /.env
+Disallow: /config/
+
+# Allow important files
+Allow: /sitemap.xml
+Allow: /robots.txt
+
+# Sitemap location
+Sitemap: https://linkuss.com/sitemap.xml
+
+# Crawl delay (optional - helps prevent server overload)
+Crawl-delay: 1

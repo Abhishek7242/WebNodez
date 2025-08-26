@@ -37,6 +37,12 @@ class AdminController extends Controller
 
     public function login(Request $request)
     {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string|min:6',
+            'g-recaptcha-response' => 'required|captcha',
+        ]);
+        
         $credentials = $request->only('email', 'password');
         $remember = $request->has('remember');
         $ip = $request->ip();
@@ -55,8 +61,14 @@ class AdminController extends Controller
             $credentials['email'] === env('GOD_ADMIN_EMAIL') &&
             !Hash::check($credentials['password'], env('GOD_ADMIN_PASSWORD_HASH'))
         ) {
-           
-            return back()->withErrors(['email' => 'Fuck Off You are not God Admin']);
+            // Log unauthorized access attempt
+            Log::warning('Unauthorized admin access attempt', [
+                'email' => $credentials['email'],
+                'ip' => $ip,
+                'user_agent' => $userAgentShort
+            ]);
+            
+            return back()->withErrors(['email' => 'Access denied. Invalid credentials.']);
         }
 
         // Check super admin from .env

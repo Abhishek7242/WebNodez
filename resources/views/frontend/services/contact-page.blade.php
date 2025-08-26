@@ -60,11 +60,15 @@
                         <div class="error-message text-red-500 text-sm mt-1" id="messageError"></div>
                     </div>
                 </div>
-
+                {!! NoCaptcha::renderJs() !!}
+                <div class="recaptcha-container">
+                    {!! NoCaptcha::display() !!}
+                </div>
                 <!-- Submit Button -->
                 <div class="contact-page-form-group text-center">
                     <button type="submit" id="submitBtn"
                         class="contact-page-submit-btn w-full md:w-auto px-6 md:px-8 py-2.5 md:py-4 text-sm md:text-lg font-medium text-white bg-gradient-to-r from-[#22C55E] to-[#059669] hover:from-[#3fac3b] hover:to-[#22C55E] rounded-lg md:rounded-xl transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#22C55E]">
+
                         <span id="submitText">Send Message</span>
                         <i id="submitIcon" class="fas fa-paper-plane ml-2"></i>
                     </button>
@@ -122,7 +126,9 @@
                         name: formData.get('name'),
                         email: formData.get('email'),
                         number: formData.get('number'),
-                        message: formData.get('message')
+                        message: formData.get('message'),
+                        'g-recaptcha-response': formData.get(
+                            'g-recaptcha-response') // <-- add this line
                     })
                 });
 
@@ -139,6 +145,11 @@
 
                 // Reset form
                 form.reset();
+
+                // Reset reCAPTCHA widget after successful submission
+                if (typeof grecaptcha !== 'undefined') {
+                    grecaptcha.reset();
+                }
 
                 // Show feedback popup after successful submission
                 setTimeout(function() {

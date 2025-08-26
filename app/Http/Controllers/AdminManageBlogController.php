@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\IndexNowHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -146,13 +147,14 @@ class AdminManageBlogController extends Controller
         ]);
     }
 
+
     public function saveBlog(Request $request)
     {
         $user = auth()->guard('admin')->user();
-        if (!in_array($user->role, ['super_admin', 'admin','editor', 'god_admin'])) {
+        if (!in_array($user->role, ['super_admin', 'admin', 'editor', 'god_admin'])) {
             abort(403, 'Unauthorized');
         }
-            // Validate the request
+
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255|unique:blogs,slug',
@@ -168,7 +170,6 @@ class AdminManageBlogController extends Controller
         }
 
         try {
-            // Handle featured image upload if present
             $featuredImagePath = null;
             if ($request->hasFile('featured_image')) {
                 $file = $request->file('featured_image');
@@ -176,7 +177,6 @@ class AdminManageBlogController extends Controller
                 $featuredImagePath = $file->storeAs('blog-images', $filename, 'public');
             }
 
-            // Create the blog post
             $blog = Blog::create([
                 'title' => $request->title,
                 'slug' => $request->slug,
@@ -188,15 +188,24 @@ class AdminManageBlogController extends Controller
                 'author_id' => auth()->guard('admin')->id()
             ]);
 
-            // Clear related caches
+            // ✅ Clear cache
             Cache::forget('admin.blogs.all');
             Cache::forget('frontend.featured.blogs');
 
-            return redirect()->back()->with('success', 'Blog saved!');
+            // ✅ Submit blog URL to IndexNow
+            try {
+                $submitted = IndexNowHelper::submitUrl($blog->getIndexNowUrl());
+                if (!$submitted) {
+                }
+            } catch (\Exception $e) {
+            }
+
+            return redirect()->back()->with('success', 'Blog saved and submitted to IndexNow!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'ERROR! Blog not Saved!');
         }
     }
+
 
     public function deleteBlog($id)
     {

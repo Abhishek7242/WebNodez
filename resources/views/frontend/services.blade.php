@@ -1,5 +1,6 @@
 @extends('frontend/layouts/main')
-@section('title', 'Linkuss - Services')
+@section('title', 'Linkuss Services | Web Development, Mobile Apps & IT Solutions')
+
 @section('meta_description',
     'Web development, mobile apps, e-commerce, and IT services by Linkuss. Digital solutions
     for business growth.')

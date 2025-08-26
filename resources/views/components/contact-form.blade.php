@@ -59,10 +59,11 @@
                         </svg></i>
                 </div>
                 <div id="term-conditions">
-                    <a href="/terms-conditions#contact-us">Terms and conditions</a>
-                    @if ($errors->has('g-recaptcha-response'))
-                        <span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
-                    @endif
+                    <div class="my-2"> 
+
+                
+                    </div>
+                    <a class="mt-3" href="/terms-conditions#contact-us">Terms and conditions</a>
                 </div>
                 <div id="checkbox-container">
                     <div>
@@ -89,9 +90,11 @@
 
 <!-- Include the feedback component -->
 @include('components.feedback')
-
+@if ($errors->has('g-recaptcha-response'))
+    <span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
+@endif
 <script src="{{ asset('js/contactUsForm.js') }}"></script>
-
+ <script src="https://www.google.com/recaptcha/api.js"></script>
 <!-- Test button for debugging (remove in production) -->
 {{-- <script>
     document.addEventListener('DOMContentLoaded', function() {
