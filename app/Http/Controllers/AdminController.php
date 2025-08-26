@@ -40,7 +40,7 @@ class AdminController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|string|min:6',
-            'g-recaptcha-response' => 'required|captcha',
+            // 'g-recaptcha-response' => 'required|captcha',
         ]);
         
         $credentials = $request->only('email', 'password');

@@ -19,129 +19,409 @@
     el.style.setProperty('--dark-bg', 'white');
 </script>
 
+<style>
+    .admin-dashboard{
+        padding-bottom: 150px; /* Space for the dock */
+    }
+    /* Grid layout */
+.cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Card base */
+.card {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+}
+
+/* Header */
+.card-header {
+    margin-bottom: 1rem;
+}
+
+.icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.75rem;
+}
+
+.icon-blue { color: #60a5fa; }
+.icon-yellow { color: #facc15; }
+.icon-pink { color: #f472b6; }
+.icon-green { color: #4ade80; }
+.icon-purple { color: #a78bfa; }
+.icon-red { color: #f87171; }
+
+.card-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.card-text {
+    margin-top: 0.25rem;
+    font-size: 0.9rem;
+    color: #9ca3af;
+}
+
+/* Footer */
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.card-meta {
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn-blue { background: #3b82f6; color: #fff; }
+.btn-blue:hover { background: #2563eb; }
+
+.btn-yellow { background: #facc15; color: #000; }
+.btn-yellow:hover { background: #eab308; }
+
+.btn-pink { background: #f472b6; color: #000; }
+.btn-pink:hover { background: #ec4899; }
+
+.btn-green { background: #4ade80; color: #000; }
+.btn-green:hover { background: #22c55e; }
+
+.btn-purple { background: #a78bfa; color: #000; }
+.btn-purple:hover { background: #8b5cf6; }
+
+.btn-red { background: #f87171; color: #000; }
+.btn-red:hover { background: #ef4444; }
+
+  
+</style>
 <!-- =================== Admin Home =================== -->
-<div class="relative z-50 flex flex-col items-center justify-between h-screen py-12 space-y-12">
+<div class="admin-dashboard relative z-50 flex flex-col items-center justify-between py-12 space-y-12">
+@php
+    $hour = now()->hour;
+    $greeting = $hour < 12 ? 'Good morning' : ($hour < 18 ? 'Good afternoon' : 'Good evening');
+    // optional counts (pass these from controller or use placeholders)
+    $newTasks = $newTasks ?? 8;
+    $unreadMessages = $unreadMessages ?? 5;
+    $activeProjects = $activeProjects ?? 12;
+@endphp
 
-    <!-- Welcome Section -->
-    <div class="text-center">
-        <h1 class="text-4xl font-bold text-white">Welcome to Linkuss Admin Dashboard</h1>
-        <p class="text-gray-300 mt-2">Manage users, blogs, services, and more — all in one place</p>
+<div class="welcome-container text-center max-w-5xl mx-auto px-6">
+    <p class="text-sm text-accent/80 mb-2">{{ $greeting }}, {{ Auth::user()->name ?? 'Admin' }}.</p>
+
+    <h1 class="welcome-title text-3xl md:text-4xl font-extrabold leading-tight">
+        Your command center is ready.
+        <span class="block text-accent">Take control of your digital empire.</span>
+    </h1>
+
+    <p class="welcome-subtitle mt-4 text-base md:text-lg text-white/80 max-w-3xl mx-auto">
+        Quick access to content, clients, operations and growth modules — everything you need to manage, monitor and move faster.
+    </p>
+
+    <div class="mt-6 inline-flex items-center space-x-4 text-sm text-white/80">
+        <span class="px-3 py-2 bg-white/5 rounded-lg">🗂 Active Projects: <strong class="ml-2 text-white">{{ $activeProjects }}</strong></span>
+        <span class="px-3 py-2 bg-white/5 rounded-lg">✅ New Tasks: <strong class="ml-2 text-white">{{ $newTasks }}</strong></span>
+        <span class="px-3 py-2 bg-white/5 rounded-lg">✉️ Messages: <strong class="ml-2 text-white">{{ $unreadMessages }}</strong></span>
     </div>
+</div>
 
-   <!-- =================== Middle Content =================== -->
+ <!-- =================== Modern Apple-like Middle Content =================== -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl w-full px-6">
 
-    <!-- Card 1 -->
-    <div class="bg-black/40 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/10">
-        <i class="fas fa-users text-blue-400 text-3xl mb-3"></i>
-        <h3 class="text-lg font-semibold text-white">User Management</h3>
-        <p class="text-gray-400 mt-1 text-sm">
-            View, edit, and manage registered users, roles, and permissions.
-        </p>
+  <!-- Card: User Management -->
+  <div class="apple-card flex flex-col justify-between">
+    <div class="flex items-start space-x-4">
+      <div class="card-icon">
+        <i class="fas fa-users"></i>
+      </div>
+      <div>
+        <h4 class="card-title">User Management</h4>
+        <p class="card-desc">View, edit, and manage registered users, roles, and permissions.</p>
+      </div>
     </div>
 
-    <!-- Card 2 -->
-    <div class="bg-black/40 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/10">
-        <i class="fas fa-blog text-green-400 text-3xl mb-3"></i>
-        <h3 class="text-lg font-semibold text-white">Content & Blogs</h3>
-        <p class="text-gray-400 mt-1 text-sm">
-            Publish articles, update blog posts, and control featured content.
-        </p>
+    <div class="mt-6 flex items-center justify-between">
+      <div>
+        <div class="card-count">{{ $usersCount ?? '1,245' }}</div>
+        <div class="card-sub">Total users</div>
+      </div>
+      <a href="/admin/manage-users" class="card-btn">Open</a>
+    </div>
+  </div>
+
+  <!-- Card: Tasks -->
+  <div class="apple-card flex flex-col justify-between">
+    <div class="flex items-start space-x-4">
+      <div class="card-icon">
+        <i class="fas fa-tasks"></i>
+      </div>
+      <div>
+        <h4 class="card-title">Tasks</h4>
+        <p class="card-desc">Assign, track and complete admin tasks efficiently.</p>
+      </div>
     </div>
 
-    <!-- Card 3 -->
-    <div class="bg-black/40 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/10">
-        <i class="fas fa-cogs text-purple-400 text-3xl mb-3"></i>
-        <h3 class="text-lg font-semibold text-white">Services</h3>
-        <p class="text-gray-400 mt-1 text-sm">
-            Update service information, pricing, and active offerings.
-        </p>
+    <div class="mt-6 flex items-center justify-between">
+      <div>
+        <div class="card-count">{{ $newTasks ?? '8' }}</div>
+        <div class="card-sub">New tasks</div>
+      </div>
+      <a href="/admin/managetasks/dashboard" class="card-btn">Open</a>
+    </div>
+  </div>
+
+  <!-- Card: Messages -->
+  <div class="apple-card flex flex-col justify-between">
+    <div class="flex items-start space-x-4">
+      <div class="card-icon">
+        <i class="fas fa-envelope"></i>
+      </div>
+      <div>
+        <h4 class="card-title">Messages</h4>
+        <p class="card-desc">Incoming messages from clients and visitors.</p>
+      </div>
     </div>
 
-    <!-- Card 4 -->
-    <div class="bg-black/40 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/10">
-        <i class="fas fa-briefcase text-red-400 text-3xl mb-3"></i>
-        <h3 class="text-lg font-semibold text-white">Portfolio</h3>
-        <p class="text-gray-400 mt-1 text-sm">
-            Showcase projects, update portfolio items, and manage highlights.
-        </p>
+    <div class="mt-6 flex items-center justify-between">
+      <div>
+        <div class="card-count">{{ $unreadMessages ?? '5' }}</div>
+        <div class="card-sub">Unread</div>
+      </div>
+      <a href="/admin/contact-details" class="card-btn">Open</a>
+    </div>
+  </div>
+
+  <!-- Card: Blogs -->
+  <div class="apple-card flex flex-col justify-between">
+    <div class="flex items-start space-x-4">
+      <div class="card-icon">
+        <i class="fas fa-blog"></i>
+      </div>
+      <div>
+        <h4 class="card-title">Content & Blogs</h4>
+        <p class="card-desc">Publish articles, curate featured posts and drafts.</p>
+      </div>
     </div>
 
-    <!-- ✅ Replaced Feedback with Tasks -->
-    <div class="bg-black/40 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/10">
-        <i class="fas fa-tasks text-yellow-400 text-3xl mb-3"></i>
-        <h3 class="text-lg font-semibold text-white">Tasks</h3>
-        <p class="text-gray-400 mt-1 text-sm">
-            Assign, track, and manage admin tasks efficiently.
-        </p>
+    <div class="mt-6 flex items-center justify-between">
+      <div>
+        <div class="card-count">{{ $pendingPosts ?? '3' }}</div>
+        <div class="card-sub">Pending posts</div>
+      </div>
+      <a href="/admin/manage-blogs" class="card-btn">Open</a>
+    </div>
+  </div>
+
+  <!-- Card: Services -->
+  <div class="apple-card flex flex-col justify-between">
+    <div class="flex items-start space-x-4">
+      <div class="card-icon">
+        <i class="fas fa-cogs"></i>
+      </div>
+      <div>
+        <h4 class="card-title">Services</h4>
+        <p class="card-desc">Update service pages, pricing and availability.</p>
+      </div>
     </div>
 
-    <!-- Card 6 -->
-    <div class="bg-black/40 backdrop-blur-lg p-6 rounded-2xl shadow-lg border border-white/10">
-        <i class="fas fa-envelope-open-text text-teal-400 text-3xl mb-3"></i>
-        <h3 class="text-lg font-semibold text-white">Email Campaigns</h3>
-        <p class="text-gray-400 mt-1 text-sm">
-            Send announcements, newsletters, and important updates.
-        </p>
+    <div class="mt-6 flex items-center justify-between">
+      <div>
+        <div class="card-count">{{ $activeServices ?? '12' }}</div>
+        <div class="card-sub">Active services</div>
+      </div>
+      <a href="/admin/manage-services" class="card-btn">Open</a>
     </div>
+  </div>
+
+  <!-- Card: Portfolio -->
+  <div class="apple-card flex flex-col justify-between">
+    <div class="flex items-start space-x-4">
+      <div class="card-icon">
+        <i class="fas fa-briefcase"></i>
+      </div>
+      <div>
+        <h4 class="card-title">Portfolio</h4>
+        <p class="card-desc">Showcase projects and manage highlights.</p>
+      </div>
+    </div>
+
+    <div class="mt-6 flex items-center justify-between">
+      <div>
+        <div class="card-count">{{ $projectsCount ?? '24' }}</div>
+        <div class="card-sub">Projects</div>
+      </div>
+      <a href="/admin/manage-portfolio" class="card-btn">Open</a>
+    </div>
+  </div>
 
 </div>
-<!-- =================== End Middle Content =================== -->
+<!-- =================== End Modern Apple-like Middle Content =================== -->
 
-
-    <!-- =================== MacBook Dock =================== -->
-    <div class="relative flex items-end space-x-6 bg-black/30 backdrop-blur-lg px-6 py-3 rounded-2xl shadow-xl">
-    
-          
-           @php
-        $dockItems = [
-                 
-            ['url' => '/admin/user-ai-chats', 'icon' => 'fas fa-comments', 'color' => 'text-pink-400', 'label' => 'AI Chats'],
-            ['url' => '/admin/tasks', 'icon' => 'fas fa-tasks', 'color' => 'text-yellow-400', 'label' => 'Tasks'],
-            ['url' => '/admin/manage-admins', 'icon' => 'fas fa-user-shield', 'color' => 'text-blue-400', 'label' => 'Admins'],
-
-            // extracted from your cards
-            ['url' => '/admin/contact-details', 'icon' => 'fas fa-envelope', 'color' => 'text-pink-400', 'label' => 'Contacts'],
-            ['url' => '/admin/manage-blogs', 'icon' => 'fas fa-blog', 'color' => 'text-green-400', 'label' => 'Blogs'],
-            ['url' => '/admin/manage-home', 'icon' => 'fas fa-home', 'color' => 'text-blue-400', 'label' => 'Home'],
-            ['url' => '/admin/manage-services', 'icon' => 'fas fa-cogs', 'color' => 'text-purple-400', 'label' => 'Services'],
-            ['url' => '/admin/manage-about', 'icon' => 'fas fa-info-circle', 'color' => 'text-yellow-400', 'label' => 'About'],
-            ['url' => '/admin/manage-portfolio', 'icon' => 'fas fa-briefcase', 'color' => 'text-red-400', 'label' => 'Portfolio'],
-            ['url' => '/admin/manage-terms', 'icon' => 'fas fa-file-contract', 'color' => 'text-indigo-400', 'label' => 'Terms'],
-            ['url' => '/admin/manage-privacy', 'icon' => 'fas fa-shield-alt', 'color' => 'text-teal-400', 'label' => 'Privacy'],
-            ['url' => '/admin/manage-og-images', 'icon' => 'fas fa-images', 'color' => 'text-orange-400', 'label' => 'OG Images'],
-            ['url' => '/admin/manage-client-progress', 'icon' => 'fas fa-chart-line', 'color' => 'text-orange-400', 'label' => 'Progress'],
-            ['url' => '/admin/manage-feedback', 'icon' => 'fas fa-star', 'color' => 'text-yellow-400', 'label' => 'Feedback'],
-            ['url' => '/admin/send-email', 'icon' => 'fas fa-envelope-open-text', 'color' => 'text-pink-400', 'label' => 'Email'],
-        ];
-    @endphp
-
-        @foreach ($dockItems as $item)
-            <div class="group flex flex-col items-center">
-                <a href="{{ $item['url'] }}">
-                    <i class="{{ $item['icon'] }} {{ $item['color'] }} text-3xl transform group-hover:scale-125 transition-transform duration-300"></i>
-                </a>
-                <span class="text-white text-sm mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {{ $item['label'] }}
-                </span>
-            </div>
-        @endforeach
-    </div>
-    <!-- =================== End Dock =================== -->
-
-</div>
-<!-- =================== End Admin Home =================== -->
-
+<!-- =================== Apple-like Glass CSS =================== -->
 <style>
-    @keyframes blob {
-        0% { transform: translate(0px, 0px) scale(1); }
-        33% { transform: translate(30px, -50px) scale(1.1); }
-        66% { transform: translate(-20px, 20px) scale(0.9); }
-        100% { transform: translate(0px, 0px) scale(1); }
-    }
-    .animate-blob { animation: blob 7s infinite; }
-    .animation-delay-2000 { animation-delay: 2s; }
-    .animation-delay-4000 { animation-delay: 4s; }
+/* Container helpers (already using Tailwind for grid) */
+
+/* Apple-like card base */
+.apple-card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 1.25rem;
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.5);
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle inner highlight line across the top */
+.apple-card::after{
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  pointer-events: none;
+}
+
+/* Hover lift & soft glow */
+.apple-card:hover{
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(10,15,25,0.6), 0 2px 8px rgba(0, 160, 255, 0.04);
+  border-color: rgba(255,255,255,0.09);
+}
+
+/* Icon circle */
+.card-icon{
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.04);
+  color: #9fe7ff;
+  font-size: 1.1rem;
+  box-shadow: inset 0 -2px 6px rgba(0,0,0,0.35);
+}
+
+/* Title and description */
+.card-title{
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.95);
+  margin-bottom: 0.125rem;
+}
+.card-desc{
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.65);
+  margin-top: 3px;
+}
+
+/* Counts */
+.card-count{
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+.card-sub{
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.6);
+  margin-top: 2px;
+}
+
+/* Button */
+.card-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .45rem .9rem;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: rgba(0,0,0,0.85);
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(245,245,245,0.92));
+  border: 1px solid rgba(6,6,6,0.06);
+  box-shadow: 0 4px 10px rgba(2,6,23,0.25);
+  transition: transform .18s ease, box-shadow .18s ease, opacity .18s;
+}
+.card-btn:hover{
+  transform: translateY(-2px);
+  opacity: 0.98;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px){
+  .card-icon{ width:44px; height:44px; font-size:1rem; }
+  .card-count{ font-size:1.4rem; }
+}
+
+/* Optional subtle neon accent ring on focus (keyboard accessible) */
+.card-btn:focus{
+  outline: none;
+  box-shadow: 0 6px 20px rgba(0,150,255,0.12);
+  border-color: rgba(0,150,255,0.18);
+}
 </style>
+
+
+</div>
+
+
 
 @endsection

@@ -2,7 +2,7 @@
 @section('title', 'Linkuss - Tasks Dashboard')
 @section('home', 'active')
 @section('main-section')
-
+  
 <link href="{{ asset('css/home.css') }}" rel="stylesheet">
 <link href="{{ asset('css/canvas-background.css') }}" rel="stylesheet">
 <link href="{{ asset('css/home/intro.css') }}" rel="stylesheet">
@@ -27,19 +27,26 @@
 .custom-task-link:hover {
     background-color: #4c1d95; /* darker purple on hover */
 }
+.sidebar{
+    padding-top: 80px;
+}
+.active-task {
+    background-color: #4c1d95; /* darker purple for active task */
+}
 
 </style>
     <div class="flex justify-between">
+        @include('admin/tasks/new-task')
 
     <!-- Sidebar -->
-    <aside class="w-64 bg-black text-white p-4">
+    <aside class="sidebar w-64 bg-black text-white p-4 pt-20">
        
      <nav class="mt-6 space-y-2">
 
     <!-- New Task (special button) -->
    
-<a href="#"
-   class="custom-task-link flex justify-center items-center gap-2 p-2 rounded text-white">
+<a onclick="openAddTaskModal()"
+   class="custom-task-link flex cursor-pointer justify-center items-center gap-2 p-2 rounded text-white">
    <i class="fas fa-plus"></i>
    New Task
 </a>
@@ -47,38 +54,38 @@
 
 
     <!-- My Tasks -->
-    <a href="#"
-       class="flex items-center gap-2 p-2 rounded hover:bg-gray-700 text-gray-200">
+    <a  href="/admin/managetasks/mytasks/view"
+       class="@yield('my-tasks', ' ') flex items-center gap-2 p-2 rounded hover:bg-gray-700 text-gray-200">
        <i class="fas fa-tasks"></i>
        My Tasks
     </a>
 
     <!-- Boards -->
-    <a href="#"
-       class="flex items-center gap-2 p-2 rounded hover:bg-gray-700 text-gray-200">
+    <a href=""
+       class="@yield('boards', ' ') flex items-center gap-2 p-2 rounded hover:bg-gray-700 text-gray-200">
        <i class="fas fa-columns"></i>
        Boards
     </a>
 
     <!-- Timeline -->
     <a href="#"
-       class="flex items-center gap-2 p-2 rounded hover:bg-gray-700 text-gray-200">
+       class="@yield('timeline', ' ') flex items-center gap-2 p-2 rounded hover:bg-gray-700 text-gray-200">
        <i class="fas fa-stream"></i>
        Timeline
     </a>
 
     <!-- Dashboard -->
-    <a href="#"
-       class="flex items-center gap-2 p-2 rounded hover:bg-gray-700 text-gray-200">
+    <a href="/admin/managetasks/dashboard"
+       class="@yield('dashboard', ' ') flex items-center gap-2 p-2 rounded hover:bg-gray-700 text-gray-200">
        <i class="fas fa-chart-line"></i>
        Dashboard
     </a>
 
     <!-- Settings -->
     <a href="#"
-       class="flex items-center gap-2 p-2 rounded hover:bg-gray-700 text-gray-200">
+       class="@yield('settings', ' ') flex items-center gap-2 p-2 rounded hover:bg-gray-700 text-gray-200">
        <i class="fas fa-cog"></i>
-       Settings
+        Settings
     </a>
 </nav>
 
@@ -87,5 +94,6 @@
     <!-- Main Content -->
         @yield('content')
     </div>
+    </header>
 
 @endsection

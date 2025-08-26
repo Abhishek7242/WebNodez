@@ -52,7 +52,8 @@ Route::get('/admin/unauthorized', function () {
 Route::middleware('auth:admin')->group(function () {
 
 // tasks
-Route::get('/admin/tasks', [AdminTasksController::class, 'manageTasks'])->name('admin.tasks');
+Route::get('/admin/managetasks/{id}', [AdminTasksController::class, 'manageTasks'])->name('admin.tasks');
+Route::get('/admin/managetasks/mytasks/view', [AdminTasksController::class, 'myTasks'])->name('admin.mytasks');
 
 // tasks
 
