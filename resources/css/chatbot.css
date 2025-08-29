@@ -568,6 +568,7 @@
 }
 .chatbot-container.chatbot-minimized.keyboard-active {
     height: 70px !important;
+    width: 70px;
 }
 .chatbot-send i {
     font-size: 1.2rem;
@@ -733,7 +734,8 @@
         border-radius: 1rem 1rem 0 0;
     }
     .chatbot-container.chatbot-minimized.keyboard-active {
-        height: 70px !important;
+        height: 60px !important;
+        width: 60px !important;
         border-radius: 50%;
     }
 }
@@ -760,7 +762,11 @@
         bottom: 15px;
         right: 15px;
     }
-
+.chatbot-container.chatbot-minimized.keyboard-active {
+        height: 50px !important;
+        width: 50px !important;
+        border-radius: 50%;
+    }
     .chatbot-header {
         padding: 0.5rem;
     }

@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const JavaScriptObfuscator = require('webpack-obfuscator');
 
 mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
@@ -31,6 +32,8 @@ mix.js('resources/js/app.js', 'public/js')
     .css('resources/css/components/faq.css', 'public/css/components/')
     .css('resources/css/portfolio/intro.css', 'public/css/portfolio/intro.css')
     .css('resources/css/portfolio/case-studies.css', 'public/css/portfolio/case-studies.css')
+    .css('resources/css/portfolio/testimonials.css', 'public/css/portfolio/testimonials.css')
+
     .css('resources/css/portfolio/design-gallery.css', 'public/css/portfolio/design-gallery.css')
     .css('resources/css/portfolio/work-details.css', 'public/css/portfolio/work-details.css')
     .css('resources/css/portfolio/blogs.css', 'public/css/portfolio/blogs.css')
@@ -68,24 +71,19 @@ mix.js('resources/js/app.js', 'public/js')
         notify: false
     });
 
-
-
-// old server
-
-// const mix = require('laravel-mix');
-
-// /*
-//  |--------------------------------------------------------------------------
-//  | Mix Asset Management
-//  |--------------------------------------------------------------------------
-//  |
-//  | Mix provides a clean, fluent API for defining some Webpack build steps
-//  | for your Laravel applications. By default, we are compiling the CSS
-//  | file for the application as well as bundling up all the JS files.
-//  |
-//  */
-
-// mix.js('resources/js/app.js', 'public/js')
-//     .postCss('resources/css/app.css', 'public/css', [
-//         //
-//     ]);
+// ✅ Obfuscate JS only in production build
+if (mix.inProduction()) {
+    mix.webpackConfig({
+        plugins: [
+            new JavaScriptObfuscator(
+                {
+                    rotateStringArray: true,
+                    stringArray: true,
+                    stringArrayEncoding: ['base64'],
+                    compact: true
+                },
+                []
+            )
+        ]
+    });
+}

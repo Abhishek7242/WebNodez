@@ -1,18 +1,3 @@
-@php
-    $tasks = [
-        ['title' => 'Design landing page hero', 'assignees' => 'Maya, John', 'status' => 'In Progress', 'priority' => 'High', 'due' => '2025-08-28', 'description' => 'Create a modern landing page hero section.'],
-        ['title' => 'Implement auth (JWT)', 'assignees' => 'Alex', 'status' => 'To Do', 'priority' => 'Urgent', 'due' => '2025-08-26', 'description' => 'Implement authentication using JWT tokens.'],
-        ['title' => 'Customer interviews (5)', 'assignees' => 'Sophia', 'status' => 'Backlog', 'priority' => 'Medium', 'due' => '2025-09-04', 'description' => 'Interview 5 customers for feedback.'],
-        ['title' => 'QA regression suite', 'assignees' => 'Emma', 'status' => 'Review', 'priority' => 'High', 'due' => '2025-08-30', 'description' => 'Run full regression tests before release.'],
-        ['title' => 'Release v1.2', 'assignees' => 'Maya, Alex', 'status' => 'Done', 'priority' => 'Low', 'due' => '2025-08-23', 'description' => 'Deploy version 1.2 to production.'],
-        ['title' => 'Release v1.2', 'assignees' => 'Maya, Alex', 'status' => 'Done', 'priority' => 'Low', 'due' => '2025-08-23', 'description' => 'Deploy version 1.2 to production.'],
-        ['title' => 'Release v1.2', 'assignees' => 'Maya, Alex', 'status' => 'Done', 'priority' => 'Low', 'due' => '2025-08-23', 'description' => 'Deploy version 1.2 to production.'],
-        ['title' => 'Release v1.2', 'assignees' => 'Maya, Alex', 'status' => 'Done', 'priority' => 'Low', 'due' => '2025-08-23', 'description' => 'Deploy version 1.2 to production.'],
-        ['title' => 'Release v1.2', 'assignees' => 'Maya, Alex', 'status' => 'Done', 'priority' => 'Low', 'due' => '2025-08-23', 'description' => 'Deploy version 1.2 to production.'],
-        ['title' => 'Release v1.2', 'assignees' => 'Maya, Alex', 'status' => 'Done', 'priority' => 'Low', 'due' => '2025-08-23', 'description' => 'Deploy version 1.2 to production.'],
-        ['title' => 'Release v1.2', 'assignees' => 'Maya, Alex', 'status' => 'Done', 'priority' => 'Low', 'due' => '2025-08-23', 'description' => 'Deploy version 1.2 to production.'],
-    ];
-@endphp
 
 @extends('admin/tasks/app')
 
@@ -217,9 +202,9 @@ document.addEventListener("DOMContentLoaded", function () {
             <a href="table" class="flex items-center gap-3 font-bold px-4 py-2 rounded-full border text-sm text-gray-600 hover:bg-gray-100">
                 <i class="fas fa-table"></i> Table
             </a>
-            <button class="flex items-center gap-3 font-bold px-4 py-2 rounded-full border text-sm text-gray-600 hover:bg-gray-100">
+            <a href="kanban" class="flex items-center gap-3 font-bold px-4 py-2 rounded-full border text-sm text-gray-600 hover:bg-gray-100">
                 <i class="fas fa-th-large"></i> Kanban
-            </button>
+            </a>
             <a href="timeline" class="flex items-center gap-3 font-bold px-4 py-2 rounded-full border text-sm text-gray-600 hover:bg-gray-100">
                 <i class="fas fa-calendar-alt"></i> Timeline
             </a>
@@ -230,14 +215,7 @@ document.addEventListener("DOMContentLoaded", function () {
 <!-- =================== TOP STATS STRIP =================== -->
 <div class="max-w-6xl px-6 w-full">
 
- @php
-  $stats = $stats ?? [
-    ['title' => 'Total Tasks', 'value' => 1, 'sub' => ''],
-    ['title' => 'Done', 'value' => 0, 'sub' => ''],
-    ['title' => 'In Progress', 'value' => 1, 'sub' => ''],
-    ['title' => 'Overdue', 'value' => 0, 'sub' => ''],
-  ];
-@endphp
+
 
 <!-- =================== Improved Dark/Glass Stats Strip =================== -->
 <div class="iphone-stats-wrap">

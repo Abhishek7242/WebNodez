@@ -69,11 +69,54 @@
     <link href="{{ asset('css/portfolio/design-gallery.css') }}" rel="stylesheet">
     <link href="{{ asset('css/portfolio/work-details.css') }}" rel="stylesheet">
     <link href="{{ asset('css/portfolio/blogs.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/portfolio/testimonials.css') }}" rel="stylesheet">
     <link href="{{ asset('css/blogs.css') }}" rel="stylesheet">
 
     <script>
         document.documentElement.style.setProperty('--text-color', 'black');
         document.documentElement.style.setProperty('--intro-bg', 'white');
+
+
+
+          document.addEventListener('DOMContentLoaded', function() {
+            const loadingIndicator = document.querySelector('.loading-indicator');
+
+          
+
+            // Handle blog card image loading
+            const blogCardImages = document.querySelectorAll('.blog-container img');
+            blogCardImages.forEach(function(img) {
+                const imageWrapper = img.closest('.blog-image-wrapper');
+                const loadingIndicator = imageWrapper.querySelector('.card-loading-indicator');
+
+                if (img.complete) {
+                    img.classList.add('loaded');
+                    imageWrapper.classList.add('loaded');
+                    if (loadingIndicator) {
+                        loadingIndicator.style.display = 'none';
+                    }
+                } else {
+                    img.addEventListener('load', function() {
+                        this.classList.add('loaded');
+                        imageWrapper.classList.add('loaded');
+                        if (loadingIndicator) {
+                            loadingIndicator.style.opacity = '0';
+                            setTimeout(() => {
+                                loadingIndicator.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                    img.addEventListener('error', function() {
+                        // Fchallback for failed image load
+                        this.style.display = 'none';
+                        if (loadingIndicator) {
+                            loadingIndicator.innerHTML =
+                                '<div class="card-loading-text">Image unavailable</div>';
+                        }
+                    });
+                }
+            });
+        });
     </script>
 
 
@@ -83,6 +126,7 @@
     @include('frontend/portfolio/case-studies')
     @include('frontend/portfolio/design-gallery')
     @include('frontend/portfolio/work-details')
+    @include('frontend/portfolio/testimonials')
     @if ($blogs->count() > 0)
         @include('frontend.portfolio.blogs')
     @endif

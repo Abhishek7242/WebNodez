@@ -22,7 +22,7 @@
         el.style.setProperty('--dark-bg', 'white');
     </script>
 
-    <div class="min-h-screen p-6">
+    <div class="min-h-screen p-6 mt-12">
         <div class="max-w-7xl mx-auto">
             <!-- Header Section -->
             <div class="flex justify-between items-center mb-8">
@@ -73,8 +73,8 @@
                                 $no = 1;
                             @endphp
                             @foreach ($contacts as $contact)
-                                <tr data-message-id="{{ $contact['id'] }}"
-                                    class="hover:bg-white/5 transition-colors duration-200">
+                                <tr onclick="viewMessage('{{ $contact['id'] }}')" data-message-id="{{ $contact['id'] }}"
+                                    class="hover:bg-white/5 transition-colors cursor-pointer duration-200">
 
                                     <td class="px-6 py-4">
                                         <div
@@ -108,10 +108,7 @@
                                     </td>
                                     <td class="px-6 py-4">
                                         <div class="flex space-x-3">
-                                            <button onclick="viewMessage('{{ $contact['id'] }}')"
-                                                class="text-blue-400 hover:text-blue-300 transition-colors duration-200">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
+                                            
                                             <button onclick="deleteMessage('{{ $contact['id'] }}')"
                                             class="text-red-400 hover:text-red-300 transition-colors duration-200">
                                             <i class="fas fa-trash"></i>

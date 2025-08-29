@@ -15,6 +15,10 @@ use App\Mail\NewAdminWelcomeEmail;
 use App\Mail\SendOtpForPasswordChange;
 use Carbon\Carbon;
 use App\Models\AdminLoginInfo;
+use App\Models\Blog;
+use App\Models\ContactForm;
+use App\Models\Task;
+use App\Models\UserChat;
 use Jenssegers\Agent\Agent;
 
 
@@ -202,8 +206,13 @@ class AdminController extends Controller
         if ($user->status == 'unactivated') {
             return redirect()->intended('/admin/change-password');
         }
+        $usersCount = UserChat::count();
+        $unreadMessages = ContactForm::where('status', 'new')->count();
+        $newTasks = Task::where('status', 'To Do')->count();
+        // $newTasks = Task::whereNotIn('status', ['In Progress','Review', 'Done'])->count();
+        $pendingPosts = Blog::whereNotIn('status', ['Published'])->count();
 
-        return view('admin.home');
+        return view('admin.home', compact('usersCount', 'newTasks', 'unreadMessages', 'pendingPosts'));
     }
 
     public function logout()

@@ -178,13 +178,82 @@
         bottom: 15px;
         background: transparent;
         backdrop-filter: none;
+       overflow-x: scroll; max-width: 80%;
     }
+    #dockIcons {
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE/Edge */
+}
+#dockIcons::-webkit-scrollbar {
+  display: none;                /* Chrome, Safari, Edge */
+}
 
     /* Show background only when dock is expanded */
-    #dockIcons.show {
-        background: rgba(0, 0, 0, 0.676);
-        backdrop-filter: blur(12px);
-    }
+    #dockIcons.show { background: rgba(0, 0, 0, 0.676); backdrop-filter: blur(12px);  }
+    @media screen and (max-width: 840px) {
+  #dockIcons {
+   max-width: 70%;
+  }
+}
+    @media screen and (max-width: 540px) {
+  #dockIcons {
+  left: 0;
+  }
+}
+  /* ---------- Scrollbar for #dockIcons.show (WebKit + Firefox) ---------- */
+#dockIcons.show {
+  /* Firefox: thin scrollbar and thumb/track colors (thumb, track) */
+  scrollbar-width: thin;
+  scrollbar-color: #5b8cff rgba(255,255,255,0.03);
+}
+
+/* WebKit browsers (Chrome, Edge, Safari) */
+#dockIcons.show::-webkit-scrollbar {
+  width: 10px;   /* vertical scrollbar width */
+  height: 10px;  /* horizontal scrollbar height */
+}
+
+#dockIcons.show::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.03);
+  border-radius: 999px;
+}
+
+#dockIcons.show::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #5b8cff, #7ae4c9);
+  border-radius: 999px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.25),   /* subtle inner highlight */
+    0 3px 8px rgba(11,17,32,0.45);           /* soft outer shadow */
+  border: 2px solid rgba(11,17,32,0.12);
+  min-height: 24px;
+  transition: box-shadow .18s ease, filter .12s ease;
+}
+
+#dockIcons.show::-webkit-scrollbar-thumb:hover {
+  filter: brightness(1.06);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.28),
+    0 6px 18px rgba(11,17,32,0.55);
+}
+
+#dockIcons.show::-webkit-scrollbar-thumb:active {
+  filter: brightness(0.98);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.20),
+    0 8px 26px rgba(11,17,32,0.60);
+}
+
+#dockIcons.show::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  #dockIcons.show::-webkit-scrollbar-thumb {
+    transition: none;
+  }
+}
+
 
     /* Hide icon background when collapsed */
     #dockIcons .dock-icon i {

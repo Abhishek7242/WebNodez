@@ -26,8 +26,18 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
+            padding-top: 4rem;
         }
+ @media screen and (max-width: 368px) {
+          
+        .page-title{
+            font-size: 1.33rem!important;
+        }
+        .page-subtitle{
+            font-size: 12px!important;
 
+        }
+        }
         .page-header {
             background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
             padding: 2rem;
@@ -36,6 +46,7 @@
             color: white;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+       
 
         .page-title {
             font-size: 2rem;
@@ -491,7 +502,7 @@
 
     <div class="blog-list-container">
         <div class="page-header">
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between flex-wrap items-center gap-6">
                 <div>
                     <h1 class="page-title">Manage Blogs</h1>
                     <p class="page-subtitle">Create, edit, and manage your blog posts</p>
@@ -502,7 +513,7 @@
                             d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
                             clip-rule="evenodd" />
                     </svg>
-                    Create New Blog
+                    New Blog
                 </a>
             </div>
         </div>
@@ -567,6 +578,7 @@
                         <div class="blog-image-container">
                             @if ($blog->featured_image)
                                 <img src="{{ asset($blog->featured_image) }}" alt="{{ $blog->title }}"class="blog-image">
+                                            {{-- <img src="{{ asset('storage/app/public/blog-images/' . basename($blog->featured_image)) }}" alt="{{ $blog->title }}"class="blog-image"> --}}
                             @else
                             
                                 <div class="blog-image bg-gray-100 flex items-center justify-center">

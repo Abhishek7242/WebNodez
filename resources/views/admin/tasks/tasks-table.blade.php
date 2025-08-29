@@ -1,18 +1,4 @@
-@php
-    $tasks = [
-        ['title' => 'Design landing page hero', 'assignees' => 'Maya, John', 'status' => 'In Progress', 'priority' => 'High', 'due' => '2025-08-28', 'description' => 'Create a modern landing page hero section.'],
-        ['title' => 'Implement auth (JWT)', 'assignees' => 'Alex', 'status' => 'To Do', 'priority' => 'Urgent', 'due' => '2025-08-26', 'description' => 'Implement authentication using JWT tokens.'],
-        ['title' => 'Customer interviews (5)', 'assignees' => 'Sophia', 'status' => 'Backlog', 'priority' => 'Medium', 'due' => '2025-09-04', 'description' => 'Interview 5 customers for feedback.'],
-        ['title' => 'QA regression suite', 'assignees' => 'Emma', 'status' => 'Review', 'priority' => 'High', 'due' => '2025-08-30', 'description' => 'Run full regression tests before release.'],
-        ['title' => 'Release v1.2', 'assignees' => 'Maya, Alex', 'status' => 'Done', 'priority' => 'Low', 'due' => '2025-08-23', 'description' => 'Deploy version 1.2 to production.'],
-        ['title' => 'Release v1.2', 'assignees' => 'Maya, Alex', 'status' => 'Done', 'priority' => 'Low', 'due' => '2025-08-23', 'description' => 'Deploy version 1.2 to production.'],
-        ['title' => 'Release v1.2', 'assignees' => 'Maya, Alex', 'status' => 'Done', 'priority' => 'Low', 'due' => '2025-08-23', 'description' => 'Deploy version 1.2 to production.'],
-        ['title' => 'Release v1.2', 'assignees' => 'Maya, Alex', 'status' => 'Done', 'priority' => 'Low', 'due' => '2025-08-23', 'description' => 'Deploy version 1.2 to production.'],
-        ['title' => 'Release v1.2', 'assignees' => 'Maya, Alex', 'status' => 'Done', 'priority' => 'Low', 'due' => '2025-08-23', 'description' => 'Deploy version 1.2 to production.'],
-        ['title' => 'Release v1.2', 'assignees' => 'Maya, Alex', 'status' => 'Done', 'priority' => 'Low', 'due' => '2025-08-23', 'description' => 'Deploy version 1.2 to production.'],
-        ['title' => 'Release v1.2', 'assignees' => 'Maya, Alex', 'status' => 'Done', 'priority' => 'Low', 'due' => '2025-08-23', 'description' => 'Deploy version 1.2 to production.'],
-    ];
-@endphp
+
 
 @extends('admin/tasks/app')
 
@@ -218,12 +204,12 @@ document.addEventListener("DOMContentLoaded", function () {
             <button class="flex items-center font-bold gap-3 px-4 py-2 rounded-full border text-sm bg-gray-900 text-white">
                 <i class="fas fa-table"></i> Table
             </button>
-            <button class="flex items-center gap-3 font-bold px-4 py-2 rounded-full border text-sm text-gray-600 hover:bg-gray-100">
+            <a href="kanban" class="flex items-center gap-3 font-bold px-4 py-2 rounded-full border text-sm text-gray-600 hover:bg-gray-100">
                 <i class="fas fa-th-large"></i> Kanban
-            </button>
-            <button class="flex items-center gap-3 font-bold px-4 py-2 rounded-full border text-sm text-gray-600 hover:bg-gray-100">
+            </a>
+            <a href="timeline" class="flex items-center gap-3 font-bold px-4 py-2 rounded-full border text-sm text-gray-600 hover:bg-gray-100">
                 <i class="fas fa-calendar-alt"></i> Timeline
-            </button>
+            </a>
         </div>
     </div>
 
@@ -252,7 +238,74 @@ document.addEventListener("DOMContentLoaded", function () {
                     data-task='@json($task)'
                     onclick="openTaskModal(this)">
                     <td class="px-4 py-2 font-bold">{{ $task['title'] }}</td>
-                    <td class="px-4 py-2">{{ $task['assignees'] }}</td>
+                    
+                   <td class="px-4 py-2 flex -space-x-2">
+    @foreach(explode(',', $task['assignees']) as $assignee)
+        @php
+            $assignee = trim($assignee);
+            $initials = collect(explode(' ', $assignee))
+                ->map(fn($word) => strtoupper($word[0]))
+                ->implode('');
+            $bgColors = ['bg-blue','bg-green','bg-purple','bg-pink','bg-yellow','bg-red'];
+            $color = $bgColors[crc32($assignee) % count($bgColors)];
+        @endphp
+        <div class="avatar {{ $color }}" data-name="{{ $assignee }}">
+            {{ $initials }}
+        </div>
+    @endforeach
+</td>
+<style>
+  /* Avatar base */
+.avatar {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    color: #fff;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Overlap effect */
+.avatar:not(:first-child) {
+    margin-left: -8px;
+}
+
+/* Tooltip on hover */
+.avatar::after {
+    content: attr(data-name);
+    position: absolute;
+    bottom: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+}
+.avatar:hover::after {
+    opacity: 1;
+}
+
+/* Background colors */
+.bg-blue   { background-color: #3b82f6; }
+.bg-green  { background-color: #10b981; }
+.bg-purple { background-color: #8b5cf6; }
+.bg-pink   { background-color: #ec4899; }
+.bg-yellow { background-color: #f59e0b; }
+.bg-red    { background-color: #ef4444; }
+
+</style>
                     <td class="px-4 py-2">
                         <span class="px-2 py-1 rounded-full font-bold text-xs 
                             @if($task['status'] == 'In Progress') bg-yellow-100 text-yellow-700

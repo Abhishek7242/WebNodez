@@ -23,6 +23,9 @@
     .admin-dashboard{
         padding-bottom: 150px; /* Space for the dock */
     }
+    #dashboard-counters{
+      margin: 20px 10px;
+    }
     /* Grid layout */
 .cards-grid {
     display: grid;
@@ -165,15 +168,20 @@
         Quick access to content, clients, operations and growth modules — everything you need to manage, monitor and move faster.
     </p>
 
-    <div class="mt-6 inline-flex items-center space-x-4 text-sm text-white/80">
-        <span class="px-3 py-2 bg-white/5 rounded-lg">🗂 Active Projects: <strong class="ml-2 text-white">{{ $activeProjects }}</strong></span>
-        <span class="px-3 py-2 bg-white/5 rounded-lg">✅ New Tasks: <strong class="ml-2 text-white">{{ $newTasks }}</strong></span>
-        <span class="px-3 py-2 bg-white/5 rounded-lg">✉️ Messages: <strong class="ml-2 text-white">{{ $unreadMessages }}</strong></span>
-    </div>
+ <div id="dashboard-counters" class="mt-6 m-6 flex flex-wrap gap-4 text-sm text-white/80">
+    <span class="flex-1 min-w-[200px] px-3 py-2 bg-white/5 rounded-lg">
+        🗂 Active Projects: <strong class="ml-2 text-white">{{ $activeProjects }}</strong>
+    </span>
+    <span class="flex-1 min-w-[200px] px-3 py-2 bg-white/5 rounded-lg">
+        ✅ New Tasks: <strong class="ml-2 text-white">{{ $newTasks }}</strong>
+    </span>
+    <span class="flex-1 min-w-[200px] px-3 py-2 bg-white/5 rounded-lg">
+        ✉️ Messages: <strong class="ml-2 text-white">{{ $unreadMessages }}</strong>
+    </span>
 </div>
 
  <!-- =================== Modern Apple-like Middle Content =================== -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl w-full px-6">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl w-full">
 
   <!-- Card: User Management -->
   <div class="apple-card flex flex-col justify-between">
@@ -192,7 +200,7 @@
         <div class="card-count">{{ $usersCount ?? '1,245' }}</div>
         <div class="card-sub">Total users</div>
       </div>
-      <a href="/admin/manage-users" class="card-btn">Open</a>
+      <a href="/admin/user-ai-chats" class="card-btn">Open</a>
     </div>
   </div>
 
@@ -273,8 +281,8 @@
 
     <div class="mt-6 flex items-center justify-between">
       <div>
-        <div class="card-count">{{ $activeServices ?? '12' }}</div>
-        <div class="card-sub">Active services</div>
+        {{-- <div class="card-count">{{ $activeServices ?? '12' }}</div> --}}
+        {{-- <div class="card-sub">Active services</div> --}}
       </div>
       <a href="/admin/manage-services" class="card-btn">Open</a>
     </div>
@@ -294,8 +302,8 @@
 
     <div class="mt-6 flex items-center justify-between">
       <div>
-        <div class="card-count">{{ $projectsCount ?? '24' }}</div>
-        <div class="card-sub">Projects</div>
+        {{-- <div class="card-count">{{ $projectsCount ?? '24' }}</div> --}}
+        {{-- <div class="card-sub">Projects</div> --}}
       </div>
       <a href="/admin/manage-portfolio" class="card-btn">Open</a>
     </div>

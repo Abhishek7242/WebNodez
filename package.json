@@ -17,10 +17,12 @@
         "laravel-mix": "^6.0.49",
         "lodash": "^4.17.19",
         "postcss": "^8.5.3",
-        "tailwindcss": "^3.4.3"
+        "tailwindcss": "^3.4.3",
+        "webpack-obfuscator": "^3.5.1"
     },
     "dependencies": {
         "@google/generative-ai": "^0.24.1",
-        "puppeteer": "^24.10.1"
+        "puppeteer": "^24.10.1",
+        "tinymce": "^8.0.2"
     }
 }

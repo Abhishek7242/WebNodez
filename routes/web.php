@@ -21,6 +21,8 @@ use App\Models\CaseStudy;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\IndexNowController;
+use Illuminate\Support\Facades\Artisan;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,7 +56,10 @@ Route::middleware('auth:admin')->group(function () {
 // tasks
 Route::get('/admin/managetasks/{id}', [AdminTasksController::class, 'manageTasks'])->name('admin.tasks');
 Route::get('/admin/managetasks/mytasks/view', [AdminTasksController::class, 'myTasks'])->name('admin.mytasks');
-
+    // Store a new task
+    Route::post('/admin/managetasks/newtasks', [AdminTasksController::class, 'store'])->name('tasks.store');
+    Route::post('/admin/managetasks/{task}/update-status', [AdminTasksController::class, 'updateStatus'])
+        ->name('tasks.updateStatus');
 // tasks
 
 
@@ -191,3 +196,11 @@ Route::post('/submit-feedback', [FormSubmissionController::class, 'submitFeedbac
 
 // SEO Routes
 Route::get('/sitemap.xml', [App\Http\Controllers\SitemapController::class, 'index'])->name('sitemap');
+
+Route::get('/clear-cache', function () {
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+    Artisan::call('cache:clear');
+    return 'Cache Cleared!';
+});

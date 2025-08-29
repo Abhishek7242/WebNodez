@@ -1,0 +1,188 @@
+/* Testimonials – Linkuss */
+/* Palette */
+:root {
+  --lk-bg: #0b0f14;
+  --lk-card: rgba(255,255,255,0.04);
+  --lk-card-border: rgba(255,255,255,0.12);
+  --lk-text: #e6edf3;
+  --lk-dim: #a9b1ba;
+  --lk-primary: #5b8cff;     /* link-blue */
+  --lk-accent: #7ae4c9;      /* mint */
+  --lk-chip-bg: rgba(122,228,201,0.14);
+  --lk-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+/* Light mode fallback */
+@media (prefers-color-scheme: light) {
+  :root {
+    --lk-bg: #f7fafc;
+    --lk-card: #ffffff;
+    --lk-card-border: rgba(15,23,42,0.08);
+    --lk-text: #0f172a;
+    --lk-dim: #475569;
+    --lk-chip-bg: rgba(91,140,255,0.10);
+  }
+}
+
+/* Optional dark-mode class hook if your site toggles it */
+.dark-mode .lk-testimonials { background: var(--lk-bg); color: var(--lk-text); }
+
+.lk-testimonials {
+  background: var(--lk-bg);
+  color: var(--lk-text);
+  padding: clamp(2.5rem, 6vw, 5rem) 0;
+}
+
+.lk-wrap {
+  width: min(1100px, 92%);
+  margin-inline: auto;
+}
+
+.lk-head {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.lk-eyebrow {
+  display: inline-block;
+  font-size: .8rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--lk-dim);
+  margin-bottom: .4rem;
+}
+
+.lk-head h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  line-height: 1.2;
+  margin: 0.2rem 0 0.5rem;
+}
+
+.lk-sub {
+  color: var(--lk-dim);
+  max-width: 52ch;
+  margin: 0 auto;
+}
+
+/* Grid – scroll-snap on mobile, grid on desktop */
+.lk-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 88%;
+  gap: 1.2rem;
+  overflow-x: auto;
+  padding: .4rem;
+  scroll-snap-type: x mandatory;
+}
+
+.lk-card {
+  scroll-snap-align: start;
+  background: linear-gradient(180deg, var(--lk-card), transparent 60%) border-box;
+  border: 1px solid var(--lk-card-border);
+  border-radius: 18px;
+  padding: 1.1rem;
+  box-shadow: var(--lk-shadow);
+  position: relative;
+}
+
+@media (min-width: 900px) {
+  .lk-grid {
+    grid-auto-flow: initial;
+    grid-template-columns: repeat(3, 1fr);
+    overflow: visible;
+  }
+  .lk-card { padding: 1.25rem; }
+}
+
+/* Card header */
+.lk-card-head {
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: .6rem;
+}
+
+.lk-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--lk-primary), var(--lk-accent));
+  color: #0b1220;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+.lk-meta { line-height: 1.1; }
+.lk-name { font-size: .98rem; }
+.lk-role { color: var(--lk-dim); font-size: .85rem; }
+
+.lk-stars {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  color: var(--lk-accent);
+  white-space: nowrap;
+}
+
+/* Body text */
+.lk-body {
+  margin: .5rem 0 1rem;
+  color: var(--lk-text);
+  line-height: 1.6;
+}
+
+/* Footer chips */
+.lk-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.lk-chip {
+  font-size: .78rem;
+  padding: .35rem .6rem;
+  border-radius: 999px;
+  border: 1px solid var(--lk-card-border);
+  background: var(--lk-chip-bg);
+  color: var(--lk-text);
+}
+
+/* CTA */
+.lk-cta {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  background: linear-gradient(135deg, rgba(91,140,255,.15), rgba(122,228,201,.15));
+  border: 1px solid var(--lk-card-border);
+  border-radius: 16px;
+  padding: 1rem 1.2rem;
+}
+
+.lk-cta-text { font-weight: 600; }
+.lk-cta-btn {
+  display: inline-block;
+  padding: .7rem 1rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--lk-primary), var(--lk-accent));
+  color: #0b1220;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform .15s ease;
+}
+.lk-cta-btn:hover { transform: translateY(-1px); }
+
+/* a11y utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  border: 0;
+  white-space: nowrap;
+}
